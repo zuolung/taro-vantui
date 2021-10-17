@@ -4299,7 +4299,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
 
 cross-env@^7.0.3:
   version "7.0.3"
-  resolved "https://registry.npm.taobao.org/cross-env/download/cross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
+  resolved "https://registry.nlark.com/cross-env/download/cross-env-7.0.3.tgz?cache=0&sync_timestamp=1624607983846&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcross-env%2Fdownload%2Fcross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
   integrity sha1-hlJkspZ33AFbqEGJGJZd0jL8VM8=
   dependencies:
     cross-spawn "^7.0.1"
@@ -12520,10 +12520,10 @@ taro-css-to-react-native@^2.0.4:
     css-mediaquery "^0.1.2"
     postcss-value-parser "^3.3.0"
 
-taro-vantui@^0.0.0:
-  version "0.0.0"
-  resolved "https://registry.npmjs.org/taro-vantui/-/taro-vantui-0.0.0.tgz#18d824d83c7bf3b32b9e7b02bd1daa0de6152bd4"
-  integrity sha512-7Cx75dHQeVN0iY5XLkZUAqw0TAReygdFNjgP+sqQVkumXlMom6uDy3sSEUWsujCU/7zZlx0XJtPtO/w59GXgyA==
+taro-vantui@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmmirror.com/taro-vantui/download/taro-vantui-0.0.1.tgz#2774df263782df064f634912a615fab5594ab4b1"
+  integrity sha1-J3TfJjeC3wZPY0kSphX6tVlKtLE=
   dependencies:
     "@babel/runtime-corejs3" "^7.14.7"
     "@vant/icons" "^1.7.0"

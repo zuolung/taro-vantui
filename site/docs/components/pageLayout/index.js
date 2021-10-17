@@ -6,7 +6,11 @@ import classNames from 'classnames'
 import './index.less'
 
 const preCls = 'antmui-site-pageLayout'
-const mobileDomain = 'https://zuolung.github.io/taro-vantui/demo-dist/index.html#'
+const mobileDomain = process.env.NODE_ENV === 'production' ?
+  'https://zuolung.github.io/taro-vantui/demo-dist/index.html#' :
+  'http://localhost:10086/#'
+
+const notComponentsMd = ['introduce', 'usage']
 
 export default function PageLayout(props) {
   const [hash, setHash] = React.useState(window.location.hash)
@@ -26,7 +30,10 @@ export default function PageLayout(props) {
       <div className={`${preCls}-container`}>
         <iframe
           className={`${preCls}-example`}
-          src={`${mobileDomain}/pages/${hash.replace('#/', '')}/index`}
+          src={notComponentsMd.includes(hash.replace('#/', '')) ?
+            `${mobileDomain}/pages/${hash.replace('#/', '')}/index` :
+            `${mobileDomain}/pages/dashboard/index`
+          }
         />
         <div className={`${preCls}-header`}>
           <div className={`${preCls}-header-left`}>
@@ -56,7 +63,7 @@ export default function PageLayout(props) {
           </div>
           <div className={`${preCls}-main`}>
             <Switch>
-              <Redirect path="/" exact to="/button" />
+              <Redirect path="/" exact to="/introduce" />
               {routes.map((item, index) => (
                 <Route
                   exact

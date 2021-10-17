@@ -12,8 +12,8 @@
     "iconfont": "npx antm-icon --font-family antmuifont --input-path https://at.alicdn.com/t/font_2744513_7eeet2akdo.css --output-path src/style/components/iconfont.less",
     "_clean": "npx rimraf dist",
     "watch": "npx rollup -c ./rollup.watch.config.js -w",
-    "docs:dev": "webpack --config ./site/docs/config/dev-run.js",
-    "docs:build": "webpack --config ./site/docs/config/webpack.pro.config.js",
+    "docs:dev": "cross-env NODE_ENV=development webpack --config ./site/docs/config/dev-run.js",
+    "docs:build": "cross-env NODE_ENV=production webpack --config ./site/docs/config/webpack.pro.config.js",
     "build": "npx rollup -c ./rollup.config.js",
     "deploy": "gh-pages -d dist"
   },
@@ -56,6 +56,7 @@
     "@babel/runtime-corejs3": "^7.14.7",
     "@vant/icons": "^1.7.0",
     "classnames": "^2.3.1",
+    "cross-env": "^7.0.3",
     "dayjs": "^1.10.6",
     "gh-pages": "^3.2.3",
     "highlight.js": "^11.2.0",
