@@ -1,0 +1,17 @@
+import React from 'react'
+{{#each routes}}
+import {{com_}} from './pages/{{com}}.js'
+{{/each}}
+
+export default [
+{{#each routes}}
+{
+path: '{{com}}',
+component: function index(props) {
+return (
+<{{com_}} {...props} />
+)
+},
+},
+{{/each}}
+]

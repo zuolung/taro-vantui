@@ -1,0 +1,16 @@
+*.log
+
+.github
+.cache
+.temp
+.idea
+.DS_Store
+
+CHANGELOG.md
+package-lock.json
+
+template
+site
+src
+node_modules
+coverage

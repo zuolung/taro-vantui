@@ -1,0 +1,160 @@
+# CountDown 倒计时
+
+### 介绍
+
+用于实时展示倒计时数值，支持毫秒精度。
+
+### 引入
+
+在 Taro 文件中引入组件
+
+```js
+ import { CountDown } from "taro-vantui" 
+```
+
+> Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)。
+
+## 代码演示
+
+### 基本用法
+
+`time`属性表示倒计时总时长，单位为毫秒。
+
+```jsx
+<CountDown time={time} /> 
+```
+
+```js
+const [time, setTime] = useState(108000000); 
+```
+
+### 自定义格式
+
+通过`format`属性设置倒计时文本的内容。
+
+```jsx
+<CountDown time={time} format="DD 天 HH 时 mm 分 ss 秒" /> 
+```
+
+### 毫秒级渲染
+
+倒计时默认每秒渲染一次，设置`millisecond`属性可以开启毫秒级渲染。
+
+```jsx
+<CountDown millisecond time={time} format="HH:mm:ss:SSS" /> 
+```
+
+### 自定义样式
+
+设置`useSlot`属性后可以自定义倒计时样式，需要通过`onChange`事件获取`timeData`对象并自行渲染，格式见下方表格。
+
+```jsx
+<CountDown useSlot time={time} onChange={onChange}>
+  <text class="item">{{ timeData.hours }}</text>
+  <text class="item">{{ timeData.minutes }}</text>
+  <text class="item">{{ timeData.seconds }}</text>
+</vanCountDown> 
+```
+
+```js
+const [time, setTime] = useState(108000000);
+const [timeData, setTimeData] = useState({});
+
+function onChange(e) {
+  setTimeData(e.detail);
+} 
+```
+
+```css
+.item {
+  display: inlineBlock;
+  width: 22px;
+  marginRight: 5px;
+  color: #fff;
+  fontSize: 12px;
+  textAlign: center;
+  backgroundColor: #1989fa;
+  borderRadius: 2px;
+}
+```
+
+### 手动控制
+
+通过 `selectComponent` 选择器获取到组件实例后，可以调用`start`、`pause`、`reset`方法。
+
+```jsx
+<CountDown
+  class={controlCountDown}
+  millisecond
+  time="{{ 3000 }}"
+  autoStart={false}
+  format="ss:SSS"
+  onFinish="finished"
+/>
+
+<Grid clickable columnNum="3">
+  <GridItem text="开始" icon={playCircleO} bindclick="start" />
+  <GridItem text="暂停" icon={pauseCircleO} bindclick="pause" />
+  <GridItem text="重置" icon="replay" bindclick="reset" />
+</vanGrid> 
+```
+
+```js
+function start() {
+  const countDown = this.selectComponent('.controlCountDown');
+  countDown.start();
+}
+
+function pause() {
+  const countDown = this.selectComponent('.controlCountDown');
+  countDown.pause();
+}
+
+function reset() {
+  const countDown = this.selectComponent('.controlCountDown');
+  countDown.reset();
+}
+
+function finished() {
+  Toast('倒计时结束');
+} 
+```
+
+## API
+
+### Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| time | 倒计时时长，单位毫秒 | _number_ | - |
+| format | 时间格式，DD-日，HH-时，mm-分，ss-秒，SSS-毫秒 | _string_ | `HH:mm:ss` |
+| autoStart | 是否自动开始倒计时 | _boolean_ | `true` |
+| millisecond | 是否开启毫秒级渲染 | _boolean_ | `false` |
+| useSlot | 是否使用自定义样式插槽 | _boolean_ | `false` |
+
+### Events
+
+| 事件名 | 说明                                         | 回调参数 |
+| ------ | -------------------------------------------- | -------- |
+| finish | 倒计时结束时触发                             | -        |
+| change | 时间变化时触发，仅在开启`useSlot`后才会触发 | timeData |
+
+### timeData 格式
+
+| 名称         | 说明     | 类型     |
+| ------------ | -------- | -------- |
+| days         | 剩余天数 | _number_ |
+| hours        | 剩余小时 | _number_ |
+| minutes      | 剩余分钟 | _number_ |
+| seconds      | 剩余秒数 | _number_ |
+| milliseconds | 剩余毫秒 | _number_ |
+
+### 方法
+
+通过 selectComponent 可以获取到 CountDown 实例并调用实例方法。
+
+| 方法名 | 参数 | 返回值 | 介绍 |
+| --- | --- | --- | --- |
+| start | - | - | 开始倒计时 |
+| pause | - | - | 暂停倒计时 |
+| reset | - | - | 重设倒计时，若`autoStart`为`true`，重设后会自动开始倒计时 |

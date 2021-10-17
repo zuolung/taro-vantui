@@ -1,0 +1,175 @@
+# TreeSelect 分类选择
+
+### 介绍
+
+用于从一组相关联的数据集合中进行选择。
+
+### 引入
+
+在 Taro 文件中引入组件
+
+```js
+ import { TreeSelect } from "taro-vantui" 
+```
+
+## 代码演示
+
+### 单选模式
+
+可以在任意位置上使用 vanTreeSelect 标签。传入对应的数据即可。此组件支持单选或多选，具体行为完全基于事件 clickItem 的实现逻辑如何为属性 activeId 赋值，当 activeId 为数组时即为多选状态。
+
+```jsx
+<TreeSelect
+  items={items}
+  mainActiveIndex="{{ mainActiveIndex }}"
+  activeId="{{ activeId }}"
+  onClickNav={onClickNav}
+  onClickItem={onClickItem}
+/> 
+```
+
+```js
+const [mainActiveIndex, setMainActiveIndex] = useState(0);
+const [activeId, setActiveId] = useState(null);
+
+function onClickNav({
+  detail = {}
+}) {
+  setMainActiveIndex(detail.index || 0);
+}
+
+function onClickItem({
+  detail = {}
+}) {
+  const activeId = this.data.activeId === detail.id ? null : detail.id;
+  setActiveId(activeId);
+} 
+```
+
+### 多选模式
+
+```jsx
+<TreeSelect
+  items={items}
+  mainActiveIndex="{{ mainActiveIndex }}"
+  activeId="{{ activeId }}"
+  max={max}
+  onClickNav={onClickNav}
+  onClickItem={onClickItem}
+/> 
+```
+
+```js
+const [mainActiveIndex, setMainActiveIndex] = useState(0);
+const [activeId, setActiveId] = useState([]);
+const [max, setMax] = useState(2);
+
+function onClickNav({
+  detail = {}
+}) {
+  setMainActiveIndex(detail.index || 0);
+}
+
+function onClickItem({
+  detail = {}
+}) {
+  const {
+    activeId
+  } = this.data;
+  const index = activeId.indexOf(detail.id);
+
+  if (index > -1) {
+    activeId.splice(index, 1);
+  } else {
+    activeId.push(detail.id);
+  }
+
+  setActiveId(activeId);
+} 
+```
+
+### 自定义内容
+
+```jsx
+<TreeSelect
+  items={items}
+  height="55vw"
+  mainActiveIndex="{{ mainActiveIndex }}"
+  activeId="{{ activeId }}"
+  onClickNav={onClickNav}
+  onClickItem={onClickItem}
+>
+  <image src="https://img.yzcdn.cn/vant/apple1.jpg" slot="content" />
+</vanTreeSelect> 
+```
+
+## API
+
+### Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| items | 分类显示所需的数据 | _Array_ | `[]` |
+| height | 高度，默认单位为`px` | _number \| string_ | `300` |
+| mainActiveIndex | 左侧选中项的索引 | _number_ | `0` |
+| activeId | 右侧选中项的 id，支持传入数组 | _string \| number \| Array_ | `0` |
+| max | 右侧项最大选中个数 | _number_ | _Infinity_ |
+| selectedIcon `v1.5.0` | 自定义右侧栏选中状态的图标 | _string_ | `success` |
+
+### Events
+
+| 事件名 | 说明 | 回调参数 |
+| --- | --- | --- |
+| onClickNav | 左侧导航点击时，触发的事件 | event.detail.index：被点击的导航的索引 |
+| onClickItem | 右侧选择项被点击时，会触发的事件 | event.detail: 该点击项的数据 |
+
+### Slots
+
+| 名称    | 说明                                             |
+| ------- | ------------------------------------------------ |
+| content | 自定义右侧区域内容，如果存在 items，则插入在顶部 |
+
+### items 数据结构
+
+`items` 整体为一个数组，数组内包含一系列描述分类的对象。每个分类里，text 表示当前分类的名称。children 表示分类里的可选项，为数组结构，id 被用来唯一标识每个选项。
+
+```js
+[
+  {
+    // 导航名称
+    text: '所有城市',
+    // 导航名称右上角徽标，1.5.0 版本开始支持
+    badge: 3,
+    // 是否在导航名称右上角显示小红点，1.5.0 版本开始支持
+    dot: true,
+    // 禁用选项
+    disabled: false,
+    // 该导航下所有的可选项
+    children: [
+      {
+        // 名称
+        text: '温州',
+        // id，作为匹配选中状态的标识
+        id: 1,
+        // 禁用选项
+        disabled: true,
+      },
+      {
+        text: '杭州',
+        id: 2,
+      },
+    ],
+  },
+];
+```
+
+### 外部样式类
+
+| 类名                   | 说明               |
+| ---------------------- | ------------------ |
+| mainItemClass        | 左侧选项样式类     |
+| contentItemClass     | 右侧选项样式类     |
+| mainActiveClass      | 左侧选项选中样式类 |
+| contentActiveClass   | 右侧选项选中样式类 |
+| mainDisabledClass    | 左侧选项禁用样式类 |
+| contentDisabledClass | 右侧选项禁用样式类 |
