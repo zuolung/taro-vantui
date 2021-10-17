@@ -2,7 +2,6 @@ const path = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const cwd = process.cwd()
-console.info(__dirname, '__dirname')
 
 module.exports = {
   entry: {
@@ -11,7 +10,7 @@ module.exports = {
 
   output: {
     filename: '[name]_[hash].js',
-    path: path.join(cwd, './docs-dist'),
+    path: path.join(cwd, './dist/docs-dist'),
   },
 
   resolve: {

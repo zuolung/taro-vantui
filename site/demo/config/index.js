@@ -69,6 +69,7 @@ let config = {
     },
   },
   h5: {
+    publicPath: './',
     webpackChain(chain) {
       const publicPath = process.env.PUBLIC_PATH || '/'
       h5Chain(chain)
@@ -94,7 +95,7 @@ let config = {
       }
     },
     router: {
-      mode: 'browser',
+      mode: 'hash',
     },
     devServer: {
       port: 10086,

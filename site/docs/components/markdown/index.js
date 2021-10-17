@@ -6,7 +6,8 @@ import './index.less'
 const config = {
   highlight: function (str, lang) {
     return hljs.highlight(str, { language: lang !== 'js' ? 'xml' : 'js' }).value
-  }
+  },
+  html: true
 }
 const md = MarkdownIt(config)
 

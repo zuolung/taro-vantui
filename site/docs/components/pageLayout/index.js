@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import './index.less'
 
 const preCls = 'antmui-site-pageLayout'
+const mobileDomain = 'https://zuolung.github.io/taro-vantui/demo-dist/index.html#'
 
 export default function PageLayout(props) {
   const [hash, setHash] = React.useState(window.location.hash)
@@ -20,15 +21,12 @@ export default function PageLayout(props) {
     e.stopPropagation()
   }
 
-  console.info(require('../../../../src/components/button/button.md').default, props)
-
-
   return (
     <HashRouter>
       <div className={`${preCls}-container`}>
         <iframe
           className={`${preCls}-example`}
-          src={`http://localhost:10086/pages/${hash.replace('#/', '')}/index`}
+          src={`${mobileDomain}/pages/${hash.replace('#/', '')}/index`}
         />
         <div className={`${preCls}-header`}>
           <div className={`${preCls}-header-left`}>

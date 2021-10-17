@@ -1,5 +1,12 @@
 export default [
   {
+    desc: '使用指南',
+    items: {
+      introduce: '介绍',
+      usage: '快速上手',
+    },
+  },
+  {
     desc: '基础组件',
     items: {
       button: 'Button 按钮',
@@ -9,7 +16,7 @@ export default [
       col: 'Layout 布局',
       popUp: 'PopUp 弹出层',
       transition: 'Transition 内置样式',
-      toast: 'Toast 内置样式',
+      toast: 'Toast 轻提示',
     },
   },
   {
