@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Transition } from "taro-vantui" 
+```javascript
+import { Transition } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,7 +19,7 @@
 将元素包裹在 transition 组件内，在元素展示/隐藏时，会有相应的过渡动画。
 
 ```jsx
-<Transition show={show} customClass="block">内容</vanTransition> 
+<Transition show={ show } customClass="block">内容</Transition> 
 ```
 
 ### 动画类型
@@ -36,9 +36,9 @@ transition 组件内置了多种动画，可以通过`name`字段指定动画类
 
 ```jsx
 <Transition
-  show={show}
+  show={ show }
   name=""
-  duration="{{ { enter: 300, leave: 1000 } }}"
+  duration={ { enter: 300, leave: 1000 } }
   enterClass={vanEnterClass}
   enterActiveClass={vanEnterActiveClass}
   leaveActiveClass={vanLeaveActiveClass}

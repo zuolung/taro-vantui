@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Skeleton } from "taro-vantui" 
+```javascript
+import { Skeleton } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -37,16 +37,20 @@
 将`loading`属性设置成`false`表示内容加载完成，此时会隐藏占位图，并显示`Skeleton`的子组件。
 
 ```jsx
-<Skeleton title avatar row="3" loading={loading}>
+<Skeleton title avatar row="3" loading={ loading }>
   <view>实际内容</view>
-</vanSkeleton> 
+</Skeleton> 
 ```
 
-```js
-const [loading, setLoading] = useState(true);
+```javascript
+this.state = {
+  loading: true
+};
 
 function onReady() {
-  setLoading(false);
+  this.setData({
+    loading: false
+  });
 } 
 ```
 

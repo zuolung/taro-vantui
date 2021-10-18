@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Search } from "taro-vantui" 
+```javascript
+import { Search } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,7 +19,7 @@
 `vanSearch` 中，value 用于控制搜索框中的文字。background 可以自定义搜索框外部背景色。
 
 ```jsx
-<Search value={value} placeholder="请输入搜索关键词" /> 
+<Search value={ value } placeholder="请输入搜索关键词" /> 
 ```
 
 ### 事件监听
@@ -28,7 +28,7 @@
 
 ```jsx
 <Search
-  value={value}
+  value={ value }
   placeholder="请输入搜索关键词"
   showAction
   onSearch={onSearch}
@@ -42,7 +42,7 @@
 
 ```jsx
 <Search
-  value={value}
+  value={ value }
   inputAlign="center"
   placeholder="请输入搜索关键词"
 /> 
@@ -53,7 +53,7 @@
 通过 `disabled` 属性可以将组件设置为禁用状态。
 
 ```jsx
-<Search disabled value={value} placeholder="请输入搜索关键词" /> 
+<Search disabled value={ value } placeholder="请输入搜索关键词" /> 
 ```
 
 ### 自定义背景色
@@ -62,7 +62,7 @@
 
 ```jsx
 <Search
-  value={value}
+  value={ value }
   shape="round"
   background="#4fc08d"
   placeholder="请输入搜索关键词"
@@ -75,7 +75,7 @@
 
 ```jsx
 <Search
-  value={value}
+  value={ value }
   label="地址"
   placeholder="请输入搜索关键词"
   useActionSlot
@@ -83,14 +83,18 @@
   onSearch={onSearch}
 >
   <view slot="action" onTap={onClick}>搜索</view>
-</vanSearch> 
+</Search> 
 ```
 
-```js
-const [value, setValue] = useState("");
+```javascript
+this.state = {
+  value: ""
+};
 
 function onChange(e) {
-  setValue(e.detail);
+  this.setData({
+    value: e.detail
+  });
 }
 
 function onSearch() {

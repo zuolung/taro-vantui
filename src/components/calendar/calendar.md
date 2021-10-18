@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Calendar } from "taro-vantui" 
+```javascript
+import { Calendar } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,20 +19,26 @@
 下面演示了结合单元格来使用日历组件的用法，日期选择完成后会触发`confirm`事件。
 
 ```jsx
-<Cell title="选择单个日期" value={date} onClick={onDisplay} />
-<Calendar show={show} onClose={onClose} onConfirm={onConfirm} /> 
+<Cell title="选择单个日期" value={ date } onClick={onDisplay} />
+<Calendar show={ show } onClose={onClose} onConfirm={onConfirm} /> 
 ```
 
-```js
-const [date, setDate] = useState("");
-const [show, setShow] = useState(false);
+```javascript
+this.state = {
+  date: "",
+  show: false
+};
 
 function onDisplay() {
-  setShow(true);
+  this.setData({
+    show: true
+  });
 }
 
 function onClose() {
-  setShow(false);
+  this.setData({
+    show: false
+  });
 }
 
 function formatDate(date) {
@@ -41,8 +47,10 @@ function formatDate(date) {
 }
 
 function onConfirm(event) {
-  setShow(false);
-  setDate(formatDate(event.detail));
+  this.setData({
+    show: false,
+    date: this.formatDate(event.detail)
+  });
 } 
 ```
 
@@ -51,30 +59,38 @@ function onConfirm(event) {
 设置`type`为`multiple`后可以选择多个日期，此时`confirm`事件返回的 date 为数组结构，数组包含若干个选中的日期。
 
 ```jsx
-<Cell title="选择多个日期" value={text} onClick={onDisplay} />
+<Cell title="选择多个日期" value={ text } onClick={onDisplay} />
 <Calendar
-  show={show}
+  show={ show }
   type="multiple"
   onClose={onClose}
   onConfirm={onConfirm}
 /> 
 ```
 
-```js
-const [text, setText] = useState("");
-const [show, setShow] = useState(false);
+```javascript
+this.state = {
+  text: "",
+  show: false
+};
 
 function onDisplay() {
-  setShow(true);
+  this.setData({
+    show: true
+  });
 }
 
 function onClose() {
-  setShow(false);
+  this.setData({
+    show: false
+  });
 }
 
 function onConfirm(event) {
-  setShow(false);
-  setDate(`选择了 ${event.detail.length} 个日期`);
+  this.setData({
+    show: false,
+    date: `选择了 ${event.detail.length} 个日期`
+  });
 } 
 ```
 
@@ -83,25 +99,31 @@ function onConfirm(event) {
 设置`type`为`range`后可以选择日期区间，此时`confirm`事件返回的 date 为数组结构，数组第一项为开始时间，第二项为结束时间。
 
 ```jsx
-<Cell title="选择日期区间" value={date} onClick={onDisplay} />
+<Cell title="选择日期区间" value={ date } onClick={onDisplay} />
 <Calendar
-  show={show}
+  show={ show }
   type="range"
   onClose={onClose}
   onConfirm={onConfirm}
 /> 
 ```
 
-```js
-const [date, setDate] = useState("");
-const [show, setShow] = useState(false);
+```javascript
+this.state = {
+  date: "",
+  show: false
+};
 
 function onDisplay() {
-  setShow(true);
+  this.setData({
+    show: true
+  });
 }
 
 function onClose() {
-  setShow(false);
+  this.setData({
+    show: false
+  });
 }
 
 function formatDate(date) {
@@ -111,8 +133,10 @@ function formatDate(date) {
 
 function onConfirm(event) {
   const [start, end] = event.detail;
-  setShow(false);
-  setDate(`${formatDate(start)} - ${formatDate(end)}`);
+  this.setData({
+    show: false,
+    date: `${this.formatDate(start)} - ${this.formatDate(end)}`
+  });
 } 
 ```
 
@@ -123,7 +147,7 @@ function onConfirm(event) {
 将`showConfirm`设置为`false`可以隐藏确认按钮，这种情况下选择完成后会立即触发`confirm`事件。
 
 ```jsx
-<Calendar show={show} showConfirm={false} /> 
+<Calendar show={ show } showConfirm={ false } /> 
 ```
 
 ### 自定义颜色
@@ -131,7 +155,7 @@ function onConfirm(event) {
 通过`color`属性可以自定义日历的颜色，对选中日期和底部按钮生效。
 
 ```jsx
-<Calendar show={show} color="#07c160" /> 
+<Calendar show={ show } color="#07c160" /> 
 ```
 
 ### 自定义日期范围
@@ -140,16 +164,18 @@ function onConfirm(event) {
 
 ```jsx
 <Calendar
-  show={show}
-  minDate="{{ minDate }}"
-  maxDate="{{ maxDate }}"
+  show={ show }
+  minDate={ minDate }
+  maxDate={ maxDate }
 /> 
 ```
 
-```js
-const [show, setShow] = useState(false);
-const [minDate, setMinDate] = useState(1262275200000);
-const [maxDate, setMaxDate] = useState(1264867200000); 
+```javascript
+this.state = {
+  show: false,
+  minDate: 1262275200000,
+  maxDate: 1264867200000
+}; 
 ```
 
 ### 自定义按钮文字
@@ -158,7 +184,7 @@ const [maxDate, setMaxDate] = useState(1264867200000);
 
 ```jsx
 <Calendar
-  show={show}
+  show={ show }
   type="range"
   confirmText="完成"
   confirmDisabledText="请选择结束时间"
@@ -170,11 +196,13 @@ const [maxDate, setMaxDate] = useState(1264867200000);
 通过传入`formatter`函数来对日历上每一格的内容进行格式化
 
 ```jsx
-<Calendar show={show} type="range" formatter={formatter} /> 
+<Calendar show={ show } type="range" formatter={ formatter } /> 
 ```
 
-```js
-const [formatter, setFormatter] = useState(undefined); 
+```javascript
+this.state = {
+  formatter: undefined
+}; 
 ```
 
 ### 自定义弹出位置
@@ -182,7 +210,7 @@ const [formatter, setFormatter] = useState(undefined);
 通过`position`属性自定义弹出层的弹出位置，可选值为`top`、`left`、`right`。
 
 ```jsx
-<Calendar show={show} round="false" position="right" /> 
+<Calendar show={ show } round="false" position="right" /> 
 ```
 
 ### 日期区间最大范围
@@ -190,7 +218,7 @@ const [formatter, setFormatter] = useState(undefined);
 选择日期区间时，可以通过`maxRange`属性来指定最多可选天数，选择的范围超过最多可选天数时，会弹出相应的提示文案。
 
 ```jsx
-<Calendar type="range" maxRange="{{ 3 }}" /> 
+<Calendar type="range" maxRange={ 3 } /> 
 ```
 
 ### 自定义周起始日
@@ -198,7 +226,7 @@ const [formatter, setFormatter] = useState(undefined);
 通过 `firstDayOfWeek` 属性设置一周从哪天开始。
 
 ```jsx
-<Calendar firstDayOfWeek="{{ 1 }}" /> 
+<Calendar firstDayOfWeek={ 1 } /> 
 ```
 
 ### 平铺展示
@@ -208,8 +236,8 @@ const [formatter, setFormatter] = useState(undefined);
 ```jsx
 <Calendar
   title="日历"
-  poppable={false}
-  showConfirm={false}
+  poppable={ false }
+  showConfirm={ false }
   class="calendar"
 /> 
 ```

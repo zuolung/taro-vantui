@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Area } from "taro-vantui" 
+```javascript
+import { Area } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,7 +19,7 @@
 初始化省市区组件时，需要通过 `areaList` 属性传入省市区数据。
 
 ```jsx
-<Area areaList={areaList} /> 
+<Area areaList={ areaList } /> 
 ```
 
 ### areaList 格式
@@ -56,7 +56,7 @@ Vant 官方提供了一份默认的省市区数据，可以通过 [@vant/areaDat
 yarn add @vant/areaData
 ```
 
-```js
+```javascript
 this.state = {
   areaList: []
 }; 
@@ -67,7 +67,7 @@ this.state = {
 如果想选中某个省市区，需要传入一个`value`属性，绑定对应的省市区`code`。
 
 ```jsx
-<Area areaList={areaList} value="110101" /> 
+<Area areaList={ areaList } value="110101" /> 
 ```
 
 ### 配置显示列
@@ -75,7 +75,7 @@ this.state = {
 可以通过`columnsNum`属性配置省市区显示的列数，默认情况下会显示省市区，当你设置为`2`，则只会显示省市选择。
 
 ```jsx
-<Area areaList={areaList} columnsNum="{{ 2 }}" title="标题" /> 
+<Area areaList={ areaList } columnsNum={ 2 } title="标题" /> 
 ```
 
 ### 配置列占位提示文字
@@ -84,8 +84,8 @@ this.state = {
 
 ```jsx
 <Area
-  areaList={areaList}
-  columnsPlaceholder="{{ ['请选择', '请选择', '请选择'] }}"
+  areaList={ areaList }
+  columnsPlaceholder={ ['请选择', '请选择', '请选择'] }
   title="标题"
 /> 
 ```
@@ -157,7 +157,7 @@ db.collection('region')
 
 `code` 代表被选中的地区编码， `name` 代表被选中的地区名称。
 
-```js
+```javascript
 [
   {
     code: '110000',

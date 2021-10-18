@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Stepper } from "taro-vantui" 
+```javascript
+import { Stepper } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,10 +19,12 @@
 通过`value`设置输入值，可以通过`change`事件监听到输入值的变化。
 
 ```jsx
-<Stepper value="{{ 1 }}" onChange={onChange} /> 
+<Stepper value={ 1 } onChange={onChange} /> 
 ```
 
-```js
+```javascript
+this.state = {};
+
 function onChange(event) {
   console.log(event.detail);
 } 
@@ -33,7 +35,7 @@ function onChange(event) {
 通过`step`属性设置每次点击增加或减少按钮时变化的值，默认为`1`。
 
 ```jsx
-<Stepper value="{{ 1 }}" step="2" /> 
+<Stepper value={ 1 } step="2" /> 
 ```
 
 ### 限制输入范围
@@ -41,7 +43,7 @@ function onChange(event) {
 通过`min`和`max`属性限制输入值的范围。
 
 ```jsx
-<Stepper value="{{ 5 }}" min="5" max="8" /> 
+<Stepper value={ 5 } min="5" max="8" /> 
 ```
 
 ### 限制输入整数
@@ -49,7 +51,7 @@ function onChange(event) {
 设置`integer`属性后，输入框将限制只能输入整数。
 
 ```jsx
-<Stepper value="{{ 1 }}" integer /> 
+<Stepper value={ 1 } integer /> 
 ```
 
 ### 禁用状态
@@ -57,7 +59,7 @@ function onChange(event) {
 通过设置`disabled`属性来禁用步进器，禁用状态下无法点击按钮或修改输入框。
 
 ```jsx
-<Stepper value="{{ 1 }}" disabled /> 
+<Stepper value={ 1 } disabled /> 
 ```
 
 ### 关闭长按
@@ -65,7 +67,7 @@ function onChange(event) {
 通过设置`longPress`属性决定步进器是否开启长按手势。
 
 ```jsx
-<Stepper value="{{ 1 }}" longPress={false} /> 
+<Stepper value={ 1 } longPress={ false } /> 
 ```
 
 ### 固定小数位数
@@ -73,7 +75,7 @@ function onChange(event) {
 通过设置`decimalLength`属性可以保留固定的小数位数。
 
 ```jsx
-<Stepper value="{{ 1 }}" step="0.2" decimalLength="{{ 1 }}" /> 
+<Stepper value={ 1 } step="0.2" decimalLength={ 1 } /> 
 ```
 
 ### 异步变更
@@ -81,11 +83,13 @@ function onChange(event) {
 如果需要异步地修改输入框的值，可以设置`asyncChange`属性，并在`change`事件中手动修改`value`。
 
 ```jsx
-<Stepper value={value} asyncChange onChange={onChange} /> 
+<Stepper value={ value } asyncChange onChange={onChange} /> 
 ```
 
-```js
-const [value, setValue] = useState(1);
+```javascript
+this.state = {
+  value: 1
+};
 
 function onChange(value) {
   Toast.loading({
@@ -93,7 +97,9 @@ function onChange(value) {
   });
   setTimeout(() => {
     Toast.clear();
-    setValue(value);
+    this.setData({
+      value
+    });
   }, 500);
 } 
 ```
@@ -103,7 +109,7 @@ function onChange(value) {
 通过`inputWidth`属性设置输入框宽度，通过`buttonSize`属性设置按钮大小和输入框高度。
 
 ```jsx
-<Stepper value="{{ 1 }}" inputWidth="40px" buttonSize="32px" /> 
+<Stepper value={ 1 } inputWidth="40px" buttonSize="32px" /> 
 ```
 
 ## API

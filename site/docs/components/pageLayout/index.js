@@ -30,7 +30,7 @@ export default function PageLayout(props) {
       <div className={`${preCls}-container`}>
         <iframe
           className={`${preCls}-example`}
-          src={notComponentsMd.includes(hash.replace('#/', '')) ?
+          src={!notComponentsMd.includes(hash.replace('#/', '')) ?
             `${mobileDomain}/pages/${hash.replace('#/', '')}/index` :
             `${mobileDomain}/pages/dashboard/index`
           }

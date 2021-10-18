@@ -8,9 +8,9 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Radio } from "taro-vantui"
- import { RadioGroup } from "taro-vantui" 
+```javascript
+import { Radio } from "taro-vantui";
+import { RadioGroup } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -20,17 +20,21 @@
 通过`value`绑定值当前选中项的 name 。
 
 ```jsx
-<RadioGroup value={radio} onChange={onChange}>
-  <Radio name="1">单选框 1</vanRadio>
-  <Radio name="2">单选框 2</vanRadio>
-</vanRadioGroup> 
+<RadioGroup value={ radio } onChange={onChange}>
+  <Radio name="1">单选框 1</Radio>
+  <Radio name="2">单选框 2</Radio>
+</RadioGroup> 
 ```
 
-```js
-const [radio, setRadio] = useState("1");
+```javascript
+this.state = {
+  radio: "1"
+};
 
 function onChange(event) {
-  setRadio(event.detail);
+  this.setData({
+    radio: event.detail
+  });
 } 
 ```
 
@@ -40,13 +44,13 @@ function onChange(event) {
 
 ```jsx
 <RadioGroup
-  value={radio}
+  value={ radio }
   onChange={onChange}
   direction="horizontal"
 >
-  <Radio name="1">单选框 1</vanRadio>
-  <Radio name="2">单选框 2</vanRadio>
-</vanRadioGroup> 
+  <Radio name="1">单选框 1</Radio>
+  <Radio name="2">单选框 2</Radio>
+</RadioGroup> 
 ```
 
 ### 禁用状态
@@ -54,10 +58,10 @@ function onChange(event) {
 通过`disabled`属性禁止选项切换，在`Radio`上设置`diabled`可以禁用单个选项。
 
 ```jsx
-<RadioGroup value={radio} disabled onChange={onChange}>
-  <Radio name="1">单选框 1</vanRadio>
-  <Radio name="2">单选框 2</vanRadio>
-</vanRadioGroup> 
+<RadioGroup value={ radio } disabled onChange={onChange}>
+  <Radio name="1">单选框 1</Radio>
+  <Radio name="2">单选框 2</Radio>
+</RadioGroup> 
 ```
 
 ### 自定义形状
@@ -65,10 +69,10 @@ function onChange(event) {
 将`shape`属性设置为`square`，单选框的形状会变成方形。
 
 ```jsx
-<RadioGroup value={radio} onChange={onChange}>
-  <Radio name="1" shape="square">单选框 1</vanRadio>
-  <Radio name="2" shape="square">单选框 2</vanRadio>
-</vanRadioGroup> 
+<RadioGroup value={ radio } onChange={onChange}>
+  <Radio name="1" shape="square">单选框 1</Radio>
+  <Radio name="2" shape="square">单选框 2</Radio>
+</RadioGroup> 
 ```
 
 ### 自定义颜色
@@ -76,10 +80,10 @@ function onChange(event) {
 通过`checkedColor`属性设置选中状态的图标颜色。
 
 ```jsx
-<RadioGroup value={radio} onChange={onChange}>
-  <Radio name="1" checkedColor="#07c160">单选框 1</vanRadio>
-  <Radio name="2" checkedColor="#07c160">单选框 2</vanRadio>
-</vanRadioGroup> 
+<RadioGroup value={ radio } onChange={onChange}>
+  <Radio name="1" checkedColor="#07c160">单选框 1</Radio>
+  <Radio name="2" checkedColor="#07c160">单选框 2</Radio>
+</RadioGroup> 
 ```
 
 ### 自定义大小
@@ -87,10 +91,10 @@ function onChange(event) {
 通过`iconSize`属性可以自定义图标的大小。
 
 ```jsx
-<RadioGroup value={radio} onChange={onChange}>
-  <Radio name="1" iconSize="24px">单选框 1</vanRadio>
-  <Radio name="2" iconSize="24px">单选框 2</vanRadio>
-</vanRadioGroup> 
+<RadioGroup value={ radio } onChange={onChange}>
+  <Radio name="1" iconSize="24px">单选框 1</Radio>
+  <Radio name="2" iconSize="24px">单选框 2</Radio>
+</RadioGroup> 
 ```
 
 ### 自定义图标
@@ -98,27 +102,31 @@ function onChange(event) {
 通过`icon`插槽自定义图标，需要设置`useIconSlot`属性。
 
 ```jsx
-<RadioGroup value={radio} onChange={onChange}>
-  <Radio useIconSlot value={radio} name="1">
+<RadioGroup value={ radio } onChange={onChange}>
+  <Radio useIconSlot value={ radio } name="1">
     自定义图标
-    <image slot="icon" src="{{ radio === '1' ? icon.active : icon.normal }}" />
-  </vanRadio>
-  <Radio useIconSlot value={radio} name="2">
+    <image slot="icon" src={ radio === '1' ? icon.active : icon.normal } />
+  </Radio>
+  <Radio useIconSlot value={ radio } name="2">
     自定义图标
-    <image slot="icon" src="{{ radio === '2' ? icon.active : icon.normal }}" />
-  </vanRadio>
-</vanRadioGroup> 
+    <image slot="icon" src={ radio === '2' ? icon.active : icon.normal } />
+  </Radio>
+</RadioGroup> 
 ```
 
-```js
-const [radio, setRadio] = useState(true);
-const [icon, setIcon] = useState({
-  "normal": "//img.yzcdn.cn/iconNormal.png",
-  "active": "//img.yzcdn.cn/iconActive.png"
-});
+```javascript
+this.state = {
+  radio: true,
+  icon: {
+    "normal": "//img.yzcdn.cn/iconNormal.png",
+    "active": "//img.yzcdn.cn/iconActive.png"
+  }
+};
 
 function onChange(event) {
-  setRadio(event.detail);
+  this.setData({
+    radio: event.detail
+  });
 } 
 ```
 
@@ -127,10 +135,10 @@ function onChange(event) {
 通过设置`labelDisabled`属性可以禁用单选框文本点击。
 
 ```jsx
-<RadioGroup value={radio} onChange={onChange}>
-  <Radio name="1" labelDisabled>单选框 1</vanRadio>
-  <Radio name="2" labelDisabled>单选框 2</vanRadio>
-</vanRadioGroup> 
+<RadioGroup value={ radio } onChange={onChange}>
+  <Radio name="1" labelDisabled>单选框 1</Radio>
+  <Radio name="2" labelDisabled>单选框 2</Radio>
+</RadioGroup> 
 ```
 
 ### 与 Cell 组件一起使用
@@ -138,30 +146,36 @@ function onChange(event) {
 此时你需要再引入`Cell`和`CellGroup`组件。
 
 ```jsx
-<RadioGroup value={radio} onChange={onChange}>
+<RadioGroup value={ radio } onChange={onChange}>
   <CellGroup>
     <Cell title="单选框 1" clickable dataName="1" onClick={onClick}>
       <Radio slot={rightIcon} name="1" />
-    </vanCell>
+    </Cell>
     <Cell title="单选框 2" clickable dataName="2" onClick={onClick}>
       <Radio slot={rightIcon} name="2" />
-    </vanCell>
-  </vanCellGroup>
-</vanRadioGroup> 
+    </Cell>
+  </CellGroup>
+</RadioGroup> 
 ```
 
-```js
-const [radio, setRadio] = useState("1");
+```javascript
+this.state = {
+  radio: "1"
+};
 
 function onChange(event) {
-  setRadio(event.detail);
+  this.setData({
+    radio: event.detail
+  });
 }
 
 function onClick(event) {
   const {
     name
   } = event.currentTarget.dataset;
-  setRadio(name);
+  this.setData({
+    radio: name
+  });
 } 
 ```
 

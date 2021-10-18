@@ -8,15 +8,15 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Toast } from "taro-vantui" 
+```javascript
+import { Toast } from "taro-vantui"; 
 ```
 
 ## 代码演示
 
 ### 文字提示
 
-```js
+```javascript
 import Toast from 'path/to/@vant/weapp/dist/toast/toast';
 
 Toast('我是提示文案，建议不超过十五字~');
@@ -30,7 +30,7 @@ Toast('我是提示文案，建议不超过十五字~');
 
 使用 `Toast.loading` 方法展示加载提示，通过 `forbidClick` 属性可以禁用背景点击，通过 `loadingType` 属性可以自定义加载图标类型。
 
-```js
+```javascript
 Toast.loading({
   message: '加载中...',
   forbidClick: true,
@@ -46,14 +46,14 @@ Toast.loading({
 
 ### 成功/失败提示
 
-```js
+```javascript
 Toast.success('成功文案');
 Toast.fail('失败文案');
 ```
 
 ### 动态更新提示
 
-```js
+```javascript
 const toast = Toast.loading({
   duration: 0, // 持续展示 toast
   forbidClick: true,
@@ -81,7 +81,7 @@ const timer = setInterval(() => {
 
 ### OnClose 回调函数
 
-```js
+```javascript
 Toast({
   type: 'success',
   message: '提交成功',

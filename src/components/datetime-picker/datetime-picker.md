@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { DatetimePicker } from "taro-vantui" 
+```javascript
+import { DatetimePicker } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -21,22 +21,26 @@
 ```jsx
 <DatetimePicker
   type="datetime"
-  value="{{ currentDate }}"
-  minDate="{{ minDate }}"
-  maxDate="{{ maxDate }}"
+  value={ currentDate }
+  minDate={ minDate }
+  maxDate={ maxDate }
   onInput={onInput}
 /> 
 ```
 
-```js
-const [minHour, setMinHour] = useState(10);
-const [maxHour, setMaxHour] = useState(20);
-const [minDate, setMinDate] = useState(1634037038166);
-const [maxDate, setMaxDate] = useState(1572537600000);
-const [currentDate, setCurrentDate] = useState(1634037038166);
+```javascript
+this.state = {
+  minHour: 10,
+  maxHour: 20,
+  minDate: 1634531151533,
+  maxDate: 1572537600000,
+  currentDate: 1634531151533
+};
 
 function onInput(event) {
-  setCurrentDate(event.detail);
+  this.setData({
+    currentDate: event.detail
+  });
 } 
 ```
 
@@ -47,20 +51,24 @@ function onInput(event) {
 ```jsx
 <DatetimePicker
   type="date"
-  value="{{ currentDate }}"
+  value={ currentDate }
   onInput={onInput}
-  minDate="{{ minDate }}"
-  formatter={formatter}
+  minDate={ minDate }
+  formatter={ formatter }
 /> 
 ```
 
-```js
-const [currentDate, setCurrentDate] = useState(1634037038186);
-const [minDate, setMinDate] = useState(1634037038186);
-const [formatter, setFormatter] = useState(undefined);
+```javascript
+this.state = {
+  currentDate: 1634531151534,
+  minDate: 1634531151534,
+  formatter: undefined
+};
 
 function onInput(event) {
-  setCurrentDate(event.detail);
+  this.setData({
+    currentDate: event.detail
+  });
 } 
 ```
 
@@ -71,18 +79,22 @@ function onInput(event) {
 ```jsx
 <DatetimePicker
   type={yearMonth}
-  value="{{ currentDate }}"
-  minDate="{{ minDate }}"
+  value={ currentDate }
+  minDate={ minDate }
   onInput={onInput}
 /> 
 ```
 
-```js
-const [currentDate, setCurrentDate] = useState(1634037038196);
-const [minDate, setMinDate] = useState(1634037038196);
+```javascript
+this.state = {
+  currentDate: 1634531151535,
+  minDate: 1634531151535
+};
 
 function onInput(event) {
-  setCurrentDate(event.detail);
+  this.setData({
+    currentDate: event.detail
+  });
 } 
 ```
 
@@ -93,20 +105,24 @@ function onInput(event) {
 ```jsx
 <DatetimePicker
   type="time"
-  value="{{ currentDate }}"
-  minHour="{{ minHour }}"
-  maxHour="{{ maxHour }}"
+  value={ currentDate }
+  minHour={ minHour }
+  maxHour={ maxHour }
   onInput={onInput}
 /> 
 ```
 
-```js
-const [currentDate, setCurrentDate] = useState("12:00");
-const [minHour, setMinHour] = useState(10);
-const [maxHour, setMaxHour] = useState(20);
+```javascript
+this.state = {
+  currentDate: "12:00",
+  minHour: 10,
+  maxHour: 20
+};
 
 function onInput(event) {
-  setCurrentDate(event.detail);
+  this.setData({
+    currentDate: event.detail
+  });
 } 
 ```
 
@@ -117,14 +133,16 @@ function onInput(event) {
 ```jsx
 <DatetimePicker
   type="time"
-  value="{{ currentDate }}"
-  filter={filter}
+  value={ currentDate }
+  filter={ filter }
 /> 
 ```
 
-```js
-const [currentDate, setCurrentDate] = useState("12:00");
-const [filter, setFilter] = useState(undefined); 
+```javascript
+this.state = {
+  currentDate: "12:00",
+  filter: undefined
+}; 
 ```
 
 ## API

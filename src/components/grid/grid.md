@@ -8,9 +8,9 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Grid } from "taro-vantui"
- import { GridItem } from "taro-vantui" 
+```javascript
+import { Grid } from "taro-vantui";
+import { GridItem } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -27,7 +27,7 @@
   <GridItem icon={photoO} text="文字" />
   <GridItem icon={photoO} text="文字" />
   <GridItem icon={photoO} text="文字" />
-</vanGrid> 
+</Grid> 
 ```
 
 ### 自定义列数
@@ -36,8 +36,8 @@
 
 ```jsx
 <Grid columnNum="3">
-  <GridItem icon={photoO} text="文字" wx:for="{{ 6 }}" />
-</vanGrid> 
+  <GridItem icon={photoO} text="文字" wx:for={ 6 } />
+</Grid> 
 ```
 
 ### 自定义内容
@@ -45,14 +45,14 @@
 通过插槽可以自定义格子展示的内容。
 
 ```jsx
-<Grid columnNum="3" border={false}>
-  <GridItem useSlot wx:for="{{ 3 }}" wx:forItem="index">
+<Grid columnNum="3" border={ false }>
+  <GridItem useSlot wx:for={ 3 } wx:forItem="index">
     <image
       style="width: 100%; height: 90px;"
       src="https://img.yzcdn.cn/vant/apple{{ index + 1 }}.jpg"
     />
-  </vanGridItem>
-</vanGrid> 
+  </GridItem>
+</Grid> 
 ```
 
 ### 正方形格子
@@ -61,8 +61,8 @@
 
 ```jsx
 <Grid square>
-  <GridItem icon={photoO} text="文字" wx:for="{{ 8 }}" />
-</vanGrid> 
+  <GridItem icon={photoO} text="文字" wx:for={ 8 } />
+</Grid> 
 ```
 
 ### 格子间距
@@ -70,9 +70,9 @@
 通过`gutter`属性设置格子之间的距离。
 
 ```jsx
-<Grid gutter="{{ 10 }}">
-  <GridItem icon={photoO} text="文字" wx:for="{{ 8 }}" />
-</vanGrid> 
+<Grid gutter={ 10 }>
+  <GridItem icon={photoO} text="文字" wx:for={ 8 } />
+</Grid> 
 ```
 
 ### 内容横排
@@ -84,7 +84,7 @@
   <GridItem icon={photoO} text="文字" />
   <GridItem icon={photoO} text="文字" />
   <GridItem icon={photoO} text="文字" />
-</vanGrid> 
+</Grid> 
 ```
 
 ### 页面跳转
@@ -105,7 +105,7 @@
     url="/pages/dashboard/index"
     text="ReLaunch 跳转"
   />
-</vanGrid> 
+</Grid> 
 ```
 
 ### 提示信息
@@ -116,7 +116,7 @@
 <Grid columnNum="2">
   <GridItem icon={homeO} text="文字" dot />
   <GridItem icon="search" text="文字" badge="99+" />
-</vanGrid> 
+</Grid> 
 ```
 
 ## API

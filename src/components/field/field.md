@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Field } from "taro-vantui" 
+```javascript
+import { Field } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,16 +19,18 @@
 ```jsx
 <CellGroup>
   <Field
-    value={value}
+    value={ value }
     placeholder="请输入用户名"
-    border={false}
+    border={ false }
     onChange={onChange}
   />
-</vanCellGroup> 
+</CellGroup> 
 ```
 
-```js
-const [value, setValue] = useState("");
+```javascript
+this.state = {
+  value: ""
+};
 
 function onChange(event) {
   // event.detail 为当前输入的值
@@ -43,15 +45,17 @@ function onChange(event) {
 ```jsx
 <CellGroup>
   <Field
-    model:value={value}
+    model:value={ value }
     placeholder="请输入用户名"
-    border={false}
+    border={ false }
   />
-</vanCellGroup> 
+</CellGroup> 
 ```
 
-```js
-const [value, setValue] = useState(""); 
+```javascript
+this.state = {
+  value: ""
+}; 
 ```
 
 ### 自定义类型
@@ -61,7 +65,7 @@ const [value, setValue] = useState("");
 ```jsx
 <CellGroup>
   <Field
-    value={username}
+    value={ username }
     required
     clearable
     label="用户名"
@@ -71,14 +75,14 @@ const [value, setValue] = useState("");
   />
 
   <Field
-    value={password}
+    value={ password }
     type="password"
     label="密码"
     placeholder="请输入密码"
     required
-    border={false}
+    border={ false }
   />
-</vanCellGroup> 
+</CellGroup> 
 ```
 
 ### 禁用输入框
@@ -90,9 +94,9 @@ const [value, setValue] = useState("");
     label="用户名"
     leftIcon="contact"
     disabled
-    border={false}
+    border={ false }
   />
-</vanCellGroup> 
+</CellGroup> 
 ```
 
 ### 错误提示
@@ -102,19 +106,19 @@ const [value, setValue] = useState("");
 ```jsx
 <CellGroup>
   <Field
-    value={username}
+    value={ username }
     label="用户名"
     placeholder="请输入用户名"
     error
   />
   <Field
-    value={phone}
+    value={ phone }
     label="手机号"
     placeholder="请输入手机号"
     errorMessage="手机号格式错误"
-    border={false}
+    border={ false }
   />
-</vanCellGroup> 
+</CellGroup> 
 ```
 
 ### 内容对齐方式
@@ -124,12 +128,12 @@ const [value, setValue] = useState("");
 ```jsx
 <CellGroup>
   <Field
-    value="{{ username3 }}"
+    value={ username3 }
     label="用户名"
     placeholder="请输入用户名"
     inputAlign="right"
   />
-</vanCellGroup> 
+</CellGroup> 
 ```
 
 ### 高度自适应
@@ -139,14 +143,14 @@ const [value, setValue] = useState("");
 ```jsx
 <CellGroup>
   <Field
-    value={message}
+    value={ message }
     label="留言"
     type="textarea"
     placeholder="请输入留言"
     autosize
-    border={false}
+    border={ false }
   />
-</vanCellGroup> 
+</CellGroup> 
 ```
 
 ### 插入按钮
@@ -156,19 +160,19 @@ const [value, setValue] = useState("");
 ```jsx
 <CellGroup>
   <Field
-    value={sms}
+    value={ sms }
     center
     clearable
     label="短信验证码"
     placeholder="请输入短信验证码"
-    border={false}
+    border={ false }
     useButtonSlot
   >
     <Button slot="button" size="small" type="primary">
       发送验证码
-    </vanButton>
-  </vanField>
-</vanCellGroup> 
+    </Button>
+  </Field>
+</CellGroup> 
 ```
 
 ## 常见问题

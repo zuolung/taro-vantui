@@ -8,9 +8,9 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { IndexBar } from "taro-vantui"
- import { IndexAnchor } from "taro-vantui" 
+```javascript
+import { IndexBar } from "taro-vantui";
+import { IndexAnchor } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -38,7 +38,7 @@
   </view>
 
   ...
-</vanIndexBar> 
+</IndexBar> 
 ```
 
 ### 自定义索引列表
@@ -46,27 +46,29 @@
 可以通过`indexList`属性自定义展示的索引字符列表。
 
 ```jsx
-<IndexBar indexList="{{ indexList }}">
+<IndexBar indexList={ indexList }>
   <view>
-    <IndexAnchor index="1">标题1</vanIndexAnchor>
+    <IndexAnchor index="1">标题1</IndexAnchor>
     <Cell title="文本" />
     <Cell title="文本" />
     <Cell title="文本" />
   </view>
 
   <view>
-    <IndexAnchor index="2">标题2</vanIndexAnchor>
+    <IndexAnchor index="2">标题2</IndexAnchor>
     <Cell title="文本" />
     <Cell title="文本" />
     <Cell title="文本" />
   </view>
 
   ...
-</vanIndexBar> 
+</IndexBar> 
 ```
 
-```js
-const [indexList, setIndexList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]); 
+```javascript
+this.state = {
+  indexList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}; 
 ```
 
 ## API

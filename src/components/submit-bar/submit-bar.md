@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { SubmitBar } from "taro-vantui" 
+```javascript
+import { SubmitBar } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -18,7 +18,7 @@
 
 ```jsx
 <SubmitBar
-  price="{{ 3050 }}"
+  price={ 3050 }
   buttonText="提交订单"
   onSubmit={onSubmit}
 /> 
@@ -31,7 +31,7 @@
 ```jsx
 <SubmitBar
   disabled
-  price="{{ 3050 }}"
+  price={ 3050 }
   buttonText="提交订单"
   tip="您的收货地址不支持同城送, 我们已为您推荐快递"
   tipIcon="https://img.yzcdn.cn/1.png"
@@ -46,7 +46,7 @@
 ```jsx
 <SubmitBar
   loading
-  price="{{ 3050 }}"
+  price={ 3050 }
   buttonText="提交订单"
   onSubmit={onSubmit}
 /> 
@@ -58,14 +58,14 @@
 
 ```jsx
 <SubmitBar
-  price="{{ 3050 }}"
+  price={ 3050 }
   buttonText="提交订单"
   onSubmit={onClickButton}
-  tip={true}
+  tip={ true }
 >
-  <Tag type="primary">标签</vanTag>
+  <Tag type="primary">标签</Tag>
   <view slot="tip">您的收货地址不支持同城送, <text>修改地址</text></view>
-</vanSubmitBar> 
+</SubmitBar> 
 ```
 
 ## API

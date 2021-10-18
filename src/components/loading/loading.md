@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Loading } from "taro-vantui" 
+```javascript
+import { Loading } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -29,13 +29,13 @@
 ### 加载文案
 
 ```jsx
-<Loading size="24px">加载中...</vanLoading> 
+<Loading size="24px">加载中...</Loading> 
 ```
 
 ### 垂直排列
 
 ```jsx
-<Loading size="24px" vertical>加载中...</vanLoading> 
+<Loading size="24px" vertical>加载中...</Loading> 
 ```
 
 ## API

@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Steps } from "taro-vantui" 
+```javascript
+import { Steps } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -17,23 +17,25 @@
 ### 基础用法
 
 ```jsx
-<Steps steps={steps} active={active} /> 
+<Steps steps={ steps } active={ active } /> 
 ```
 
-```js
-const [steps, setSteps] = useState([{
-  "text": "步骤一",
-  "desc": "描述信息"
-}, {
-  "text": "步骤二",
-  "desc": "描述信息"
-}, {
-  "text": "步骤三",
-  "desc": "描述信息"
-}, {
-  "text": "步骤四",
-  "desc": "描述信息"
-}]); 
+```javascript
+this.state = {
+  steps: [{
+    "text": "步骤一",
+    "desc": "描述信息"
+  }, {
+    "text": "步骤二",
+    "desc": "描述信息"
+  }, {
+    "text": "步骤三",
+    "desc": "描述信息"
+  }, {
+    "text": "步骤四",
+    "desc": "描述信息"
+  }]
+}; 
 ```
 
 ### 自定义样式
@@ -42,8 +44,8 @@ const [steps, setSteps] = useState([{
 
 ```jsx
 <Steps
-  steps={steps}
-  active={active}
+  steps={ steps }
+  active={ active }
   activeIcon="success"
   activeColor="#38f"
 /> 
@@ -54,31 +56,33 @@ const [steps, setSteps] = useState([{
 可以通过 `inactiveIcon` 和 `activeIcon` 属性分别设置每一项的图标。
 
 ```jsx
-<Steps steps={steps} active={active} /> 
+<Steps steps={ steps } active={ active } /> 
 ```
 
-```js
-const [steps, setSteps] = useState([{
-  "text": "步骤一",
-  "desc": "描述信息",
-  {inactiveIcon}: "locationO",
-  {activeIcon}: "success"
-}, {
-  "text": "步骤二",
-  "desc": "描述信息",
-  {inactiveIcon}: "likeO",
-  {activeIcon}: "plus"
-}, {
-  "text": "步骤三",
-  "desc": "描述信息",
-  {inactiveIcon}: "starO",
-  {activeIcon}: "cross"
-}, {
-  "text": "步骤四",
-  "desc": "描述信息",
-  {inactiveIcon}: "phoneO",
-  {activeIcon}: "fail"
-}]); 
+```javascript
+this.state = {
+  steps: [{
+    "text": "步骤一",
+    "desc": "描述信息",
+    "inactiveIcon": "locationO",
+    "activeIcon": "success"
+  }, {
+    "text": "步骤二",
+    "desc": "描述信息",
+    "inactiveIcon": "likeO",
+    "activeIcon": "plus"
+  }, {
+    "text": "步骤三",
+    "desc": "描述信息",
+    "inactiveIcon": "starO",
+    "activeIcon": "cross"
+  }, {
+    "text": "步骤四",
+    "desc": "描述信息",
+    "inactiveIcon": "phoneO",
+    "activeIcon": "fail"
+  }]
+}; 
 ```
 
 ### 竖向步骤条
@@ -87,8 +91,8 @@ const [steps, setSteps] = useState([{
 
 ```jsx
 <Steps
-  steps={steps}
-  active={active}
+  steps={ steps }
+  active={ active }
   direction="vertical"
   activeColor="#ee0a24"
 /> 

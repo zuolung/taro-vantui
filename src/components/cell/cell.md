@@ -8,9 +8,9 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Cell } from "taro-vantui"
- import { CellGroup } from "taro-vantui" 
+```javascript
+import { Cell } from "taro-vantui";
+import { CellGroup } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,8 +22,8 @@
 ```jsx
 <CellGroup>
   <Cell title="单元格" value="内容" />
-  <Cell title="单元格" value="内容" label="描述信息" border={false} />
-</vanCellGroup> 
+  <Cell title="单元格" value="内容" label="描述信息" border={ false } />
+</CellGroup> 
 ```
 
 ### 卡片风格
@@ -34,7 +34,7 @@
 <CellGroup inset>
   <Cell title="单元格" value="内容" />
   <Cell title="单元格" value="内容" label="描述信息" />
-</vanCellGroup> 
+</CellGroup> 
 ```
 
 ### 单元格大小
@@ -84,10 +84,10 @@
 ```jsx
 <CellGroup title="分组1">
   <Cell title="单元格" value="内容" />
-</vanCellGroup>
+</CellGroup>
 <CellGroup title="分组2">
   <Cell title="单元格" value="内容" />
-</vanCellGroup> 
+</CellGroup> 
 ```
 
 ### 使用插槽
@@ -98,12 +98,12 @@
 <Cell value="内容" icon={shopO} isLink>
   <view slot="title">
     <view class={vanCellText}>单元格</view>
-    <Tag type="danger">标签</vanTag>
+    <Tag type="danger">标签</Tag>
   </view>
-</vanCell>
+</Cell>
 <Cell title="单元格">
   <Icon slot={rightIcon} name="search" class={customIcon} />
-</vanCell> 
+</Cell> 
 ```
 
 ### 垂直居中

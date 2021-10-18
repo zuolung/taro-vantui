@@ -8,9 +8,9 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Tab } from "taro-vantui"
- import { Tabs } from "taro-vantui" 
+```javascript
+import { Tab } from "taro-vantui";
+import { Tabs } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -20,16 +20,18 @@
 通过`active`设定当前激活标签对应的索引值，默认情况下启用第一个标签。
 
 ```jsx
-<Tabs active={active} onChange={onChange}>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-  <Tab title="标签 4">内容 4</vanTab>
-</vanTabs> 
+<Tabs active={ active } onChange={onChange}>
+  <Tab title="标签 1">内容 1</Tab>
+  <Tab title="标签 2">内容 2</Tab>
+  <Tab title="标签 3">内容 3</Tab>
+  <Tab title="标签 4">内容 4</Tab>
+</Tabs> 
 ```
 
-```js
-const [active, setActive] = useState(1);
+```javascript
+this.state = {
+  active: 1
+};
 
 function onChange(event) {
   wx.showToast({
@@ -45,10 +47,10 @@ function onChange(event) {
 
 ```jsx
 <Tabs active="a">
-  <Tab title="标签 1" name="a">内容 1</vanTab>
-  <Tab title="标签 2" name="b">内容 2</vanTab>
-  <Tab title="标签 3" name="c">内容 3</vanTab>
-</vanTabs> 
+  <Tab title="标签 1" name="a">内容 1</Tab>
+  <Tab title="标签 2" name="b">内容 2</Tab>
+  <Tab title="标签 3" name="c">内容 3</Tab>
+</Tabs> 
 ```
 
 ### 横向滚动
@@ -56,14 +58,14 @@ function onChange(event) {
 多于 5 个标签时，Tab 可以横向滚动。
 
 ```jsx
-<Tabs active={active}>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-  <Tab title="标签 4">内容 4</vanTab>
-  <Tab title="标签 5">内容 5</vanTab>
-  <Tab title="标签 6">内容 6</vanTab>
-</vanTabs> 
+<Tabs active={ active }>
+  <Tab title="标签 1">内容 1</Tab>
+  <Tab title="标签 2">内容 2</Tab>
+  <Tab title="标签 3">内容 3</Tab>
+  <Tab title="标签 4">内容 4</Tab>
+  <Tab title="标签 5">内容 5</Tab>
+  <Tab title="标签 6">内容 6</Tab>
+</Tabs> 
 ```
 
 ### 禁用标签
@@ -72,13 +74,15 @@ function onChange(event) {
 
 ```jsx
 <Tabs onDisabled={onClickDisabled}>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2" disabled>内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-</vanTabs> 
+  <Tab title="标签 1">内容 1</Tab>
+  <Tab title="标签 2" disabled>内容 2</Tab>
+  <Tab title="标签 3">内容 3</Tab>
+</Tabs> 
 ```
 
-```js
+```javascript
+this.state = {};
+
 function onClickDisabled(event) {
   wx.showToast({
     title: `标签 ${event.detail.name} 已被禁用`,
@@ -93,10 +97,10 @@ function onClickDisabled(event) {
 
 ```jsx
 <Tabs type="card">
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-</vanTabs> 
+  <Tab title="标签 1">内容 1</Tab>
+  <Tab title="标签 2">内容 2</Tab>
+  <Tab title="标签 3">内容 3</Tab>
+</Tabs> 
 ```
 
 ### 点击事件
@@ -105,12 +109,14 @@ function onClickDisabled(event) {
 
 ```jsx
 <Tabs onClick={onClick}>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-</vanTabs> 
+  <Tab title="标签 1">内容 1</Tab>
+  <Tab title="标签 2">内容 2</Tab>
+</Tabs> 
 ```
 
-```js
+```javascript
+this.state = {};
+
 function onClick(event) {
   wx.showToast({
     title: `点击标签 ${event.detail.name}`,
@@ -125,11 +131,11 @@ function onClick(event) {
 
 ```jsx
 <Tabs sticky>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-  <Tab title="标签 4">内容 4</vanTab>
-</vanTabs> 
+  <Tab title="标签 1">内容 1</Tab>
+  <Tab title="标签 2">内容 2</Tab>
+  <Tab title="标签 3">内容 3</Tab>
+  <Tab title="标签 4">内容 4</Tab>
+</Tabs> 
 ```
 
 ### 切换动画
@@ -138,11 +144,11 @@ function onClick(event) {
 
 ```jsx
 <Tabs animated>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-  <Tab title="标签 4">内容 4</vanTab>
-</vanTabs> 
+  <Tab title="标签 1">内容 1</Tab>
+  <Tab title="标签 2">内容 2</Tab>
+  <Tab title="标签 3">内容 3</Tab>
+  <Tab title="标签 4">内容 4</Tab>
+</Tabs> 
 ```
 
 ### 滑动切换
@@ -151,11 +157,11 @@ function onClick(event) {
 
 ```jsx
 <Tabs swipeable>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-  <Tab title="标签 4">内容 4</vanTab>
-</vanTabs> 
+  <Tab title="标签 1">内容 1</Tab>
+  <Tab title="标签 2">内容 2</Tab>
+  <Tab title="标签 3">内容 3</Tab>
+  <Tab title="标签 4">内容 4</Tab>
+</Tabs> 
 ```
 
 ### 嵌套 popup
@@ -165,14 +171,14 @@ function onClick(event) {
 此时可以通过使用 `wx:if` 手动控制 vanTabs 的渲染来规避这种场景。
 
 ```jsx
-<Popup show={show}>
-  <Tabs wx:if={show}>
-    <Tab title="标签 1">内容 1</vanTab>
-    <Tab title="标签 2">内容 2</vanTab>
-    <Tab title="标签 3">内容 3</vanTab>
-    <Tab title="标签 4">内容 4</vanTab>
-  </vanTabs>
-</vanPopup> 
+<Popup show={ show }>
+  <Tabs wx:if={ show }>
+    <Tab title="标签 1">内容 1</Tab>
+    <Tab title="标签 2">内容 2</Tab>
+    <Tab title="标签 3">内容 3</Tab>
+    <Tab title="标签 4">内容 4</Tab>
+  </Tabs>
+</Popup> 
 ```
 
 ## API

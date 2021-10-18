@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Switch } from "taro-vantui" 
+```javascript
+import { Switch } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -17,43 +17,47 @@
 ### 基础用法
 
 ```jsx
-<Switch checked={checked} onChange={onChange} /> 
+<Switch checked={ checked } onChange={onChange} /> 
 ```
 
-```js
-const [checked, setChecked] = useState(true);
+```javascript
+this.state = {
+  checked: true
+};
 
 function onChange({
   detail
 }) {
   // 需要手动对 checked 状态进行更新
-  setChecked(detail);
+  this.setData({
+    checked: detail
+  });
 } 
 ```
 
 ### 禁用状态
 
 ```jsx
-<Switch checked={checked} disabled /> 
+<Switch checked={ checked } disabled /> 
 ```
 
 ### 加载状态
 
 ```jsx
-<Switch checked={checked} loading /> 
+<Switch checked={ checked } loading /> 
 ```
 
 ### 自定义大小
 
 ```jsx
-<Switch checked={checked} size="24px" /> 
+<Switch checked={ checked } size="24px" /> 
 ```
 
 ### 自定义颜色
 
 ```jsx
 <Switch
-  checked={checked}
+  checked={ checked }
   activeColor="#07c160"
   inactiveColor="#ee0a24"
 /> 
@@ -62,11 +66,13 @@ function onChange({
 ### 异步控制
 
 ```jsx
-<Switch checked={checked} onChange={onChange} /> 
+<Switch checked={ checked } onChange={onChange} /> 
 ```
 
-```js
-const [checked, setChecked] = useState(true);
+```javascript
+this.state = {
+  checked: true
+};
 
 function onChange({
   detail
@@ -76,7 +82,9 @@ function onChange({
     content: '是否切换开关？',
     success: res => {
       if (res.confirm) {
-        setChecked2(detail);
+        this.setData({
+          checked2: detail
+        });
       }
     }
   });

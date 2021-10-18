@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { NavBar } from "taro-vantui" 
+```javascript
+import { NavBar } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -27,7 +27,9 @@
 /> 
 ```
 
-```js
+```javascript
+this.state = {};
+
 function onClickLeft() {
   wx.showToast({
     title: '点击返回',
@@ -50,7 +52,7 @@ function onClickRight() {
 ```jsx
 <NavBar title="标题" leftText="返回" leftArrow>
   <Icon name="search" slot="right" />
-</vanNavBar> 
+</NavBar> 
 ```
 
 ## API

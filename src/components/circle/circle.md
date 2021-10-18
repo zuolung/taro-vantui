@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Circle } from "taro-vantui" 
+```javascript
+import { Circle } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,7 +19,7 @@
 `value`属性表示进度条的目标进度。
 
 ```jsx
-<Circle value="{{ 30 }}" text="text" /> 
+<Circle value={ 30 } text="text" /> 
 ```
 
 ### 宽度定制
@@ -27,7 +27,7 @@
 通过`strokeWidth`属性来控制进度条宽度。
 
 ```jsx
-<Circle value={value} strokeWidth="6" text="宽度定制" /> 
+<Circle value={ value } strokeWidth="6" text="宽度定制" /> 
 ```
 
 ### 颜色定制
@@ -36,7 +36,7 @@
 
 ```jsx
 <Circle
-  value={value}
+  value={ value }
   layerColor="#eeeeee"
   color="#ee0a24"
   text="颜色定制"
@@ -48,15 +48,17 @@
 `color`属性支持传入对象格式来定义渐变色。
 
 ```jsx
-<Circle value={value} color="{{ gradientColor }}" text="渐变色" /> 
+<Circle value={ value } color={ gradientColor } text="渐变色" /> 
 ```
 
-```js
-const [value, setValue] = useState(25);
-const [gradientColor, setGradientColor] = useState({
-  "0%": "#ffd01e",
-  "100%": "#ee0a24"
-}); 
+```javascript
+this.state = {
+  value: 25,
+  gradientColor: {
+    "0%": "#ffd01e",
+    "100%": "#ee0a24"
+  }
+}; 
 ```
 
 ### 逆时针方向
@@ -65,9 +67,9 @@ const [gradientColor, setGradientColor] = useState({
 
 ```jsx
 <Circle
-  value={value}
+  value={ value }
   color="#07c160"
-  clockwise={false}
+  clockwise={ false }
   text="逆时针"
 /> 
 ```
@@ -77,7 +79,7 @@ const [gradientColor, setGradientColor] = useState({
 通过`size`属性设置圆环直径。
 
 ```jsx
-<Circle value={value} size="120" text="大小定制" /> 
+<Circle value={ value } size="120" text="大小定制" /> 
 ```
 
 ## API

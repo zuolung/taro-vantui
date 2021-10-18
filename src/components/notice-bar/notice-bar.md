@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { NoticeBar } from "taro-vantui" 
+```javascript
+import { NoticeBar } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -33,7 +33,7 @@
 
 <! 文字较长时，通过禁用 scrollable 属性关闭滚动播放 >
 <NoticeBar
-  scrollable={false}
+  scrollable={ false }
   text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
 /> 
 ```
@@ -45,7 +45,7 @@
 ```jsx
 <NoticeBar
   wrapable
-  scrollable={false}
+  scrollable={ false }
   text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
 /> 
 ```
@@ -81,8 +81,8 @@
 
 ```jsx
 <NoticeBar
-  text={text}
-  speed="{{speedValue}}"
+  text={ text }
+  speed={speedValue}
   leftIcon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png"
 /> 
 ```

@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Popup } from "taro-vantui" 
+```javascript
+import { Popup } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -21,18 +21,24 @@
 ```jsx
 <Cell title="展示弹出层" isLink onClick={showPopup} />
 
-<Popup show={show} onClose={onClose}>内容</vanPopup> 
+<Popup show={ show } onClose={onClose}>内容</Popup> 
 ```
 
-```js
-const [show, setShow] = useState(false);
+```javascript
+this.state = {
+  show: false
+};
 
 function showPopup() {
-  setShow(true);
+  this.setData({
+    show: true
+  });
 }
 
 function onClose() {
-  setShow(false);
+  this.setData({
+    show: false
+  });
 } 
 ```
 
@@ -42,7 +48,7 @@ function onClose() {
 
 ```jsx
 <Popup
-  show={show}
+  show={ show }
   position="top"
   customStyle="height: 20%;"
   onClose={onClose}
@@ -55,7 +61,7 @@ function onClose() {
 
 ```jsx
 <Popup
-  show={show}
+  show={ show }
   closeable
   position="bottom"
   customStyle="height: 20%"
@@ -64,7 +70,7 @@ function onClose() {
 
 <! 自定义图标 >
 <Popup
-  show={show}
+  show={ show }
   closeable
   closeIcon="close"
   position="bottom"
@@ -74,7 +80,7 @@ function onClose() {
 
 <! 图标位置 >
 <Popup
-  show={show}
+  show={ show }
   closeable
   closeIconPosition={topLeft}
   position="bottom"
@@ -89,7 +95,7 @@ function onClose() {
 
 ```jsx
 <Popup
-  show={show}
+  show={ show }
   round
   position="bottom"
   customStyle="height: 20%"
@@ -109,9 +115,9 @@ function onClose() {
 
 ```jsx
 <! pageMeta 只能是页面内的第一个节点 >
-<pageMeta pageStyle="{{ show ? 'overflow: hidden;' : '' }}" />
+<pageMeta pageStyle={ show ? 'overflow: hidden;' : '' } />
 
-<Popup show={show} catch:touchstart /> 
+<Popup show={ show } catch:touchstart /> 
 ```
 
 ## API

@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Slider } from "taro-vantui" 
+```javascript
+import { Slider } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -20,7 +20,9 @@
 <Slider value="50" onChange={onChange} /> 
 ```
 
-```js
+```javascript
+this.state = {};
+
 function onChange(event) {
   wx.showToast({
     icon: 'none',
@@ -56,16 +58,20 @@ function onChange(event) {
 ### 自定义按钮
 
 ```jsx
-<Slider value="{{ currentValue }}" useButtonSlot onDrag={onDrag}>
+<Slider value={ currentValue } useButtonSlot onDrag={onDrag}>
   <view class={customButton} slot="button">{{ currentValue }}/100</view>
-</vanSlider> 
+</Slider> 
 ```
 
-```js
-const [currentValue, setCurrentValue] = useState(50);
+```javascript
+this.state = {
+  currentValue: 50
+};
 
 function onDrag(event) {
-  setCurrentValue(event.detail.value);
+  this.setData({
+    currentValue: event.detail.value
+  });
 } 
 ```
 

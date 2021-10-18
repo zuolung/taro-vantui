@@ -8,8 +8,8 @@ Sticky 组件与 CSS 中`position: sticky`属性实现的效果一致，当组�
 
 在 Taro 文件中引入组件
 
-```js
- import { Sticky } from "taro-vantui" 
+```javascript
+import { Sticky } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -22,8 +22,8 @@ Sticky 组件与 CSS 中`position: sticky`属性实现的效果一致，当组�
 
 ```jsx
 <Sticky>
-  <Button type="primary">基础用法</vanButton>
-</vanSticky> 
+  <Button type="primary">基础用法</Button>
+</Sticky> 
 ```
 
 ### 吸顶距离
@@ -31,9 +31,9 @@ Sticky 组件与 CSS 中`position: sticky`属性实现的效果一致，当组�
 通过`offsetTop`属性可以设置组件在吸顶时与顶部的距离。
 
 ```jsx
-<Sticky offsetTop="{{ 50 }}">
-  <Button type="info">吸顶距离</vanButton>
-</vanSticky> 
+<Sticky offsetTop={ 50 }>
+  <Button type="info">吸顶距离</Button>
+</Sticky> 
 ```
 
 ### 指定容器
@@ -42,17 +42,21 @@ Sticky 组件与 CSS 中`position: sticky`属性实现的效果一致，当组�
 
 ```jsx
 <view id="container" style="height: 150px;">
-  <Sticky container={container}>
-    <Button type="warning">指定容器</vanButton>
-  </vanSticky>
+  <Sticky container={ container }>
+    <Button type="warning">指定容器</Button>
+  </Sticky>
 </view> 
 ```
 
-```js
-const [container, setContainer] = useState(null);
+```javascript
+this.state = {
+  container: null
+};
 
 function onReady() {
-  setContainer(() => wx.createSelectorQuery().select('#container'));
+  this.setData({
+    container: () => wx.createSelectorQuery().select('#container')
+  });
 } 
 ```
 
@@ -68,21 +72,25 @@ function onReady() {
   style="height: 200px;"
 >
   <view style="height: 400px; paddingTop: 50px;">
-    <Sticky scrollTop="{{ scrollTop }}" offsetTop="{{ offsetTop }}">
-      <Button type="warning">嵌套在 scrollView 内</vanButton>
-    </vanSticky>
+    <Sticky scrollTop={ scrollTop } offsetTop={ offsetTop }>
+      <Button type="warning">嵌套在 scrollView 内</Button>
+    </Sticky>
   </view>
 </scrollView> 
 ```
 
-```js
-const [scrollTop, setScrollTop] = useState(0);
-const [offsetTop, setOffsetTop] = useState(0);
+```javascript
+this.state = {
+  scrollTop: 0,
+  offsetTop: 0
+};
 
 function onScroll(event) {
   wx.createSelectorQuery().select('#scroller').boundingClientRect(res => {
-    setScrollTop(event.detail.scrollTop);
-    setOffsetTop(res.top);
+    this.setData({
+      scrollTop: event.detail.scrollTop,
+      offsetTop: res.top
+    });
   }).exec();
 } 
 ```

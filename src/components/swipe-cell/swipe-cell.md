@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { SwipeCell } from "taro-vantui" 
+```javascript
+import { SwipeCell } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -17,13 +17,13 @@
 ### 基础用法
 
 ```jsx
-<SwipeCell rightWidth="{{ 65 }}" leftWidth="{{ 65 }}">
+<SwipeCell rightWidth={ 65 } leftWidth={ 65 }>
   <view slot="left">选择</view>
   <CellGroup>
     <Cell title="单元格" value="内容" />
-  </vanCellGroup>
+  </CellGroup>
   <view slot="right">删除</view>
-</vanSwipeCell> 
+</SwipeCell> 
 ```
 
 ### 异步关闭
@@ -33,20 +33,22 @@
 ```jsx
 <SwipeCell
   id={swipeCell}
-  rightWidth="{{ 65 }}"
-  leftWidth="{{ 65 }}"
+  rightWidth={ 65 }
+  leftWidth={ 65 }
   asyncClose
   onClose={onClose}
 >
   <view slot="left">选择</view>
   <CellGroup>
     <Cell title="单元格" value="内容" />
-  </vanCellGroup>
+  </CellGroup>
   <view slot="right">删除</view>
-</vanSwipeCell> 
+</SwipeCell> 
 ```
 
-```js
+```javascript
+this.state = {};
+
 function onClose(event) {
   const {
     position,
@@ -75,20 +77,22 @@ function onClose(event) {
 ```jsx
 <SwipeCell
   id="swipeCell2"
-  rightWidth="{{ 65 }}"
-  leftWidth="{{ 65 }}"
+  rightWidth={ 65 }
+  leftWidth={ 65 }
   name="示例"
   onOpen={onOpen}
 >
   <view slot="left" class="vanSwipeCell__left">选择</view>
   <CellGroup>
     <Cell title="单元格" value="内容" />
-  </vanCellGroup>
+  </CellGroup>
   <view slot="right" class="vanSwipeCell__right">删除</view>
-</vanSwipeCell> 
+</SwipeCell> 
 ```
 
-```js
+```javascript
+this.state = {};
+
 function onOpen(event) {
   const {
     position,

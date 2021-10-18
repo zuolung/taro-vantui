@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Icon } from "taro-vantui" 
+```javascript
+import { Icon } from "taro-vantui"; 
 ```
 
 ## 代码演示

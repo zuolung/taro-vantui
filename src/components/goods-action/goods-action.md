@@ -8,10 +8,10 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { GoodsAction } from "taro-vantui"
- import { GoodsActionIcon } from "taro-vantui"
- import { GoodsActionButton } from "taro-vantui" 
+```javascript
+import { GoodsAction } from "taro-vantui";
+import { GoodsActionIcon } from "taro-vantui";
+import { GoodsActionButton } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)。
@@ -30,10 +30,12 @@
     onClick={onClickButton}
   />
   <GoodsActionButton text="立即购买" onClick={onClickButton} />
-</vanGoodsAction> 
+</GoodsAction> 
 ```
 
-```js
+```javascript
+this.state = {};
+
 function onClickIcon() {
   Toast('点击图标');
 }
@@ -54,7 +56,7 @@ function onClickButton() {
   <GoodsActionIcon icon={shopO} text="店铺" />
   <GoodsActionButton text="加入购物车" type="warning" />
   <GoodsActionButton text="立即购买" />
-</vanGoodsAction> 
+</GoodsAction> 
 ```
 
 ### 自定义按钮颜色
@@ -68,7 +70,7 @@ function onClickButton() {
   <GoodsActionIcon icon={shopO} text="店铺" />
   <GoodsActionButton color="#be99ff" text="加入购物车" type="warning" />
   <GoodsActionButton color="#7232dd" text="立即购买" />
-</vanGoodsAction> 
+</GoodsAction> 
 ```
 
 ### 朴素按钮
@@ -82,7 +84,7 @@ function onClickButton() {
   <GoodsActionIcon icon={shopO} text="店铺" />
   <GoodsActionButton color="#7232dd" text="加入购物" type="warning" />
   <GoodsActionButton plain color="#7232dd" text="立即购买" />
-</vanGoodsAction> 
+</GoodsAction> 
 ```
 
 ## API

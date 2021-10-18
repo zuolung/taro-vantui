@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { TreeSelect } from "taro-vantui" 
+```javascript
+import { TreeSelect } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -20,29 +20,35 @@
 
 ```jsx
 <TreeSelect
-  items={items}
-  mainActiveIndex="{{ mainActiveIndex }}"
-  activeId="{{ activeId }}"
+  items={ items }
+  mainActiveIndex={ mainActiveIndex }
+  activeId={ activeId }
   onClickNav={onClickNav}
   onClickItem={onClickItem}
 /> 
 ```
 
-```js
-const [mainActiveIndex, setMainActiveIndex] = useState(0);
-const [activeId, setActiveId] = useState(null);
+```javascript
+this.state = {
+  mainActiveIndex: 0,
+  activeId: null
+};
 
 function onClickNav({
   detail = {}
 }) {
-  setMainActiveIndex(detail.index || 0);
+  this.setData({
+    mainActiveIndex: detail.index || 0
+  });
 }
 
 function onClickItem({
   detail = {}
 }) {
   const activeId = this.data.activeId === detail.id ? null : detail.id;
-  setActiveId(activeId);
+  this.setData({
+    activeId
+  });
 } 
 ```
 
@@ -50,24 +56,28 @@ function onClickItem({
 
 ```jsx
 <TreeSelect
-  items={items}
-  mainActiveIndex="{{ mainActiveIndex }}"
-  activeId="{{ activeId }}"
-  max={max}
+  items={ items }
+  mainActiveIndex={ mainActiveIndex }
+  activeId={ activeId }
+  max={ max }
   onClickNav={onClickNav}
   onClickItem={onClickItem}
 /> 
 ```
 
-```js
-const [mainActiveIndex, setMainActiveIndex] = useState(0);
-const [activeId, setActiveId] = useState([]);
-const [max, setMax] = useState(2);
+```javascript
+this.state = {
+  mainActiveIndex: 0,
+  activeId: [],
+  max: 2
+};
 
 function onClickNav({
   detail = {}
 }) {
-  setMainActiveIndex(detail.index || 0);
+  this.setData({
+    mainActiveIndex: detail.index || 0
+  });
 }
 
 function onClickItem({
@@ -84,7 +94,9 @@ function onClickItem({
     activeId.push(detail.id);
   }
 
-  setActiveId(activeId);
+  this.setData({
+    activeId
+  });
 } 
 ```
 
@@ -92,15 +104,15 @@ function onClickItem({
 
 ```jsx
 <TreeSelect
-  items={items}
+  items={ items }
   height="55vw"
-  mainActiveIndex="{{ mainActiveIndex }}"
-  activeId="{{ activeId }}"
+  mainActiveIndex={ mainActiveIndex }
+  activeId={ activeId }
   onClickNav={onClickNav}
   onClickItem={onClickItem}
 >
   <image src="https://img.yzcdn.cn/vant/apple1.jpg" slot="content" />
-</vanTreeSelect> 
+</TreeSelect> 
 ```
 
 ## API
@@ -133,7 +145,7 @@ function onClickItem({
 
 `items` 整体为一个数组，数组内包含一系列描述分类的对象。每个分类里，text 表示当前分类的名称。children 表示分类里的可选项，为数组结构，id 被用来唯一标识每个选项。
 
-```js
+```javascript
 [
   {
     // 导航名称

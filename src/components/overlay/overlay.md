@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Overlay } from "taro-vantui" 
+```javascript
+import { Overlay } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -17,19 +17,25 @@
 ### 基础用法
 
 ```jsx
-<Button type="primary" onClick={onClickShow}>显示遮罩层</vanButton>
-<Overlay show={show} onClick={onClickHide} /> 
+<Button type="primary" onClick={onClickShow}>显示遮罩层</Button>
+<Overlay show={ show } onClick={onClickHide} /> 
 ```
 
-```js
-const [show, setShow] = useState(false);
+```javascript
+this.state = {
+  show: false
+};
 
 function onClickShow() {
-  setShow(true);
+  this.setData({
+    show: true
+  });
 }
 
 function onClickHide() {
-  setShow(false);
+  this.setData({
+    show: false
+  });
 } 
 ```
 
@@ -38,23 +44,29 @@ function onClickHide() {
 通过默认插槽可以在遮罩层上嵌入任意内容。
 
 ```jsx
-<Button type="primary" onClick={onClickShow}>嵌入内容</vanButton>
-<Overlay show={show} onClick={onClickHide}>
+<Button type="primary" onClick={onClickShow}>嵌入内容</Button>
+<Overlay show={ show } onClick={onClickHide}>
   <view class="wrapper">
     <view class="block" catch:tap="noop" />
   </view>
-</vanOverlay> 
+</Overlay> 
 ```
 
-```js
-const [show, setShow] = useState(false);
+```javascript
+this.state = {
+  show: false
+};
 
 function onClickShow() {
-  setShow(true);
+  this.setData({
+    show: true
+  });
 }
 
 function onClickHide() {
-  setShow(false);
+  this.setData({
+    show: false
+  });
 }
 
 function noop() {} 

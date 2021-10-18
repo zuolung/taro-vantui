@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { ActionSheet } from "taro-vantui" 
+```javascript
+import { ActionSheet } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -20,27 +20,31 @@
 
 ```jsx
 <ActionSheet
-  show={show}
-  actions={actions}
+  show={ show }
+  actions={ actions }
   onClose={onClose}
   onSelect={onSelect}
 /> 
 ```
 
-```js
-const [show, setShow] = useState(false);
-const [actions, setActions] = useState([{
-  "name": "选项"
-}, {
-  "name": "选项"
-}, {
-  "name": "选项",
-  "subname": "描述信息",
-  {openType}: "share"
-}]);
+```javascript
+this.state = {
+  show: false,
+  actions: [{
+    "name": "选项"
+  }, {
+    "name": "选项"
+  }, {
+    "name": "选项",
+    "subname": "描述信息",
+    "openType": "share"
+  }]
+};
 
 function onClose() {
-  setShow(false);
+  this.setData({
+    show: false
+  });
 }
 
 function onSelect(event) {
@@ -54,23 +58,25 @@ function onSelect(event) {
 
 ```jsx
 <ActionSheet
-  show={show}
-  actions={actions}
+  show={ show }
+  actions={ actions }
   cancelText="取消"
 /> 
 ```
 
-```js
-const [show, setShow] = useState(false);
-const [actions, setActions] = useState([{
-  "name": "着色选项",
-  "color": "#ee0a24"
-}, {
-  "loading": true
-}, {
-  "name": "禁用选项",
-  "disabled": true
-}]); 
+```javascript
+this.state = {
+  show: false,
+  actions: [{
+    "name": "着色选项",
+    "color": "#ee0a24"
+  }, {
+    "loading": true
+  }, {
+    "name": "禁用选项",
+    "disabled": true
+  }]
+}; 
 ```
 
 ### 展示取消按钮
@@ -79,8 +85,8 @@ const [actions, setActions] = useState([{
 
 ```jsx
 <ActionSheet
-  show={show}
-  actions={actions}
+  show={ show }
+  actions={ actions }
   cancelText="取消"
 /> 
 ```
@@ -91,8 +97,8 @@ const [actions, setActions] = useState([{
 
 ```jsx
 <ActionSheet
-  show={show}
-  actions={actions}
+  show={ show }
+  actions={ actions }
   description="这是一段描述信息"
 /> 
 ```
@@ -102,9 +108,9 @@ const [actions, setActions] = useState([{
 通过设置`title`属性展示标题栏，同时可以使用插槽自定义菜单内容。
 
 ```jsx
-<ActionSheet show={show} title="标题">
+<ActionSheet show={ show } title="标题">
   <view>内容</view>
-</vanActionSheet> 
+</ActionSheet> 
 ```
 
 ### 微信开放能力
@@ -113,23 +119,27 @@ const [actions, setActions] = useState([{
 
 ```jsx
 <ActionSheet
-  show={show}
-  actions={actions}
+  show={ show }
+  actions={ actions }
   onClose={onClose}
   onGetuserinfo={onGetUserInfo}
 /> 
 ```
 
-```js
-const [show, setShow] = useState(false);
-const [actions, setActions] = useState([{
-  "name": "获取用户信息",
-  "color": "#07c160",
-  {openType}: {getUserInfo}
-}]);
+```javascript
+this.state = {
+  show: false,
+  actions: [{
+    "name": "获取用户信息",
+    "color": "#07c160",
+    "openType": "getUserInfo"
+  }]
+};
 
 function onClose() {
-  setShow(false);
+  this.setData({
+    show: false
+  });
 }
 
 function onGetUserInfo(e) {
@@ -162,12 +172,12 @@ function onGetUserInfo(e) {
 | onClose | 关闭时触发 | - |
 | onCancel | 取消按钮点击时触发 | - |
 | onClickOverlay | 点击遮罩层时触发 | - |
-| onGetuserinfo | 用户点击该按钮时，会返回获取到的用户信息，回调的 detail 数据与 wx.getUserInfo 返回的一致，<a href="#/actionSheet#actions">openType</a>={getUserInfo}时有效 | - |
+| onGetuserinfo | 用户点击该按钮时，会返回获取到的用户信息，回调的 detail 数据与 wx.getUserInfo 返回的一致，<a href="#/actionSheet#actions">openType</a>="getUserInfo"时有效 | - |
 | onContact | 客服消息回调，<a href="#/actionSheet#actions">openType</a>="contact"时有效 | - |
-| onGetphonenumber | 获取用户手机号回调，<a href="#/actionSheet#actions">openType</a>={getPhoneNumber}时有效 | - |
-| onError | 当使用开放能力时，发生错误的回调，<a href="#/actionSheet#actions">openType</a>={launchApp}时有效 | - |
-| onLaunchapp | 打开 APP 成功的回调，<a href="#/actionSheet#actions">openType</a>={launchApp}时有效 | - |
-| onOpensetting | 在打开授权设置页后回调，<a href="#/actionSheet#actions">openType</a>={openSetting}时有效 | - |
+| onGetphonenumber | 获取用户手机号回调，<a href="#/actionSheet#actions">openType</a>="getPhoneNumber"时有效 | - |
+| onError | 当使用开放能力时，发生错误的回调，<a href="#/actionSheet#actions">openType</a>="launchApp"时有效 | - |
+| onLaunchapp | 打开 APP 成功的回调，<a href="#/actionSheet#actions">openType</a>="launchApp"时有效 | - |
+| onOpensetting | 在打开授权设置页后回调，<a href="#/actionSheet#actions">openType</a>="openSetting"时有效 | - |
 
 ### actions
 

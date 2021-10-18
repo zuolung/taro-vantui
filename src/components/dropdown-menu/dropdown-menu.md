@@ -8,9 +8,9 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { DropdownMenu } from "taro-vantui"
- import { DropdownItem } from "taro-vantui" 
+```javascript
+import { DropdownMenu } from "taro-vantui";
+import { DropdownItem } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,86 +19,90 @@
 
 ```jsx
 <DropdownMenu>
-  <DropdownItem value="{{ value1 }}" options="{{ option1 }}" />
-  <DropdownItem value="{{ value2 }}" options="{{ option2 }}" />
-</vanDropdownMenu> 
+  <DropdownItem value={ value1 } options={ option1 } />
+  <DropdownItem value={ value2 } options={ option2 } />
+</DropdownMenu> 
 ```
 
-```js
-const [option1, setOption1] = useState([{
-  "text": "全部商品",
-  "value": 0
-}, {
-  "text": "新款商品",
-  "value": 1
-}, {
-  "text": "活动商品",
-  "value": 2
-}]);
-const [option2, setOption2] = useState([{
-  "text": "默认排序",
-  "value": "a"
-}, {
-  "text": "好评排序",
-  "value": "b"
-}, {
-  "text": "销量排序",
-  "value": "c"
-}]);
-const [value1, setValue1] = useState(0);
-const [value2, setValue2] = useState("a"); 
+```javascript
+this.state = {
+  option1: [{
+    "text": "全部商品",
+    "value": 0
+  }, {
+    "text": "新款商品",
+    "value": 1
+  }, {
+    "text": "活动商品",
+    "value": 2
+  }],
+  option2: [{
+    "text": "默认排序",
+    "value": "a"
+  }, {
+    "text": "好评排序",
+    "value": "b"
+  }, {
+    "text": "销量排序",
+    "value": "c"
+  }],
+  value1: 0,
+  value2: "a"
+}; 
 ```
 
 ### 自定义菜单内容
 
 ```jsx
 <DropdownMenu>
-  <DropdownItem value="{{ value1 }}" options="{{ option1 }}" />
-  <DropdownItem id="item" title="{{ itemTitle }}">
-    <Cell title="{{ switchTitle1 }}">
+  <DropdownItem value={ value1 } options={ option1 } />
+  <DropdownItem id="item" title={ itemTitle }>
+    <Cell title={ switchTitle1 }>
       <Switch
         slot={rightIcon}
         size="24px"
         style="height: 26px"
-        checked="{{ switch1 }}"
+        checked={ switch1 }
         activeColor="#ee0a24"
         onChange="onSwitch1Change"
       />
-    </vanCell>
-    <Cell title="{{ switchTitle2 }}">
+    </Cell>
+    <Cell title={ switchTitle2 }>
       <Switch
         slot={rightIcon}
         size="24px"
         style="height: 26px"
-        checked="{{ switch2 }}"
+        checked={ switch2 }
         activeColor="#ee0a24"
         onChange="onSwitch2Change"
       />
-    </vanCell>
+    </Cell>
     <view style="padding: 5px 16px;">
       <Button type="danger" block round onClick={onConfirm}>
         确认
-      </vanButton>
+      </Button>
     </view>
-  </vanDropdownItem>
-</vanDropdownMenu> 
+  </DropdownItem>
+</DropdownMenu> 
 ```
 
-```js
-const [switchTitle1, setSwitchTitle1] = useState("包邮");
-const [switchTitle2, setSwitchTitle2] = useState("团购");
-const [itemTitle, setItemTitle] = useState("筛选");
-const [option1, setOption1] = useState([{
-  "text": "全部商品",
-  "value": 0
-}, {
-  "text": "新款商品",
-  "value": 1
-}, {
-  "text": "活动商品",
-  "value": 2
-}]);
-const [value1, setValue1] = useState(0);
+```javascript
+this.state = {
+  switchTitle1: "包邮",
+  switchTitle2: "团购",
+  itemTitle: "筛选",
+  option1: [{
+    "text": "全部商品",
+    "value": 0
+  }, {
+    "text": "新款商品",
+    "value": 1
+  }, {
+    "text": "活动商品",
+    "value": 2
+  }],
+  value1: 0
+};
 
 function onConfirm() {
   this.selectComponent('#item').toggle();
@@ -107,13 +111,17 @@ function onConfirm() {
 function onSwitch1Change({
   detail
 }) {
-  setSwitch1(detail);
+  this.setData({
+    switch1: detail
+  });
 }
 
 function onSwitch2Change({
   detail
 }) {
-  setSwitch2(detail);
+  this.setData({
+    switch2: detail
+  });
 } 
 ```
 
@@ -121,27 +129,27 @@ function onSwitch2Change({
 
 ```jsx
 <DropdownMenu activeColor="#1989fa">
-  <DropdownItem value="{{ value1 }}" options="{{ option1 }}" />
-  <DropdownItem value="{{ value2 }}" options="{{ option2 }}" />
-</vanDropdownMenu> 
+  <DropdownItem value={ value1 } options={ option1 } />
+  <DropdownItem value={ value2 } options={ option2 } />
+</DropdownMenu> 
 ```
 
 ### 向上展开
 
 ```jsx
 <DropdownMenu direction="up">
-  <DropdownItem value="{{ value1 }}" options="{{ option1 }}" />
-  <DropdownItem value="{{ value2 }}" options="{{ option2 }}" />
-</vanDropdownMenu> 
+  <DropdownItem value={ value1 } options={ option1 } />
+  <DropdownItem value={ value2 } options={ option2 } />
+</DropdownMenu> 
 ```
 
 ### 禁用菜单
 
 ```jsx
 <DropdownMenu>
-  <DropdownItem value="{{ value1 }}" disabled options="{{ option1 }}" />
-  <DropdownItem value="{{ value2 }}" disabled options="{{ option2 }}" />
-</vanDropdownMenu> 
+  <DropdownItem value={ value1 } disabled options={ option1 } />
+  <DropdownItem value={ value2 } disabled options={ option2 } />
+</DropdownMenu> 
 ```
 
 ## API

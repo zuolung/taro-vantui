@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Uploader } from "taro-vantui" 
+```javascript
+import { Uploader } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -21,11 +21,13 @@
 文件上传完毕后会触发`afterRead`回调函数，获取到对应的文件的临时地址，然后再使用`wx.uploadFile`将图片上传到远程服务器上。
 
 ```jsx
-<Uploader fileList="{{ fileList }}" onAfterRead={afterRead} /> 
+<Uploader fileList={ fileList } onAfterRead={afterRead} /> 
 ```
 
-```js
-const [fileList, setFileList] = useState([]);
+```javascript
+this.state = {
+  fileList: []
+};
 
 function afterRead(event) {
   const {
@@ -49,7 +51,9 @@ function afterRead(event) {
       fileList.push({ ...file,
         url: res.data
       });
-      setFileList(fileList);
+      this.setData({
+        fileList
+      });
     }
 
   });
@@ -61,19 +65,21 @@ function afterRead(event) {
 通过向组件传入`fileList`属性，可以绑定已经上传的图片列表，并展示图片列表的预览图。fileList 的详细结构可见下方。
 
 ```jsx
-<Uploader fileList="{{ fileList }}" /> 
+<Uploader fileList={ fileList } /> 
 ```
 
-```js
-const [fileList, setFileList] = useState([{
-  "url": "https://img.yzcdn.cn/vant/leaf.jpg",
-  "name": "图片1"
-}, {
-  "url": "http://iph.href.lu/60x60?text=default",
-  "name": "图片2",
-  {isImage}: true,
-  "deletable": true
-}]); 
+```javascript
+this.state = {
+  fileList: [{
+    "url": "https://img.yzcdn.cn/vant/leaf.jpg",
+    "name": "图片1"
+  }, {
+    "url": "http://iph.href.lu/60x60?text=default",
+    "name": "图片2",
+    "isImage": true,
+    "deletable": true
+  }]
+}; 
 ```
 
 ### 图片可删除状态
@@ -83,16 +89,18 @@ const [fileList, setFileList] = useState([{
 若希望控制单张图片的可删除状态，可将`deletable`属性设置为`true`，并在`fileList`中为每一项设置`deletable`属性。
 
 ```jsx
-<Uploader fileList="{{ fileList }}" deletable={true} /> 
+<Uploader fileList={ fileList } deletable={ true } /> 
 ```
 
-```js
-const [fileList, setFileList] = useState([{
-  "url": "https://img.yzcdn.cn/vant/leaf.jpg"
-}, {
-  "url": "https://img.yzcdn.cn/vant/tree.jpg",
-  "deletable": false
-}]); 
+```javascript
+this.state = {
+  fileList: [{
+    "url": "https://img.yzcdn.cn/vant/leaf.jpg"
+  }, {
+    "url": "https://img.yzcdn.cn/vant/tree.jpg",
+    "deletable": false
+  }]
+}; 
 ```
 
 ### 上传状态
@@ -100,19 +108,21 @@ const [fileList, setFileList] = useState([{
 通过`status`属性可以标识上传状态，`uploading`表示上传中，`failed`表示上传失败，`done`表示上传完成。
 
 ```jsx
-<Uploader fileList="{{ fileList }}" /> 
+<Uploader fileList={ fileList } /> 
 ```
 
-```js
-const [fileList, setFileList] = useState([{
-  "url": "https://img.yzcdn.cn/vant/leaf.jpg",
-  "status": "uploading",
-  "message": "上传中"
-}, {
-  "url": "https://img.yzcdn.cn/vant/tree.jpg",
-  "status": "failed",
-  "message": "上传失败"
-}]); 
+```javascript
+this.state = {
+  fileList: [{
+    "url": "https://img.yzcdn.cn/vant/leaf.jpg",
+    "status": "uploading",
+    "message": "上传中"
+  }, {
+    "url": "https://img.yzcdn.cn/vant/tree.jpg",
+    "status": "failed",
+    "message": "上传失败"
+  }]
+}; 
 ```
 
 ### 限制上传数量
@@ -121,7 +131,7 @@ const [fileList, setFileList] = useState([{
 
 ```jsx
 <Uploader
-  fileList="{{ fileList }}"
+  fileList={ fileList }
   maxCount="2"
   onAfterRead={afterRead}
 /> 
@@ -133,8 +143,8 @@ const [fileList, setFileList] = useState([{
 
 ```jsx
 <Uploader>
-  <Button icon="photo" type="primary">上传图片</vanButton>
-</vanUploader> 
+  <Button icon="photo" type="primary">上传图片</Button>
+</Uploader> 
 ```
 
 ### 上传前校验
@@ -143,7 +153,7 @@ const [fileList, setFileList] = useState([{
 
 ```jsx
 <Uploader
-  fileList="{{ fileList }}"
+  fileList={ fileList }
   accept="media"
   useBeforeRead
   onBeforeRead={beforeRead}
@@ -151,8 +161,10 @@ const [fileList, setFileList] = useState([{
 /> 
 ```
 
-```js
-const [fileList, setFileList] = useState([]);
+```javascript
+this.state = {
+  fileList: []
+};
 
 function beforeRead(event) {
   const {

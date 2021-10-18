@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Card } from "taro-vantui" 
+```javascript
+import { Card } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,7 +22,7 @@
   price="2.00"
   desc="描述信息"
   title="商品标题"
-  thumb="{{ imageURL }}"
+  thumb={ imageURL }
 /> 
 ```
 
@@ -37,13 +37,13 @@
   price="10.00"
   desc="描述信息"
   title="商品标题"
-  thumb="{{ imageURL }}"
+  thumb={ imageURL }
 >
   <view slot="footer">
-    <Button size="mini">按钮</vanButton>
-    <Button size="mini">按钮</vanButton>
+    <Button size="mini">按钮</Button>
+    <Button size="mini">按钮</Button>
   </view>
-</vanCard> 
+</Card> 
 ```
 
 ## API

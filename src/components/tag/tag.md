@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Tag } from "taro-vantui" 
+```javascript
+import { Tag } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,10 +19,10 @@
 通过 `type` 属性控制标签颜色，默认为灰色。
 
 ```jsx
-<Tag type="primary">标签</vanTag>
-<Tag type="success">标签</vanTag>
-<Tag type="danger">标签</vanTag>
-<Tag type="warning">标签</vanTag> 
+<Tag type="primary">标签</Tag>
+<Tag type="success">标签</Tag>
+<Tag type="danger">标签</Tag>
+<Tag type="warning">标签</Tag> 
 ```
 
 ### 空心样式
@@ -30,10 +30,10 @@
 设置 `plain` 属性设置为空心样式。
 
 ```jsx
-<Tag plain type="primary">标签</vanTag>
-<Tag plain type="success">标签</vanTag>
-<Tag plain type="danger">标签</vanTag>
-<Tag plain type="warning">标签</vanTag> 
+<Tag plain type="primary">标签</Tag>
+<Tag plain type="success">标签</Tag>
+<Tag plain type="danger">标签</Tag>
+<Tag plain type="warning">标签</Tag> 
 ```
 
 ### 圆角样式
@@ -41,10 +41,10 @@
 通过 `round` 设置为圆角样式。
 
 ```jsx
-<Tag round type="primary">标签</vanTag>
-<Tag round type="success">标签</vanTag>
-<Tag round type="danger">标签</vanTag>
-<Tag round type="warning">标签</vanTag> 
+<Tag round type="primary">标签</Tag>
+<Tag round type="success">标签</Tag>
+<Tag round type="danger">标签</Tag>
+<Tag round type="warning">标签</Tag> 
 ```
 
 ### 标记样式
@@ -52,27 +52,27 @@
 通过 `mark` 设置为标记样式(半圆角)。
 
 ```jsx
-<Tag mark type="primary">标签</vanTag>
-<Tag mark type="success">标签</vanTag>
-<Tag mark type="danger">标签</vanTag>
-<Tag mark type="warning">标签</vanTag> 
+<Tag mark type="primary">标签</Tag>
+<Tag mark type="success">标签</Tag>
+<Tag mark type="danger">标签</Tag>
+<Tag mark type="warning">标签</Tag> 
 ```
 
 ### 自定义颜色
 
 ```jsx
-<Tag color="#f2826a">标签</vanTag>
-<Tag color="#7232dd">标签</vanTag>
-<Tag color="#7232dd" plain>标签</vanTag>
-<Tag color="#ffe1e1" textColor="#ad0000">标签</vanTag> 
+<Tag color="#f2826a">标签</Tag>
+<Tag color="#7232dd">标签</Tag>
+<Tag color="#7232dd" plain>标签</Tag>
+<Tag color="#ffe1e1" textColor="#ad0000">标签</Tag> 
 ```
 
 ### 标签大小
 
 ```jsx
-<Tag type="danger">标签</vanTag>
-<Tag type="danger" size="medium">标签</vanTag>
-<Tag type="danger" size="large">标签</vanTag> 
+<Tag type="danger">标签</Tag>
+<Tag type="danger" size="medium">标签</Tag>
+<Tag type="danger" size="large">标签</Tag> 
 ```
 
 ### 可关闭标签
@@ -81,7 +81,7 @@
 
 ```jsx
 <Tag
-  wx:if="{{ show.primary }}"
+  wx:if={ show.primary }
   closeable
   size="medium"
   type="primary"
@@ -89,9 +89,9 @@
   onClose={onClose}
 >
   标签
-</vanTag>
+</Tag>
 <Tag
-  wx:if="{{ show.success }}"
+  wx:if={ show.success }
   closeable
   size="medium"
   type="success"
@@ -99,17 +99,21 @@
   onClose={onClose}
 >
   标签
-</vanTag> 
+</Tag> 
 ```
 
-```js
-const [show, setShow] = useState({
-  "primary": true,
-  "success": true
-});
+```javascript
+this.state = {
+  show: {
+    "primary": true,
+    "success": true
+  }
+};
 
 function onClose(event) {
-  setSetxxxx(false);
+  this.setData({
+    [`show.${event.target.id}`]: false
+  });
 } 
 ```
 

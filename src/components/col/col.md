@@ -2,15 +2,15 @@
 
 ### 介绍
 
-Layout 提供了`Row`和`Col`两个组件来进行行列布局。
+Layout 提供了`vanRow`和`vanCol`两个组件来进行行列布局。
 
 ### 引入
 
 在 Taro 文件中引入组件
 
-```js
- import { Row } from "taro-vantui"
- import { Col } from "taro-vantui" 
+```javascript
+import { Row } from "taro-vantui";
+import { Col } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -21,19 +21,19 @@ Layout 组件提供了`24列栅格`，通过在`Col`上添加`span`属性设置�
 
 ```jsx
 <Row>
-  <Col span="8">span: 8</vanCol>
-  <Col span="8">span: 8</vanCol>
-  <Col span="8">span: 8</vanCol>
-</vanRow>
+  <Col span="8">span: 8</Col>
+  <Col span="8">span: 8</Col>
+  <Col span="8">span: 8</Col>
+</Row>
 
 <Row>
-  <Col span="4">span: 4</vanCol>
-  <Col span="10" offset="4">offset: 4, span: 10</vanCol>
-</vanRow>
+  <Col span="4">span: 4</Col>
+  <Col span="10" offset="4">offset: 4, span: 10</Col>
+</Row>
 
 <Row>
-  <Col offset="12" span="12">offset: 12, span: 12</vanCol>
-</vanRow> 
+  <Col offset="12" span="12">offset: 12, span: 12</Col>
+</Row> 
 ```
 
 ### 设置列元素间距
@@ -42,10 +42,10 @@ Layout 组件提供了`24列栅格`，通过在`Col`上添加`span`属性设置�
 
 ```jsx
 <Row gutter="20">
-  <Col span="8">span: 8</vanCol>
-  <Col span="8">span: 8</vanCol>
-  <Col span="8">span: 8</vanCol>
-</vanRow> 
+  <Col span="8">span: 8</Col>
+  <Col span="8">span: 8</Col>
+  <Col span="8">span: 8</Col>
+</Row> 
 ```
 
 ## API

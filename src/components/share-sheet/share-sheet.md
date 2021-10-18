@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { ShareSheet } from "taro-vantui" 
+```javascript
+import { ShareSheet } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -21,40 +21,46 @@
 ```jsx
 <Cell title="显示分享面板" onClick={onClick} />
 <ShareSheet
-  show="{{ showShare }}"
+  show={ showShare }
   title="立即分享给好友"
-  options={options}
+  options={ options }
   onSelect={onSelect}
   onClose={onClose}
 /> 
 ```
 
-```js
-const [showShare, setShowShare] = useState(false);
-const [options, setOptions] = useState([{
-  "name": "微信",
-  "icon": "wechat",
-  {openType}: "share"
-}, {
-  "name": "微博",
-  "icon": "weibo"
-}, {
-  "name": "复制链接",
-  "icon": "link"
-}, {
-  "name": "分享海报",
-  "icon": "poster"
-}, {
-  "name": "二维码",
-  "icon": "qrcode"
-}]);
+```javascript
+this.state = {
+  showShare: false,
+  options: [{
+    "name": "微信",
+    "icon": "wechat",
+    "openType": "share"
+  }, {
+    "name": "微博",
+    "icon": "weibo"
+  }, {
+    "name": "复制链接",
+    "icon": "link"
+  }, {
+    "name": "分享海报",
+    "icon": "poster"
+  }, {
+    "name": "二维码",
+    "icon": "qrcode"
+  }]
+};
 
 function onClick(event) {
-  setShowShare(true);
+  this.setData({
+    showShare: true
+  });
 }
 
 function onClose() {
-  setShowShare(false);
+  this.setData({
+    showShare: false
+  });
 }
 
 function onSelect(event) {
@@ -69,33 +75,35 @@ function onSelect(event) {
 
 ```jsx
 <ShareSheet
-  show="{{ showShare }}"
+  show={ showShare }
   title="立即分享给好友"
-  options={options}
+  options={ options }
 /> 
 ```
 
-```js
-const [showShare, setShowShare] = useState(false);
-const [options, setOptions] = useState([[{
-  "name": "微信",
-  "icon": "wechat"
-}, {
-  "name": "微博",
-  "icon": "weibo"
-}, {
-  "name": {QQ},
-  "icon": "qq"
-}], [{
-  "name": "复制链接",
-  "icon": "link"
-}, {
-  "name": "分享海报",
-  "icon": "poster"
-}, {
-  "name": "二维码",
-  "icon": "qrcode"
-}]]); 
+```javascript
+this.state = {
+  showShare: false,
+  options: [[{
+    "name": "微信",
+    "icon": "wechat"
+  }, {
+    "name": "微博",
+    "icon": "weibo"
+  }, {
+    "name": "QQ",
+    "icon": "qq"
+  }], [{
+    "name": "复制链接",
+    "icon": "link"
+  }, {
+    "name": "分享海报",
+    "icon": "poster"
+  }, {
+    "name": "二维码",
+    "icon": "qrcode"
+  }]]
+}; 
 ```
 
 ### 自定义图标
@@ -103,21 +111,23 @@ const [options, setOptions] = useState([[{
 除了使用内置的几种图标外，可以直接在 `icon` 中传入图片 URL 来使用自定义的图标。
 
 ```jsx
-<ShareSheet show="{{ showShare }}" options={options} /> 
+<ShareSheet show={ showShare } options={ options } /> 
 ```
 
-```js
-const [showShare, setShowShare] = useState(false);
-const [options, setOptions] = useState([{
-  "name": "名称",
-  "icon": "https://img.yzcdn.cn/vant/customIconFire.png"
-}, {
-  "name": "名称",
-  "icon": "https://img.yzcdn.cn/vant/customIconLight.png"
-}, {
-  "name": "名称",
-  "icon": "https://img.yzcdn.cn/vant/customIconWater.png"
-}]); 
+```javascript
+this.state = {
+  showShare: false,
+  options: [{
+    "name": "名称",
+    "icon": "https://img.yzcdn.cn/vant/customIconFire.png"
+  }, {
+    "name": "名称",
+    "icon": "https://img.yzcdn.cn/vant/customIconLight.png"
+  }, {
+    "name": "名称",
+    "icon": "https://img.yzcdn.cn/vant/customIconWater.png"
+  }]
+}; 
 ```
 
 ### 展示描述信息
@@ -126,32 +136,34 @@ const [options, setOptions] = useState([{
 
 ```jsx
 <ShareSheet
-  show="{{ showShare }}"
-  options={options}
+  show={ showShare }
+  options={ options }
   title="立即分享给好友"
   description="描述信息"
 /> 
 ```
 
-```js
-const [showShare, setShowShare] = useState(false);
-const [options, setOptions] = useState([{
-  "name": "微信",
-  "icon": "wechat"
-}, {
-  "name": "微博",
-  "icon": "weibo"
-}, {
-  "name": "复制链接",
-  "icon": "link",
-  "description": "描述信息"
-}, {
-  "name": "分享海报",
-  "icon": "poster"
-}, {
-  "name": "二维码",
-  "icon": "qrcode"
-}]); 
+```javascript
+this.state = {
+  showShare: false,
+  options: [{
+    "name": "微信",
+    "icon": "wechat"
+  }, {
+    "name": "微博",
+    "icon": "weibo"
+  }, {
+    "name": "复制链接",
+    "icon": "link",
+    "description": "描述信息"
+  }, {
+    "name": "分享海报",
+    "icon": "poster"
+  }, {
+    "name": "二维码",
+    "icon": "qrcode"
+  }]
+}; 
 ```
 
 ## API

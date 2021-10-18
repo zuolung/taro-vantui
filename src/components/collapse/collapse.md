@@ -8,9 +8,9 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Collapse } from "taro-vantui"
- import { CollapseItem } from "taro-vantui" 
+```javascript
+import { Collapse } from "taro-vantui";
+import { CollapseItem } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -20,24 +20,28 @@
 通过`value`控制展开的面板列表，`activeNames`为数组格式。
 
 ```jsx
-<Collapse value="{{ activeNames }}" onChange={onChange}>
+<Collapse value={ activeNames } onChange={onChange}>
   <CollapseItem title="有赞微商城" name="1">
     提供多样店铺模板，快速搭建网上商城
-  </vanCollapseItem>
+  </CollapseItem>
   <CollapseItem title="有赞零售" name="2">
     网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-  </vanCollapseItem>
+  </CollapseItem>
   <CollapseItem title="有赞美业" name="3" disabled>
     线上拓客，随时预约，贴心顺手的开单收银
-  </vanCollapseItem>
-</vanCollapse> 
+  </CollapseItem>
+</Collapse> 
 ```
 
-```js
-const [activeNames, setActiveNames] = useState(["1"]);
+```javascript
+this.state = {
+  activeNames: ["1"]
+};
 
 function onChange(event) {
-  setActiveNames(event.detail);
+  this.setData({
+    activeNames: event.detail
+  });
 } 
 ```
 
@@ -46,24 +50,28 @@ function onChange(event) {
 通过`accordion`可以设置为手风琴模式，最多展开一个面板，此时`activeName`为字符串格式。
 
 ```jsx
-<Collapse accordion value="{{ activeName }}" onChange={onChange}>
+<Collapse accordion value={ activeName } onChange={onChange}>
   <CollapseItem title="有赞微商城" name="1">
     提供多样店铺模板，快速搭建网上商城
-  </vanCollapseItem>
+  </CollapseItem>
   <CollapseItem title="有赞零售" name="2">
     网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-  </vanCollapseItem>
+  </CollapseItem>
   <CollapseItem title="有赞美业" name="3">
     线上拓客，随时预约，贴心顺手的开单收银
-  </vanCollapseItem>
-</vanCollapse> 
+  </CollapseItem>
+</Collapse> 
 ```
 
-```js
-const [activeName, setActiveName] = useState("1");
+```javascript
+this.state = {
+  activeName: "1"
+};
 
 function onChange(event) {
-  setActiveName(event.detail);
+  this.setData({
+    activeName: event.detail
+  });
 } 
 ```
 
@@ -73,28 +81,32 @@ function onChange(event) {
 
 ```jsx
 <Collapse
-  value="{{ activeNames }}"
+  value={ activeNames }
   onChange={onChange}
   onOpen={onOpen}
   onClose={onClose}
 >
   <CollapseItem title="有赞微商城" name="1">
     提供多样店铺模板，快速搭建网上商城
-  </vanCollapseItem>
+  </CollapseItem>
   <CollapseItem title="有赞零售" name="2">
     网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-  </vanCollapseItem>
+  </CollapseItem>
   <CollapseItem title="有赞美业" name="3">
     线上拓客，随时预约，贴心顺手的开单收银
-  </vanCollapseItem>
-</vanCollapse> 
+  </CollapseItem>
+</Collapse> 
 ```
 
-```js
-const [activeNames, setActiveNames] = useState(["1"]);
+```javascript
+this.state = {
+  activeNames: ["1"]
+};
 
 function onChange(event) {
-  setActiveNames(event.detail);
+  this.setData({
+    activeNames: event.detail
+  });
 }
 
 function onOpen(event) {
@@ -109,22 +121,26 @@ function onClose(event) {
 ### 自定义标题内容
 
 ```jsx
-<Collapse value="{{ activeNames }}" onChange={onChange}>
+<Collapse value={ activeNames } onChange={onChange}>
   <CollapseItem name="1">
     <view slot="title">有赞微商城<Icon name={questionO} /></view>
     提供多样店铺模板，快速搭建网上商城
-  </vanCollapseItem>
+  </CollapseItem>
   <CollapseItem title="有赞零售" name="2" icon={shopO}>
     网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-  </vanCollapseItem>
-</vanCollapse> 
+  </CollapseItem>
+</Collapse> 
 ```
 
-```js
-const [activeNames, setActiveNames] = useState(["1"]);
+```javascript
+this.state = {
+  activeNames: ["1"]
+};
 
 function onChange(event) {
-  setActiveNames(event.detail);
+  this.setData({
+    activeNames: event.detail
+  });
 } 
 ```
 

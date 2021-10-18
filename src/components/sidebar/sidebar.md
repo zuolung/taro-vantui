@@ -8,9 +8,9 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Sidebar } from "taro-vantui"
- import { SidebarItem } from "taro-vantui" 
+```javascript
+import { Sidebar } from "taro-vantui";
+import { SidebarItem } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -22,15 +22,17 @@
 通过在`vanSidebar`上设置`activeKey`属性来控制选中项。
 
 ```jsx
-<Sidebar activeKey="{{ activeKey }}">
+<Sidebar activeKey={ activeKey }>
   <SidebarItem title="标签名" />
   <SidebarItem title="标签名" />
   <SidebarItem title="标签名" />
-</vanSidebar> 
+</Sidebar> 
 ```
 
-```js
-const [activeKey, setActiveKey] = useState(0); 
+```javascript
+this.state = {
+  activeKey: 0
+}; 
 ```
 
 ### 徽标提示
@@ -38,11 +40,11 @@ const [activeKey, setActiveKey] = useState(0);
 设置`dot`属性后，会在右上角展示一个小红点。设置`badge`属性后，会在右上角展示相应的徽标。
 
 ```jsx
-<Sidebar activeKey="{{ activeKey }}">
+<Sidebar activeKey={ activeKey }>
   <SidebarItem title="标签名" dot />
   <SidebarItem title="标签名" badge="5" />
   <SidebarItem title="标签名" badge="99+" />
-</vanSidebar> 
+</Sidebar> 
 ```
 
 ### 禁用选项
@@ -50,11 +52,11 @@ const [activeKey, setActiveKey] = useState(0);
 通过`disabled`属性禁用选项。
 
 ```jsx
-<Sidebar activeKey="{{ activeKey }}">
+<Sidebar activeKey={ activeKey }>
   <SidebarItem title="标签名" />
   <SidebarItem title="标签名" disabled />
   <SidebarItem title="标签名" />
-</vanSidebar> 
+</Sidebar> 
 ```
 
 ### 监听切换事件
@@ -62,17 +64,19 @@ const [activeKey, setActiveKey] = useState(0);
 设置`change`方法来监听切换导航项时的事件。
 
 ```jsx
-<Sidebar activeKey="{{ activeKey }}" onChange={onChange}>
+<Sidebar activeKey={ activeKey } onChange={onChange}>
   <SidebarItem title="标签名 1" />
   <SidebarItem title="标签名 2" />
   <SidebarItem title="标签名 3" />
-</vanSidebar>
+</Sidebar>
 
 <Notify id={vanNotify} /> 
 ```
 
-```js
-const [activeKey, setActiveKey] = useState(0);
+```javascript
+this.state = {
+  activeKey: 0
+};
 
 function onChange(event) {
   Notify({

@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Dialog } from "taro-vantui" 
+```javascript
+import { Dialog } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,7 +22,7 @@
 <Dialog id={vanDialog} /> 
 ```
 
-```js
+```javascript
 import Dialog from 'path/to/@vant/weapp/dist/dialog/dialog';
 
 Dialog.alert({
@@ -47,7 +47,7 @@ Dialog.alert({
 <Dialog id={vanDialog} /> 
 ```
 
-```js
+```javascript
 import Dialog from 'path/to/@vant/weapp/dist/dialog/dialog';
 
 Dialog.confirm({
@@ -70,7 +70,7 @@ Dialog.confirm({
 <Dialog id={vanDialog} /> 
 ```
 
-```js
+```javascript
 import Dialog from 'path/to/@vant/weapp/dist/dialog/dialog';
 
 Dialog.alert({
@@ -97,7 +97,7 @@ Dialog.alert({
 <Dialog id={vanDialog} /> 
 ```
 
-```js
+```javascript
 import Dialog from 'path/to/@vant/weapp/dist/dialog/dialog';
 
 const beforeClose = (action) => new Promise((resolve) => {
@@ -126,25 +126,29 @@ Dialog.confirm({
 <Dialog
   useSlot
   title="标题"
-  show={show}
+  show={ show }
   showCancelButton
   confirmButtonOpenType={getUserInfo}
   onClose={onClose}
   onGetuserinfo={getUserInfo}
 >
   <image src="https://img.yzcdn.cn/1.jpg" />
-</vanDialog> 
+</Dialog> 
 ```
 
-```js
-const [show, setShow] = useState(true);
+```javascript
+this.state = {
+  show: true
+};
 
 function getUserInfo(event) {
   console.log(event.detail);
 }
 
 function onClose() {
-  setShow(false);
+  this.setData({
+    show: false
+  });
 } 
 ```
 

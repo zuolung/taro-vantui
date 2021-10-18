@@ -8,9 +8,9 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Tabbar } from "taro-vantui"
- import { TabbarItem } from "taro-vantui" 
+```javascript
+import { Tabbar } from "taro-vantui";
+import { TabbarItem } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -18,20 +18,24 @@
 ### 基础用法
 
 ```jsx
-<Tabbar active={active} onChange={onChange}>
-  <TabbarItem icon={homeO}>标签</vanTabbarItem>
-  <TabbarItem icon="search">标签</vanTabbarItem>
-  <TabbarItem icon={friendsO}>标签</vanTabbarItem>
-  <TabbarItem icon={settingO}>标签</vanTabbarItem>
-</vanTabbar> 
+<Tabbar active={ active } onChange={onChange}>
+  <TabbarItem icon={homeO}>标签</TabbarItem>
+  <TabbarItem icon="search">标签</TabbarItem>
+  <TabbarItem icon={friendsO}>标签</TabbarItem>
+  <TabbarItem icon={settingO}>标签</TabbarItem>
+</Tabbar> 
 ```
 
-```js
-const [active, setActive] = useState(0);
+```javascript
+this.state = {
+  active: 0
+};
 
 function onChange(event) {
   // event.detail 的值为当前选中项的索引
-  setActive(event.detail);
+  this.setData({
+    active: event.detail
+  });
 } 
 ```
 
@@ -40,31 +44,35 @@ function onChange(event) {
 在标签指定`name`属性的情况下，`vModel`的值为当前标签的`name`。
 
 ```jsx
-<Tabbar active={active} onChange={onChange}>
-  <TabbarItem name="home" icon={homeO}>标签</vanTabbarItem>
-  <TabbarItem name="search" icon="search">标签</vanTabbarItem>
-  <TabbarItem name="friends" icon={friendsO}>标签</vanTabbarItem>
-  <TabbarItem name="setting" icon={settingO}>标签</vanTabbarItem>
-</vanTabbar> 
+<Tabbar active={ active } onChange={onChange}>
+  <TabbarItem name="home" icon={homeO}>标签</TabbarItem>
+  <TabbarItem name="search" icon="search">标签</TabbarItem>
+  <TabbarItem name="friends" icon={friendsO}>标签</TabbarItem>
+  <TabbarItem name="setting" icon={settingO}>标签</TabbarItem>
+</Tabbar> 
 ```
 
-```js
-const [active, setActive] = useState("home");
+```javascript
+this.state = {
+  active: "home"
+};
 
 function onChange(event) {
-  setActive(event.detail);
+  this.setData({
+    active: event.detail
+  });
 } 
 ```
 
 ### 显示徽标
 
 ```jsx
-<Tabbar active={active} onChange={onChange}>
-  <TabbarItem icon={homeO}>标签</vanTabbarItem>
-  <TabbarItem icon="search" dot>标签</vanTabbarItem>
-  <TabbarItem icon={friendsO} info="5">标签</vanTabbarItem>
-  <TabbarItem icon={settingO} info="20">标签</vanTabbarItem>
-</vanTabbar> 
+<Tabbar active={ active } onChange={onChange}>
+  <TabbarItem icon={homeO}>标签</TabbarItem>
+  <TabbarItem icon="search" dot>标签</TabbarItem>
+  <TabbarItem icon={friendsO} info="5">标签</TabbarItem>
+  <TabbarItem icon={settingO} info="20">标签</TabbarItem>
+</Tabbar> 
 ```
 
 ### 自定义图标
@@ -72,36 +80,40 @@ function onChange(event) {
 可以通过 slot 自定义图标，其中 icon slot 代表未选中状态下的图标，iconActive slot 代表选中状态下的图标。
 
 ```jsx
-<Tabbar active={active} onChange={onChange}>
+<Tabbar active={ active } onChange={onChange}>
   <TabbarItem info="3">
     <image
       slot="icon"
-      src="{{ icon.normal }}"
+      src={ icon.normal }
       mode={aspectFit}
       style="width: 30px; height: 18px;"
     />
     <image
       slot={iconActive}
-      src="{{ icon.active }}"
+      src={ icon.active }
       mode={aspectFit}
       style="width: 30px; height: 18px;"
     />
     自定义
-  </vanTabbarItem>
-  <TabbarItem icon="search">标签</vanTabbarItem>
-  <TabbarItem icon={settingO}>标签</vanTabbarItem>
-</vanTabbar> 
+  </TabbarItem>
+  <TabbarItem icon="search">标签</TabbarItem>
+  <TabbarItem icon={settingO}>标签</TabbarItem>
+</Tabbar> 
 ```
 
-```js
-const [active, setActive] = useState(0);
-const [icon, setIcon] = useState({
-  "normal": "https://img.yzcdn.cn/vant/userInactive.png",
-  "active": "https://img.yzcdn.cn/vant/userActive.png"
-});
+```javascript
+this.state = {
+  active: 0,
+  icon: {
+    "normal": "https://img.yzcdn.cn/vant/userInactive.png",
+    "active": "https://img.yzcdn.cn/vant/userActive.png"
+  }
+};
 
 function onChange(event) {
-  setActive(event.detail);
+  this.setData({
+    active: event.detail
+  });
 } 
 ```
 
@@ -109,39 +121,45 @@ function onChange(event) {
 
 ```jsx
 <Tabbar
-  active={active}
+  active={ active }
   activeColor="#07c160"
   inactiveColor="#000"
   onChange={onChange}
 >
-  <TabbarItem icon={homeO}>标签</vanTabbarItem>
-  <TabbarItem icon="search">标签</vanTabbarItem>
-  <TabbarItem icon={friendsO}>标签</vanTabbarItem>
-  <TabbarItem icon={settingO}>标签</vanTabbarItem>
-</vanTabbar> 
+  <TabbarItem icon={homeO}>标签</TabbarItem>
+  <TabbarItem icon="search">标签</TabbarItem>
+  <TabbarItem icon={friendsO}>标签</TabbarItem>
+  <TabbarItem icon={settingO}>标签</TabbarItem>
+</Tabbar> 
 ```
 
-```js
-const [active, setActive] = useState(0);
+```javascript
+this.state = {
+  active: 0
+};
 
 function onChange(event) {
-  setActive(event.detail);
+  this.setData({
+    active: event.detail
+  });
 } 
 ```
 
 ### 切换标签事件
 
 ```jsx
-<Tabbar active={active} onChange={onChange}>
-  <TabbarItem icon={homeO}>标签1</vanTabbarItem>
-  <TabbarItem icon="search">标签2</vanTabbarItem>
-  <TabbarItem icon={friendsO}>标签3</vanTabbarItem>
-  <TabbarItem icon={settingO}>标签4</vanTabbarItem>
-</vanTabbar> 
+<Tabbar active={ active } onChange={onChange}>
+  <TabbarItem icon={homeO}>标签1</TabbarItem>
+  <TabbarItem icon="search">标签2</TabbarItem>
+  <TabbarItem icon={friendsO}>标签3</TabbarItem>
+  <TabbarItem icon={settingO}>标签4</TabbarItem>
+</Tabbar> 
 ```
 
-```js
-const [active, setActive] = useState(0);
+```javascript
+this.state = {
+  active: 0
+};
 
 function onClick(event) {
   wx.showToast({

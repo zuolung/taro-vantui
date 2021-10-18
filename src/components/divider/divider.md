@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Divider } from "taro-vantui" 
+```javascript
+import { Divider } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)。
@@ -37,19 +37,19 @@
 ### 文本位置
 
 ```jsx
-<Divider contentPosition="center">文本</vanDivider>
-<Divider contentPosition="left">文本</vanDivider>
-<Divider contentPosition="right">文本</vanDivider> 
+<Divider contentPosition="center">文本</Divider>
+<Divider contentPosition="left">文本</Divider>
+<Divider contentPosition="right">文本</Divider> 
 ```
 
 ### 自定义属性
 
 ```jsx
-<Divider contentPosition="center" textColor="#1989fa">文本颜色</vanDivider>
+<Divider contentPosition="center" textColor="#1989fa">文本颜色</Divider>
 <Divider contentPosition="center" borderColor="#1989fa">
   border 颜色
-</vanDivider>
-<Divider contentPosition="center" fontSize="18">字体大小</vanDivider> 
+</Divider>
+<Divider contentPosition="center" fontSize="18">字体大小</Divider> 
 ```
 
 ### 自定义样式
@@ -60,7 +60,7 @@
   customStyle="color: #1989fa; borderColor: #1989fa; fontSize: 18px;"
 >
   文本
-</vanDivider> 
+</Divider> 
 ```
 
 ## API

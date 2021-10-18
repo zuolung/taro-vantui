@@ -4,8 +4,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Panel } from "taro-vantui" 
+```javascript
+import { Panel } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -17,7 +17,7 @@
 ```jsx
 <Panel title="标题" desc="描述信息" status="状态">
   <view>内容</view>
-</vanPanel> 
+</Panel> 
 ```
 
 ### 高级用法
@@ -28,10 +28,10 @@
 <Panel title="标题" desc="描述信息" status="状态">
   <view>内容</view>
   <view slot="footer">
-    <Button size="small">按钮</vanButton>
-    <Button size="small" type="danger">按钮</vanButton>
+    <Button size="small">按钮</Button>
+    <Button size="small" type="danger">按钮</Button>
   </view>
-</vanPanel> 
+</Panel> 
 ```
 
 ## API

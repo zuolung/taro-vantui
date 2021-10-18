@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Rate } from "taro-vantui" 
+```javascript
+import { Rate } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -17,14 +17,18 @@
 ### 基础用法
 
 ```jsx
-<Rate value={value} onChange={onChange} /> 
+<Rate value={ value } onChange={onChange} /> 
 ```
 
-```js
-const [value, setValue] = useState(3);
+```javascript
+this.state = {
+  value: 3
+};
 
 function onChange(event) {
-  setValue(event.detail);
+  this.setData({
+    value: event.detail
+  });
 } 
 ```
 
@@ -32,7 +36,7 @@ function onChange(event) {
 
 ```jsx
 <Rate
-  value={value}
+  value={ value }
   icon="like"
   voidIcon={likeO}
   onChange={onChange}
@@ -43,8 +47,8 @@ function onChange(event) {
 
 ```jsx
 <Rate
-  value={value}
-  size="{{ 25 }}"
+  value={ value }
+  size={ 25 }
   color="#ffd21e"
   voidIcon="star"
   voidColor="#eee"
@@ -56,7 +60,7 @@ function onChange(event) {
 
 ```jsx
 <Rate
-  value={value}
+  value={ value }
   allowHalf
   voidIcon="star"
   voidColor="#eee"
@@ -64,30 +68,34 @@ function onChange(event) {
 /> 
 ```
 
-```js
-const [value, setValue] = useState(2.5);
+```javascript
+this.state = {
+  value: 2.5
+};
 
 function onChange(event) {
-  setValue(event.detail);
+  this.setData({
+    value: event.detail
+  });
 } 
 ```
 
 ### 自定义数量
 
 ```jsx
-<Rate value={value} count="{{ 6 }}" onChange={onChange} /> 
+<Rate value={ value } count={ 6 } onChange={onChange} /> 
 ```
 
 ### 禁用状态
 
 ```jsx
-<Rate disabled value={value} onChange={onChange} /> 
+<Rate disabled value={ value } onChange={onChange} /> 
 ```
 
 ### 只读状态
 
 ```jsx
-<Rate readonly value={value} onChange={onChange} /> 
+<Rate readonly value={ value } onChange={onChange} /> 
 ```
 
 ### 监听 change 事件
@@ -95,11 +103,13 @@ function onChange(event) {
 评分变化时，会触发 `change` 事件。
 
 ```jsx
-<Rate value={value} onChange={onChange} /> 
+<Rate value={ value } onChange={onChange} /> 
 ```
 
-```js
-const [value, setValue] = useState(2);
+```javascript
+this.state = {
+  value: 2
+};
 
 function onChange(event) {
   Toast('当前值：' + event.detail);

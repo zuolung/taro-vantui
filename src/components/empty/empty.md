@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Empty } from "taro-vantui" 
+```javascript
+import { Empty } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -51,8 +51,8 @@ Empty 组件内置了多种占位图片类型，可以在不同业务场景下�
 
 ```jsx
 <Empty description="描述文字">
-  <Button round type="danger" class={bottomButton}>按钮</vanButton>
-</vanEmpty>
+  <Button round type="danger" class={bottomButton}>按钮</Button>
+</Empty>
 
 <style>
   .bottomButton {

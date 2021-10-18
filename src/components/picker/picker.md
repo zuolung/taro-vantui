@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { Picker } from "taro-vantui" 
+```javascript
+import { Picker } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -17,11 +17,13 @@
 ### 基础用法
 
 ```jsx
-<Picker columns={columns} onChange={onChange} /> 
+<Picker columns={ columns } onChange={onChange} /> 
 ```
 
-```js
-const [columns, setColumns] = useState(["杭州", "宁波", "温州", "嘉兴", "湖州"]);
+```javascript
+this.state = {
+  columns: ["杭州", "宁波", "温州", "嘉兴", "湖州"]
+};
 
 function onChange(event) {
   const {
@@ -39,8 +41,8 @@ function onChange(event) {
 
 ```jsx
 <Picker
-  columns={columns}
-  defaultIndex="{{ 2 }}"
+  columns={ columns }
+  defaultIndex={ 2 }
   onChange={onChange}
 /> 
 ```
@@ -51,14 +53,16 @@ function onChange(event) {
 <Picker
   showToolbar
   title="标题"
-  columns={columns}
+  columns={ columns }
   onCancel={onCancel}
   onConfirm={onConfirm}
 /> 
 ```
 
-```js
-const [columns, setColumns] = useState(["杭州", "宁波", "温州", "嘉兴", "湖州"]);
+```javascript
+this.state = {
+  columns: ["杭州", "宁波", "温州", "嘉兴", "湖州"]
+};
 
 function onConfirm(event) {
   const {
@@ -77,17 +81,19 @@ function onCancel() {
 ### 多列联动
 
 ```jsx
-<Picker columns={columns} onChange={onChange} /> 
+<Picker columns={ columns } onChange={onChange} /> 
 ```
 
-```js
-const [columns, setColumns] = useState([{
-  "values": [],
-  {className}: "column1"
-}, {
-  {className}: "column2",
-  {defaultIndex}: 2
-}]);
+```javascript
+this.state = {
+  columns: [{
+    "values": [],
+    "className": "column1"
+  }, {
+    "className": "column2",
+    "defaultIndex": 2
+  }]
+};
 
 function onChange(event) {
   const {
@@ -104,18 +110,20 @@ function onChange(event) {
 选项可以为对象结构，通过设置 disabled 来禁用该选项。
 
 ```jsx
-<Picker columns={columns} /> 
+<Picker columns={ columns } /> 
 ```
 
-```js
-const [columns, setColumns] = useState([{
-  "text": "杭州",
-  "disabled": true
-}, {
-  "text": "宁波"
-}, {
-  "text": "温州"
-}]); 
+```javascript
+this.state = {
+  columns: [{
+    "text": "杭州",
+    "disabled": true
+  }, {
+    "text": "宁波"
+  }, {
+    "text": "温州"
+  }]
+}; 
 ```
 
 ### 加载状态
@@ -123,7 +131,7 @@ const [columns, setColumns] = useState([{
 当 Picker 数据是通过异步获取时，可以通过 `loading` 属性显示加载提示。
 
 ```jsx
-<Picker columns={columns} loading /> 
+<Picker columns={ columns } loading /> 
 ```
 
 ## API

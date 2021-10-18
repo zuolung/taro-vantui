@@ -8,8 +8,8 @@
 
 在 Taro 文件中引入组件
 
-```js
- import { ConfigProvider } from "taro-vantui" 
+```javascript
+import { ConfigProvider } from "taro-vantui"; 
 ```
 
 ## 定制主题
@@ -51,52 +51,56 @@ page {
 `ConfigProvider` 组件提供了覆盖 CSS 变量的能力，你需要在根节点包裹一个 `ConfigProvider` 组件，并通过 `themeVars` 属性来配置一些主题变量。
 
 ```jsx
-<ConfigProvider themeVars="{{ themeVars }}">
+<ConfigProvider themeVars={ themeVars }>
   <CellGroup>
     <Field label="评分">
       <view slot="input" style="width: 100%">
         <Rate
-          model:value={rate}
+          model:value={ rate }
           dataKey="rate"
           onChange={onChange}
         />
       </view>
-    </vanField>
-    <Field label="滑块" border={false}>
+    </Field>
+    <Field label="滑块" border={ false }>
       <view slot="input" style="width: 100%">
         <Slider
-          value={slider}
+          value={ slider }
           dataKey="slider"
           onChange={onChange}
         />
       </view>
-    </vanField>
-  </vanCellGroup>
+    </Field>
+  </CellGroup>
 
   <view style="margin: 16px">
-    <Button round block type="primary">提交</vanButton>
+    <Button round block type="primary">提交</Button>
   </view>
-</vanConfigProvider> 
+</ConfigProvider> 
 ```
 
-```js
-const [rate, setRate] = useState(4);
-const [slider, setSlider] = useState(50);
-const [themeVars, setThemeVars] = useState({
-  {rateIconFullColor}: "#07c160",
-  {sliderBarHeight}: "4px",
-  {sliderButtonWidth}: "20px",
-  {sliderButtonHeight}: "20px",
-  {sliderActiveBackgroundColor}: "#07c160",
-  {buttonPrimaryBorderColor}: "#07c160",
-  {buttonPrimaryBackgroundColor}: "#07c160"
-});
+```javascript
+this.state = {
+  rate: 4,
+  slider: 50,
+  themeVars: {
+    "rateIconFullColor": "#07c160",
+    "sliderBarHeight": "4px",
+    "sliderButtonWidth": "20px",
+    "sliderButtonHeight": "20px",
+    "sliderActiveBackgroundColor": "#07c160",
+    "buttonPrimaryBorderColor": "#07c160",
+    "buttonPrimaryBackgroundColor": "#07c160"
+  }
+};
 
 function onChange(event) {
   const {
     key
   } = event.currentTarget.dataset;
-  setKey(event.detail);
+  this.setData({
+    [key]: event.detail
+  });
 } 
 ```
 
