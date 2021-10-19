@@ -15,7 +15,7 @@
     "docs:dev": "cross-env NODE_ENV=development webpack --config ./site/docs/config/dev-run.js",
     "docs:build": "cross-env NODE_ENV=production webpack --config ./site/docs/config/webpack.pro.config.js",
     "build": "npx rollup -c ./rollup.config.js",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist-site"
   },
   "publishConfig": {
     "access": "public",
