@@ -76,7 +76,7 @@ let config = {
         chain.mode('production')
         chain.devtool('hidden-source-map')
         chain.output
-          .path(npath.resolve(__dirname, '../../../dist-site/demo-dist'))
+          .path(npath.resolve(__dirname, '../../../build/demo-dist'))
           .filename('assets/js/[name].js')
           .chunkFilename('assets/js/chunk/[name].js')
           .publicPath(publicPath.replace('VERSION', version))
@@ -84,7 +84,7 @@ let config = {
         chain.mode('development')
         chain.devtool('eval-cheap-module-source-map')
         chain.output
-          .path(npath.resolve(__dirname, '../../../dist-site/demo-dist'))
+          .path(npath.resolve(__dirname, '../../../build/demo-dist'))
           .filename('assets/js/[name].js')
           .chunkFilename('assets/js/chunk/[name].js')
           .publicPath(publicPath.replace('VERSION', version))

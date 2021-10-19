@@ -6,7 +6,7 @@
   "typings": "types/index.d.ts",
   "author": "zuolung <zuolung@126.com>",
   "description": "一套适用于Taro3的vantui组件库",
-  "homepage": "https://zuolung.github.io/taro-vantui",
+  "homepage": "https://github.com/zuolung/taro-vantui",
   "license": "MIT",
   "scripts": {
     "iconfont": "npx antm-icon --font-family antmuifont --input-path https://at.alicdn.com/t/font_2744513_7eeet2akdo.css --output-path src/style/components/iconfont.less",
@@ -15,7 +15,7 @@
     "docs:dev": "cross-env NODE_ENV=development webpack --config ./site/docs/config/dev-run.js",
     "docs:build": "cross-env NODE_ENV=production webpack --config ./site/docs/config/webpack.pro.config.js",
     "build": "npx rollup -c ./rollup.config.js",
-    "deploy": "gh-pages -d dist-site"
+    "deploy": "gh-pages -d build"
   },
   "publishConfig": {
     "access": "public",
