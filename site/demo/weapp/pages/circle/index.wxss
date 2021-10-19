@@ -1,0 +1,7 @@
+.van-circle {
+  margin: 10rpx 20rpx 40rpx;
+}
+
+.van-button {
+  margin-left: 20rpx;
+}

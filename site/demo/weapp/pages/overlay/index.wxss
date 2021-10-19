@@ -1,0 +1,15 @@
+.wrapper {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  height: 100%;
+}
+
+.block {
+  width: 240rpx;
+  height: 240rpx;
+  background-color: #fff;
+}

@@ -82,12 +82,12 @@ export default class Index extends React.Component {
         <DemoBlock title="多列联动">
           <Picker columns={column4} onChange={this.onChange2}></Picker>
         </DemoBlock>
-        {/* <DemoBlock title="禁用选项">
+        <DemoBlock title="禁用选项">
           <Picker columns={column2}></Picker>
-        </DemoBlock> */}
-        {/* <DemoBlock title="加载状态">
+        </DemoBlock>
+        <DemoBlock title="加载状态">
           <Picker loading columns={column4}></Picker>
-        </DemoBlock> */}
+        </DemoBlock>
         <Toast id="van-toast"></Toast>
       </Block>
     )

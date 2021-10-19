@@ -1,0 +1,5 @@
+.demo-image {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 50rpx 40rpx 0;
+}

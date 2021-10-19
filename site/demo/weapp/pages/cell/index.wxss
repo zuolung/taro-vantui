@@ -1,0 +1,5 @@
+.title {
+  margin-right: 10rpx;
+  display: inline-block;
+  vertical-align: middle;
+}

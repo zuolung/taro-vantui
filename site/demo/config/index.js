@@ -69,7 +69,6 @@ let config = {
     },
   },
   h5: {
-    publicPath: './',
     webpackChain(chain) {
       const publicPath = process.env.PUBLIC_PATH || '/'
       h5Chain(chain)
@@ -85,7 +84,7 @@ let config = {
         chain.mode('development')
         chain.devtool('eval-cheap-module-source-map')
         chain.output
-          .path(npath.resolve('./build'))
+          .path(npath.resolve('../../../dist/demo-dist'))
           .filename('assets/js/[name].js')
           .chunkFilename('assets/js/chunk/[name].js')
           .publicPath(publicPath.replace('VERSION', version))

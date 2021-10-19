@@ -1,0 +1,27 @@
+.tab-page {
+  padding-bottom: 600rpx;
+}
+
+.content {
+  padding: 40rpx;
+  background-color: #fff;
+}
+
+.content-2 {
+  padding: 40rpx;
+}
+
+.right-nav {
+  padding: 0 20rpx;
+  line-height: 88rpx !important;
+  background-color: #fff;
+}
+
+.special-tab {
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.special-tab-active {
+  font-size: 1.05em !important;
+}

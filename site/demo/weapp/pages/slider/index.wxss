@@ -1,0 +1,13 @@
+.slider {
+  margin: 0 30rpx 60rpx;
+}
+
+.custom-button {
+  width: 52rpx;
+  color: #fff;
+  font-size: 20rpx;
+  line-height: 36rpx;
+  text-align: center;
+  border-radius: 200rpx;
+  background-color: #ee0a24;
+}

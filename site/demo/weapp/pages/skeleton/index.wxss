@@ -1,0 +1,37 @@
+page {
+  background-color: white;
+}
+
+.van-switch {
+  margin: 0 32rpx 16rpx;
+}
+
+.demo-preview {
+  display: -webkit-flex;
+  display: flex;
+  padding: 0 32rpx;
+}
+
+.demo-content {
+  padding-top: 12rpx;
+}
+
+.demo-content-h3 {
+  margin: 0;
+  font-size: 36rpx;
+  line-height: 40rpx;
+}
+
+.demo-content-p {
+  margin: 26rpx 0 0;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+.demo-preview-img {
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 32rpx;
+}

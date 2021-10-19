@@ -1,0 +1,16 @@
+.demo-swipe-cell {
+  -webkit-user-select: none;
+          user-select: none;
+}
+
+.van-swipe-cell__left,
+.van-swipe-cell__right {
+  display: inline-block;
+  width: 130rpx;
+  height: 88rpx;
+  font-size: 30rpx;
+  line-height: 88rpx;
+  color: #fff;
+  text-align: center;
+  background-color: #ee0a24;
+}

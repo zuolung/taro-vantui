@@ -235,9 +235,9 @@ function convert(fileContent: string, pathName: string): string {
       })
       const callFuncsReg = /={this\.(\w+)}/g
 
-        ; (str.match(callFuncsReg) ?? []).forEach((e) => {
-          callFuncs.add(e.replace(callFuncsReg, '$1'))
-        })
+      ;(str.match(callFuncsReg) ?? []).forEach((e) => {
+        callFuncs.add(e.replace(callFuncsReg, '$1'))
+      })
       // 查一下 上边是不是 这个方法体内 是不是有 .(currentTarget|target)\\.dataset
 
       const newCom = str
@@ -327,24 +327,24 @@ function unlink(
 
 const ACTION = 1 // 1 删除  2 修改
 
-  ; (async () => {
-    const filsNames = ['index_backup'] //['index', 'index2']
-    const result = await getContent(filsNames)
-    console.log('一共' + result.length + '')
-    // console.log(result)
-    if (result.length === 0) {
-      console.log('没找到文件， 请检查文件名称')
-      return
+;(async () => {
+  const filsNames = ['index_backup'] //['index', 'index2']
+  const result = await getContent(filsNames)
+  console.log('一共' + result.length + '')
+  // console.log(result)
+  if (result.length === 0) {
+    console.log('没找到文件， 请检查文件名称')
+    return
+  }
+
+  result.forEach((e) => {
+    if (!e) return
+    const dirName = e.path.match(/\/([\w-]+)\/\w+\.js$/)?.[1] || ''
+
+    if (ACTION === 1) {
+      unlink(dirName, e)
+    } else {
+      writeFile(dirName, e)
     }
-
-    result.forEach((e) => {
-      if (!e) return
-      const dirName = e.path.match(/\/([\w-]+)\/\w+\.js$/)?.[1] || ''
-
-      if (ACTION === 1) {
-        unlink(dirName, e)
-      } else {
-        writeFile(dirName, e)
-      }
-    })
-  })()
+  })
+})()

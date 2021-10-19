@@ -1,0 +1,7 @@
+.demo-radio {
+  margin-bottom: 20rpx;
+}
+
+.icon {
+  width: 40rpx;
+}

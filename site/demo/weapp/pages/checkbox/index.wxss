@@ -1,0 +1,16 @@
+.demo-checkbox-group {
+  margin: 20rpx 0 0 40rpx;
+}
+
+.demo-checkbox {
+  margin: 20rpx 0 0 40rpx;
+}
+
+.value-class {
+  -webkit-flex: none !important;
+          flex: none !important;
+}
+
+.icon {
+  width: 40rpx;
+}
