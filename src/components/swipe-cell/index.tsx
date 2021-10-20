@@ -249,6 +249,7 @@ function Index(
             className="van-swipe-cell__left"
             data-key="left"
             onClick={onClick_}
+            style={{ width: leftWidth + 'px' }}
           >
             {renderLeft}
           </View>
@@ -259,6 +260,7 @@ function Index(
             className="van-swipe-cell__right"
             data-key="right"
             onClick={onClick_}
+            style={{ width: rightWidth + 'px' }}
           >
             {renderRight}
           </View>

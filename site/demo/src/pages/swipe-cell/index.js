@@ -89,12 +89,12 @@ export default class Index extends React.Component {
             onClose={this.onClose}
             renderLeft={
               <Block>
-                <View className="van-swipe-cell__left">选择</View>
+                <View className="van-swipe-cell__left_">选择</View>
               </Block>
             }
             renderRight={
               <Block>
-                <View className="van-swipe-cell__right">删除</View>
+                <View className="van-swipe-cell__right_">删除</View>
               </Block>
             }
           >
