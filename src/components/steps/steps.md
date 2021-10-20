@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Steps } from "taro-vantui"; 
 ```
 
@@ -17,23 +17,29 @@ import { Steps } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<Steps steps={ steps } active={ active } /> 
+<View>
+  <Steps
+    steps={ `${ steps }` }
+    active={ `${ active }` }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   steps: [{
-    "text": "步骤一",
-    "desc": "描述信息"
+    text: '步骤一',
+    desc: '描述信息'
   }, {
-    "text": "步骤二",
-    "desc": "描述信息"
+    text: '步骤二',
+    desc: '描述信息'
   }, {
-    "text": "步骤三",
-    "desc": "描述信息"
+    text: '步骤三',
+    desc: '描述信息'
   }, {
-    "text": "步骤四",
-    "desc": "描述信息"
+    text: '步骤四',
+    desc: '描述信息'
   }]
 }; 
 ```
@@ -43,12 +49,15 @@ this.state = {
 可以通过 `activeIcon` 和 `activeColor` 属性设置激活状态下的图标和颜色。
 
 ```jsx
-<Steps
-  steps={ steps }
-  active={ active }
-  activeIcon="success"
-  activeColor="#38f"
-/> 
+<View>
+  <Steps
+    steps={ `${ steps }` }
+    active={ `${ active }` }
+    activeIcon="success"
+    activeColor="#38f"
+  />
+</View>
+ 
 ```
 
 ### 自定义图标
@@ -56,31 +65,37 @@ this.state = {
 可以通过 `inactiveIcon` 和 `activeIcon` 属性分别设置每一项的图标。
 
 ```jsx
-<Steps steps={ steps } active={ active } /> 
+<View>
+  <Steps
+    steps={ `${ steps }` }
+    active={ `${ active }` }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   steps: [{
-    "text": "步骤一",
-    "desc": "描述信息",
-    "inactiveIcon": "locationO",
-    "activeIcon": "success"
+    text: '步骤一',
+    desc: '描述信息',
+    inactiveIcon: 'locationO',
+    activeIcon: 'success'
   }, {
-    "text": "步骤二",
-    "desc": "描述信息",
-    "inactiveIcon": "likeO",
-    "activeIcon": "plus"
+    text: '步骤二',
+    desc: '描述信息',
+    inactiveIcon: 'likeO',
+    activeIcon: 'plus'
   }, {
-    "text": "步骤三",
-    "desc": "描述信息",
-    "inactiveIcon": "starO",
-    "activeIcon": "cross"
+    text: '步骤三',
+    desc: '描述信息',
+    inactiveIcon: 'starO',
+    activeIcon: 'cross'
   }, {
-    "text": "步骤四",
-    "desc": "描述信息",
-    "inactiveIcon": "phoneO",
-    "activeIcon": "fail"
+    text: '步骤四',
+    desc: '描述信息',
+    inactiveIcon: 'phoneO',
+    activeIcon: 'fail'
   }]
 }; 
 ```
@@ -90,12 +105,15 @@ this.state = {
 可以通过设置`direction`属性来改变步骤条的显示方式。
 
 ```jsx
-<Steps
-  steps={ steps }
-  active={ active }
-  direction="vertical"
-  activeColor="#ee0a24"
-/> 
+<View>
+  <Steps
+    steps={ `${ steps }` }
+    active={ `${ active }` }
+    direction="vertical"
+    activeColor="#ee0a24"
+  />
+</View>
+ 
 ```
 
 ## API
@@ -121,5 +139,5 @@ this.state = {
 
 | 类名         | 说明           |
 | ------------ | -------------- |
-| customClass | 根节点样式类   |
+| className | 根节点样式类   |
 | descClass   | 描述信息样式类 |

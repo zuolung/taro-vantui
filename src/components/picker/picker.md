@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Picker } from "taro-vantui"; 
 ```
 
@@ -17,12 +17,19 @@ import { Picker } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<Picker columns={ columns } onChange={onChange} /> 
+<View>
+  <Picker
+    columns={ `${ columns }` }
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
+import Toast from 'path/to/@vant/weapp/dist/toast/toast';
 this.state = {
-  columns: ["杭州", "宁波", "温州", "嘉兴", "湖州"]
+  columns: ['杭州', '宁波', '温州', '嘉兴', '湖州']
 };
 
 function onChange(event) {
@@ -40,28 +47,35 @@ function onChange(event) {
 单列选择器可以直接通过`defaultIndex`属性设置初始选中项的索引值。
 
 ```jsx
-<Picker
-  columns={ columns }
-  defaultIndex={ 2 }
-  onChange={onChange}
-/> 
+<View>
+  <Picker
+    columns={ `${ columns }` }
+    defaultIndex={ `${ 2 }` }
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
 ### 展示顶部栏
 
 ```jsx
-<Picker
-  showToolbar
-  title="标题"
-  columns={ columns }
-  onCancel={onCancel}
-  onConfirm={onConfirm}
-/> 
+<View>
+  <Picker
+    showToolbar={ true }
+    title="标题"
+    columns={ `${ columns }` }
+    onCancel={ onCancel }
+    onConfirm={ onConfirm }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
+import Toast from 'path/to/@vant/weapp/dist/toast/toast';
 this.state = {
-  columns: ["杭州", "宁波", "温州", "嘉兴", "湖州"]
+  columns: ['杭州', '宁波', '温州', '嘉兴', '湖州']
 };
 
 function onConfirm(event) {
@@ -81,17 +95,28 @@ function onCancel() {
 ### 多列联动
 
 ```jsx
-<Picker columns={ columns } onChange={onChange} /> 
+<View>
+  <Picker
+    columns={ `${ columns }` }
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
+const citys = {
+  浙江: ['杭州', '宁波', '温州', '嘉兴', '湖州'],
+  福建: ['福州', '厦门', '莆田', '三明', '泉州']
+};
 this.state = {
   columns: [{
-    "values": [],
-    "className": "column1"
+    values: Object.keys(citys),
+    className: 'column1'
   }, {
-    "className": "column2",
-    "defaultIndex": 2
+    values: citys['浙江'],
+    className: 'column2',
+    defaultIndex: 2
   }]
 };
 
@@ -110,18 +135,21 @@ function onChange(event) {
 选项可以为对象结构，通过设置 disabled 来禁用该选项。
 
 ```jsx
-<Picker columns={ columns } /> 
+<View>
+  <Picker columns={ `${ columns }` } />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   columns: [{
-    "text": "杭州",
-    "disabled": true
+    text: '杭州',
+    disabled: true
   }, {
-    "text": "宁波"
+    text: '宁波'
   }, {
-    "text": "温州"
+    text: '温州'
   }]
 }; 
 ```
@@ -131,7 +159,13 @@ this.state = {
 当 Picker 数据是通过异步获取时，可以通过 `loading` 属性显示加载提示。
 
 ```jsx
-<Picker columns={ columns } loading /> 
+<View>
+  <Picker
+    columns={ `${ columns }` }
+    loading={ true }
+  />
+</View>
+ 
 ```
 
 ## API
@@ -175,7 +209,7 @@ Picker 组件的事件会根据 columns 是单列或多列返回不同的参数�
 
 | 类名          | 说明         |
 | ------------- | ------------ |
-| customClass  | 根节点样式类 |
+| className  | 根节点样式类 |
 | activeClass  | 选中项样式类 |
 | toolbarClass | 顶部栏样式类 |
 | columnClass  | 列样式类     |

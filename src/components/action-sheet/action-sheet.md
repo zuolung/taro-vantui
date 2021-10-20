@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { ActionSheet } from "taro-vantui"; 
 ```
 
@@ -19,25 +19,28 @@ import { ActionSheet } from "taro-vantui";
 需要传入一个`actions`的数组，数组的每一项是一个对象，对象属性见文档下方表格。
 
 ```jsx
-<ActionSheet
-  show={ show }
-  actions={ actions }
-  onClose={onClose}
-  onSelect={onSelect}
-/> 
+<View>
+  <ActionSheet
+    show={ `${ show }` }
+    actions={ `${ actions }` }
+    onClose={ onClose }
+    onSelect={ onSelect }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   show: false,
   actions: [{
-    "name": "选项"
+    name: '选项'
   }, {
-    "name": "选项"
+    name: '选项'
   }, {
-    "name": "选项",
-    "subname": "描述信息",
-    "openType": "share"
+    name: '选项',
+    subname: '描述信息',
+    openType: 'share'
   }]
 };
 
@@ -57,24 +60,27 @@ function onSelect(event) {
 选项可以设置为加载状态或禁用状态。
 
 ```jsx
-<ActionSheet
-  show={ show }
-  actions={ actions }
-  cancelText="取消"
-/> 
+<View>
+  <ActionSheet
+    show={ `${ show }` }
+    actions={ `${ actions }` }
+    cancelText="取消"
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   show: false,
   actions: [{
-    "name": "着色选项",
-    "color": "#ee0a24"
+    name: '着色选项',
+    color: '#ee0a24'
   }, {
-    "loading": true
+    loading: true
   }, {
-    "name": "禁用选项",
-    "disabled": true
+    name: '禁用选项',
+    disabled: true
   }]
 }; 
 ```
@@ -84,11 +90,14 @@ this.state = {
 设置`cancelText`属性后，会在底部展示取消按钮，点击后关闭当前菜单。
 
 ```jsx
-<ActionSheet
-  show={ show }
-  actions={ actions }
-  cancelText="取消"
-/> 
+<View>
+  <ActionSheet
+    show={ `${ show }` }
+    actions={ `${ actions }` }
+    cancelText="取消"
+  />
+</View>
+ 
 ```
 
 ### 展示描述信息
@@ -96,11 +105,14 @@ this.state = {
 设置`description`属性后，会在选项上方显示描述信息。
 
 ```jsx
-<ActionSheet
-  show={ show }
-  actions={ actions }
-  description="这是一段描述信息"
-/> 
+<View>
+  <ActionSheet
+    show={ `${ show }` }
+    actions={ `${ actions }` }
+    description="这是一段描述信息"
+  />
+</View>
+ 
 ```
 
 ### 展示标题栏
@@ -108,9 +120,17 @@ this.state = {
 通过设置`title`属性展示标题栏，同时可以使用插槽自定义菜单内容。
 
 ```jsx
-<ActionSheet show={ show } title="标题">
-  <view>内容</view>
-</ActionSheet> 
+<View>
+  <ActionSheet
+    show={ `${ show }` }
+    title="标题"
+  >
+    <view>
+      内容
+    </view>
+  </ActionSheet>
+</View>
+ 
 ```
 
 ### 微信开放能力
@@ -118,21 +138,24 @@ this.state = {
 需要传入一个`actions`的数组，数组的每一项是一个对象，对象属性见文档下方表格。
 
 ```jsx
-<ActionSheet
-  show={ show }
-  actions={ actions }
-  onClose={onClose}
-  onGetuserinfo={onGetUserInfo}
-/> 
+<View>
+  <ActionSheet
+    show={ `${ show }` }
+    actions={ `${ actions }` }
+    onClose={ onClose }
+    onGetuserinfo={ onGetUserInfo }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   show: false,
   actions: [{
-    "name": "获取用户信息",
-    "color": "#07c160",
-    "openType": "getUserInfo"
+    name: '获取用户信息',
+    color: '#07c160',
+    openType: 'getUserInfo'
   }]
 };
 

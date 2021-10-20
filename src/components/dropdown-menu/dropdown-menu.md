@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { DropdownMenu } from "taro-vantui";
 import { DropdownItem } from "taro-vantui"; 
 ```
@@ -18,88 +18,111 @@ import { DropdownItem } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<DropdownMenu>
-  <DropdownItem value={ value1 } options={ option1 } />
-  <DropdownItem value={ value2 } options={ option2 } />
-</DropdownMenu> 
+<View>
+  <DropdownMenu>
+    <DropdownItem
+      value={ `${ value1 }` }
+      options={ `${ option1 }` }
+    />
+    <DropdownItem
+      value={ `${ value2 }` }
+      options={ `${ option2 }` }
+    />
+  </DropdownMenu>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   option1: [{
-    "text": "全部商品",
-    "value": 0
+    text: '全部商品',
+    value: 0
   }, {
-    "text": "新款商品",
-    "value": 1
+    text: '新款商品',
+    value: 1
   }, {
-    "text": "活动商品",
-    "value": 2
+    text: '活动商品',
+    value: 2
   }],
   option2: [{
-    "text": "默认排序",
-    "value": "a"
+    text: '默认排序',
+    value: 'a'
   }, {
-    "text": "好评排序",
-    "value": "b"
+    text: '好评排序',
+    value: 'b'
   }, {
-    "text": "销量排序",
-    "value": "c"
+    text: '销量排序',
+    value: 'c'
   }],
   value1: 0,
-  value2: "a"
+  value2: 'a'
 }; 
 ```
 
 ### 自定义菜单内容
 
 ```jsx
-<DropdownMenu>
-  <DropdownItem value={ value1 } options={ option1 } />
-  <DropdownItem id="item" title={ itemTitle }>
-    <Cell title={ switchTitle1 }>
-      <Switch
-        slot={rightIcon}
-        size="24px"
-        style="height: 26px"
-        checked={ switch1 }
-        activeColor="#ee0a24"
-        onChange="onSwitch1Change"
-      />
-    </Cell>
-    <Cell title={ switchTitle2 }>
-      <Switch
-        slot={rightIcon}
-        size="24px"
-        style="height: 26px"
-        checked={ switch2 }
-        activeColor="#ee0a24"
-        onChange="onSwitch2Change"
-      />
-    </Cell>
-    <view style="padding: 5px 16px;">
-      <Button type="danger" block round onClick={onConfirm}>
-        确认
-      </Button>
-    </view>
-  </DropdownItem>
-</DropdownMenu> 
+<View>
+  <DropdownMenu>
+    <DropdownItem
+      value={ `${ value1 }` }
+      options={ `${ option1 }` }
+    />
+    <DropdownItem
+      id="item"
+      title={ `${ itemTitle }` }
+    >
+      <Cell title={ `${ switchTitle1 }` }>
+        <Switch
+          slot="rightIcon"
+          size="24px"
+          style="height: 26px"
+          checked={ `${ switch1 }` }
+          activeColor="#ee0a24"
+          onChange={ onSwitch1Change }
+        />
+      </Cell>
+      <Cell title={ `${ switchTitle2 }` }>
+        <Switch
+          slot="rightIcon"
+          size="24px"
+          style="height: 26px"
+          checked={ `${ switch2 }` }
+          activeColor="#ee0a24"
+          onChange={ onSwitch2Change }
+        />
+      </Cell>
+      <view style="padding: 5px 16px;">
+        <Button
+          type="danger"
+          block={ true }
+          round={ true }
+          onClick={ onConfirm }
+        >
+          确认
+        </Button>
+      </view>
+    </DropdownItem>
+  </DropdownMenu>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  switchTitle1: "包邮",
-  switchTitle2: "团购",
-  itemTitle: "筛选",
+  switchTitle1: '包邮',
+  switchTitle2: '团购',
+  itemTitle: '筛选',
   option1: [{
-    "text": "全部商品",
-    "value": 0
+    text: '全部商品',
+    value: 0
   }, {
-    "text": "新款商品",
-    "value": 1
+    text: '新款商品',
+    value: 1
   }, {
-    "text": "活动商品",
-    "value": 2
+    text: '活动商品',
+    value: 2
   }],
   value1: 0
 };
@@ -128,28 +151,57 @@ function onSwitch2Change({
 ### 自定义选中状态颜色
 
 ```jsx
-<DropdownMenu activeColor="#1989fa">
-  <DropdownItem value={ value1 } options={ option1 } />
-  <DropdownItem value={ value2 } options={ option2 } />
-</DropdownMenu> 
+<View>
+  <DropdownMenu activeColor="#1989fa">
+    <DropdownItem
+      value={ `${ value1 }` }
+      options={ `${ option1 }` }
+    />
+    <DropdownItem
+      value={ `${ value2 }` }
+      options={ `${ option2 }` }
+    />
+  </DropdownMenu>
+</View>
+ 
 ```
 
 ### 向上展开
 
 ```jsx
-<DropdownMenu direction="up">
-  <DropdownItem value={ value1 } options={ option1 } />
-  <DropdownItem value={ value2 } options={ option2 } />
-</DropdownMenu> 
+<View>
+  <DropdownMenu direction="up">
+    <DropdownItem
+      value={ `${ value1 }` }
+      options={ `${ option1 }` }
+    />
+    <DropdownItem
+      value={ `${ value2 }` }
+      options={ `${ option2 }` }
+    />
+  </DropdownMenu>
+</View>
+ 
 ```
 
 ### 禁用菜单
 
 ```jsx
-<DropdownMenu>
-  <DropdownItem value={ value1 } disabled options={ option1 } />
-  <DropdownItem value={ value2 } disabled options={ option2 } />
-</DropdownMenu> 
+<View>
+  <DropdownMenu>
+    <DropdownItem
+      value={ `${ value1 }` }
+      disabled={ true }
+      options={ `${ option1 }` }
+    />
+    <DropdownItem
+      value={ `${ value2 }` }
+      disabled={ true }
+      options={ `${ option2 }` }
+    />
+  </DropdownMenu>
+</View>
+ 
 ```
 
 ## API

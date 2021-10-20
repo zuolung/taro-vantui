@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Collapse } from "taro-vantui";
 import { CollapseItem } from "taro-vantui"; 
 ```
@@ -20,22 +20,38 @@ import { CollapseItem } from "taro-vantui";
 通过`value`控制展开的面板列表，`activeNames`为数组格式。
 
 ```jsx
-<Collapse value={ activeNames } onChange={onChange}>
-  <CollapseItem title="有赞微商城" name="1">
-    提供多样店铺模板，快速搭建网上商城
-  </CollapseItem>
-  <CollapseItem title="有赞零售" name="2">
-    网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-  </CollapseItem>
-  <CollapseItem title="有赞美业" name="3" disabled>
-    线上拓客，随时预约，贴心顺手的开单收银
-  </CollapseItem>
-</Collapse> 
+<View>
+  <Collapse
+    value={ `${ activeNames }` }
+    onChange={ onChange }
+  >
+    <CollapseItem
+      title="有赞微商城"
+      name="1"
+    >
+      提供多样店铺模板，快速搭建网上商城
+    </CollapseItem>
+    <CollapseItem
+      title="有赞零售"
+      name="2"
+    >
+      网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
+    </CollapseItem>
+    <CollapseItem
+      title="有赞美业"
+      name="3"
+      disabled={ true }
+    >
+      线上拓客，随时预约，贴心顺手的开单收银
+    </CollapseItem>
+  </Collapse>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  activeNames: ["1"]
+  activeNames: ['1']
 };
 
 function onChange(event) {
@@ -50,22 +66,38 @@ function onChange(event) {
 通过`accordion`可以设置为手风琴模式，最多展开一个面板，此时`activeName`为字符串格式。
 
 ```jsx
-<Collapse accordion value={ activeName } onChange={onChange}>
-  <CollapseItem title="有赞微商城" name="1">
-    提供多样店铺模板，快速搭建网上商城
-  </CollapseItem>
-  <CollapseItem title="有赞零售" name="2">
-    网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-  </CollapseItem>
-  <CollapseItem title="有赞美业" name="3">
-    线上拓客，随时预约，贴心顺手的开单收银
-  </CollapseItem>
-</Collapse> 
+<View>
+  <Collapse
+    accordion={ true }
+    value={ `${ activeName }` }
+    onChange={ onChange }
+  >
+    <CollapseItem
+      title="有赞微商城"
+      name="1"
+    >
+      提供多样店铺模板，快速搭建网上商城
+    </CollapseItem>
+    <CollapseItem
+      title="有赞零售"
+      name="2"
+    >
+      网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
+    </CollapseItem>
+    <CollapseItem
+      title="有赞美业"
+      name="3"
+    >
+      线上拓客，随时预约，贴心顺手的开单收银
+    </CollapseItem>
+  </Collapse>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  activeName: "1"
+  activeName: '1'
 };
 
 function onChange(event) {
@@ -80,27 +112,39 @@ function onChange(event) {
 `vanCollapse` 提供了 `change`, `open` 和 `close` 事件。`change` 事件在面板切换时触发，`open` 事件在面板展开时触发，`close` 事件在面板关闭时触发。
 
 ```jsx
-<Collapse
-  value={ activeNames }
-  onChange={onChange}
-  onOpen={onOpen}
-  onClose={onClose}
->
-  <CollapseItem title="有赞微商城" name="1">
-    提供多样店铺模板，快速搭建网上商城
-  </CollapseItem>
-  <CollapseItem title="有赞零售" name="2">
-    网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-  </CollapseItem>
-  <CollapseItem title="有赞美业" name="3">
-    线上拓客，随时预约，贴心顺手的开单收银
-  </CollapseItem>
-</Collapse> 
+<View>
+  <Collapse
+    value={ `${ activeNames }` }
+    onChange={ onChange }
+    onOpen={ onOpen }
+    onClose={ onClose }
+  >
+    <CollapseItem
+      title="有赞微商城"
+      name="1"
+    >
+      提供多样店铺模板，快速搭建网上商城
+    </CollapseItem>
+    <CollapseItem
+      title="有赞零售"
+      name="2"
+    >
+      网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
+    </CollapseItem>
+    <CollapseItem
+      title="有赞美业"
+      name="3"
+    >
+      线上拓客，随时预约，贴心顺手的开单收银
+    </CollapseItem>
+  </Collapse>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  activeNames: ["1"]
+  activeNames: ['1']
 };
 
 function onChange(event) {
@@ -121,20 +165,33 @@ function onClose(event) {
 ### 自定义标题内容
 
 ```jsx
-<Collapse value={ activeNames } onChange={onChange}>
-  <CollapseItem name="1">
-    <view slot="title">有赞微商城<Icon name={questionO} /></view>
-    提供多样店铺模板，快速搭建网上商城
-  </CollapseItem>
-  <CollapseItem title="有赞零售" name="2" icon={shopO}>
-    网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-  </CollapseItem>
-</Collapse> 
+<View>
+  <Collapse
+    value={ `${ activeNames }` }
+    onChange={ onChange }
+  >
+    <CollapseItem name="1">
+      <view slot="title">
+        有赞微商城
+        <Icon name="questionO" />
+      </view>
+      提供多样店铺模板，快速搭建网上商城
+    </CollapseItem>
+    <CollapseItem
+      title="有赞零售"
+      name="2"
+      icon="shopO"
+    >
+      网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
+    </CollapseItem>
+  </Collapse>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  activeNames: ["1"]
+  activeNames: ['1']
 };
 
 function onChange(event) {
@@ -190,7 +247,7 @@ function onChange(event) {
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |
 
 ### CollapseItem 外部样式类
 

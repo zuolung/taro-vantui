@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Checkbox } from "taro-vantui";
 import { CheckboxGroup } from "taro-vantui"; 
 ```
@@ -20,10 +20,18 @@ import { CheckboxGroup } from "taro-vantui";
 通过`value`绑定复选框的勾选状态。
 
 ```jsx
-<Checkbox value={ checked } onChange={onChange}>复选框</Checkbox> 
+<View>
+  <Checkbox
+    value={ `${ checked }` }
+    onChange={ onChange }
+  >
+    复选框
+  </Checkbox>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   checked: true
 };
@@ -40,9 +48,16 @@ function onChange(event) {
 通过设置`disabled`属性可以禁用复选框。
 
 ```jsx
-<Checkbox disabled value={ checked } onChange={onChange}>
-  复选框
-</Checkbox> 
+<View>
+  <Checkbox
+    disabled={ true }
+    value={ `${ checked }` }
+    onChange={ onChange }
+  >
+    复选框
+  </Checkbox>
+</View>
+ 
 ```
 
 ### 自定义形状
@@ -50,9 +65,16 @@ function onChange(event) {
 将`shape`属性设置为`square`，复选框的形状会变成方形。
 
 ```jsx
-<Checkbox value={ checked } shape="square" onChange={onChange}>
-  复选框
-</Checkbox> 
+<View>
+  <Checkbox
+    value={ `${ checked }` }
+    shape="square"
+    onChange={ onChange }
+  >
+    复选框
+  </Checkbox>
+</View>
+ 
 ```
 
 ### 自定义颜色
@@ -60,13 +82,16 @@ function onChange(event) {
 通过`checkedColor`属性可以自定义选中状态下的图标颜色。
 
 ```jsx
-<Checkbox
-  value={ checked }
-  checkedColor="#07c160"
-  onChange={onChange}
->
-  复选框
-</Checkbox> 
+<View>
+  <Checkbox
+    value={ `${ checked }` }
+    checkedColor="#07c160"
+    onChange={ onChange }
+  >
+    复选框
+  </Checkbox>
+</View>
+ 
 ```
 
 ### 自定义大小
@@ -74,7 +99,15 @@ function onChange(event) {
 通过`iconSize`属性可以自定义图标的大小。
 
 ```jsx
-<Checkbox value={ checked } iconSize="25px">复选框</Checkbox> 
+<View>
+  <Checkbox
+    value={ `${ checked }` }
+    iconSize="25px"
+  >
+    复选框
+  </Checkbox>
+</View>
+ 
 ```
 
 ### 自定义图标
@@ -82,17 +115,27 @@ function onChange(event) {
 通过 icon 插槽自定义图标。
 
 ```jsx
-<Checkbox useIconSlot value={ checked } onChange={onChange}>
-  自定义图标
-  <image slot="icon" src={ checked ? activeIcon : inactiveIcon } />
-</Checkbox> 
+<View>
+  <Checkbox
+    useIconSlot={ true }
+    value={ `${ checked }` }
+    onChange={ onChange }
+  >
+    自定义图标
+    <image
+      slot="icon"
+      src={ `${ checked ? activeIcon : inactiveIcon }` }
+    />
+  </Checkbox>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   checked: true,
-  activeIcon: "//img.yzcdn.cn/iconActive.png",
-  inactiveIcon: "//img.yzcdn.cn/iconNormal.png"
+  activeIcon: '//img.yzcdn.cn/iconActive.png',
+  inactiveIcon: '//img.yzcdn.cn/iconNormal.png'
 };
 
 function onChange(event) {
@@ -107,7 +150,15 @@ function onChange(event) {
 通过设置`labelDisabled`属性可以禁用复选框文本点击。
 
 ```jsx
-<Checkbox value={ checked } labelDisabled>复选框</Checkbox> 
+<View>
+  <Checkbox
+    value={ `${ checked }` }
+    labelDisabled={ true }
+  >
+    复选框
+  </Checkbox>
+</View>
+ 
 ```
 
 ### 复选框组
@@ -115,16 +166,28 @@ function onChange(event) {
 需要与`vanCheckboxGroup`一起使用，选中值是一个数组，通过`value`绑定在`vanCheckboxGroup`上，数组中的项即为选中的`Checkbox`的`name`属性设置的值。
 
 ```jsx
-<CheckboxGroup value={ result } onChange={onChange}>
-  <Checkbox name="a">复选框 a</Checkbox>
-  <Checkbox name="b">复选框 b</Checkbox>
-  <Checkbox name="c">复选框 c</Checkbox>
-</CheckboxGroup> 
+<View>
+  <CheckboxGroup
+    value={ `${ result }` }
+    onChange={ onChange }
+  >
+    <Checkbox name="a">
+      复选框 a
+    </Checkbox>
+    <Checkbox name="b">
+      复选框 b
+    </Checkbox>
+    <Checkbox name="c">
+      复选框 c
+    </Checkbox>
+  </CheckboxGroup>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  result: ["a", "b"]
+  result: ['a', 'b']
 };
 
 function onChange(event) {
@@ -137,11 +200,24 @@ function onChange(event) {
 ### 限制最大可选数
 
 ```jsx
-<CheckboxGroup value={ result } onChange={onChange} max={ 2 }>
-  <Checkbox name="a">复选框 a</Checkbox>
-  <Checkbox name="b">复选框 b</Checkbox>
-  <Checkbox name="c">复选框 c</Checkbox>
-</CheckboxGroup> 
+<View>
+  <CheckboxGroup
+    value={ `${ result }` }
+    onChange={ onChange }
+    max={ `${ 2 }` }
+  >
+    <Checkbox name="a">
+      复选框 a
+    </Checkbox>
+    <Checkbox name="b">
+      复选框 b
+    </Checkbox>
+    <Checkbox name="c">
+      复选框 c
+    </Checkbox>
+  </CheckboxGroup>
+</View>
+ 
 ```
 
 ### 搭配单元格组件使用
@@ -149,31 +225,38 @@ function onChange(event) {
 此时你需要再引入`Cell`和`CellGroup`组件，并通过 checkbox 的 toggle 方法手动触发切换。
 
 ```jsx
-<CheckboxGroup value={ result } onChange={onChange}>
-  <CellGroup>
-    <Cell
-      wx:for={ list }
-      wx:key="index"
-      title="复选框 {{ item }}"
-      valueClass={valueClass}
-      clickable
-      dataIndex={ index }
-      onClick="toggle"
-    >
-      <Checkbox
-        catch:tap="noop"
-        class="checkboxes{{ index }}"
-        name={ item }
-      />
-    </Cell>
-  </CellGroup>
-</CheckboxGroup> 
+<View>
+  <CheckboxGroup
+    value={ `${ result }` }
+    onChange={ onChange }
+  >
+    <CellGroup>
+      { list.map((item, index) => (
+          <Cell
+            key={ `${index}` }
+            title={ `复选框 ${ item }` }
+            valueClass="valueClass"
+            clickable={ true }
+            dataIndex={ `${ index }` }
+            onClick={ toggle }
+          >
+            <Checkbox
+              class={ `checkboxes-${ index }` }
+              name={ `${ item }` }
+            />
+          </Cell>
+        
+        )) }
+    </CellGroup>
+  </CheckboxGroup>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  list: ["a", "b", "c"],
-  result: ["a", "b"]
+  list: ['a', 'b', 'c'],
+  result: ['a', 'b']
 };
 
 function onChange(event) {
@@ -235,7 +318,7 @@ function noop() {}
 
 | 类名         | 说明           |
 | ------------ | -------------- |
-| customClass | 根节点样式类   |
+| className | 根节点样式类   |
 | iconClass   | 图标样式类     |
 | labelClass  | 描述信息样式类 |
 

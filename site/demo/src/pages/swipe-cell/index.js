@@ -22,6 +22,7 @@ export default class Index extends React.Component {
 
   onClose = (event) => {
     const { position, instance } = event.detail
+    console.info(event)
     switch (position) {
       case 'left':
       case 'cell':

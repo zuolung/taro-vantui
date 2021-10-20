@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { ConfigProvider } from "taro-vantui"; 
 ```
 
@@ -51,46 +51,65 @@ page {
 `ConfigProvider` 组件提供了覆盖 CSS 变量的能力，你需要在根节点包裹一个 `ConfigProvider` 组件，并通过 `themeVars` 属性来配置一些主题变量。
 
 ```jsx
-<ConfigProvider themeVars={ themeVars }>
-  <CellGroup>
-    <Field label="评分">
-      <view slot="input" style="width: 100%">
-        <Rate
-          model:value={ rate }
-          dataKey="rate"
-          onChange={onChange}
-        />
-      </view>
-    </Field>
-    <Field label="滑块" border={ false }>
-      <view slot="input" style="width: 100%">
-        <Slider
-          value={ slider }
-          dataKey="slider"
-          onChange={onChange}
-        />
-      </view>
-    </Field>
-  </CellGroup>
-
-  <view style="margin: 16px">
-    <Button round block type="primary">提交</Button>
-  </view>
-</ConfigProvider> 
+<View>
+  <ConfigProvider themeVars={ `${ themeVars }` }>
+    <CellGroup>
+      <Field label="评分">
+        <view
+          slot="input"
+          style="width: 100%"
+        >
+          <Rate
+            model={ true }
+            value={ `${ rate }` }
+            dataKey="rate"
+            onChange={ onChange }
+          />
+        </view>
+      </Field>
+      <Field
+        label="滑块"
+        border={ `${ false }` }
+      >
+        <view
+          slot="input"
+          style="width: 100%"
+        >
+          <Slider
+            value={ `${ slider }` }
+            dataKey="slider"
+            onChange={ onChange }
+          />
+        </view>
+      </Field>
+    </CellGroup>
+    <view style="margin: 16px">
+      <Button
+        round={ true }
+        block={ true }
+        type="primary"
+      >
+        提交
+      </Button>
+    </view>
+  </ConfigProvider>
+</View>
+ 
 ```
 
-```javascript
+```js
+import Page from '../../common/page';
 this.state = {
   rate: 4,
   slider: 50,
   themeVars: {
-    "rateIconFullColor": "#07c160",
-    "sliderBarHeight": "4px",
-    "sliderButtonWidth": "20px",
-    "sliderButtonHeight": "20px",
-    "sliderActiveBackgroundColor": "#07c160",
-    "buttonPrimaryBorderColor": "#07c160",
-    "buttonPrimaryBackgroundColor": "#07c160"
+    rateIconFullColor: '#07c160',
+    sliderBarHeight: '4px',
+    sliderButtonWidth: '20px',
+    sliderButtonHeight: '20px',
+    sliderActiveBackgroundColor: '#07c160',
+    buttonPrimaryBorderColor: '#07c160',
+    buttonPrimaryBackgroundColor: '#07c160'
   }
 };
 

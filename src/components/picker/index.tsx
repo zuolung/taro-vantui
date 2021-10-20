@@ -23,7 +23,7 @@ export default forwardRef(function Index(
   ref: React.ForwardedRef<IPickerInstance>,
 ): JSX.Element {
   const {
-    valueKey,
+    valueKey = 'text',
     toolbarPosition = 'top',
     defaultIndex,
     columns,

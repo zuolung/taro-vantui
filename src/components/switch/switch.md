@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Switch } from "taro-vantui"; 
 ```
 
@@ -17,10 +17,16 @@ import { Switch } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<Switch checked={ checked } onChange={onChange} /> 
+<View>
+  <Switch
+    checked={ `${ checked }` }
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   checked: true
 };
@@ -38,38 +44,65 @@ function onChange({
 ### 禁用状态
 
 ```jsx
-<Switch checked={ checked } disabled /> 
+<View>
+  <Switch
+    checked={ `${ checked }` }
+    disabled={ true }
+  />
+</View>
+ 
 ```
 
 ### 加载状态
 
 ```jsx
-<Switch checked={ checked } loading /> 
+<View>
+  <Switch
+    checked={ `${ checked }` }
+    loading={ true }
+  />
+</View>
+ 
 ```
 
 ### 自定义大小
 
 ```jsx
-<Switch checked={ checked } size="24px" /> 
+<View>
+  <Switch
+    checked={ `${ checked }` }
+    size="24px"
+  />
+</View>
+ 
 ```
 
 ### 自定义颜色
 
 ```jsx
-<Switch
-  checked={ checked }
-  activeColor="#07c160"
-  inactiveColor="#ee0a24"
-/> 
+<View>
+  <Switch
+    checked={ `${ checked }` }
+    activeColor="#07c160"
+    inactiveColor="#ee0a24"
+  />
+</View>
+ 
 ```
 
 ### 异步控制
 
 ```jsx
-<Switch checked={ checked } onChange={onChange} /> 
+<View>
+  <Switch
+    checked={ `${ checked }` }
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   checked: true
 };
@@ -117,5 +150,5 @@ function onChange({
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |
 | nodeClass   | 圆点样式类   |

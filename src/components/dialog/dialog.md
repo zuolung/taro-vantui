@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Dialog } from "taro-vantui"; 
 ```
 
@@ -19,7 +19,10 @@ import { Dialog } from "taro-vantui";
 用于提示一些消息，只包含一个确认按钮。
 
 ```jsx
-<Dialog id={vanDialog} /> 
+<View>
+  <Dialog id="vanDialog" />
+</View>
+ 
 ```
 
 ```javascript
@@ -44,7 +47,10 @@ Dialog.alert({
 用于确认消息，包含取消和确认按钮。
 
 ```jsx
-<Dialog id={vanDialog} /> 
+<View>
+  <Dialog id="vanDialog" />
+</View>
+ 
 ```
 
 ```javascript
@@ -67,7 +73,10 @@ Dialog.confirm({
 将 theme 选项设置为 `roundButton` 可以展示圆角按钮风格的弹窗。
 
 ```jsx
-<Dialog id={vanDialog} /> 
+<View>
+  <Dialog id="vanDialog" />
+</View>
+ 
 ```
 
 ```javascript
@@ -94,7 +103,10 @@ Dialog.alert({
 通过 `beforeClose` 属性可以传入一个回调函数，在弹窗关闭前进行特定操作。
 
 ```jsx
-<Dialog id={vanDialog} /> 
+<View>
+  <Dialog id="vanDialog" />
+</View>
+ 
 ```
 
 ```javascript
@@ -123,20 +135,23 @@ Dialog.confirm({
 如果需要在弹窗内嵌入组件或其他自定义内容，可以使用组件调用的方式。
 
 ```jsx
-<Dialog
-  useSlot
-  title="标题"
-  show={ show }
-  showCancelButton
-  confirmButtonOpenType={getUserInfo}
-  onClose={onClose}
-  onGetuserinfo={getUserInfo}
->
-  <image src="https://img.yzcdn.cn/1.jpg" />
-</Dialog> 
+<View>
+  <Dialog
+    useSlot={ true }
+    title="标题"
+    show={ `${ show }` }
+    showCancelButton={ true }
+    confirmButtonOpenType="getUserInfo"
+    onClose={ onClose }
+    onGetuserinfo={ getUserInfo }
+  >
+    <image src="https://img.yzcdn.cn/1.jpg" />
+  </Dialog>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   show: true
 };

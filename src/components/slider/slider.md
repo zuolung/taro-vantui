@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Slider } from "taro-vantui"; 
 ```
 
@@ -17,53 +17,89 @@ import { Slider } from "taro-vantui";
 ### 基本用法
 
 ```jsx
-<Slider value="50" onChange={onChange} /> 
+<View>
+  <Slider
+    value="50"
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
-```javascript
-this.state = {};
-
-function onChange(event) {
-  wx.showToast({
-    icon: 'none',
-    title: `当前值：${event.detail}`
-  });
-} 
+```js
+ 
 ```
 
 ### 指定选择范围
 
 ```jsx
-<Slider min="50" max="50" /> 
+<View>
+  <Slider
+    min="-50"
+    max="50"
+  />
+</View>
+ 
 ```
 
 ### 禁用
 
 ```jsx
-<Slider value="50" disabled /> 
+<View>
+  <Slider
+    value="50"
+    disabled={ true }
+  />
+</View>
+ 
 ```
 
 ### 指定步长
 
 ```jsx
-<Slider value="50" step="10" /> 
+<View>
+  <Slider
+    value="50"
+    step="10"
+  />
+</View>
+ 
 ```
 
 ### 自定义样式
 
 ```jsx
-<Slider value="50" barHeight="4px" activeColor="#ee0a24" /> 
+<View>
+  <Slider
+    value="50"
+    barHeight="4px"
+    activeColor="#ee0a24"
+  />
+</View>
+ 
 ```
 
 ### 自定义按钮
 
 ```jsx
-<Slider value={ currentValue } useButtonSlot onDrag={onDrag}>
-  <view class={customButton} slot="button">{{ currentValue }}/100</view>
-</Slider> 
+<View>
+  <Slider
+    value={ `${ currentValue }` }
+    useButtonSlot={ true }
+    onDrag={ onDrag }
+  >
+    <view
+      class="customButton"
+      slot="button"
+    >
+      { currentValue }/100
+    </view>
+  </Slider>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   currentValue: 50
 };
@@ -105,7 +141,7 @@ function onDrag(event) {
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |
 
 ### Slots
 

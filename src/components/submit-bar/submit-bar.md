@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { SubmitBar } from "taro-vantui"; 
 ```
 
@@ -17,11 +17,14 @@ import { SubmitBar } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<SubmitBar
-  price={ 3050 }
-  buttonText="提交订单"
-  onSubmit={onSubmit}
-/> 
+<View>
+  <SubmitBar
+    price={ `${ 3050 }` }
+    buttonText="提交订单"
+    onSubmit={ onSubmit }
+  />
+</View>
+ 
 ```
 
 ### 禁用状态
@@ -29,14 +32,17 @@ import { SubmitBar } from "taro-vantui";
 禁用状态下不会触发`submit`事件。
 
 ```jsx
-<SubmitBar
-  disabled
-  price={ 3050 }
-  buttonText="提交订单"
-  tip="您的收货地址不支持同城送, 我们已为您推荐快递"
-  tipIcon="https://img.yzcdn.cn/1.png"
-  onSubmit={onSubmit}
-/> 
+<View>
+  <SubmitBar
+    disabled={ true }
+    price={ `${ 3050 }` }
+    buttonText="提交订单"
+    tip="您的收货地址不支持同城送, 我们已为您推荐快递"
+    tipIcon="https://img.yzcdn.cn/1.png"
+    onSubmit={ onSubmit }
+  />
+</View>
+ 
 ```
 
 ### 加载状态
@@ -44,12 +50,15 @@ import { SubmitBar } from "taro-vantui";
 加载状态下不会触发`submit`事件。
 
 ```jsx
-<SubmitBar
-  loading
-  price={ 3050 }
-  buttonText="提交订单"
-  onSubmit={onSubmit}
-/> 
+<View>
+  <SubmitBar
+    loading={ true }
+    price={ `${ 3050 }` }
+    buttonText="提交订单"
+    onSubmit={ onSubmit }
+  />
+</View>
+ 
 ```
 
 ### 高级用法
@@ -57,15 +66,25 @@ import { SubmitBar } from "taro-vantui";
 通过插槽插入自定义内容。
 
 ```jsx
-<SubmitBar
-  price={ 3050 }
-  buttonText="提交订单"
-  onSubmit={onClickButton}
-  tip={ true }
->
-  <Tag type="primary">标签</Tag>
-  <view slot="tip">您的收货地址不支持同城送, <text>修改地址</text></view>
-</SubmitBar> 
+<View>
+  <SubmitBar
+    price={ `${ 3050 }` }
+    buttonText="提交订单"
+    onSubmit={ onClickButton }
+    tip={ `${ true }` }
+  >
+    <Tag type="primary">
+      标签
+    </Tag>
+    <view slot="tip">
+      您的收货地址不支持同城送,
+      <text>
+        修改地址
+      </text>
+    </view>
+  </SubmitBar>
+</View>
+ 
 ```
 
 ## API
@@ -105,7 +124,7 @@ import { SubmitBar } from "taro-vantui";
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |
 | priceClass  | 价格样式类   |
 | buttonClass | 按钮样式类   |
 | barClass    | 订单栏样式类 |

@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { TreeSelect } from "taro-vantui"; 
 ```
 
@@ -19,16 +19,19 @@ import { TreeSelect } from "taro-vantui";
 可以在任意位置上使用 vanTreeSelect 标签。传入对应的数据即可。此组件支持单选或多选，具体行为完全基于事件 clickItem 的实现逻辑如何为属性 activeId 赋值，当 activeId 为数组时即为多选状态。
 
 ```jsx
-<TreeSelect
-  items={ items }
-  mainActiveIndex={ mainActiveIndex }
-  activeId={ activeId }
-  onClickNav={onClickNav}
-  onClickItem={onClickItem}
-/> 
+<View>
+  <TreeSelect
+    items={ `${ items }` }
+    mainActiveIndex={ `${ mainActiveIndex }` }
+    activeId={ `${ activeId }` }
+    onClickNav={ onClickNav }
+    onClickItem={ onClickItem }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   mainActiveIndex: 0,
   activeId: null
@@ -55,17 +58,20 @@ function onClickItem({
 ### 多选模式
 
 ```jsx
-<TreeSelect
-  items={ items }
-  mainActiveIndex={ mainActiveIndex }
-  activeId={ activeId }
-  max={ max }
-  onClickNav={onClickNav}
-  onClickItem={onClickItem}
-/> 
+<View>
+  <TreeSelect
+    items={ `${ items }` }
+    mainActiveIndex={ `${ mainActiveIndex }` }
+    activeId={ `${ activeId }` }
+    max={ `${ max }` }
+    onClickNav={ onClickNav }
+    onClickItem={ onClickItem }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   mainActiveIndex: 0,
   activeId: [],
@@ -103,16 +109,22 @@ function onClickItem({
 ### 自定义内容
 
 ```jsx
-<TreeSelect
-  items={ items }
-  height="55vw"
-  mainActiveIndex={ mainActiveIndex }
-  activeId={ activeId }
-  onClickNav={onClickNav}
-  onClickItem={onClickItem}
->
-  <image src="https://img.yzcdn.cn/vant/apple1.jpg" slot="content" />
-</TreeSelect> 
+<View>
+  <TreeSelect
+    items={ `${ items }` }
+    height="55vw"
+    mainActiveIndex={ `${ mainActiveIndex }` }
+    activeId={ `${ activeId }` }
+    onClickNav={ onClickNav }
+    onClickItem={ onClickItem }
+  >
+    <image
+      src="https://img.yzcdn.cn/vant/apple-1.jpg"
+      slot="content"
+    />
+  </TreeSelect>
+</View>
+ 
 ```
 
 ## API

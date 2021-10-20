@@ -64,8 +64,11 @@ export default function Index(props: DropdownMenuProps) {
   useEffect(function () {
     return function () {
       ARRAY = (ARRAY || []).filter((item) => item && item.TimerKey !== TimerKey)
-      setCurrentIndex(currentIndexInit++)
     }
+  }, [])
+
+  useEffect(function () {
+    setCurrentIndex(currentIndexInit++)
   }, [])
 
   const updateChildrenData = useCallback(function () {
@@ -162,8 +165,16 @@ export default function Index(props: DropdownMenuProps) {
       }
       return res
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [others.children],
+    [
+      others.children,
+      activeColor,
+      closeOnClickOverlay,
+      direction,
+      duration,
+      getChildWrapperStyle,
+      overlay,
+      setChildrenInstance,
+    ],
   )
 
   const toggleItem = useCallback(function (active: number) {

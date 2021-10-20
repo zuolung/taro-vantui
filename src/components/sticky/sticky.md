@@ -8,7 +8,7 @@ Sticky 组件与 CSS 中`position: sticky`属性实现的效果一致，当组�
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Sticky } from "taro-vantui"; 
 ```
 
@@ -21,9 +21,14 @@ import { Sticky } from "taro-vantui";
 将内容包裹在`Sticky`组件内即可。
 
 ```jsx
-<Sticky>
-  <Button type="primary">基础用法</Button>
-</Sticky> 
+<View>
+  <Sticky>
+    <Button type="primary">
+      基础用法
+    </Button>
+  </Sticky>
+</View>
+ 
 ```
 
 ### 吸顶距离
@@ -31,9 +36,14 @@ import { Sticky } from "taro-vantui";
 通过`offsetTop`属性可以设置组件在吸顶时与顶部的距离。
 
 ```jsx
-<Sticky offsetTop={ 50 }>
-  <Button type="info">吸顶距离</Button>
-</Sticky> 
+<View>
+  <Sticky offsetTop={ `${ 50 }` }>
+    <Button type="info">
+      吸顶距离
+    </Button>
+  </Sticky>
+</View>
+ 
 ```
 
 ### 指定容器
@@ -41,14 +51,22 @@ import { Sticky } from "taro-vantui";
 通过`container`属性可以指定组件的容器，页面滚动时，组件会始终保持在容器范围内，当组件即将超出容器底部时，会返回原位置。
 
 ```jsx
-<view id="container" style="height: 150px;">
-  <Sticky container={ container }>
-    <Button type="warning">指定容器</Button>
-  </Sticky>
-</view> 
+<View>
+  <view
+    id="container"
+    style="height: 150px;"
+  >
+    <Sticky container={ `${ container }` }>
+      <Button type="warning">
+        指定容器
+      </Button>
+    </Sticky>
+  </view>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   container: null
 };
@@ -65,21 +83,29 @@ function onReady() {
 通过 `scrollTop` 与 `offsetTop` 属性可以实现在 scrollView 内嵌套使用。
 
 ```jsx
-<ScrollView
-  onScroll={onScroll}
-  scrollY
-  id="scroller"
-  style="height: 200px;"
->
-  <view style="height: 400px; paddingTop: 50px;">
-    <Sticky scrollTop={ scrollTop } offsetTop={ offsetTop }>
-      <Button type="warning">嵌套在 scrollView 内</Button>
-    </Sticky>
-  </view>
-</scrollView> 
+<View>
+  <scrollView
+    onScroll={ onScroll }
+    scrollY={ true }
+    id="scroller"
+    style="height: 200px;"
+  >
+    <view style="height: 400px; paddingTop: 50px;">
+      <Sticky
+        scrollTop={ `${ scrollTop }` }
+        offsetTop={ `${ offsetTop }` }
+      >
+        <Button type="warning">
+          嵌套在 scrollView 内
+        </Button>
+      </Sticky>
+    </view>
+  </scrollView>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   scrollTop: 0,
   offsetTop: 0

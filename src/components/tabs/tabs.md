@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
- import { Tab } from vantUi
- import { Tabs } from vantUi 
+import { Tab } from "taro-vantui";
+import { Tabs } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -20,16 +20,32 @@
 通过`active`设定当前激活标签对应的索引值，默认情况下启用第一个标签。
 
 ```jsx
-<Tabs active={active} onChange={onChange}>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-  <Tab title="标签 4">内容 4</vanTab>
-</vanTabs> 
+<View>
+  <Tabs
+    active={ `${ active }` }
+    onChange={ onChange }
+  >
+    <Tab title="标签 1">
+      内容 1
+    </Tab>
+    <Tab title="标签 2">
+      内容 2
+    </Tab>
+    <Tab title="标签 3">
+      内容 3
+    </Tab>
+    <Tab title="标签 4">
+      内容 4
+    </Tab>
+  </Tabs>
+</View>
+ 
 ```
 
 ```js
-const [active, setActive] = useState(1);
+this.state = {
+  active: 1
+};
 
 function onChange(event) {
   wx.showToast({
@@ -44,11 +60,29 @@ function onChange(event) {
 在标签指定`name`属性的情况下，`active`的值为当前标签的`name`（此时无法通过索引值来匹配标签）。
 
 ```jsx
-<Tabs active="a">
-  <Tab title="标签 1" name="a">内容 1</vanTab>
-  <Tab title="标签 2" name="b">内容 2</vanTab>
-  <Tab title="标签 3" name="c">内容 3</vanTab>
-</vanTabs> 
+<View>
+  <Tabs active="a">
+    <Tab
+      title="标签 1"
+      name="a"
+    >
+      内容 1
+    </Tab>
+    <Tab
+      title="标签 2"
+      name="b"
+    >
+      内容 2
+    </Tab>
+    <Tab
+      title="标签 3"
+      name="c"
+    >
+      内容 3
+    </Tab>
+  </Tabs>
+</View>
+ 
 ```
 
 ### 横向滚动
@@ -56,35 +90,57 @@ function onChange(event) {
 多于 5 个标签时，Tab 可以横向滚动。
 
 ```jsx
-<Tabs active={active}>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-  <Tab title="标签 4">内容 4</vanTab>
-  <Tab title="标签 5">内容 5</vanTab>
-  <Tab title="标签 6">内容 6</vanTab>
-</vanTabs> 
+<View>
+  <Tabs active={ `${ active }` }>
+    <Tab title="标签 1">
+      内容 1
+    </Tab>
+    <Tab title="标签 2">
+      内容 2
+    </Tab>
+    <Tab title="标签 3">
+      内容 3
+    </Tab>
+    <Tab title="标签 4">
+      内容 4
+    </Tab>
+    <Tab title="标签 5">
+      内容 5
+    </Tab>
+    <Tab title="标签 6">
+      内容 6
+    </Tab>
+  </Tabs>
+</View>
+ 
 ```
 
 ### 禁用标签
 
-设置`disabled`属性即可禁用标签。如果需要监听禁用标签的点击事件，可以在`van-tabs`上监听`disabled`事件。
+设置`disabled`属性即可禁用标签。如果需要监听禁用标签的点击事件，可以在`vanTabs`上监听`disabled`事件。
 
 ```jsx
-<Tabs onDisabled={onClickDisabled}>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2" disabled>内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-</vanTabs> 
+<View>
+  <Tabs onDisabled={ onClickDisabled }>
+    <Tab title="标签 1">
+      内容 1
+    </Tab>
+    <Tab
+      title="标签 2"
+      disabled={ true }
+    >
+      内容 2
+    </Tab>
+    <Tab title="标签 3">
+      内容 3
+    </Tab>
+  </Tabs>
+</View>
+ 
 ```
 
 ```js
-function onClickDisabled(event) {
-  wx.showToast({
-    title: `标签 ${event.detail.name} 已被禁用`,
-    icon: 'none'
-  });
-} 
+ 
 ```
 
 ### 样式风格
@@ -92,31 +148,42 @@ function onClickDisabled(event) {
 `Tab`支持两种样式风格：`line`和`card`，默认为`line`样式，可以通过`type`属性修改样式风格。
 
 ```jsx
-<Tabs type="card">
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-</vanTabs> 
+<View>
+  <Tabs type="card">
+    <Tab title="标签 1">
+      内容 1
+    </Tab>
+    <Tab title="标签 2">
+      内容 2
+    </Tab>
+    <Tab title="标签 3">
+      内容 3
+    </Tab>
+  </Tabs>
+</View>
+ 
 ```
 
 ### 点击事件
 
-可以在`van-tabs`上绑定`click`事件，在回调参数的`event.detail`中可以取得被点击标签的标题和标识符。
+可以在`vanTabs`上绑定`click`事件，在回调参数的`event.detail`中可以取得被点击标签的标题和标识符。
 
 ```jsx
-<Tabs onClick={onClick}>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-</vanTabs> 
+<View>
+  <Tabs onClick={ onClick }>
+    <Tab title="标签 1">
+      内容 1
+    </Tab>
+    <Tab title="标签 2">
+      内容 2
+    </Tab>
+  </Tabs>
+</View>
+ 
 ```
 
 ```js
-function onClick(event) {
-  wx.showToast({
-    title: `点击标签 ${event.detail.name}`,
-    icon: 'none'
-  });
-} 
+ 
 ```
 
 ### 粘性布局
@@ -124,12 +191,23 @@ function onClick(event) {
 通过`sticky`属性可以开启粘性布局，粘性布局下，当 Tab 滚动到顶部时会自动吸顶。
 
 ```jsx
-<Tabs sticky>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-  <Tab title="标签 4">内容 4</vanTab>
-</vanTabs> 
+<View>
+  <Tabs sticky={ true }>
+    <Tab title="标签 1">
+      内容 1
+    </Tab>
+    <Tab title="标签 2">
+      内容 2
+    </Tab>
+    <Tab title="标签 3">
+      内容 3
+    </Tab>
+    <Tab title="标签 4">
+      内容 4
+    </Tab>
+  </Tabs>
+</View>
+ 
 ```
 
 ### 切换动画
@@ -137,12 +215,23 @@ function onClick(event) {
 可以通过`animated`来设置是否启用切换 tab 时的动画。
 
 ```jsx
-<Tabs animated>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-  <Tab title="标签 4">内容 4</vanTab>
-</vanTabs> 
+<View>
+  <Tabs animated={ true }>
+    <Tab title="标签 1">
+      内容 1
+    </Tab>
+    <Tab title="标签 2">
+      内容 2
+    </Tab>
+    <Tab title="标签 3">
+      内容 3
+    </Tab>
+    <Tab title="标签 4">
+      内容 4
+    </Tab>
+  </Tabs>
+</View>
+ 
 ```
 
 ### 滑动切换
@@ -150,29 +239,54 @@ function onClick(event) {
 通过`swipeable`属性可以开启滑动切换标签页。
 
 ```jsx
-<Tabs swipeable>
-  <Tab title="标签 1">内容 1</vanTab>
-  <Tab title="标签 2">内容 2</vanTab>
-  <Tab title="标签 3">内容 3</vanTab>
-  <Tab title="标签 4">内容 4</vanTab>
-</vanTabs> 
+<View>
+  <Tabs swipeable={ true }>
+    <Tab title="标签 1">
+      内容 1
+    </Tab>
+    <Tab title="标签 2">
+      内容 2
+    </Tab>
+    <Tab title="标签 3">
+      内容 3
+    </Tab>
+    <Tab title="标签 4">
+      内容 4
+    </Tab>
+  </Tabs>
+</View>
+ 
 ```
 
 ### 嵌套 popup
 
-如果将 van-tabs 嵌套在 van-popup 等会隐藏内容的组件或节点内，当 van-tabs 显示时下划线将不会正常显示。
+如果将 vanTabs 嵌套在 vanPopup 等会隐藏内容的组件或节点内，当 vanTabs 显示时下划线将不会正常显示。
 
-此时可以通过使用 `wx:if` 手动控制 van-tabs 的渲染来规避这种场景。
+此时可以通过使用 `wx:if` 手动控制 vanTabs 的渲染来规避这种场景。
 
 ```jsx
-<Popup show={show}>
-  <Tabs wx:if={show}>
-    <Tab title="标签 1">内容 1</vanTab>
-    <Tab title="标签 2">内容 2</vanTab>
-    <Tab title="标签 3">内容 3</vanTab>
-    <Tab title="标签 4">内容 4</vanTab>
-  </vanTabs>
-</vanPopup> 
+<View>
+  <Popup show={ `${ show }` }>
+    { show.map((item, index) => (
+        <Tabs>
+          <Tab title="标签 1">
+            内容 1
+          </Tab>
+          <Tab title="标签 2">
+            内容 2
+          </Tab>
+          <Tab title="标签 3">
+            内容 3
+          </Tab>
+          <Tab title="标签 4">
+            内容 4
+          </Tab>
+        </Tabs>
+      
+      )) }
+  </Popup>
+</View>
+ 
 ```
 
 ## API
@@ -185,19 +299,19 @@ function onClick(event) {
 | color | 标签主题色 | _string_ | `#ee0a24` |
 | active | 当前选中标签的标识符 | _string \| number_ | `0` |
 | duration | 动画时间，单位秒 | _number_ | `0.3` |
-| line-width | 底部条宽度，默认单位`px` | _string \| number_ | `40px` |
-| line-height | 底部条高度，默认单位`px` | _string \| number_ | `3px` |
+| lineWidth | 底部条宽度，默认单位`px` | _string \| number_ | `40px` |
+| lineHeight | 底部条高度，默认单位`px` | _string \| number_ | `3px` |
 | animated | 是否开启切换标签内容时的转场动画 | _boolean_ | `false` |
 | border | 是否展示外边框，仅在 `line` 风格下生效 | _boolean_ | `false` |
 | ellipsis | 是否省略过长的标题文字 | _boolean_ | `true` |
 | sticky | 是否使用粘性定位布局 | _boolean_ | `false` |
 | swipeable | 是否开启手势滑动切换 | _boolean_ | `false` |
-| lazy-render | 是否开启标签页内容延迟渲染 | _boolean_ | `true` |
-| offset-top | 粘性定位布局下与顶部的最小距离，单位`px` | _number_ | - |
-| swipe-threshold | 滚动阈值，标签数量超过阈值且总宽度超过标签栏宽度时开始横向滚动 | _number_ | `5` |
-| title-active-color | 标题选中态颜色 | _string_ | - |
-| title-inactive-color | 标题默认态颜色 | _string_ | - |
-| z-index | z-index 层级 | _number_ | `1` |
+| lazyRender | 是否开启标签页内容延迟渲染 | _boolean_ | `true` |
+| offsetTop | 粘性定位布局下与顶部的最小距离，单位`px` | _number_ | - |
+| swipeThreshold | 滚动阈值，标签数量超过阈值且总宽度超过标签栏宽度时开始横向滚动 | _number_ | `5` |
+| titleActiveColor | 标题选中态颜色 | _string_ | - |
+| titleInactiveColor | 标题默认态颜色 | _string_ | - |
+| zIndex | zIndex 层级 | _number_ | `1` |
 
 ### Tab Props
 
@@ -208,14 +322,14 @@ function onClick(event) {
 | disabled    | 是否禁用标签               | _boolean_          | `false`      |
 | dot         | 是否显示小红点             | _boolean_          | -            |
 | info        | 图标右上角提示信息         | _string \| number_ | -            |
-| title-style | 自定义标题样式             | _string_           | -            |
+| titleStyle | 自定义标题样式             | _string_           | -            |
 
 ### Tabs Slot
 
 | 名称      | 说明         |
 | --------- | ------------ |
-| nav-left  | 标题左侧内容 |
-| nav-right | 标题右侧内容 |
+| navLeft  | 标题左侧内容 |
+| navRight | 标题右侧内容 |
 
 ### Tab Slot
 
@@ -236,10 +350,10 @@ function onClick(event) {
 
 | 类名             | 说明             |
 | ---------------- | ---------------- |
-| custom-class     | 根节点样式类     |
-| nav-class        | 标签栏样式类     |
-| tab-class        | 标签样式类       |
-| tab-active-class | 标签激活态样式类 |
+| className     | 根节点样式类     |
+| navClass        | 标签栏样式类     |
+| tabClass        | 标签样式类       |
+| tabActiveClass | 标签激活态样式类 |
 
 ### 方法
 
@@ -260,13 +374,19 @@ Tabs 组件在挂载时，会获取自身的宽度，并计算出底部条的位
 方法一，使用 `wx:if` 来控制组件展示，使组件重新初始化。
 
 ```jsx
-<Tabs wx:if="show" /> 
+<View>
+  <Tabs /> )) }
+</View>
+ 
 ```
 
 方法二，调用组件的 resize 方法来主动触发重绘。
 
 ```jsx
-<Tabs id="tabs" /> 
+<View>
+  <Tabs id="tabs" />
+</View>
+ 
 ```
 
 ```js

@@ -23,6 +23,7 @@ function frameStyle(data: any) {
 }
 
 function columns(columns: any) {
+  console.info('--------------', columns)
   if (!isArray(columns)) {
     return []
   }

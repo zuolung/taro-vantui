@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Area } from "taro-vantui"; 
 ```
 
@@ -19,7 +19,10 @@ import { Area } from "taro-vantui";
 初始化省市区组件时，需要通过 `areaList` 属性传入省市区数据。
 
 ```jsx
-<Area areaList={ areaList } /> 
+<View>
+  <Area areaList={ `${ areaList }` } />
+</View>
+ 
 ```
 
 ### areaList 格式
@@ -56,9 +59,10 @@ Vant 官方提供了一份默认的省市区数据，可以通过 [@vant/areaDat
 yarn add @vant/areaData
 ```
 
-```javascript
+```js
+import { areaList } from '@vant/areaData';
 this.state = {
-  areaList: []
+  areaList
 }; 
 ```
 
@@ -67,7 +71,13 @@ this.state = {
 如果想选中某个省市区，需要传入一个`value`属性，绑定对应的省市区`code`。
 
 ```jsx
-<Area areaList={ areaList } value="110101" /> 
+<View>
+  <Area
+    areaList={ `${ areaList }` }
+    value="110101"
+  />
+</View>
+ 
 ```
 
 ### 配置显示列
@@ -75,7 +85,14 @@ this.state = {
 可以通过`columnsNum`属性配置省市区显示的列数，默认情况下会显示省市区，当你设置为`2`，则只会显示省市选择。
 
 ```jsx
-<Area areaList={ areaList } columnsNum={ 2 } title="标题" /> 
+<View>
+  <Area
+    areaList={ `${ areaList }` }
+    columnsNum={ `${ 2 }` }
+    title="标题"
+  />
+</View>
+ 
 ```
 
 ### 配置列占位提示文字
@@ -83,11 +100,14 @@ this.state = {
 可以通过`columnsPlaceholder`属性配置每一列的占位提示文字。
 
 ```jsx
-<Area
-  areaList={ areaList }
-  columnsPlaceholder={ ['请选择', '请选择', '请选择'] }
-  title="标题"
-/> 
+<View>
+  <Area
+    areaList={ `${ areaList }` }
+    columnsPlaceholder={ `${ ['请选择', '请选择', '请选择'] }` }
+    title="标题"
+  />
+</View>
+ 
 ```
 
 ## 云开发示例

@@ -95,7 +95,9 @@ export default function Index(props: ImageProps) {
       {!error && (
         <Image
           src={src}
-          mode={computed.mode(fit || ('none' as FitType)) as TaroImageMode}
+          mode={
+            (computed.mode(fit as FitType) as TaroImageMode) || 'scaleToFill'
+          }
           lazyLoad={lazyLoad}
           className="image-class van-image__img"
           showMenuByLongpress={showMenuByLongpress}

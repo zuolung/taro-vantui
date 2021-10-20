@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Empty } from "taro-vantui"; 
 ```
 
@@ -17,7 +17,10 @@ import { Empty } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<Empty description="描述文字" /> 
+<View>
+  <Empty description="描述文字" />
+</View>
+ 
 ```
 
 ### 图片类型
@@ -25,12 +28,22 @@ import { Empty } from "taro-vantui";
 Empty 组件内置了多种占位图片类型，可以在不同业务场景下使用。
 
 ```jsx
-<! 通用错误 >
-<Empty image="error" description="描述文字" />
-<! 网络错误 >
-<Empty image="network" description="描述文字" />
-<! 搜索提示 >
-<Empty image="search" description="描述文字" /> 
+<View>
+  通用错误
+  <Empty
+    image="error"
+    description="描述文字"
+  /> 网络错误
+  <Empty
+    image="network"
+    description="描述文字"
+  /> 搜索提示
+  <Empty
+    image="search"
+    description="描述文字"
+  />
+</View>
+ 
 ```
 
 ### 自定义图片
@@ -38,11 +51,14 @@ Empty 组件内置了多种占位图片类型，可以在不同业务场景下�
 需要自定义图片时，可以在 image 属性中传入任意图片 URL。
 
 ```jsx
-<Empty
-  class={customImage}
-  image="https://img.yzcdn.cn/vant/customEmptyImage.png"
-  description="描述文字"
-/> 
+<View>
+  <Empty
+    class="customImage"
+    image="https://img.yzcdn.cn/vant/customEmptyImage.png"
+    description="描述文字"
+  />
+</View>
+ 
 ```
 
 ### 底部内容
@@ -50,16 +66,18 @@ Empty 组件内置了多种占位图片类型，可以在不同业务场景下�
 通过默认插槽可以在 Empty 组件的下方插入内容。
 
 ```jsx
-<Empty description="描述文字">
-  <Button round type="danger" class={bottomButton}>按钮</Button>
-</Empty>
-
-<style>
-  .bottomButton {
-    width: 160px;
-    height: 40px;
-  }
-</style> 
+<View>
+  <Empty description="描述文字">
+    <Button
+      round={ true }
+      type="danger"
+      class="bottomButton"
+    >
+      按钮
+    </Button>
+  </Empty>
+</View>
+ 
 ```
 
 ## API

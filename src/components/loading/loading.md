@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Loading } from "taro-vantui"; 
 ```
 
@@ -17,25 +17,49 @@ import { Loading } from "taro-vantui";
 ### 加载类型
 
 ```jsx
-<Loading /> <Loading type="spinner" /> 
+<View>
+  <Loading />
+  <Loading type="spinner" />
+</View>
+ 
 ```
 
 ### 自定义颜色
 
 ```jsx
-<Loading color="#1989fa" /> <Loading type="spinner" color="#1989fa" /> 
+<View>
+  <Loading color="#1989fa" />
+  <Loading
+    type="spinner"
+    color="#1989fa"
+  />
+</View>
+ 
 ```
 
 ### 加载文案
 
 ```jsx
-<Loading size="24px">加载中...</Loading> 
+<View>
+  <Loading size="24px">
+    加载中...
+  </Loading>
+</View>
+ 
 ```
 
 ### 垂直排列
 
 ```jsx
-<Loading size="24px" vertical>加载中...</Loading> 
+<View>
+  <Loading
+    size="24px"
+    vertical={ true }
+  >
+    加载中...
+  </Loading>
+</View>
+ 
 ```
 
 ## API
@@ -60,4 +84,4 @@ import { Loading } from "taro-vantui";
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |

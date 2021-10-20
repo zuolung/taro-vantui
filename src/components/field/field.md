@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Field } from "taro-vantui"; 
 ```
 
@@ -17,19 +17,22 @@ import { Field } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<CellGroup>
-  <Field
-    value={ value }
-    placeholder="请输入用户名"
-    border={ false }
-    onChange={onChange}
-  />
-</CellGroup> 
+<View>
+  <CellGroup>
+    <Field
+      value={ `${ value }` }
+      placeholder="请输入用户名"
+      border={ `${ false }` }
+      onChange={ onChange }
+    />
+  </CellGroup>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  value: ""
+  value: ''
 };
 
 function onChange(event) {
@@ -43,18 +46,22 @@ function onChange(event) {
 最低基础库版本在 2.9.3 以上时，可以使用[简易双向绑定](https://developers.weixin.qq.com/miniprogram/dev/framework/view/twoWayBindings.html)。
 
 ```jsx
-<CellGroup>
-  <Field
-    model:value={ value }
-    placeholder="请输入用户名"
-    border={ false }
-  />
-</CellGroup> 
+<View>
+  <CellGroup>
+    <Field
+      model={ true }
+      value={ `${ value }` }
+      placeholder="请输入用户名"
+      border={ `${ false }` }
+    />
+  </CellGroup>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  value: ""
+  value: ''
 }; 
 ```
 
@@ -63,40 +70,45 @@ this.state = {
 根据`type`属性定义不同类型的输入框。
 
 ```jsx
-<CellGroup>
-  <Field
-    value={ username }
-    required
-    clearable
-    label="用户名"
-    icon={questionO}
-    placeholder="请输入用户名"
-    onClickIcon={onClickIcon}
-  />
-
-  <Field
-    value={ password }
-    type="password"
-    label="密码"
-    placeholder="请输入密码"
-    required
-    border={ false }
-  />
-</CellGroup> 
+<View>
+  <CellGroup>
+    <Field
+      value={ `${ username }` }
+      required={ true }
+      clearable={ true }
+      label="用户名"
+      icon="questionO"
+      placeholder="请输入用户名"
+      onClickIcon={ onClickIcon }
+    />
+    <Field
+      value={ `${ password }` }
+      type="password"
+      label="密码"
+      placeholder="请输入密码"
+      required={ true }
+      border={ `${ false }` }
+    />
+  </CellGroup>
+</View>
+ 
 ```
 
 ### 禁用输入框
 
 ```jsx
-<CellGroup>
-  <Field
-    value="输入框已禁用"
-    label="用户名"
-    leftIcon="contact"
-    disabled
-    border={ false }
-  />
-</CellGroup> 
+<View>
+  <CellGroup>
+    <Field
+      value="输入框已禁用"
+      label="用户名"
+      leftIcon="contact"
+      disabled={ true }
+      border={ `${ false }` }
+    />
+  </CellGroup>
+</View>
+ 
 ```
 
 ### 错误提示
@@ -104,21 +116,24 @@ this.state = {
 通过`error`或者`errorMessage`属性增加对应的错误提示。
 
 ```jsx
-<CellGroup>
-  <Field
-    value={ username }
-    label="用户名"
-    placeholder="请输入用户名"
-    error
-  />
-  <Field
-    value={ phone }
-    label="手机号"
-    placeholder="请输入手机号"
-    errorMessage="手机号格式错误"
-    border={ false }
-  />
-</CellGroup> 
+<View>
+  <CellGroup>
+    <Field
+      value={ `${ username }` }
+      label="用户名"
+      placeholder="请输入用户名"
+      error={ true }
+    />
+    <Field
+      value={ `${ phone }` }
+      label="手机号"
+      placeholder="请输入手机号"
+      errorMessage="手机号格式错误"
+      border={ `${ false }` }
+    />
+  </CellGroup>
+</View>
+ 
 ```
 
 ### 内容对齐方式
@@ -126,14 +141,17 @@ this.state = {
 可以通过`inputAlign`属性设置内容的对齐方式。
 
 ```jsx
-<CellGroup>
-  <Field
-    value={ username3 }
-    label="用户名"
-    placeholder="请输入用户名"
-    inputAlign="right"
-  />
-</CellGroup> 
+<View>
+  <CellGroup>
+    <Field
+      value={ `${ username3 }` }
+      label="用户名"
+      placeholder="请输入用户名"
+      inputAlign="right"
+    />
+  </CellGroup>
+</View>
+ 
 ```
 
 ### 高度自适应
@@ -141,16 +159,19 @@ this.state = {
 对于 textarea，可以通过`autosize`属性设置高度自适应。
 
 ```jsx
-<CellGroup>
-  <Field
-    value={ message }
-    label="留言"
-    type="textarea"
-    placeholder="请输入留言"
-    autosize
-    border={ false }
-  />
-</CellGroup> 
+<View>
+  <CellGroup>
+    <Field
+      value={ `${ message }` }
+      label="留言"
+      type="textarea"
+      placeholder="请输入留言"
+      autosize={ true }
+      border={ `${ false }` }
+    />
+  </CellGroup>
+</View>
+ 
 ```
 
 ### 插入按钮
@@ -158,21 +179,28 @@ this.state = {
 通过 button slot 可以在输入框尾部插入按钮。
 
 ```jsx
-<CellGroup>
-  <Field
-    value={ sms }
-    center
-    clearable
-    label="短信验证码"
-    placeholder="请输入短信验证码"
-    border={ false }
-    useButtonSlot
-  >
-    <Button slot="button" size="small" type="primary">
-      发送验证码
-    </Button>
-  </Field>
-</CellGroup> 
+<View>
+  <CellGroup>
+    <Field
+      value={ `${ sms }` }
+      center={ true }
+      clearable={ true }
+      label="短信验证码"
+      placeholder="请输入短信验证码"
+      border={ `${ false }` }
+      useButtonSlot={ true }
+    >
+      <Button
+        slot="button"
+        size="small"
+        type="primary"
+      >
+        发送验证码
+      </Button>
+    </Field>
+  </CellGroup>
+</View>
+ 
 ```
 
 ## 常见问题

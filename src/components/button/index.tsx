@@ -1,4 +1,4 @@
-import { ButtonProps } from '../../../types/button.d'
+import type { ButtonProps } from '../../../types/button.d'
 import Taro from '@tarojs/taro'
 import { Button, Block, View } from '@tarojs/components'
 import * as utils from '../wxs/utils'
@@ -66,7 +66,7 @@ export default function Index(props: ButtonProps) {
       {...others}
     >
       {loading ? (
-        <Block>
+        <View style="display: flex">
           <Loading
             className="loading-class"
             size={loadingSize}
@@ -80,7 +80,7 @@ export default function Index(props: ButtonProps) {
           {loadingText && (
             <View className="van-button__loading-text">{loadingText}</View>
           )}
-        </Block>
+        </View>
       ) : (
         <Block>
           {icon && (

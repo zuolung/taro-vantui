@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { DatetimePicker } from "taro-vantui"; 
 ```
 
@@ -19,22 +19,25 @@ import { DatetimePicker } from "taro-vantui";
 `value` 为时间戳。
 
 ```jsx
-<DatetimePicker
-  type="datetime"
-  value={ currentDate }
-  minDate={ minDate }
-  maxDate={ maxDate }
-  onInput={onInput}
-/> 
+<View>
+  <DatetimePicker
+    type="datetime"
+    value={ `${ currentDate }` }
+    minDate={ `${ minDate }` }
+    maxDate={ `${ maxDate }` }
+    onInput={ onInput }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   minHour: 10,
   maxHour: 20,
-  minDate: 1634531151533,
-  maxDate: 1572537600000,
-  currentDate: 1634531151533
+  minDate: new Date().getTime(),
+  maxDate: new Date(2019, 10, 1).getTime(),
+  currentDate: new Date().getTime()
 };
 
 function onInput(event) {
@@ -49,20 +52,35 @@ function onInput(event) {
 `value` 为时间戳，通过传入 `formatter` 函数对选项文字进行处理。
 
 ```jsx
-<DatetimePicker
-  type="date"
-  value={ currentDate }
-  onInput={onInput}
-  minDate={ minDate }
-  formatter={ formatter }
-/> 
+<View>
+  <DatetimePicker
+    type="date"
+    value={ `${ currentDate }` }
+    onInput={ onInput }
+    minDate={ `${ minDate }` }
+    formatter={ `${ formatter }` }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  currentDate: 1634531151534,
-  minDate: 1634531151534,
-  formatter: undefined
+  currentDate: new Date().getTime(),
+  minDate: new Date().getTime(),
+
+  formatter(type, value) {
+    if (type === 'year') {
+      return `${value}年`;
+    }
+
+    if (type === 'month') {
+      return `${value}月`;
+    }
+
+    return value;
+  }
+
 };
 
 function onInput(event) {
@@ -77,18 +95,21 @@ function onInput(event) {
 `value` 为时间戳。
 
 ```jsx
-<DatetimePicker
-  type={yearMonth}
-  value={ currentDate }
-  minDate={ minDate }
-  onInput={onInput}
-/> 
+<View>
+  <DatetimePicker
+    type="yearMonth"
+    value={ `${ currentDate }` }
+    minDate={ `${ minDate }` }
+    onInput={ onInput }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  currentDate: 1634531151535,
-  minDate: 1634531151535
+  currentDate: new Date().getTime(),
+  minDate: new Date().getTime()
 };
 
 function onInput(event) {
@@ -103,18 +124,21 @@ function onInput(event) {
 `value` 为字符串。
 
 ```jsx
-<DatetimePicker
-  type="time"
-  value={ currentDate }
-  minHour={ minHour }
-  maxHour={ maxHour }
-  onInput={onInput}
-/> 
+<View>
+  <DatetimePicker
+    type="time"
+    value={ `${ currentDate }` }
+    minHour={ `${ minHour }` }
+    maxHour={ `${ maxHour }` }
+    onInput={ onInput }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  currentDate: "12:00",
+  currentDate: '12:00',
   minHour: 10,
   maxHour: 20
 };
@@ -131,17 +155,28 @@ function onInput(event) {
 通过传入 `filter` 函数，可以对选项数组进行过滤，实现自定义时间间隔。
 
 ```jsx
-<DatetimePicker
-  type="time"
-  value={ currentDate }
-  filter={ filter }
-/> 
+<View>
+  <DatetimePicker
+    type="time"
+    value={ `${ currentDate }` }
+    filter={ `${ filter }` }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  currentDate: "12:00",
-  filter: undefined
+  currentDate: '12:00',
+
+  filter(type, options) {
+    if (type === 'minute') {
+      return options.filter(option => option % 5 === 0);
+    }
+
+    return options;
+  }
+
 }; 
 ```
 

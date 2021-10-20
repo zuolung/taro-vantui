@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { CountDown } from "taro-vantui"; 
 ```
 
@@ -21,12 +21,15 @@ import { CountDown } from "taro-vantui";
 `time`属性表示倒计时总时长，单位为毫秒。
 
 ```jsx
-<CountDown time={ time } /> 
+<View>
+  <CountDown time={ `${ time }` } />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  time: 108000000
+  time: 30 * 60 * 60 * 1000
 }; 
 ```
 
@@ -35,7 +38,13 @@ this.state = {
 通过`format`属性设置倒计时文本的内容。
 
 ```jsx
-<CountDown time={ time } format="DD 天 HH 时 mm 分 ss 秒" /> 
+<View>
+  <CountDown
+    time={ `${ time }` }
+    format="DD 天 HH 时 mm 分 ss 秒"
+  />
+</View>
+ 
 ```
 
 ### 毫秒级渲染
@@ -43,7 +52,14 @@ this.state = {
 倒计时默认每秒渲染一次，设置`millisecond`属性可以开启毫秒级渲染。
 
 ```jsx
-<CountDown millisecond time={ time } format="HH:mm:ss:SSS" /> 
+<View>
+  <CountDown
+    millisecond={ true }
+    time={ `${ time }` }
+    format="HH:mm:ss:SSS"
+  />
+</View>
+ 
 ```
 
 ### 自定义样式
@@ -51,16 +67,29 @@ this.state = {
 设置`useSlot`属性后可以自定义倒计时样式，需要通过`onChange`事件获取`timeData`对象并自行渲染，格式见下方表格。
 
 ```jsx
-<CountDown useSlot time={ time } onChange={onChange}>
-  <text class="item">{{ timeData.hours }}</text>
-  <text class="item">{{ timeData.minutes }}</text>
-  <text class="item">{{ timeData.seconds }}</text>
-</CountDown> 
+<View>
+  <CountDown
+    useSlot={ true }
+    time={ `${ time }` }
+    onChange={ onChange }
+  >
+    <text class="item">
+      { timeData.hours }
+    </text>
+    <text class="item">
+      { timeData.minutes }
+    </text>
+    <text class="item">
+      { timeData.seconds }
+    </text>
+  </CountDown>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  time: 108000000,
+  time: 30 * 60 * 60 * 1000,
   timeData: {}
 };
 
@@ -89,30 +118,40 @@ function onChange(e) {
 通过 `selectComponent` 选择器获取到组件实例后，可以调用`start`、`pause`、`reset`方法。
 
 ```jsx
-<CountDown
-  class={controlCountDown}
-  millisecond
-  time={ 3000 }
-  autoStart={ false }
-  format="ss:SSS"
-  onFinish="finished"
-/>
-
-<Grid clickable columnNum="3">
-  <GridItem text="开始" icon={playCircleO} bindclick="start" />
-  <GridItem text="暂停" icon={pauseCircleO} bindclick="pause" />
-  <GridItem text="重置" icon="replay" bindclick="reset" />
-</Grid> 
+<View>
+  <CountDown
+    class="controlCountDown"
+    millisecond={ true }
+    time={ `${ 3000 }` }
+    autoStart={ `${ false }` }
+    format="ss:SSS"
+    onFinish={ finished }
+  />
+  <Grid
+    clickable={ true }
+    columnNum="3"
+  >
+    <GridItem
+      text="开始"
+      icon="playCircleO"
+      bindclick="start"
+    />
+    <GridItem
+      text="暂停"
+      icon="pauseCircleO"
+      bindclick="pause"
+    />
+    <GridItem
+      text="重置"
+      icon="replay"
+      bindclick="reset"
+    />
+  </Grid>
+</View>
+ 
 ```
 
-```javascript
-this.state = {};
-
-function start() {
-  const countDown = this.selectComponent('.controlCountDown');
-  countDown.start();
-}
-
+```js
 function pause() {
   const countDown = this.selectComponent('.controlCountDown');
   countDown.pause();

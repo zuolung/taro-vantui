@@ -39,7 +39,7 @@ export default class Index extends React.Component {
   }
 
   beforeRead = (event) => {
-    const { file, callback = () => { } } = event.detail
+    const { file, callback = () => {} } = event.detail
     if (file && file.url && file.url.indexOf('jpeg') < 0) {
       Taro.showToast({ title: '请选择jpg图片上传', icon: 'none' })
       callback(false)
@@ -68,7 +68,7 @@ export default class Index extends React.Component {
     this.setState({ [`fileList${name}`]: _fileList })
   }
 
-  clickPreview = () => { }
+  clickPreview = () => {}
 
   uploadToCloud = () => {
     Taro.cloud.init()

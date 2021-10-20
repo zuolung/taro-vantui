@@ -1,14 +1,15 @@
 import Taro from '@tarojs/taro'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { View, ITouchEvent } from '@tarojs/components'
 import * as utils from '../wxs/utils'
 import Icon from '../icon/index'
 import { getAllRect } from '../common/utils'
 import { RateProps } from '../../../types/rate'
-
+let comIndex = 0
 export default function Index(props: RateProps) {
   const [countArray, setCountArray] = useState(Array.from({ length: 5 }))
   const [innerValue, setInnerValue] = useState(0)
+  const indexRef = useRef(comIndex)
 
   const {
     count = 5,
@@ -30,13 +31,19 @@ export default function Index(props: RateProps) {
     ...others
   } = props
 
+  useEffect(() => {
+    comIndex++
+    indexRef.current = comIndex
+  }, [])
+
   const onSelect = function (event: ITouchEvent) {
     const { score } = event.currentTarget.dataset
     Object.defineProperty(event, 'detail', {
       value: score,
     })
+
     if (!disabled && !readonly) {
-      setInnerValue(score + 1)
+      setInnerValue(+score + 1)
       Taro.nextTick(() => {
         onChange?.(event)
       })
@@ -47,7 +54,10 @@ export default function Index(props: RateProps) {
     if (!touchable) return
     const { clientX } = event?.touches?.[0] ?? {}
     if (clientX) {
-      getAllRect(null, '.van-rate__icon').then((list: any) => {
+      getAllRect(
+        null,
+        `.rate-com-index${indexRef.current} .van-rate__icon`,
+      ).then((list: any) => {
         const target = list
           .sort((cur: any, next: any) => {
             if (typeof cur.dataset.score !== 'number') {
@@ -91,9 +101,15 @@ export default function Index(props: RateProps) {
     },
     [count],
   )
+
   return (
     <View
-      className={utils.bem('rate') + ' custom-class ' + className}
+      className={
+        `rate-com-index${indexRef.current} ` +
+        utils.bem('rate') +
+        ' custom-class ' +
+        className
+      }
       style={style}
       onTouchMove={onTouchMove}
       {...others}

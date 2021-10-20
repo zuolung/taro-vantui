@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Button } from 'taro-vantui'
+import { Button } from 'dopa'
 ```
 
 ## 代码演示

@@ -32,6 +32,11 @@ function Index(
     ...others
   } = props
 
+  console.info(
+    valueKey,
+    'valueKeyvalueKeyvalueKeyvalueKeyvalueKeyvalueKeyvalueKey',
+  )
+
   const [options, setOptions] = useState<Array<any>>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [duration, setDuration] = useState(0)
@@ -221,6 +226,7 @@ function Index(
         catchMove
       >
         {options.map((option: any, index: number) => {
+          console.info(option, valueKey)
           return (
             <View
               key={`picker-column__item${index}`}

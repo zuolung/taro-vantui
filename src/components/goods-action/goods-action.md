@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { GoodsAction } from "taro-vantui";
 import { GoodsActionIcon } from "taro-vantui";
 import { GoodsActionButton } from "taro-vantui"; 
@@ -21,25 +21,33 @@ import { GoodsActionButton } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<GoodsAction>
-  <GoodsActionIcon icon={chatO} text="客服" onClick={onClickIcon} />
-  <GoodsActionIcon icon={cartO} text="购物车" onClick={onClickIcon} />
-  <GoodsActionButton
-    text="加入购物车"
-    type="warning"
-    onClick={onClickButton}
-  />
-  <GoodsActionButton text="立即购买" onClick={onClickButton} />
-</GoodsAction> 
+<View>
+  <GoodsAction>
+    <GoodsActionIcon
+      icon="chatO"
+      text="客服"
+      onClick={ onClickIcon }
+    />
+    <GoodsActionIcon
+      icon="cartO"
+      text="购物车"
+      onClick={ onClickIcon }
+    />
+    <GoodsActionButton
+      text="加入购物车"
+      type="warning"
+      onClick={ onClickButton }
+    />
+    <GoodsActionButton
+      text="立即购买"
+      onClick={ onClickButton }
+    />
+  </GoodsAction>
+</View>
+ 
 ```
 
-```javascript
-this.state = {};
-
-function onClickIcon() {
-  Toast('点击图标');
-}
-
+```js
 function onClickButton() {
   Toast('点击按钮');
 } 
@@ -50,13 +58,30 @@ function onClickButton() {
 设置`dot`属性后，会在图标右上角展示一个小红点。设置`info`属性后，会在图标右上角展示相应的徽标。
 
 ```jsx
-<GoodsAction>
-  <GoodsActionIcon icon={chatO} text="客服" dot />
-  <GoodsActionIcon icon={cartO} text="购物车" info="5" />
-  <GoodsActionIcon icon={shopO} text="店铺" />
-  <GoodsActionButton text="加入购物车" type="warning" />
-  <GoodsActionButton text="立即购买" />
-</GoodsAction> 
+<View>
+  <GoodsAction>
+    <GoodsActionIcon
+      icon="chatO"
+      text="客服"
+      dot={ true }
+    />
+    <GoodsActionIcon
+      icon="cartO"
+      text="购物车"
+      info="5"
+    />
+    <GoodsActionIcon
+      icon="shopO"
+      text="店铺"
+    />
+    <GoodsActionButton
+      text="加入购物车"
+      type="warning"
+    />
+    <GoodsActionButton text="立即购买" />
+  </GoodsAction>
+</View>
+ 
 ```
 
 ### 自定义按钮颜色
@@ -64,13 +89,33 @@ function onClickButton() {
 通过`color`属性可以自定义按钮的颜色，支持传入`linearGradient`渐变色。
 
 ```jsx
-<GoodsAction>
-  <GoodsActionIcon icon={chatO} text="客服" />
-  <GoodsActionIcon icon={cartO} text="购物车" info="5" />
-  <GoodsActionIcon icon={shopO} text="店铺" />
-  <GoodsActionButton color="#be99ff" text="加入购物车" type="warning" />
-  <GoodsActionButton color="#7232dd" text="立即购买" />
-</GoodsAction> 
+<View>
+  <GoodsAction>
+    <GoodsActionIcon
+      icon="chatO"
+      text="客服"
+    />
+    <GoodsActionIcon
+      icon="cartO"
+      text="购物车"
+      info="5"
+    />
+    <GoodsActionIcon
+      icon="shopO"
+      text="店铺"
+    />
+    <GoodsActionButton
+      color="#be99ff"
+      text="加入购物车"
+      type="warning"
+    />
+    <GoodsActionButton
+      color="#7232dd"
+      text="立即购买"
+    />
+  </GoodsAction>
+</View>
+ 
 ```
 
 ### 朴素按钮
@@ -78,13 +123,34 @@ function onClickButton() {
 通过`plain`属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
 
 ```jsx
-<GoodsAction>
-  <GoodsActionIcon icon={chatO} text="客服" />
-  <GoodsActionIcon icon={cartO} text="购物车" info="5" />
-  <GoodsActionIcon icon={shopO} text="店铺" />
-  <GoodsActionButton color="#7232dd" text="加入购物" type="warning" />
-  <GoodsActionButton plain color="#7232dd" text="立即购买" />
-</GoodsAction> 
+<View>
+  <GoodsAction>
+    <GoodsActionIcon
+      icon="chatO"
+      text="客服"
+    />
+    <GoodsActionIcon
+      icon="cartO"
+      text="购物车"
+      info="5"
+    />
+    <GoodsActionIcon
+      icon="shopO"
+      text="店铺"
+    />
+    <GoodsActionButton
+      color="#7232dd"
+      text="加入购物"
+      type="warning"
+    />
+    <GoodsActionButton
+      plain={ true }
+      color="#7232dd"
+      text="立即购买"
+    />
+  </GoodsAction>
+</View>
+ 
 ```
 
 ## API
@@ -168,4 +234,4 @@ function onClickButton() {
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |

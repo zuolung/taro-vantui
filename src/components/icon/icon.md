@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Icon } from "taro-vantui"; 
 ```
 
@@ -19,8 +19,11 @@ import { Icon } from "taro-vantui";
 `Icon`的`name`属性支持传入图标名称或图片链接。
 
 ```jsx
-<Icon name="close" />
-<Icon name="https://b.yzcdn.cn/vant/iconDemo1126.png" /> 
+<View>
+  <Icon name="close" />
+  <Icon name="https://b.yzcdn.cn/vant/iconDemo-1126.png" />
+</View>
+ 
 ```
 
 ### 提示信息
@@ -28,9 +31,21 @@ import { Icon } from "taro-vantui";
 设置`dot`属性后，会在图标右上角展示一个小红点。设置`info`属性后，会在图标右上角展示相应的徽标。
 
 ```jsx
-<Icon name="chat" dot />
-<Icon name="chat" info="9" />
-<Icon name="chat" info="99+" /> 
+<View>
+  <Icon
+    name="chat"
+    dot={ true }
+  />
+  <Icon
+    name="chat"
+    info="9"
+  />
+  <Icon
+    name="chat"
+    info="99+"
+  />
+</View>
+ 
 ```
 
 ### 图标颜色
@@ -38,7 +53,13 @@ import { Icon } from "taro-vantui";
 设置`color`属性来控制图标颜色。
 
 ```jsx
-<Icon name="chat" color="red" /> 
+<View>
+  <Icon
+    name="chat"
+    color="red"
+  />
+</View>
+ 
 ```
 
 ### 图标大小
@@ -46,7 +67,13 @@ import { Icon } from "taro-vantui";
 设置`size`属性来控制图标大小。
 
 ```jsx
-<Icon name="chat" size="50px" /> 
+<View>
+  <Icon
+    name="chat"
+    size="50px"
+  />
+</View>
+ 
 ```
 
 ### 自定义图标
@@ -70,8 +97,14 @@ import { Icon } from "taro-vantui";
 ```
 
 ```jsx
-<! 通过 classPrefix 指定类名为 myIcon >
-<Icon classPrefix={myIcon} name="extra" /> 
+<View>
+  通过 classPrefix 指定类名为 myIcon
+  <Icon
+    classPrefix="myIcon"
+    name="extra"
+  />
+</View>
+ 
 ```
 
 ## API
@@ -98,7 +131,7 @@ import { Icon } from "taro-vantui";
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |
 
 ## 常见问题
 

@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Skeleton } from "taro-vantui"; 
 ```
 
@@ -21,7 +21,13 @@ import { Skeleton } from "taro-vantui";
 通过`title`属性显示标题占位图，通过`row`属性配置占位段落行数。
 
 ```jsx
-<Skeleton title row="3" /> 
+<View>
+  <Skeleton
+    title={ true }
+    row="3"
+  />
+</View>
+ 
 ```
 
 ### 显示头像
@@ -29,7 +35,14 @@ import { Skeleton } from "taro-vantui";
 通过`avatar`属性显示头像占位图。
 
 ```jsx
-<Skeleton title avatar row="3" /> 
+<View>
+  <Skeleton
+    title={ true }
+    avatar={ true }
+    row="3"
+  />
+</View>
+ 
 ```
 
 ### 展示子组件
@@ -37,12 +50,22 @@ import { Skeleton } from "taro-vantui";
 将`loading`属性设置成`false`表示内容加载完成，此时会隐藏占位图，并显示`Skeleton`的子组件。
 
 ```jsx
-<Skeleton title avatar row="3" loading={ loading }>
-  <view>实际内容</view>
-</Skeleton> 
+<View>
+  <Skeleton
+    title={ true }
+    avatar={ true }
+    row="3"
+    loading={ `${ loading }` }
+  >
+    <view>
+      实际内容
+    </view>
+  </Skeleton>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   loading: true
 };

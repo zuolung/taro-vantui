@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Search } from "taro-vantui"; 
 ```
 
@@ -19,7 +19,13 @@ import { Search } from "taro-vantui";
 `vanSearch` 中，value 用于控制搜索框中的文字。background 可以自定义搜索框外部背景色。
 
 ```jsx
-<Search value={ value } placeholder="请输入搜索关键词" /> 
+<View>
+  <Search
+    value={ `${ value }` }
+    placeholder="请输入搜索关键词"
+  />
+</View>
+ 
 ```
 
 ### 事件监听
@@ -27,13 +33,16 @@ import { Search } from "taro-vantui";
 `vanSearch` 提供了 search 和 cancel 事件。search 事件在用户点击键盘上的搜索按钮触发。cancel 事件在用户点击搜索框右侧取消按钮时触发。
 
 ```jsx
-<Search
-  value={ value }
-  placeholder="请输入搜索关键词"
-  showAction
-  onSearch={onSearch}
-  onCancel={onCancel}
-/> 
+<View>
+  <Search
+    value={ `${ value }` }
+    placeholder="请输入搜索关键词"
+    showAction={ true }
+    onSearch={ onSearch }
+    onCancel={ onCancel }
+  />
+</View>
+ 
 ```
 
 ### 搜索框内容对齐
@@ -41,11 +50,14 @@ import { Search } from "taro-vantui";
 通过 `inputAlign` 属性可以设置搜索框内容的对齐方式。
 
 ```jsx
-<Search
-  value={ value }
-  inputAlign="center"
-  placeholder="请输入搜索关键词"
-/> 
+<View>
+  <Search
+    value={ `${ value }` }
+    inputAlign="center"
+    placeholder="请输入搜索关键词"
+  />
+</View>
+ 
 ```
 
 ### 禁用搜索框
@@ -53,7 +65,14 @@ import { Search } from "taro-vantui";
 通过 `disabled` 属性可以将组件设置为禁用状态。
 
 ```jsx
-<Search disabled value={ value } placeholder="请输入搜索关键词" /> 
+<View>
+  <Search
+    disabled={ true }
+    value={ `${ value }` }
+    placeholder="请输入搜索关键词"
+  />
+</View>
+ 
 ```
 
 ### 自定义背景色
@@ -61,12 +80,15 @@ import { Search } from "taro-vantui";
 通过`background`属性可以设置搜索框外部的背景色，通过`shape`属性设置搜索框的形状，可选值为`round`。
 
 ```jsx
-<Search
-  value={ value }
-  shape="round"
-  background="#4fc08d"
-  placeholder="请输入搜索关键词"
-/> 
+<View>
+  <Search
+    value={ `${ value }` }
+    shape="round"
+    background="#4fc08d"
+    placeholder="请输入搜索关键词"
+  />
+</View>
+ 
 ```
 
 ### 自定义按钮
@@ -74,21 +96,29 @@ import { Search } from "taro-vantui";
 `vanSearch` 支持自定义右侧取消按钮，使用名字为 action 的 slot，并设置 useActionSlot 为 true 即可。
 
 ```jsx
-<Search
-  value={ value }
-  label="地址"
-  placeholder="请输入搜索关键词"
-  useActionSlot
-  onChange={onChange}
-  onSearch={onSearch}
->
-  <view slot="action" onTap={onClick}>搜索</view>
-</Search> 
+<View>
+  <Search
+    value={ `${ value }` }
+    label="地址"
+    placeholder="请输入搜索关键词"
+    useActionSlot={ true }
+    onChange={ onChange }
+    onSearch={ onSearch }
+  >
+    <view
+      slot="action"
+      onTap={ onClick }
+    >
+      搜索
+    </view>
+  </Search>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  value: ""
+  value: ''
 };
 
 function onChange(e) {
@@ -161,7 +191,7 @@ function onClick() {
 
 | 类名         | 说明           |
 | ------------ | -------------- |
-| customClass | 根节点样式类   |
+| className | 根节点样式类   |
 | fieldClass  | 搜索框样式类   |
 | inputClass  | 输入框样式类   |
 | cancelClass | 取消按钮样式类 |

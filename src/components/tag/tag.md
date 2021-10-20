@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Tag } from "taro-vantui"; 
 ```
 
@@ -19,10 +19,21 @@ import { Tag } from "taro-vantui";
 通过 `type` 属性控制标签颜色，默认为灰色。
 
 ```jsx
-<Tag type="primary">标签</Tag>
-<Tag type="success">标签</Tag>
-<Tag type="danger">标签</Tag>
-<Tag type="warning">标签</Tag> 
+<View>
+  <Tag type="primary">
+    标签
+  </Tag>
+  <Tag type="success">
+    标签
+  </Tag>
+  <Tag type="danger">
+    标签
+  </Tag>
+  <Tag type="warning">
+    标签
+  </Tag>
+</View>
+ 
 ```
 
 ### 空心样式
@@ -30,10 +41,33 @@ import { Tag } from "taro-vantui";
 设置 `plain` 属性设置为空心样式。
 
 ```jsx
-<Tag plain type="primary">标签</Tag>
-<Tag plain type="success">标签</Tag>
-<Tag plain type="danger">标签</Tag>
-<Tag plain type="warning">标签</Tag> 
+<View>
+  <Tag
+    plain={ true }
+    type="primary"
+  >
+    标签
+  </Tag>
+  <Tag
+    plain={ true }
+    type="success"
+  >
+    标签
+  </Tag>
+  <Tag
+    plain={ true }
+    type="danger"
+  >
+    标签
+  </Tag>
+  <Tag
+    plain={ true }
+    type="warning"
+  >
+    标签
+  </Tag>
+</View>
+ 
 ```
 
 ### 圆角样式
@@ -41,10 +75,33 @@ import { Tag } from "taro-vantui";
 通过 `round` 设置为圆角样式。
 
 ```jsx
-<Tag round type="primary">标签</Tag>
-<Tag round type="success">标签</Tag>
-<Tag round type="danger">标签</Tag>
-<Tag round type="warning">标签</Tag> 
+<View>
+  <Tag
+    round={ true }
+    type="primary"
+  >
+    标签
+  </Tag>
+  <Tag
+    round={ true }
+    type="success"
+  >
+    标签
+  </Tag>
+  <Tag
+    round={ true }
+    type="danger"
+  >
+    标签
+  </Tag>
+  <Tag
+    round={ true }
+    type="warning"
+  >
+    标签
+  </Tag>
+</View>
+ 
 ```
 
 ### 标记样式
@@ -52,27 +109,82 @@ import { Tag } from "taro-vantui";
 通过 `mark` 设置为标记样式(半圆角)。
 
 ```jsx
-<Tag mark type="primary">标签</Tag>
-<Tag mark type="success">标签</Tag>
-<Tag mark type="danger">标签</Tag>
-<Tag mark type="warning">标签</Tag> 
+<View>
+  <Tag
+    mark={ true }
+    type="primary"
+  >
+    标签
+  </Tag>
+  <Tag
+    mark={ true }
+    type="success"
+  >
+    标签
+  </Tag>
+  <Tag
+    mark={ true }
+    type="danger"
+  >
+    标签
+  </Tag>
+  <Tag
+    mark={ true }
+    type="warning"
+  >
+    标签
+  </Tag>
+</View>
+ 
 ```
 
 ### 自定义颜色
 
 ```jsx
-<Tag color="#f2826a">标签</Tag>
-<Tag color="#7232dd">标签</Tag>
-<Tag color="#7232dd" plain>标签</Tag>
-<Tag color="#ffe1e1" textColor="#ad0000">标签</Tag> 
+<View>
+  <Tag color="#f2826a">
+    标签
+  </Tag>
+  <Tag color="#7232dd">
+    标签
+  </Tag>
+  <Tag
+    color="#7232dd"
+    plain={ true }
+  >
+    标签
+  </Tag>
+  <Tag
+    color="#ffe1e1"
+    textColor="#ad0000"
+  >
+    标签
+  </Tag>
+</View>
+ 
 ```
 
 ### 标签大小
 
 ```jsx
-<Tag type="danger">标签</Tag>
-<Tag type="danger" size="medium">标签</Tag>
-<Tag type="danger" size="large">标签</Tag> 
+<View>
+  <Tag type="danger">
+    标签
+  </Tag>
+  <Tag
+    type="danger"
+    size="medium"
+  >
+    标签
+  </Tag>
+  <Tag
+    type="danger"
+    size="large"
+  >
+    标签
+  </Tag>
+</View>
+ 
 ```
 
 ### 可关闭标签
@@ -80,33 +192,40 @@ import { Tag } from "taro-vantui";
 添加 `closeable` 属性表示标签是可关闭的，关闭标签时会触发 `close` 事件，在 `close` 事件中可以执行隐藏标签的逻辑。
 
 ```jsx
-<Tag
-  wx:if={ show.primary }
-  closeable
-  size="medium"
-  type="primary"
-  id="primary"
-  onClose={onClose}
->
-  标签
-</Tag>
-<Tag
-  wx:if={ show.success }
-  closeable
-  size="medium"
-  type="success"
-  id="success"
-  onClose={onClose}
->
-  标签
-</Tag> 
+<View>
+  { show.primary.map((item, index) => (
+      <Tag
+        closeable={ true }
+        size="medium"
+        type="primary"
+        id="primary"
+        onClose={ onClose }
+      >
+        标签
+      </Tag>
+    
+    )) }
+  { show.success.map((item, index) => (
+      <Tag
+        closeable={ true }
+        size="medium"
+        type="success"
+        id="success"
+        onClose={ onClose }
+      >
+        标签
+      </Tag>
+    
+    )) }
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   show: {
-    "primary": true,
-    "success": true
+    primary: true,
+    success: true
   }
 };
 
@@ -148,4 +267,4 @@ function onClose(event) {
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |

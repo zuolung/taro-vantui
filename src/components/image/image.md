@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Image } from "taro-vantui"; 
 ```
 
@@ -21,7 +21,14 @@ import { Image } from "taro-vantui";
 基础用法与原生 [image](<(https://developers.weixin.qq.com/miniprogram/dev/component/image.html)>) 标签一致，可以设置`src`、`width`、`height`等原生属性。
 
 ```jsx
-<Image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" /> 
+<View>
+  <Image
+    width="100"
+    height="100"
+    src="https://img.yzcdn.cn/vant/cat.jpeg"
+  />
+</View>
+ 
 ```
 
 ### 填充模式
@@ -29,12 +36,15 @@ import { Image } from "taro-vantui";
 通过`fit`属性可以设置图片填充模式，可选值见下方表格。
 
 ```jsx
-<Image
-  width="10rem"
-  height="10rem"
-  fit="contain"
-  src="https://img.yzcdn.cn/vant/cat.jpeg"
-/> 
+<View>
+  <Image
+    width="10rem"
+    height="10rem"
+    fit="contain"
+    src="https://img.yzcdn.cn/vant/cat.jpeg"
+  />
+</View>
+ 
 ```
 
 ### 圆形图片
@@ -42,12 +52,15 @@ import { Image } from "taro-vantui";
 通过`round`属性可以设置图片变圆，注意当图片宽高不相等且`fit`为`contain`或`scaleDown`时，将无法填充一个完整的圆形。
 
 ```jsx
-<Image
-  round
-  width="10rem"
-  height="10rem"
-  src="https://img.yzcdn.cn/vant/cat.jpeg"
-/> 
+<View>
+  <Image
+    round={ true }
+    width="10rem"
+    height="10rem"
+    src="https://img.yzcdn.cn/vant/cat.jpeg"
+  />
+</View>
+ 
 ```
 
 ### 图片懒加载
@@ -55,12 +68,15 @@ import { Image } from "taro-vantui";
 图片懒加载，在即将进入一定范围（上下三屏）时才开始加载。
 
 ```jsx
-<Image
-  width="100"
-  height="100"
-  lazyLoad
-  src="https://img.yzcdn.cn/vant/cat.jpeg"
-/> 
+<View>
+  <Image
+    width="100"
+    height="100"
+    lazyLoad={ true }
+    src="https://img.yzcdn.cn/vant/cat.jpeg"
+  />
+</View>
+ 
 ```
 
 ### 加载中提示
@@ -68,9 +84,17 @@ import { Image } from "taro-vantui";
 `Image`组件提供了默认的加载中提示，支持通过`loading`插槽自定义内容。
 
 ```jsx
-<Image useLoadingSlot>
-  <Loading slot="loading" type="spinner" size="20" vertical />
-</Image> 
+<View>
+  <Image useLoadingSlot={ true }>
+    <Loading
+      slot="loading"
+      type="spinner"
+      size="20"
+      vertical={ true }
+    />
+  </Image>
+</View>
+ 
 ```
 
 ### 加载失败提示
@@ -78,9 +102,14 @@ import { Image } from "taro-vantui";
 `Image`组件提供了默认的加载失败提示，支持通过`error`插槽自定义内容。
 
 ```jsx
-<Image useErrorSlot>
-  <text slot="error">加载失败</text>
-</Image> 
+<View>
+  <Image useErrorSlot={ true }>
+    <text slot="error">
+      加载失败
+    </text>
+  </Image>
+</View>
+ 
 ```
 
 ## API
@@ -133,7 +162,7 @@ import { Image } from "taro-vantui";
 
 | 类名          | 说明           |
 | ------------- | -------------- |
-| customClass  | 根节点样式类   |
+| className  | 根节点样式类   |
 | imageClass   | 图片样式类     |
 | loadingClass | loading 样式类 |
 | errorClass   | error 样式类   |

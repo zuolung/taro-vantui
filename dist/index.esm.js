@@ -37,8 +37,9 @@ import _findInstanceProperty from "@babel/runtime-corejs3/core-js-stable/instanc
 import _valuesInstanceProperty from "@babel/runtime-corejs3/core-js-stable/instance/values";
 import _Number$MAX_SAFE_INTEGER from "@babel/runtime-corejs3/core-js-stable/number/max-safe-integer";
 import _reverseInstanceProperty from "@babel/runtime-corejs3/core-js-stable/instance/reverse";
-import require$$0, { useState, useEffect, useRef, useCallback, isValidElement, cloneElement, useMemo, forwardRef, useImperativeHandle, memo, useLayoutEffect } from 'react';
-import Taro, { usePageScroll as usePageScroll$1, Events } from '@tarojs/taro';
+import Taro, { createSelectorQuery, getSystemInfoSync as getSystemInfoSync$2, usePageScroll as usePageScroll$1, Events, useReady } from '@tarojs/taro';
+export { pxTransform } from '@tarojs/taro';
+import require$$0, { useState, useEffect, useRef, useCallback, useMemo, isValidElement, cloneElement, forwardRef, useImperativeHandle, memo, useLayoutEffect } from 'react';
 import { View, Image, Block, Button, ScrollView, Text, Navigator, Canvas, CoverView, Textarea, Input, Video } from '@tarojs/components';
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -1681,7 +1682,8 @@ function textStyle(data) {
 
 function Index$15(props) {
   var vertical = props.vertical,
-      type = props.type,
+      _props$type = props.type,
+      type = _props$type === void 0 ? 'spinner' : _props$type,
       color = props.color,
       size = props.size,
       textSize = props.textSize,
@@ -1761,8 +1763,8 @@ function loadingColor$1(data) {
 }
 
 function Index$14(props) {
-  var _props$type = props.type,
-      type = _props$type === void 0 ? 'default' : _props$type,
+  var _props$type2 = props.type,
+      type = _props$type2 === void 0 ? 'default' : _props$type2,
       _props$size = props.size,
       size = _props$size === void 0 ? 'normal' : _props$size,
       block = props.block,
@@ -1807,7 +1809,9 @@ function Index$14(props) {
     }), style$1]),
     onClick: disabled || loading ? undefined : onClick
   }, others, {
-    children: loading ? jsxRuntime.exports.jsxs(Block, {
+    children: loading ? jsxRuntime.exports.jsxs(View, _Object$assign({
+      style: "display: flex"
+    }, {
       children: [jsxRuntime.exports.jsx(Index$15, {
         className: "loading-class",
         size: loadingSize,
@@ -1822,7 +1826,7 @@ function Index$14(props) {
       }, {
         children: loadingText
       }), void 0)]
-    }, void 0) : jsxRuntime.exports.jsxs(Block, {
+    }), void 0) : jsxRuntime.exports.jsxs(Block, {
       children: [icon && jsxRuntime.exports.jsx(Index$16, {
         size: "1.2em",
         name: icon,
@@ -2142,10 +2146,6 @@ function canIUseModel() {
   return gte('2.9.3');
 }
 
-function canIUseCanvas2d() {
-  return gte('2.9.0');
-}
-
 function range$1(num, min, max) {
   return Math.min(Math.max(num, min), max);
 }
@@ -2154,7 +2154,7 @@ var systemInfo;
 
 function getSystemInfoSync() {
   if (systemInfo == null) {
-    systemInfo = Taro.getSystemInfoSync();
+    systemInfo = getSystemInfoSync$2();
   }
 
   return systemInfo;
@@ -2187,7 +2187,7 @@ function requestAnimationFrame$1(cb) {
     }, 33.333333333333336);
   }
 
-  return Taro.createSelectorQuery().selectViewport().boundingClientRect().exec(function () {
+  return createSelectorQuery().selectViewport().boundingClientRect().exec(function () {
     cb();
   });
 }
@@ -2210,7 +2210,7 @@ function pickExclude(obj, keys) {
 
 function getRect(context, selector) {
   return new _Promise(function (resolve) {
-    var query = Taro.createSelectorQuery();
+    var query = createSelectorQuery();
 
     if (context) {
       query = query.in(context);
@@ -2225,7 +2225,7 @@ function getRect(context, selector) {
 
 function getAllRect(context, selector) {
   return new _Promise(function (resolve) {
-    var query = Taro.createSelectorQuery();
+    var query = createSelectorQuery();
 
     if (context) {
       query = query.in(context);
@@ -2351,26 +2351,29 @@ var Overlay = 1000;
 var Navbar = 805;
 var Tabbar = 805;
 var Sticky = 800;
-var Tabs = 600;
+var Tabs = 600; // import { addUnit } from '../wxs/add-unit'
 
 function wrapStyle(data) {
   return style({
     transform: data.transform ? 'translate3d(0, ' + data.transform + 'px, 0)' : '',
-    top: data.fixed ? addUnit$1(data.offsetTop) : '',
+    top: data.fixed ? data.offsetTop + 'px' : '',
     'z-index': data.zIndex
   });
 }
 
 function containerStyle(data) {
   return style({
-    height: data.fixed ? addUnit$1(data.height) : '',
+    height: data.fixed ? data.height + 'px' : '',
     'z-index': data.zIndex
   });
 }
 
 var ROOT_ELEMENT = '.van-sticky';
+var comIndex$2 = 0;
 
 function Index$$(props) {
+  var indexRef = useRef(comIndex$2);
+
   var _useState7 = useState({
     height: 0,
     fixed: false,
@@ -2394,6 +2397,10 @@ function Index$$(props) {
       others = __rest(props, ["zIndex", "offsetTop", "scrollTop", "disabled", "container", "onScroll", "style", "className", "children"]);
 
   var ref = useRef({});
+  useEffect(function () {
+    comIndex$2++;
+    indexRef.current = comIndex$2;
+  }, []);
   var getContainerRect = useCallback(function () {
     var nodesRef = container === null || container === void 0 ? void 0 : container();
     return new _Promise(function (resolve) {
@@ -2418,11 +2425,15 @@ function Index$$(props) {
     }
 
     onScroll === null || onScroll === void 0 ? void 0 : onScroll({
-      scrollTop: ref.current.scrollTop,
-      isFixed: data.fixed || state.fixed
+      detail: {
+        scrollTop: ref.current.scrollTop,
+        isFixed: data.fixed || state.fixed
+      }
     });
   }, [onScroll, state]);
   var onMyScroll = useCallback(function (scrollTop) {
+    var _context13;
+
     if (disabled) {
       setDataAfterDiff({
         fixed: false,
@@ -2434,7 +2445,9 @@ function Index$$(props) {
     ref.current.scrollTop = scrollTop || ref.current.scrollTop;
 
     if (typeof container === 'function') {
-      _Promise.all([getRect(null, ROOT_ELEMENT), getContainerRect()]).then(function (_ref4) {
+      var _context12;
+
+      _Promise.all([getRect(null, _concatInstanceProperty(_context12 = ".sticky-com-index".concat(indexRef.current)).call(_context12, ROOT_ELEMENT)), getContainerRect()]).then(function (_ref4) {
         var _ref5 = _slicedToArray(_ref4, 2),
             root = _ref5[0],
             container = _ref5[1];
@@ -2463,7 +2476,7 @@ function Index$$(props) {
       return;
     }
 
-    getRect(null, ROOT_ELEMENT).then(function (root) {
+    getRect(null, _concatInstanceProperty(_context13 = ".sticky-com-index".concat(indexRef.current)).call(_context13, ROOT_ELEMENT)).then(function (root) {
       if (!isDef(root)) {
         return;
       }
@@ -2486,9 +2499,10 @@ function Index$$(props) {
   [scrollTop, container, disabled, offsetTop]);
   usePageScroll$1(function (e) {
     onMyScroll(e.scrollTop);
-  });
+  }); // console.log()
+
   return jsxRuntime.exports.jsx(View, _Object$assign({
-    className: 'custom-class van-sticky ' + className,
+    className: "sticky-com-index".concat(indexRef.current, " ") + 'custom-class van-sticky ' + className,
     style: style([containerStyle({
       fixed: state.fixed,
       height: state.height,
@@ -2796,13 +2810,13 @@ function popupStyle(data) {
 }
 
 var getClassNames = function getClassNames(name) {
-  var _context12, _context13, _context14, _context15;
+  var _context14, _context15, _context16, _context17;
 
   return {
-    enter: _concatInstanceProperty(_context12 = "van-".concat(name, "-enter van-")).call(_context12, name, "-enter-active enter-class enter-active-class"),
-    'enter-to': _concatInstanceProperty(_context13 = "van-".concat(name, "-enter-to van-")).call(_context13, name, "-enter-active enter-to-class enter-active-class"),
-    leave: _concatInstanceProperty(_context14 = "van-".concat(name, "-leave van-")).call(_context14, name, "-leave-active leave-class leave-active-class"),
-    'leave-to': _concatInstanceProperty(_context15 = "van-".concat(name, "-leave-to van-")).call(_context15, name, "-leave-active leave-to-class leave-active-class")
+    enter: _concatInstanceProperty(_context14 = "van-".concat(name, "-enter van-")).call(_context14, name, "-enter-active enter-class enter-active-class"),
+    'enter-to': _concatInstanceProperty(_context15 = "van-".concat(name, "-enter-to van-")).call(_context15, name, "-enter-active enter-to-class enter-active-class"),
+    leave: _concatInstanceProperty(_context16 = "van-".concat(name, "-leave van-")).call(_context16, name, "-leave-active leave-class leave-active-class"),
+    'leave-to': _concatInstanceProperty(_context17 = "van-".concat(name, "-leave-to van-")).call(_context17, name, "-leave-active leave-to-class leave-active-class")
   };
 };
 
@@ -3527,12 +3541,12 @@ var _react = _interopRequireDefault(require$$0);
 var _reactIs = reactIs.exports;
 
 function toArray(children) {
-  var _context16;
+  var _context18;
 
   var option = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var ret = [];
 
-  _forEachInstanceProperty(_context16 = _react.default.Children).call(_context16, children, function (child) {
+  _forEachInstanceProperty(_context18 = _react.default.Children).call(_context18, children, function (child) {
     if ((child === undefined || child === null) && !option.keepEmpty) {
       return;
     }
@@ -3629,9 +3643,9 @@ function getDirection$2(x, y) {
 }
 
 function parseTabList$2(children) {
-  var _context17, _context18;
+  var _context19, _context20;
 
-  return _filterInstanceProperty(_context17 = _mapInstanceProperty(_context18 = _default(children)).call(_context18, function (node) {
+  return _filterInstanceProperty(_context19 = _mapInstanceProperty(_context20 = _default(children)).call(_context20, function (node) {
     if ( /*#__PURE__*/isValidElement(node)) {
       var key = node.key !== undefined ? String(node.key) : undefined;
       return _Object$assign(_Object$assign({
@@ -3642,10 +3656,12 @@ function parseTabList$2(children) {
     }
 
     return null;
-  })).call(_context17, function (tab) {
+  })).call(_context19, function (tab) {
     return tab;
   });
 }
+
+var comIndex$1 = 0;
 
 function Index$V(props) {
   var ref = useRef({
@@ -3659,6 +3675,7 @@ function Index$V(props) {
     startY: 0,
     swiping: false
   });
+  var indexRef = useRef(comIndex$1);
 
   var _useState31 = useState({
     tabs: [],
@@ -3687,8 +3704,8 @@ function Index$V(props) {
       active = _props$active === void 0 ? 0 : _props$active,
       _props$lazyRender = props.lazyRender,
       lazyRender = _props$lazyRender === void 0 ? true : _props$lazyRender,
-      _props$type2 = props.type,
-      type = _props$type2 === void 0 ? 'line' : _props$type2,
+      _props$type3 = props.type,
+      type = _props$type3 === void 0 ? 'line' : _props$type3,
       sticky = props.sticky,
       _props$zIndex6 = props.zIndex,
       zIndex = _props$zIndex6 === void 0 ? Tabs : _props$zIndex6,
@@ -3720,17 +3737,24 @@ function Index$V(props) {
       children = props.children,
       others = __rest(props, ["swipeable", "active", "lazyRender", "type", "sticky", "zIndex", "offsetTop", "border", "color", "ellipsis", "lineHeight", "duration", "lineWidth", "titleActiveColor", "titleInactiveColor", "swipeThreshold", "animated", "renderNavleft", "renderNavright", "onScroll", "onClick", "onChange", "onDisabled", "style", "className", "children"]);
 
-  var tabs = parseTabList$2(children);
-
-  var newChildren = _mapInstanceProperty(tabs).call(tabs, function (tab, index) {
-    return /*#__PURE__*/cloneElement(tab.node, {
-      key: index,
-      active: currentIndex === index,
-      lazyRender: lazyRender,
-      animated: animated,
-      index: index
+  useEffect(function () {
+    comIndex$1++;
+    indexRef.current = comIndex$1;
+  }, []);
+  var tabs = useMemo(function () {
+    return parseTabList$2(children);
+  }, [children]);
+  var newChildren = useMemo(function () {
+    return _mapInstanceProperty(tabs).call(tabs, function (tab, index) {
+      return /*#__PURE__*/cloneElement(tab.node, {
+        key: index,
+        active: currentIndex === index,
+        lazyRender: lazyRender,
+        animated: animated,
+        index: index
+      });
     });
-  });
+  }, [animated, currentIndex, lazyRender, tabs]);
 
   var trigger = function trigger(eventName, child) {
     var _a;
@@ -3784,7 +3808,7 @@ function Index$V(props) {
     });
     Taro.nextTick(function () {
       if (shouldEmitChange) {
-        trigger('onChange');
+        trigger('onChange', newChildren[cIndex]);
       }
     });
   };
@@ -3806,14 +3830,14 @@ function Index$V(props) {
 
     index = index !== null && index !== void 0 ? index : currentIndex;
 
-    _Promise.all([getAllRect(null, '.van-tab'), getRect(null, '.van-tabs__line')]).then(function (_ref7) {
+    _Promise.all([getAllRect(null, ".tabs-com-index".concat(indexRef.current, " .van-tab")), getRect(null, ".tabs-com-index".concat(indexRef.current, " .van-tabs__line"))]).then(function (_ref7) {
       var _ref8 = _slicedToArray(_ref7, 2),
           _ref8$ = _ref8[0],
           rects = _ref8$ === void 0 ? [] : _ref8$,
           lineRect = _ref8[1];
 
       if (rects && lineRect) {
-        var _context19;
+        var _context21;
 
         var rect = rects[index];
 
@@ -3821,7 +3845,7 @@ function Index$V(props) {
           return;
         }
 
-        var _lineOffsetLeft = _reduceInstanceProperty(_context19 = _sliceInstanceProperty(rects).call(rects, 0, index)).call(_context19, function (prev, curr) {
+        var _lineOffsetLeft = _reduceInstanceProperty(_context21 = _sliceInstanceProperty(rects).call(rects, 0, index)).call(_context21, function (prev, curr) {
           return prev + curr.width;
         }, 0);
 
@@ -3856,7 +3880,7 @@ function Index$V(props) {
     } else {
       setCurrentIndex(index);
       Taro.nextTick(function () {
-        trigger('onClick');
+        trigger('onClick', child);
       });
     }
   };
@@ -3868,17 +3892,17 @@ function Index$V(props) {
 
     index = index !== null && index !== void 0 ? index : currentIndex;
 
-    _Promise.all([getAllRect(null, '.van-tab'), getRect(null, '.van-tabs__nav')]).then(function (_ref9) {
+    _Promise.all([getAllRect(null, ".tabs-com-index".concat(indexRef.current, " .van-tab")), getRect(null, ".tabs-com-index".concat(indexRef.current, " .van-tabs__nav"))]).then(function (_ref9) {
       var _ref10 = _slicedToArray(_ref9, 2),
           tabRects = _ref10[0],
           navRect = _ref10[1];
 
       if (tabRects && navRect) {
-        var _context20;
+        var _context22;
 
         var tabRect = tabRects[index];
 
-        var offsetLeft = _reduceInstanceProperty(_context20 = _sliceInstanceProperty(tabRects).call(tabRects, 0, index)).call(_context20, function (prev, curr) {
+        var offsetLeft = _reduceInstanceProperty(_context22 = _sliceInstanceProperty(tabRects).call(tabRects, 0, index)).call(_context22, function (prev, curr) {
           return prev + curr.width;
         }, 0);
 
@@ -3969,31 +3993,34 @@ function Index$V(props) {
   };
 
   useEffect(function () {
-    requestAnimationFrame$1(function () {
-      ref.current.swiping = true;
-      setState(function (pre) {
-        return _Object$assign(_Object$assign({}, pre), {
-          container: Taro.createSelectorQuery().select('.van-tabs')
-        });
+    ref.current.swiping = true;
+    setState(function (pre) {
+      return _Object$assign(_Object$assign({}, pre), {
+        container: function container() {
+          return Taro.createSelectorQuery().select(".tabs-com-index".concat(indexRef.current, ".van-tabs"));
+        }
       });
-      resize();
-      scrollIntoView();
-    });
-    Taro.nextTick(function () {
-      resize();
-      scrollIntoView();
     }); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(function () {
+    Taro.nextTick(function () {
+      setTimeout(function () {
+        resize();
+        scrollIntoView();
+      }, 300);
+    });
+  }, // eslint-disable-next-line react-hooks/exhaustive-deps
+  [lineWidth]);
+  useEffect(function () {
     if (active !== getCurrentName()) {
-      setCurrentIndexByName(active);
+      Taro.nextTick(function () {
+        setTimeout(function () {
+          setCurrentIndexByName(active);
+        }, 300);
+      });
     }
   }, // eslint-disable-next-line react-hooks/exhaustive-deps
   [active]);
-  useEffect(function () {
-    resize();
-  }, // eslint-disable-next-line react-hooks/exhaustive-deps
-  [lineWidth]);
   useEffect(function () {
     setState(function (pre) {
       return _Object$assign(_Object$assign({}, pre), {
@@ -4003,7 +4030,7 @@ function Index$V(props) {
   }, // eslint-disable-next-line react-hooks/exhaustive-deps
   [swipeThreshold]);
   return jsxRuntime.exports.jsxs(View, _Object$assign({
-    className: 'custom-class ' + bem('tabs', [type] + " ".concat(className || '')),
+    className: "tabs-com-index".concat(indexRef.current, " ") + 'custom-class ' + bem('tabs', [type] + " ".concat(className || '')),
     style: style
   }, others, {
     children: [jsxRuntime.exports.jsx(Index$$, _Object$assign({
@@ -4139,7 +4166,7 @@ function rootStyle$9(data) {
 }
 
 var FIT_MODE_MAP = {
-  none: 'scaleToFill',
+  none: 'center',
   fill: 'scaleToFill',
   cover: 'aspectFill',
   contain: 'aspectFit',
@@ -4222,7 +4249,7 @@ function Index$T(props) {
   }, others, {
     children: [!error && jsxRuntime.exports.jsx(Image, {
       src: src,
-      mode: mode(fit || 'none'),
+      mode: mode(fit) || 'scaleToFill',
       lazyLoad: lazyLoad,
       className: "image-class van-image__img",
       showMenuByLongpress: showMenuByLongpress,
@@ -4309,13 +4336,13 @@ function Index$R(props) {
 var events$2 = new Events();
 
 function trigger$2(eventName) {
-  var _context21;
+  var _context23;
 
   for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     args[_key - 1] = arguments[_key];
   }
 
-  return events$2.trigger.apply(events$2, _concatInstanceProperty(_context21 = [eventName]).call(_context21, args));
+  return events$2.trigger.apply(events$2, _concatInstanceProperty(_context23 = [eventName]).call(_context23, args));
 }
 
 function on$2(eventName, listener) {
@@ -4384,7 +4411,7 @@ function parseOptions$1(message) {
 }
 
 function Index$Q(props) {
-  var _context22;
+  var _context24;
 
   var _useState39 = useState({
     show: false,
@@ -4499,7 +4526,7 @@ function Index$Q(props) {
     }, {
       children: jsxRuntime.exports.jsxs(View, _Object$assign({
         id: "van-toast",
-        className: 'van-toast van-toast--' + (state.type === 'text' ? 'text' : 'icon') + _concatInstanceProperty(_context22 = " van-toast--".concat(state.position, " ")).call(_context22, className),
+        className: 'van-toast van-toast--' + (state.type === 'text' ? 'text' : 'icon') + _concatInstanceProperty(_context24 = " van-toast--".concat(state.position, " ")).call(_context24, className),
         style: style,
         onTouchMove: noop
       }, others, {
@@ -4630,13 +4657,16 @@ function rootStyle$5(data) {
   });
 }
 
+var NOTICE_BAR_INDEX = 0;
+
 function Index$N(props) {
   var _useState41 = useState({
     ready: false,
     show: true,
     animationData: {
       actions: []
-    }
+    },
+    unitag: 0
   }),
       _useState42 = _slicedToArray(_useState41, 2),
       state = _useState42[0],
@@ -4673,8 +4703,7 @@ function Index$N(props) {
       _props$backgroundColo = props.backgroundColor,
       backgroundColor = _props$backgroundColo === void 0 ? '#fffbe8' : _props$backgroundColo,
       background = props.background,
-      _props$wrapable = props.wrapable,
-      wrapable = _props$wrapable === void 0 ? false : _props$wrapable,
+      wrapable = props.wrapable,
       renderLeftIcon = props.renderLeftIcon,
       renderRightIcon = props.renderRightIcon,
       onClick = props.onClick,
@@ -4684,6 +4713,13 @@ function Index$N(props) {
       children = props.children,
       others = __rest(props, ["text", "mode", "url", "openType", "delay", "speed", "scrollable", "leftIcon", "color", "backgroundColor", "background", "wrapable", "renderLeftIcon", "renderRightIcon", "onClick", "onClose", "style", "className", "children"]);
 
+  useEffect(function () {
+    setState(function (state) {
+      return _Object$assign(_Object$assign({}, state), {
+        unitag: NOTICE_BAR_INDEX++
+      });
+    });
+  }, []);
   Taro.useReady(function () {
     ref.current.resetAnimation = Taro.createAnimation({
       duration: 0,
@@ -4729,7 +4765,7 @@ function Index$N(props) {
   }, []);
   var init = useCallback(function () {
     requestAnimationFrame$1(function () {
-      _Promise.all([getRect(null, '.van-notice-bar__content'), getRect(null, '.van-notice-bar__wrap')]).then(function (rects) {
+      _Promise.all([getRect(null, ".van-notice-bar__content_".concat(state.unitag)), getRect(null, ".van-notice-bar__wrap_".concat(state.unitag))]).then(function (rects) {
         var contentRect = rects[0];
         var wrapRect = rects[1];
 
@@ -4737,20 +4773,22 @@ function Index$N(props) {
           return;
         }
 
-        if (scrollable || wrapRect.width < contentRect.width) {
-          ref.current.wrapWidth = wrapRect.width;
-          ref.current.contentWidth = contentRect.width;
-          ref.current.duration = (wrapRect.width + contentRect.width) / speed * 1000;
-          ref.current.animation = Taro.createAnimation({
-            duration: ref.current.duration,
-            timingFunction: 'linear',
-            delay: delay
-          });
-          scroll();
-        }
+        Taro.nextTick(function () {
+          if (scrollable || wrapRect.width <= contentRect.width) {
+            ref.current.wrapWidth = wrapRect.width;
+            ref.current.contentWidth = contentRect.width;
+            ref.current.duration = (wrapRect.width + contentRect.width) / speed * 1000;
+            ref.current.animation = Taro.createAnimation({
+              duration: ref.current.duration,
+              timingFunction: 'linear',
+              delay: delay
+            });
+            scroll();
+          }
+        });
       });
     });
-  }, [scrollable, speed, delay, scroll]);
+  }, [state.unitag, scrollable, speed, delay, scroll]);
   var onClickIcon = useCallback(function (event) {
     if (mode === 'closeable') {
       ref.current.timer && clearTimeout(ref.current.timer);
@@ -4781,10 +4819,10 @@ function Index$N(props) {
       name: leftIcon,
       className: "van-notice-bar__left-icon"
     }, void 0) : renderLeftIcon, jsxRuntime.exports.jsx(View, _Object$assign({
-      className: "van-notice-bar__wrap"
+      className: "van-notice-bar__wrap van-notice-bar__wrap_".concat(state.unitag)
     }, {
       children: jsxRuntime.exports.jsxs(View, _Object$assign({
-        className: 'van-notice-bar__content van-ellipsis ' + (scrollable === false && !wrapable ? 'van-ellipsis' : ''),
+        className: "van-notice-bar__content van-notice-bar__content_".concat(state.unitag, " ") + (scrollable === false && !wrapable ? 'van-ellipsis' : ''),
         animation: state.animationData
       }, {
         children: [text, !text && children]
@@ -4823,9 +4861,9 @@ function Index$M(props) {
     var changeItem = name;
 
     if (!accordion) {
-      var _context23, _context24;
+      var _context25, _context26;
 
-      name = expanded ? _concatInstanceProperty(_context23 = value || []).call(_context23, name) : _filterInstanceProperty(_context24 = value || []).call(_context24, function (activeName) {
+      name = expanded ? _concatInstanceProperty(_context25 = value || []).call(_context25, name) : _filterInstanceProperty(_context26 = value || []).call(_context26, function (activeName) {
         return activeName !== name;
       });
     } else {
@@ -5053,9 +5091,9 @@ function useAnimation(expanded, mounted, height, setState) {
   }
 }
 
-function setContentAnimate(context, expanded, mounted, setState) {
+function setContentAnimate(context, expanded, mounted, setState, ref) {
   getRect(context, '.van-collapse-item__content').then(function (rect) {
-    return rect.height;
+    return process.env.TARO_ENV === 'h5' ? ref.current.clientHeight : rect.height;
   }).then(function (height) {
     useAnimation(expanded, mounted, height, setState);
   });
@@ -5071,7 +5109,8 @@ function Index$K(props) {
     expanded: false,
     animation: {
       actions: []
-    }
+    },
+    ready: false
   }),
       _useState44 = _slicedToArray(_useState43, 2),
       state = _useState44[0],
@@ -5103,17 +5142,16 @@ function Index$K(props) {
       children = props.children,
       others = __rest(props, ["parent", "name", "title", "value", "icon", "label", "disabled", "clickable", "border", "isLink", "renderTitle", "renderIcon", "renderRightIcon", "renderValue", "style", "className", "children"]);
 
-  useEffect(function () {
-    updateExpanded();
-    ref.current.mounted = true;
-    /* eslint-disable-next-line */
-  }, []);
-  useEffect(function () {
-    updateExpanded();
-    /* eslint-disable-next-line */
-  }, [parent.data]);
+  useReady(function () {
+    setState(function (state) {
+      return _Object$assign(_Object$assign({}, state), {
+        ready: true
+      });
+    });
+  });
+  var refDom = useRef(null);
   var updateExpanded = useCallback(function () {
-    var _context25;
+    var _context27;
 
     if (!parent) {
       return;
@@ -5125,12 +5163,12 @@ function Index$K(props) {
 
     var index = parent === null || parent === void 0 ? void 0 : parent.index;
     var currentName = name == null ? index : name;
-    var expanded = accordion ? value === currentName : _someInstanceProperty(_context25 = value || []).call(_context25, function (name) {
+    var expanded = accordion ? value === currentName : _someInstanceProperty(_context27 = value || []).call(_context27, function (name) {
       return name === currentName;
     });
 
     if (expanded !== state.expanded) {
-      setContentAnimate(null, expanded, ref.current.mounted, setState);
+      setContentAnimate(null, expanded, ref.current.mounted, setState, refDom);
     }
 
     setState(function (state) {
@@ -5140,6 +5178,17 @@ function Index$K(props) {
       });
     });
   }, [parent, name, state.expanded]);
+  useEffect(function () {
+    if (state.ready) {
+      updateExpanded();
+      ref.current.mounted = true;
+    }
+  }, [state.ready, updateExpanded]);
+  useEffect(function () {
+    if (state.ready) {
+      updateExpanded();
+    }
+  }, [state.ready, updateExpanded, parent.data]);
   var onClick = useCallback(function (event) {
     if (disabled) {
       return;
@@ -5181,7 +5230,8 @@ function Index$K(props) {
       animation: state.animation
     }, {
       children: jsxRuntime.exports.jsx(View, _Object$assign({
-        className: "van-collapse-item__content content-class"
+        className: "van-collapse-item__content content-class",
+        ref: refDom
       }, {
         children: children
       }), void 0)
@@ -5239,11 +5289,13 @@ function format(rate) {
 var PERIMETER = 2 * Math.PI;
 var BEGIN_ANGLE = -Math.PI / 2;
 var STEP = 1;
+var CIRCLE_INDEX = 0;
 
 function Index$J(props) {
   var _useState45 = useState({
     ready: false,
-    hoverColor: ''
+    hoverColor: '',
+    unitag: 'van-circle'
   }),
       _useState46 = _slicedToArray(_useState45, 2),
       state = _useState46[0],
@@ -5269,8 +5321,8 @@ function Index$J(props) {
       layerColor = _props$layerColor === void 0 ? '#ffffff' : _props$layerColor,
       _props$color3 = props.color,
       color = _props$color3 === void 0 ? '#1989fa' : _props$color3,
-      _props$type3 = props.type,
-      type = _props$type3 === void 0 ? '' : _props$type3,
+      _props$type4 = props.type,
+      type = _props$type4 === void 0 ? '' : _props$type4,
       _props$strokeWidth2 = props.strokeWidth,
       strokeWidth = _props$strokeWidth2 === void 0 ? 4 : _props$strokeWidth2,
       _props$clockwise = props.clockwise,
@@ -5280,69 +5332,44 @@ function Index$J(props) {
       children = props.children,
       others = __rest(props, ["text", "lineCap", "value", "speed", "size", "fill", "layerColor", "color", "type", "strokeWidth", "clockwise", "style", "className", "children"]);
 
-  Taro.useReady(function () {
-    // taro h5 nativeProps问题还未修复 此处为hack处理
-    if (process.env.TARO_ENV === 'h5') {
-      var canvas = document.getElementsByTagName('canvas')[0];
-      canvas === null || canvas === void 0 ? void 0 : canvas.setAttribute('width', String(size));
-      canvas === null || canvas === void 0 ? void 0 : canvas.setAttribute('height', String(size));
-    }
-
+  useEffect(function () {
     setState(function (state) {
       return _Object$assign(_Object$assign({}, state), {
-        ready: true
+        // unitag: process.env.TARO_ENV === 'h5' ? `van-circle_uni_${CIRCLE_INDEX++}` : 'van-circle',
+        unitag: "van-circle_uni_".concat(CIRCLE_INDEX++)
+      });
+    });
+  }, []);
+  Taro.useReady(function () {
+    // taro h5 nativeProps问题还未修复 hack处理
+    Taro.nextTick(function () {
+      var _a;
+
+      if (process.env.TARO_ENV === 'h5') {
+        var taroCanvas = document.querySelector(".".concat(state.unitag));
+        var canvas = (_a = taroCanvas === null || taroCanvas === void 0 ? void 0 : taroCanvas.children) === null || _a === void 0 ? void 0 : _a[0];
+        canvas === null || canvas === void 0 ? void 0 : canvas.setAttribute('width', String(size));
+        canvas === null || canvas === void 0 ? void 0 : canvas.setAttribute('height', String(size));
+      }
+
+      setState(function (state) {
+        return _Object$assign(_Object$assign({}, state), {
+          ready: true
+        });
       });
     });
   });
-  useEffect(function () {
-    if (state.ready) {
-      ref.current.currentValue = value;
-      setHoverColor().then(function () {
-        if (process.env.TARO_ENV === 'h5') {
-          reRender();
-        } else {
-          drawCircle(ref.current.currentValue);
-        }
-      });
-    }
-
-    return function () {
-      clearMockInterval();
-    };
-    /* eslint-disable-next-line */
-  }, [state.ready]);
-  useEffect(function () {
-    if (state.ready) {
-      reRender();
-    }
-    /* eslint-disable-next-line */
-
-  }, [state.ready, value]);
-  useEffect(function () {
-    if (state.ready) {
-      drawCircle(ref.current.currentValue);
-    }
-    /* eslint-disable-next-line */
-
-  }, [state.ready, size]);
-  useEffect(function () {
-    if (state.ready) {
-      setHoverColor().then(function () {
-        drawCircle(ref.current.currentValue);
-      });
-    }
-    /* eslint-disable-next-line */
-
-  }, [state.ready, color]);
   var getContext = useCallback(function () {
-    if (type === '' || !canIUseCanvas2d()) {
-      var ctx = Taro.createCanvasContext('van-circle');
+    console.log('getContext');
+
+    if (type === '') {
+      var ctx = Taro.createCanvasContext(state.unitag);
       return _Promise.resolve(ctx);
     }
 
     var dpr = getSystemInfoSync().pixelRatio;
     return new _Promise(function (resolve) {
-      Taro.createSelectorQuery().select('#van-circle').node().exec(function (res) {
+      createSelectorQuery().select(".".concat(state.unitag)).node().exec(function (res) {
         var canvas = res[0].node;
         var ctx = canvas.getContext(type);
 
@@ -5356,18 +5383,21 @@ function Index$J(props) {
         resolve(adaptor(ctx));
       });
     });
-  }, [size, type]);
-  var setHoverColor = useCallback(function () {
+  }, [size, type, state.unitag]);
+
+  var setHoverColor = function setHoverColor() {
+    console.log('setHoverColor');
+
     if (isObj$1(color)) {
       var _color = color;
       return getContext().then(function (context) {
-        var _context26, _context27;
+        var _context28, _context29;
 
         var LinearColor = context.createLinearGradient(size, 0, 0, 0);
 
-        _mapInstanceProperty(_context26 = _sortInstanceProperty(_context27 = _Object$keys(color)).call(_context27, function (a, b) {
+        _mapInstanceProperty(_context28 = _sortInstanceProperty(_context29 = _Object$keys(color)).call(_context29, function (a, b) {
           return _parseFloat(a) - _parseFloat(b);
-        })).call(_context26, function (key) {
+        })).call(_context28, function (key) {
           return LinearColor.addColorStop(_parseFloat(key) / 100, _color[key]);
         });
 
@@ -5385,7 +5415,8 @@ function Index$J(props) {
       });
     });
     return _Promise.resolve();
-  }, [color, size, getContext]);
+  };
+
   var presetCanvas = useCallback(function (context, strokeStyle, beginAngle, endAngle, fill) {
     var position = size / 2;
     var radius = position - strokeWidth / 2;
@@ -5412,6 +5443,7 @@ function Index$J(props) {
     presetCanvas(context, state.hoverColor, BEGIN_ANGLE, endAngle);
   }, [clockwise, presetCanvas, state.hoverColor]);
   var drawCircle = useCallback(function (currentValue) {
+    console.log('drawCircle');
     getContext().then(function (context) {
       context.clearRect(0, 0, size, size);
       renderLayerCircle(context);
@@ -5424,13 +5456,17 @@ function Index$J(props) {
       context.draw();
     });
   }, [getContext, renderHoverCircle, renderLayerCircle, size]);
-  var clearMockInterval = useCallback(function () {
+
+  var clearMockInterval = function clearMockInterval() {
     if (ref.current.interval) {
       clearTimeout(ref.current.interval);
       ref.current.interval = null;
     }
-  }, []);
+  };
+
   var reRender = useCallback(function () {
+    console.log('reRender');
+
     if (speed <= 0 || speed > 1000) {
       drawCircle(value);
       return;
@@ -5459,7 +5495,45 @@ function Index$J(props) {
     };
 
     run();
-  }, [drawCircle, speed, value, clearMockInterval]);
+  }, [drawCircle, speed, value]);
+  useEffect(function () {
+    if (state.ready) {
+      reRender();
+    }
+  }, [reRender, state.ready, value]);
+  useEffect(function () {
+    if (state.ready) {
+      drawCircle(ref.current.currentValue);
+    } // eslint-disable-next-line
+
+  }, [state.ready, size]);
+  useEffect(function () {
+    if (state.ready) {
+      setHoverColor().then(function () {
+        drawCircle(ref.current.currentValue);
+      });
+    } // eslint-disable-next-line
+
+  }, [state.ready, color]);
+  useEffect(function () {
+    // if (process.env.TARO_ENV !== 'h5') {
+    //   if (state.ready) {
+    //     ref.current.currentValue = value
+    //     setHoverColor().then(() => {
+    //       // if (process.env.TARO_ENV === 'h5') {
+    //       // reRender()
+    //       // } else {
+    //       //   drawCircle(ref.current.currentValue)
+    //       // }
+    //       drawCircle(ref.current.currentValue)
+    //     })
+    //   }
+    // }
+    return function () {
+      clearMockInterval();
+    };
+    /* eslint-disable-next-line */
+  }, [state.ready]);
   return jsxRuntime.exports.jsxs(View, _Object$assign({
     className: "van-circle ".concat(className),
     style: style
@@ -5475,11 +5549,11 @@ function Index$J(props) {
         width: size,
         height: size
       },
-      className: "van-circle__canvas",
+      className: "van-circle__canvas ".concat(state.unitag),
       type: type,
       style: 'width: ' + "".concat(size, "px") + ';height:' + "".concat(size, "px"),
-      id: "van-circle",
-      canvasId: "van-circle"
+      id: state.unitag,
+      canvasId: state.unitag
     }, void 0), !text ? jsxRuntime.exports.jsx(View, _Object$assign({
       className: "van-circle__text"
     }, {
@@ -5551,9 +5625,9 @@ function Index$I(props) {
     });
   }, [parent]);
   var setParentValue = useCallback(function (parent, event) {
-    var _context28;
+    var _context30;
 
-    var parentValue = _sliceInstanceProperty(_context28 = parent.value).call(_context28);
+    var parentValue = _sliceInstanceProperty(_context30 = parent.value).call(_context30);
 
     var value = event.detail;
     var max = parent.data.max;
@@ -5663,7 +5737,9 @@ function Index$H(props) {
       others = __rest(props, ["max", "value", "disabled", "direction", "onChange", "style", "className", "children"]);
 
   var newChildren = useMemo(function () {
-    return children === null || children === void 0 ? void 0 : _mapInstanceProperty(children).call(children, function (child, index) {
+    var _children = isArray(children) ? children : [children];
+
+    return _children === null || _children === void 0 ? void 0 : _mapInstanceProperty(_children).call(_children, function (child, index) {
       var _a;
 
       return /*#__PURE__*/cloneElement(child, {
@@ -5731,8 +5807,8 @@ function Index$G(props) {
       arrowDirection = props.arrowDirection,
       label = props.label,
       disabled = props.disabled,
-      _props$type4 = props.type,
-      type = _props$type4 === void 0 ? 'text' : _props$type4,
+      _props$type5 = props.type,
+      type = _props$type5 === void 0 ? 'text' : _props$type5,
       inputAlign = props.inputAlign,
       _props$clearIcon = props.clearIcon,
       clearIcon = _props$clearIcon === void 0 ? 'clear' : _props$clearIcon,
@@ -6106,14 +6182,11 @@ function Index$F(props) {
   }, [parent]);
   var emitChange = useCallback(function (event) {
     onChange === null || onChange === void 0 ? void 0 : onChange(event);
-
-    if (canIUseModel()) {
-      setState(function (state) {
-        return _Object$assign(_Object$assign({}, state), {
-          value: event.detail
-        });
+    setState(function (state) {
+      return _Object$assign(_Object$assign({}, state), {
+        value: event.detail
       });
-    }
+    });
   }, [onChange]);
   var onClick = useCallback(function (event) {
     if (!disabled && !state.parentDisabled) {
@@ -6191,19 +6264,23 @@ function Index$E(props) {
       className = props.className,
       others = __rest(props, ["value", "direction", "disabled", "onChange", "children", "style", "className"]);
 
-  var newChildren = children === null || children === void 0 ? void 0 : _mapInstanceProperty(children).call(children, function (child, index) {
-    return /*#__PURE__*/cloneElement(child, {
-      key: index,
-      value: value,
-      onChange: onChange,
-      parent: {
-        data: {
-          disabled: disabled,
-          direction: direction
+  var newChildren = useMemo(function () {
+    var _children = isArray(children) ? children : [children];
+
+    return _children === null || _children === void 0 ? void 0 : _mapInstanceProperty(_children).call(_children, function (child, index) {
+      return /*#__PURE__*/cloneElement(child, {
+        key: index,
+        value: value,
+        onChange: onChange,
+        parent: {
+          data: {
+            disabled: disabled,
+            direction: direction
+          }
         }
-      }
+      });
     });
-  });
+  }, [children, direction, disabled, onChange, value]);
   return jsxRuntime.exports.jsx(View, _Object$assign({
     className: bem('radio-group', [direction]) + " ".concat(className || ''),
     style: style
@@ -6330,9 +6407,9 @@ function isVideoFile(item) {
 
 function formatImage(res) {
   if (res.tempFiles) {
-    var _context29;
+    var _context31;
 
-    return _mapInstanceProperty(_context29 = res.tempFiles).call(_context29, function (item) {
+    return _mapInstanceProperty(_context31 = res.tempFiles).call(_context31, function (item) {
       return _Object$assign(_Object$assign({}, pickExclude(item, ['path'])), {
         type: 'image',
         url: item.path,
@@ -6340,9 +6417,9 @@ function formatImage(res) {
       });
     });
   } else if (res.tempFilePaths) {
-    var _context30;
+    var _context32;
 
-    return _mapInstanceProperty(_context30 = res.tempFilePaths).call(_context30, function (item) {
+    return _mapInstanceProperty(_context32 = res.tempFilePaths).call(_context32, function (item) {
       return {
         type: 'image',
         url: item,
@@ -6361,9 +6438,9 @@ function formatVideo(res) {
 }
 
 function formatMedia(res) {
-  var _context31;
+  var _context33;
 
-  return _mapInstanceProperty(_context31 = res.tempFiles).call(_context31, function (item) {
+  return _mapInstanceProperty(_context33 = res.tempFiles).call(_context33, function (item) {
     return _Object$assign(_Object$assign({}, pickExclude(item, ['fileType', 'thumbTempFilePath', 'tempFilePath'])), {
       type: res.type,
       url: item.tempFilePath,
@@ -6373,9 +6450,9 @@ function formatMedia(res) {
 }
 
 function formatFile(res) {
-  var _context32;
+  var _context34;
 
-  return _mapInstanceProperty(_context32 = res.tempFiles).call(_context32, function (item) {
+  return _mapInstanceProperty(_context34 = res.tempFiles).call(_context34, function (item) {
     return _Object$assign(_Object$assign({}, pickExclude(item, ['path'])), {
       url: item.path
     });
@@ -6447,7 +6524,7 @@ function chooseFile(_ref14) {
 }
 
 function Index$C(props) {
-  var _context37;
+  var _context39;
 
   var _useState53 = useState({
     lists: [],
@@ -6560,6 +6637,8 @@ function Index$C(props) {
 
         event.detail = params;
         onBeforeRead === null || onBeforeRead === void 0 ? void 0 : onBeforeRead(event);
+      }).catch(function (err) {
+        console.log('err: ', err);
       });
     }
 
@@ -6621,15 +6700,15 @@ function Index$C(props) {
     onDelete === null || onDelete === void 0 ? void 0 : onDelete(event);
   }, [fileList, getDetail, onDelete]);
   var onPreviewImage = useCallback(function (event) {
-    var _context33, _context34;
+    var _context35, _context36;
 
     if (!previewFullImage) return;
     var index = event.currentTarget.dataset.index;
     var item = state.lists[index];
     Taro.previewImage({
-      urls: _mapInstanceProperty(_context33 = _filterInstanceProperty(_context34 = state.lists).call(_context34, function (item) {
+      urls: _mapInstanceProperty(_context35 = _filterInstanceProperty(_context36 = state.lists).call(_context36, function (item) {
         return isImageFile(item);
-      })).call(_context33, function (item) {
+      })).call(_context35, function (item) {
         return item.url;
       }),
       current: item.url,
@@ -6645,14 +6724,14 @@ function Index$C(props) {
     if (!previewFullImage) return; // const { index } = event.currentTarget.dataset
 
     if (process.env.TARO_ENV === 'weapp') {
-      var _context35, _context36;
+      var _context37, _context38;
 
       // eslint-disable-next-line
       // @ts-ignore
       wx.previewMedia({
-        sources: _mapInstanceProperty(_context35 = _filterInstanceProperty(_context36 = state.lists).call(_context36, function (item) {
+        sources: _mapInstanceProperty(_context37 = _filterInstanceProperty(_context38 = state.lists).call(_context38, function (item) {
           return isVideoFile(item);
-        })).call(_context35, function (item) {
+        })).call(_context37, function (item) {
           return _Object$assign(_Object$assign({}, item), {
             type: 'video'
           });
@@ -6701,7 +6780,7 @@ function Index$C(props) {
       children: [previewImage && jsxRuntime.exports.jsx(View, _Object$assign({
         className: "van-uploader__box"
       }, {
-        children: _mapInstanceProperty(_context37 = state.lists).call(_context37, function (item, index) {
+        children: _mapInstanceProperty(_context39 = state.lists).call(_context39, function (item, index) {
           return jsxRuntime.exports.jsxs(View, _Object$assign({
             className: "van-uploader__preview",
             "data-index": index,
@@ -6800,6 +6879,8 @@ function Index$C(props) {
   }), void 0);
 }
 
+var comIndex = 0;
+
 function Index$B(props) {
   var _useState55 = useState(_Array$from({
     length: 5
@@ -6812,6 +6893,8 @@ function Index$B(props) {
       _useState58 = _slicedToArray(_useState57, 2),
       innerValue = _useState58[0],
       setInnerValue = _useState58[1];
+
+  var indexRef = useRef(comIndex);
 
   var _props$count = props.count,
       count = _props$count === void 0 ? 5 : _props$count,
@@ -6836,6 +6919,11 @@ function Index$B(props) {
       className = props.className,
       others = __rest(props, ["count", "gutter", "icon", "voidIcon", "disabled", "size", "disabledColor", "color", "voidColor", "allowHalf", "readonly", "touchable", "value", "onChange", "style", "className"]);
 
+  useEffect(function () {
+    comIndex++;
+    indexRef.current = comIndex;
+  }, []);
+
   var onSelect = function onSelect(event) {
     var score = event.currentTarget.dataset.score;
     Object.defineProperty(event, 'detail', {
@@ -6843,7 +6931,7 @@ function Index$B(props) {
     });
 
     if (!disabled && !readonly) {
-      setInnerValue(score + 1);
+      setInnerValue(+score + 1);
       Taro.nextTick(function () {
         onChange === null || onChange === void 0 ? void 0 : onChange(event);
       });
@@ -6860,10 +6948,10 @@ function Index$B(props) {
         clientX = _ref15.clientX;
 
     if (clientX) {
-      getAllRect(null, '.van-rate__icon').then(function (list) {
-        var _context38;
+      getAllRect(null, ".rate-com-index".concat(indexRef.current, " .van-rate__icon")).then(function (list) {
+        var _context40;
 
-        var target = _findInstanceProperty(_context38 = _sortInstanceProperty(list).call(list, function (cur, next) {
+        var target = _findInstanceProperty(_context40 = _sortInstanceProperty(list).call(list, function (cur, next) {
           if (typeof cur.dataset.score !== 'number') {
             var curScore = Number(cur.id.split('__')[1]);
             var nextScore = Number(next.id.split('__')[1]);
@@ -6871,7 +6959,7 @@ function Index$B(props) {
           } else {
             return cur.dataset.score - next.dataset.score;
           }
-        })).call(_context38, function (item) {
+        })).call(_context40, function (item) {
           return clientX >= item.left && clientX <= item.right;
         });
 
@@ -6902,7 +6990,7 @@ function Index$B(props) {
     }));
   }, [count]);
   return jsxRuntime.exports.jsx(View, _Object$assign({
-    className: bem('rate') + ' custom-class ' + className,
+    className: "rate-com-index".concat(indexRef.current, " ") + bem('rate') + ' custom-class ' + className,
     style: style$1,
     onTouchMove: onTouchMove
   }, others, {
@@ -6974,7 +7062,7 @@ function Index$A(props) {
 }
 
 function Index$z(props) {
-  var _context39;
+  var _context41;
 
   var _useState59 = useState(''),
       _useState60 = _slicedToArray(_useState59, 2),
@@ -7048,9 +7136,9 @@ function Index$z(props) {
     setInnerValue(value);
   }, [value]);
   return jsxRuntime.exports.jsxs(View, _Object$assign({
-    className: _concatInstanceProperty(_context39 = "".concat(bem('search', {
+    className: _concatInstanceProperty(_context41 = "".concat(bem('search', {
       withaction: showAction || useActionSlot
-    }), " custom-class ")).call(_context39, className),
+    }), " custom-class ")).call(_context41, className),
     style: style([{
       background: background
     }, style$1])
@@ -7192,8 +7280,8 @@ function rootStyle$3(data) {
 }
 
 function Index$x(props) {
-  var _props$type5 = props.type,
-      type = _props$type5 === void 0 ? 'default' : _props$type5,
+  var _props$type6 = props.type,
+      type = _props$type6 === void 0 ? 'default' : _props$type6,
       size = props.size,
       mark = props.mark,
       plain = props.plain,
@@ -7446,7 +7534,7 @@ function Index$w(props, ref) {
   }), void 0);
 }
 
-var index$3 = /*#__PURE__*/forwardRef(Index$w); // import Button from './../button'
+var index$4 = /*#__PURE__*/forwardRef(Index$w); // import Button from './../button'
 
 function Index$v(props) {
   var _props$round = props.round,
@@ -7657,9 +7745,9 @@ var genIndexList = function genIndexList() {
 };
 
 function parseIndexAnchor(children) {
-  var _context40, _context41;
+  var _context42, _context43;
 
-  return _filterInstanceProperty(_context40 = _mapInstanceProperty(_context41 = _default(children)).call(_context41, function (node, index) {
+  return _filterInstanceProperty(_context42 = _mapInstanceProperty(_context43 = _default(children)).call(_context43, function (node, index) {
     if ( /*#__PURE__*/isValidElement(node)) {
       var key = node.key !== undefined ? String(node.key) : index;
       return _Object$assign(_Object$assign({
@@ -7670,7 +7758,7 @@ function parseIndexAnchor(children) {
     }
 
     return null;
-  })).call(_context40, function (indexAnchor) {
+  })).call(_context42, function (indexAnchor) {
     return !!indexAnchor;
   });
 }
@@ -7714,10 +7802,10 @@ function Index$t(props) {
   var realAnchor = useRef([]);
 
   var _children = useMemo(function () {
-    var _context42;
+    var _context44;
 
     var anchorIndex = 0;
-    return _mapInstanceProperty(_context42 = parseIndexAnchor(children)).call(_context42, function (anchor, index) {
+    return _mapInstanceProperty(_context44 = parseIndexAnchor(children)).call(_context44, function (anchor, index) {
       var _a, _b, _c, _d, _e; // index  可能没有  他会用到children
 
 
@@ -7827,7 +7915,7 @@ function Index$t(props) {
     var updateStyle = [];
 
     if (sticky) {
-      var _context43;
+      var _context45;
 
       var isActiveAnchorSticky = false;
 
@@ -7835,7 +7923,7 @@ function Index$t(props) {
         isActiveAnchorSticky = (((_a = child[active]) === null || _a === void 0 ? void 0 : _a.top) || 0) <= stickyOffsetTop + scrollTopRef.current;
       }
 
-      _forEachInstanceProperty(_context43 = realAnchor.current).call(_context43, function (item, index) {
+      _forEachInstanceProperty(_context45 = realAnchor.current).call(_context45, function (item, index) {
         var _a;
 
         if (index === active) {
@@ -7843,10 +7931,10 @@ function Index$t(props) {
           var anchorStyle = "\n          color: ".concat(highlightColor, ";\n        ");
 
           if (isActiveAnchorSticky) {
-            var _context44, _context45;
+            var _context46, _context47;
 
             _wrapperStyle = "\n            height: ".concat(item.height, "px;\n          ");
-            anchorStyle = _concatInstanceProperty(_context44 = _concatInstanceProperty(_context45 = "\n            position: fixed;\n            top: ".concat(stickyOffsetTop, "px;\n            z-index: ")).call(_context45, zIndex, ";\n            color: ")).call(_context44, highlightColor, ";\n          ");
+            anchorStyle = _concatInstanceProperty(_context46 = _concatInstanceProperty(_context47 = "\n            position: fixed;\n            top: ".concat(stickyOffsetTop, "px;\n            z-index: ")).call(_context47, zIndex, ";\n            color: ")).call(_context46, highlightColor, ";\n          ");
           }
 
           updateStyle[item.childIndex] = {
@@ -7860,7 +7948,7 @@ function Index$t(props) {
           //   wrapperStyle,
           // })
         } else if (index === active - 1) {
-          var _context46, _context47;
+          var _context48, _context49;
 
           // const _children = _getChildren(children)
           var currentAnchor = item; // 自己距离顶部 的位置
@@ -7870,7 +7958,7 @@ function Index$t(props) {
           var parentOffsetHeight = targetOffsetTop - currentOffsetTop;
           var translateY = parentOffsetHeight - ((currentAnchor === null || currentAnchor === void 0 ? void 0 : currentAnchor.height) || 0);
 
-          var _anchorStyle = _concatInstanceProperty(_context46 = _concatInstanceProperty(_context47 = "\n          position: relative;\n          transform: translate3d(0, ".concat(translateY, "px, 0);\n          z-index: ")).call(_context47, zIndex, ";\n          color: ")).call(_context46, highlightColor, ";\n        ");
+          var _anchorStyle = _concatInstanceProperty(_context48 = _concatInstanceProperty(_context49 = "\n          position: relative;\n          transform: translate3d(0, ".concat(translateY, "px, 0);\n          z-index: ")).call(_context49, zIndex, ";\n          color: ")).call(_context48, highlightColor, ";\n        ");
 
           updateStyle[item.childIndex] = {
             active: true,
@@ -7900,7 +7988,7 @@ function Index$t(props) {
   usePageScroll(scroller);
 
   var _scrollToAnchor = useCallback(function (index) {
-    var _context48;
+    var _context50;
 
     if (typeof index !== 'number' || scrollToAnchorIndexRef.current === index) {
       return;
@@ -7908,7 +7996,7 @@ function Index$t(props) {
 
     scrollToAnchorIndexRef.current = index;
 
-    var currentItem = _findInstanceProperty(_context48 = realAnchor.current).call(_context48, function (item) {
+    var currentItem = _findInstanceProperty(_context50 = realAnchor.current).call(_context50, function (item) {
       return (item === null || item === void 0 ? void 0 : item.index) === indexList[index];
     });
 
@@ -8028,11 +8116,11 @@ function wrapperStyle$1(data) {
 }
 
 function styleTran(data) {
-  var _context49;
+  var _context51;
 
   var res = {};
 
-  _mapInstanceProperty(_context49 = _Object$keys(data)).call(_context49, function (key) {
+  _mapInstanceProperty(_context51 = _Object$keys(data)).call(_context51, function (key) {
     res[key] = addUnit$1(data[key]);
   });
 
@@ -8054,6 +8142,8 @@ function Index$s(props, ref) {
       onChange = props.onChange,
       curColIndex = props.index,
       others = __rest(props, ["valueKey", "itemHeight", "visibleItemCount", "initialOptions", "defaultIndex", "className", "style", "onChange", "index"]);
+
+  console.info(valueKey, 'valueKeyvalueKeyvalueKeyvalueKeyvalueKeyvalueKeyvalueKey');
 
   var _useState71 = useState([]),
       _useState72 = _slicedToArray(_useState71, 2),
@@ -8219,6 +8309,7 @@ function Index$s(props, ref) {
       catchMove: true
     }, {
       children: _mapInstanceProperty(options).call(options, function (option, index) {
+        console.info(option, valueKey);
         return jsxRuntime.exports.jsx(View, _Object$assign({
           "data-index": index,
           style: styleTran({
@@ -8259,6 +8350,8 @@ function frameStyle(data) {
 }
 
 function columns(columns) {
+  console.info('--------------', columns);
+
   if (!isArray(columns)) {
     return [];
   }
@@ -8273,9 +8366,10 @@ function columns(columns) {
 }
 
 var VanPicker = /*#__PURE__*/forwardRef(function Index(props, ref) {
-  var _context53;
+  var _context55;
 
-  var valueKey = props.valueKey,
+  var _props$valueKey = props.valueKey,
+      valueKey = _props$valueKey === void 0 ? 'text' : _props$valueKey,
       _props$toolbarPositio = props.toolbarPosition,
       toolbarPosition = _props$toolbarPositio === void 0 ? 'top' : _props$toolbarPositio,
       defaultIndex = props.defaultIndex,
@@ -8384,13 +8478,13 @@ var VanPicker = /*#__PURE__*/forwardRef(function Index(props, ref) {
     return (children.current[columnIndex] || {}).getCurrentIndex();
   }, []);
   var setColumns = useCallback(function () {
-    var _context50;
+    var _context52;
 
     var columns_ = simple ? [{
       values: columns$1
     }] : columns$1;
 
-    var stack = _mapInstanceProperty(_context50 = columns_ || []).call(_context50, function (column, index) {
+    var stack = _mapInstanceProperty(_context52 = columns_ || []).call(_context52, function (column, index) {
       return setColumnValues(index, _valuesInstanceProperty(column));
     });
 
@@ -8421,16 +8515,16 @@ var VanPicker = /*#__PURE__*/forwardRef(function Index(props, ref) {
     });
   }, []);
   var getValues = useCallback(function () {
-    var _context51;
+    var _context53;
 
-    return _mapInstanceProperty(_context51 = children.current).call(_context51, function (child) {
+    return _mapInstanceProperty(_context53 = children.current).call(_context53, function (child) {
       return child.getValue();
     });
   }, []);
   var getIndexes = useCallback(function () {
-    var _context52;
+    var _context54;
 
-    return _mapInstanceProperty(_context52 = children.current).call(_context52, function (child) {
+    return _mapInstanceProperty(_context54 = children.current).call(_context54, function (child) {
       return child.getCurrentIndex();
     });
   }, []);
@@ -8537,7 +8631,7 @@ var VanPicker = /*#__PURE__*/forwardRef(function Index(props, ref) {
       }),
       onTouchMove: onTouchMove
     }, {
-      children: [_mapInstanceProperty(_context53 = columns(columns$1)).call(_context53, function (item, index) {
+      children: [_mapInstanceProperty(_context55 = columns(columns$1)).call(_context55, function (item, index) {
         return jsxRuntime.exports.jsx(PickerColumn, {
           className: "van-picker__column column-class",
           "data-index": index,
@@ -8727,10 +8821,10 @@ function Index$r(props) {
 
 
     if (isDef(decimalLength) && _indexOfInstanceProperty(formatted).call(formatted, '.') !== -1) {
-      var _context54, _context55;
+      var _context56, _context57;
 
       var pair = formatted.split('.');
-      formatted = _concatInstanceProperty(_context54 = "".concat(pair[0], ".")).call(_context54, _sliceInstanceProperty(_context55 = pair[1]).call(_context55, 0, decimalLength));
+      formatted = _concatInstanceProperty(_context56 = "".concat(pair[0], ".")).call(_context56, _sliceInstanceProperty(_context57 = pair[1]).call(_context57, 0, decimalLength));
     }
 
     _emitChange(formatted);
@@ -8969,9 +9063,9 @@ function Index$q(props) {
 }
 
 function parseTabList$1(children) {
-  var _context56, _context57;
+  var _context58, _context59;
 
-  return _filterInstanceProperty(_context56 = _mapInstanceProperty(_context57 = _default(children)).call(_context57, function (node) {
+  return _filterInstanceProperty(_context58 = _mapInstanceProperty(_context59 = _default(children)).call(_context59, function (node) {
     if ( /*#__PURE__*/isValidElement(node)) {
       var key = node.key !== undefined ? String(node.key) : undefined;
       return _Object$assign(_Object$assign({
@@ -8982,7 +9076,7 @@ function parseTabList$1(children) {
     }
 
     return null;
-  })).call(_context56, function (tab) {
+  })).call(_context58, function (tab) {
     return tab;
   });
 }
@@ -9023,7 +9117,9 @@ function Index$p(props) {
         current: data
       });
     });
-    onChange === null || onChange === void 0 ? void 0 : onChange(data);
+    onChange === null || onChange === void 0 ? void 0 : onChange({
+      detail: data
+    });
   }, [onChange]);
 
   var tabs = parseTabList$1(children);
@@ -9168,13 +9264,13 @@ function notifyStyle(data) {
 var events$1 = new Events();
 
 function trigger$1(eventName) {
-  var _context58;
+  var _context60;
 
   for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
     args[_key3 - 1] = arguments[_key3];
   }
 
-  return events$1.trigger.apply(events$1, _concatInstanceProperty(_context58 = [eventName]).call(_context58, args));
+  return events$1.trigger.apply(events$1, _concatInstanceProperty(_context60 = [eventName]).call(_context60, args));
 }
 
 function on$1(eventName, listener) {
@@ -9372,9 +9468,9 @@ function Index$m(props) {
 
   var childrenInstance = useRef([]);
   var updateChildren = useCallback(function () {
-    var _context59;
+    var _context61;
 
-    _forEachInstanceProperty(_context59 = childrenInstance.current).call(_context59, function (child) {
+    _forEachInstanceProperty(_context61 = childrenInstance.current).call(_context61, function (child) {
       child.updateStyle();
     });
   }, []);
@@ -9388,9 +9484,9 @@ function Index$m(props) {
     var res = [];
 
     if (others.children && Array.isArray(others.children)) {
-      var _context60;
+      var _context62;
 
-      _forEachInstanceProperty(_context60 = others.children).call(_context60, function (child, index) {
+      _forEachInstanceProperty(_context62 = others.children).call(_context62, function (child, index) {
         res.push( /*#__PURE__*/cloneElement(child, {
           setChildrenInstance: setChildrenInstance,
           key: index,
@@ -9550,13 +9646,13 @@ function Index$l(props) {
 
 
 function displayTitle(item) {
-  var _context61;
+  var _context63;
 
   if (item.title) {
     return item.title;
   }
 
-  var match = _filterInstanceProperty(_context61 = item.options).call(_context61, function (option) {
+  var match = _filterInstanceProperty(_context63 = item.options).call(_context63, function (option) {
     return option.value === item.value;
   });
 
@@ -9568,7 +9664,7 @@ var ARRAY$1 = [];
 var currentIndexInit = 0;
 
 function Index$k(props) {
-  var _context68;
+  var _context70;
 
   var activeColor = props.activeColor,
       _props$overlay3 = props.overlay,
@@ -9606,9 +9702,9 @@ function Index$k(props) {
       setCurrentIndex = _useState100[1];
 
   var close = useCallback(function () {
-    var _context62;
+    var _context64;
 
-    _forEachInstanceProperty(_context62 = childrenInstance.current).call(_context62, function (child) {
+    _forEachInstanceProperty(_context64 = childrenInstance.current).call(_context64, function (child) {
       child.toggle(false, {
         immediate: true
       });
@@ -9631,27 +9727,29 @@ function Index$k(props) {
   }, []);
   useEffect(function () {
     return function () {
-      var _context63;
+      var _context65;
 
-      ARRAY$1 = _filterInstanceProperty(_context63 = ARRAY$1 || []).call(_context63, function (item) {
+      ARRAY$1 = _filterInstanceProperty(_context65 = ARRAY$1 || []).call(_context65, function (item) {
         return item && item.TimerKey !== TimerKey;
       });
-      setCurrentIndex(currentIndexInit++);
     };
   }, []);
+  useEffect(function () {
+    setCurrentIndex(currentIndexInit++);
+  }, []);
   var updateChildrenData = useCallback(function () {
-    var _context64;
+    var _context66;
 
-    _forEachInstanceProperty(_context64 = childrenInstance.current).call(_context64, function (child) {
+    _forEachInstanceProperty(_context66 = childrenInstance.current).call(_context66, function (child) {
       child.updateDataFromParent();
     });
   }, []);
 
   var updateItemListData = function updateItemListData() {
     setTimeout(function () {
-      var _context65;
+      var _context67;
 
-      setItemListData(_mapInstanceProperty(_context65 = childrenInstance.current).call(_context65, function (child) {
+      setItemListData(_mapInstanceProperty(_context67 = childrenInstance.current).call(_context67, function (child) {
         return child;
       }));
     }, 33);
@@ -9704,9 +9802,9 @@ function Index$k(props) {
     var res = [];
 
     if (others.children && Array.isArray(others.children)) {
-      var _context66;
+      var _context68;
 
-      _forEachInstanceProperty(_context66 = others.children).call(_context66, function (child, index) {
+      _forEachInstanceProperty(_context68 = others.children).call(_context68, function (child, index) {
         res.push( /*#__PURE__*/cloneElement(child, {
           key: index,
           setChildrenInstance: setChildrenInstance,
@@ -9725,12 +9823,11 @@ function Index$k(props) {
     }
 
     return res;
-  }, // eslint-disable-next-line react-hooks/exhaustive-deps
-  [others.children]);
+  }, [others.children, activeColor, closeOnClickOverlay, direction, duration, getChildWrapperStyle, overlay, setChildrenInstance]);
   var toggleItem = useCallback(function (active) {
-    var _context67;
+    var _context69;
 
-    _forEachInstanceProperty(_context67 = childrenInstance.current).call(_context67, function (item, index) {
+    _forEachInstanceProperty(_context69 = childrenInstance.current).call(_context69, function (item, index) {
       var showPopup = item.showPopup;
 
       if (index === Number(active)) {
@@ -9743,7 +9840,7 @@ function Index$k(props) {
     });
   }, []);
   return jsxRuntime.exports.jsxs(View, _Object$assign({
-    className: _concatInstanceProperty(_context68 = "van-dropdown-menu van-dropdown-menu".concat(currentIndex, " van-dropdown-menu--top-bottom  ")).call(_context68, className),
+    className: _concatInstanceProperty(_context70 = "van-dropdown-menu van-dropdown-menu".concat(currentIndex, " van-dropdown-menu--top-bottom  ")).call(_context70, className),
     style: style([style$1, {
       position: 'relative'
     }])
@@ -9774,7 +9871,7 @@ function Index$k(props) {
   }), void 0);
 }
 
-function Index$j(props) {
+function Index$j(props, ref) {
   var value = props.value,
       popupStyle = props.popupStyle,
       direction = props.direction,
@@ -9922,7 +10019,12 @@ function Index$j(props) {
     }
   };
 
-  return showWrapper && jsxRuntime.exports.jsx(View, _Object$assign({
+  useImperativeHandle(ref, function () {
+    return {
+      toggle: toggle
+    };
+  });
+  return showWrapper ? jsxRuntime.exports.jsx(View, _Object$assign({
     className: bem('dropdown-item', direction) + ' ' + className,
     style: style([parentState.wrapperStyle, style$1])
   }, {
@@ -9972,13 +10074,15 @@ function Index$j(props) {
         }), others.children]
       }, void 0)
     }), void 0)
-  }), void 0);
+  }), void 0) : jsxRuntime.exports.jsx(View, {}, void 0);
 }
 
-function parseTabList(children) {
-  var _context69, _context70;
+var index$3 = /*#__PURE__*/forwardRef(Index$j);
 
-  return _filterInstanceProperty(_context69 = _mapInstanceProperty(_context70 = _default(children)).call(_context70, function (node) {
+function parseTabList(children) {
+  var _context71, _context72;
+
+  return _filterInstanceProperty(_context71 = _mapInstanceProperty(_context72 = _default(children)).call(_context72, function (node) {
     if ( /*#__PURE__*/isValidElement(node)) {
       var key = node.key !== undefined ? String(node.key) : undefined;
       return _Object$assign(_Object$assign({
@@ -9989,7 +10093,7 @@ function parseTabList(children) {
     }
 
     return null;
-  })).call(_context69, function (tab) {
+  })).call(_context71, function (tab) {
     return tab;
   });
 }
@@ -10033,8 +10137,8 @@ function Index$h(props) {
       url = props.url,
       linkType = props.linkType,
       plain = props.plain,
-      _props$type6 = props.type,
-      type = _props$type6 === void 0 ? 'danger' : _props$type6,
+      _props$type7 = props.type,
+      type = _props$type7 === void 0 ? 'danger' : _props$type7,
       style = props.style,
       isFirst = props.isFirst,
       isLast = props.isLast,
@@ -10256,9 +10360,9 @@ function Index$f(props) {
   }, [max, min, step]);
   var handleOverlap = useCallback(function (value) {
     if (value[0] > value[1]) {
-      var _context71;
+      var _context73;
 
-      return _reverseInstanceProperty(_context71 = _sliceInstanceProperty(value).call(value, 0)).call(_context71);
+      return _reverseInstanceProperty(_context73 = _sliceInstanceProperty(value).call(value, 0)).call(_context73);
     }
 
     return value;
@@ -10267,9 +10371,9 @@ function Index$f(props) {
     var _styleBar;
 
     if (isRange(value)) {
-      var _context72;
+      var _context74;
 
-      value = _mapInstanceProperty(_context72 = handleOverlap(value)).call(_context72, function (val) {
+      value = _mapInstanceProperty(_context74 = handleOverlap(value)).call(_context74, function (val) {
         return format(val);
       });
     } else {
@@ -10572,9 +10676,9 @@ function range(num, min, max) {
 }
 
 function padZero(val) {
-  var _context73;
+  var _context75;
 
-  return _sliceInstanceProperty(_context73 = "00".concat(val)).call(_context73, -2);
+  return _sliceInstanceProperty(_context75 = "00".concat(val)).call(_context75, -2);
 }
 
 function times(n, iteratee) {
@@ -10649,8 +10753,8 @@ function Index$c(props) {
   var _props$value7 = props.value,
       value = _props$value7 === void 0 ? null : _props$value7,
       filter = _filterInstanceProperty(props),
-      _props$type7 = props.type,
-      type = _props$type7 === void 0 ? 'datetime' : _props$type7,
+      _props$type8 = props.type,
+      type = _props$type8 === void 0 ? 'datetime' : _props$type8,
       _props$showToolbar2 = props.showToolbar,
       showToolbar = _props$showToolbar2 === void 0 ? true : _props$showToolbar2,
       _props$formatter = props.formatter,
@@ -10699,13 +10803,13 @@ function Index$c(props) {
       var setColumnValues = PickRef.current.setColumnValues;
 
       PickRef.current.setColumnValues = function () {
-        var _context74;
+        var _context76;
 
         for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
           args[_key4] = arguments[_key4];
         }
 
-        return setColumnValues.apply(PickRef.current, _concatInstanceProperty(_context74 = []).call(_context74, args, [false]));
+        return setColumnValues.apply(PickRef.current, _concatInstanceProperty(_context76 = []).call(_context76, args, [false]));
       };
     }
 
@@ -10793,9 +10897,9 @@ function Index$c(props) {
     return result;
   }, [getBoundary, innerValue, maxHour_, maxMinute_, minHour_, minMinute_, type]);
   var getOriginColumns = useCallback(function () {
-    var _context75;
+    var _context77;
 
-    var results = _mapInstanceProperty(_context75 = getRanges()).call(_context75, function (_ref18) {
+    var results = _mapInstanceProperty(_context77 = getRanges()).call(_context77, function (_ref18) {
       var type = _ref18.type,
           range = _ref18.range;
       var values = times(range[1] - range[0] + 1, function (index) {
@@ -10816,13 +10920,13 @@ function Index$c(props) {
     return results;
   }, [filter, getRanges]);
   var updateColumns = useCallback(function () {
-    var _context76;
+    var _context78;
 
-    var results = _mapInstanceProperty(_context76 = getOriginColumns()).call(_context76, function (column) {
-      var _context77;
+    var results = _mapInstanceProperty(_context78 = getOriginColumns()).call(_context78, function (column) {
+      var _context79;
 
       return {
-        values: _mapInstanceProperty(_context77 = _valuesInstanceProperty(column)).call(_context77, function (value) {
+        values: _mapInstanceProperty(_context79 = _valuesInstanceProperty(column)).call(_context79, function (value) {
           return formatter(column.type, value);
         })
       };
@@ -10873,7 +10977,7 @@ function Index$c(props) {
 
 
     if (!isDateType) {
-      var _context78;
+      var _context80;
 
       var _value$split = value.split(':'),
           _value$split2 = _slicedToArray(_value$split, 2),
@@ -10882,7 +10986,7 @@ function Index$c(props) {
 
       hour = padZero(range(hour, minHour, maxHour));
       minute = padZero(range(minute, minMinute, maxMinute));
-      return _concatInstanceProperty(_context78 = "".concat(hour, ":")).call(_context78, minute);
+      return _concatInstanceProperty(_context80 = "".concat(hour, ":")).call(_context80, minute);
     } // date type
 
 
@@ -10914,10 +11018,10 @@ function Index$c(props) {
     var originColumns = getOriginColumns();
 
     if (type === 'time') {
-      var _context79;
+      var _context81;
 
       var indexes = picker.getIndexes();
-      value = _concatInstanceProperty(_context79 = "".concat(+_valuesInstanceProperty(originColumns[0])[indexes[0]], ":")).call(_context79, +_valuesInstanceProperty(originColumns[1])[indexes[1]]);
+      value = _concatInstanceProperty(_context81 = "".concat(+_valuesInstanceProperty(originColumns[0])[indexes[0]], ":")).call(_context81, +_valuesInstanceProperty(originColumns[1])[indexes[1]]);
     } else {
       var _indexes = picker.getIndexes();
 
@@ -11329,7 +11433,7 @@ function Index$8(props, ref) {
   }, [areaList]);
 
   var _getList = useCallback(function (type, code) {
-    var _context80;
+    var _context82;
 
     var _b, _c;
 
@@ -11340,7 +11444,7 @@ function Index$8(props, ref) {
 
     var list = _getConfig(type);
 
-    var result = _mapInstanceProperty(_context80 = _Object$keys(list)).call(_context80, function (code) {
+    var result = _mapInstanceProperty(_context82 = _Object$keys(list)).call(_context82, function (code) {
       return {
         code: code,
         name: list[code]
@@ -11354,19 +11458,19 @@ function Index$8(props, ref) {
       }
 
       result = _filterInstanceProperty(result).call(result, function (item) {
-        var _context81;
+        var _context83;
 
-        return _indexOfInstanceProperty(_context81 = item.code).call(_context81, code) === 0;
+        return _indexOfInstanceProperty(_context83 = item.code).call(_context83, code) === 0;
       });
     }
 
     if (((_b = typeToColumnsPlaceholderRef.current) === null || _b === void 0 ? void 0 : _b[type]) && result.length) {
-      var _context82;
+      var _context84;
 
       // set columns placeholder
       var codeFill = type === 'province' ? '' : type === 'city' ? _sliceInstanceProperty(EMPTY_CODE).call(EMPTY_CODE, 2, 4) : _sliceInstanceProperty(EMPTY_CODE).call(EMPTY_CODE, 4, 6);
       result.unshift({
-        code: _concatInstanceProperty(_context82 = "".concat(code === undefined ? '' : code)).call(_context82, codeFill),
+        code: _concatInstanceProperty(_context84 = "".concat(code === undefined ? '' : code)).call(_context84, codeFill),
         name: (_c = typeToColumnsPlaceholderRef.current) === null || _c === void 0 ? void 0 : _c[type]
       });
     }
@@ -11502,7 +11606,7 @@ function Index$8(props, ref) {
   }, [_parseValues, _setValues, onChange]);
 
   var _getValues = useCallback(function () {
-    var _context83;
+    var _context85;
 
     var picker = _getPicker();
 
@@ -11510,7 +11614,7 @@ function Index$8(props, ref) {
       return [];
     }
 
-    return _parseValues(_filterInstanceProperty(_context83 = picker.getValues()).call(_context83, function (value) {
+    return _parseValues(_filterInstanceProperty(_context85 = picker.getValues()).call(_context85, function (value) {
       return !!value;
     }));
   }, [_getPicker, _parseValues]);
@@ -11598,13 +11702,13 @@ var index$2 = /*#__PURE__*/memo( /*#__PURE__*/forwardRef(Index$8));
 var events = new Events();
 
 function trigger(eventName) {
-  var _context84;
+  var _context86;
 
   for (var _len5 = arguments.length, args = new Array(_len5 > 1 ? _len5 - 1 : 0), _key5 = 1; _key5 < _len5; _key5++) {
     args[_key5 - 1] = arguments[_key5];
   }
 
-  return events.trigger.apply(events, _concatInstanceProperty(_context84 = [eventName]).call(_context84, args));
+  return events.trigger.apply(events, _concatInstanceProperty(_context86 = [eventName]).call(_context86, args));
 }
 
 function on(eventName, listener) {
@@ -12140,7 +12244,10 @@ function Index$6(props, ref) {
     Object.defineProperties(event, {
       detail: {
         value: {
-          position: position
+          position: position,
+          instance: {
+            close: close
+          }
         }
       }
     });
@@ -12152,21 +12259,21 @@ function Index$6(props, ref) {
     } else {
       swipeMove(0);
     }
-  }, [asyncClose, offset, onClick, onClose, swipeMove]);
+  }, [asyncClose, close, offset, onClick, onClose, swipeMove]);
   var startDrag = useCallback(function (event) {
     if (disabled) return;
     setStartOffset(offset);
     touchStart(event);
   }, [disabled, offset, touchStart]);
   var onDrag = useCallback(function (event) {
-    var _context85;
+    var _context87;
 
     if (disabled) return;
     var touchState = touchMove(event);
 
-    _forEachInstanceProperty(_context85 = _filterInstanceProperty(ARRAY).call(ARRAY, function (item) {
+    _forEachInstanceProperty(_context87 = _filterInstanceProperty(ARRAY).call(ARRAY, function (item) {
       return item.key !== instanceKey.key;
-    })).call(_context85, function (item) {
+    })).call(_context87, function (item) {
       return item.close();
     });
 
@@ -12216,13 +12323,13 @@ var index$1 = /*#__PURE__*/forwardRef(Index$6);
 var ROW_HEIGHT$1 = 64;
 
 function formatMonthTitle$1(date) {
-  var _context86;
+  var _context88;
 
   if (!(date instanceof Date)) {
     date = new Date(date);
   }
 
-  return _concatInstanceProperty(_context86 = "".concat(date.getFullYear(), "\u5E74")).call(_context86, date.getMonth() + 1, "\u6708");
+  return _concatInstanceProperty(_context88 = "".concat(date.getFullYear(), "\u5E74")).call(_context88, date.getMonth() + 1, "\u6708");
 }
 
 function compareMonth$1(date1, date2) {
@@ -12666,11 +12773,11 @@ function Index$4(props) {
       setWeekDays = _useState162[1];
 
   var initWeekDay = useCallback(function () {
-    var _context87;
+    var _context89;
 
     var defaultWeeks = ['日', '一', '二', '三', '四', '五', '六'];
     var firstDayOfWeek_ = firstDayOfWeek || 0;
-    setWeekDays(_concatInstanceProperty(_context87 = []).call(_context87, _toConsumableArray(_sliceInstanceProperty(defaultWeeks).call(defaultWeeks, firstDayOfWeek_, 7)), _toConsumableArray(_sliceInstanceProperty(defaultWeeks).call(defaultWeeks, 0, firstDayOfWeek_))));
+    setWeekDays(_concatInstanceProperty(_context89 = []).call(_context89, _toConsumableArray(_sliceInstanceProperty(defaultWeeks).call(defaultWeeks, firstDayOfWeek_, 7)), _toConsumableArray(_sliceInstanceProperty(defaultWeeks).call(defaultWeeks, 0, firstDayOfWeek_))));
   }, [firstDayOfWeek]);
   useEffect(function () {
     initWeekDay();
@@ -12715,7 +12822,7 @@ var initialMaxDate = function () {
 }();
 
 function Index$3(props, ref) {
-  var _context89, _context91;
+  var _context91, _context93;
 
   var _props$title3 = props.title,
       title = _props$title3 === void 0 ? '日期选择' : _props$title3,
@@ -12727,8 +12834,8 @@ function Index$3(props, ref) {
       rangePrompt = props.rangePrompt,
       defaultDate = props.defaultDate,
       allowSameDay = props.allowSameDay,
-      _props$type8 = props.type,
-      type = _props$type8 === void 0 ? 'single' : _props$type8,
+      _props$type9 = props.type,
+      type = _props$type9 === void 0 ? 'single' : _props$type9,
       _props$confirmDisable = props.confirmDisabledText,
       confirmDisabledText = _props$confirmDisable === void 0 ? '确定' : _props$confirmDisable,
       _props$minDate2 = props.minDate,
@@ -13027,9 +13134,9 @@ function Index$3(props, ref) {
         setCurrentDate(currentDate_);
         unselect(cancelDate);
       } else {
-        var _context88;
+        var _context90;
 
-        select(_concatInstanceProperty(_context88 = []).call(_context88, _toConsumableArray(currentDate_), [date]));
+        select(_concatInstanceProperty(_context90 = []).call(_context90, _toConsumableArray(currentDate_), [date]));
       }
     } else {
       select(date, true);
@@ -13099,11 +13206,11 @@ function Index$3(props, ref) {
           scrollY: true,
           scrollIntoView: scrollIntoView
         }, {
-          children: _mapInstanceProperty(_context89 = getMonths(minDate, maxDate)).call(_context89, function (item, index) {
-            var _context90;
+          children: _mapInstanceProperty(_context91 = getMonths(minDate, maxDate)).call(_context91, function (item, index) {
+            var _context92;
 
             return jsxRuntime.exports.jsx(Month, {
-              id: _concatInstanceProperty(_context90 = "month".concat(index, " month")).call(_context90, item),
+              id: _concatInstanceProperty(_context92 = "month".concat(index, " month")).call(_context92, item),
               className: "month",
               date: item,
               type: type,
@@ -13165,11 +13272,11 @@ function Index$3(props, ref) {
         scrollY: true,
         scrollIntoView: scrollIntoView
       }, {
-        children: _mapInstanceProperty(_context91 = getMonths(minDate, maxDate)).call(_context91, function (item, index) {
-          var _context92;
+        children: _mapInstanceProperty(_context93 = getMonths(minDate, maxDate)).call(_context93, function (item, index) {
+          var _context94;
 
           return jsxRuntime.exports.jsx(Month, {
-            id: _concatInstanceProperty(_context92 = "month".concat(index, " month")).call(_context92, item),
+            id: _concatInstanceProperty(_context94 = "month".concat(index, " month")).call(_context94, item),
             className: "month",
             date: item,
             type: type,
@@ -13227,11 +13334,11 @@ function kebabCase(word) {
 }
 
 function mapThemeVarsToCSSVars(themeVars) {
-  var _context93;
+  var _context95;
 
   var cssVars = {};
 
-  _forEachInstanceProperty(_context93 = keys(themeVars)).call(_context93, function (key) {
+  _forEachInstanceProperty(_context95 = keys(themeVars)).call(_context95, function (key) {
     var cssVarsKey = '--' + kebabCase(key);
     cssVars[cssVarsKey] = themeVars[key];
   });
@@ -13496,5 +13603,5 @@ function Index(props) {
   }), void 0);
 }
 
-export { Index$v as ActionSheet, index$2 as Area, Index$14 as Button, index as Calendar, Index as Card, Index$L as Cell, Index$A as CellGroup, Index$I as Checkbox, Index$H as CheckboxGroup, Index$J as Circle, Index$S as Col, Index$M as Collapse, Index$K as CollapseItem, Index$2 as ConfigProvider, index$3 as CountDown, Index$c as DatetimePicker, Index$7 as Dialog, Index$O as Divider, Index$j as DropdownItem, Index$k as DropdownMenu, Index$P as Empty, Index$G as Field, Index$i as GoodsAction, Index$h as GoodsActionButton, Index$g as GoodsActionIcon, Index$m as Grid, Index$l as GridItem, Index$16 as Icon, Index$T as Image, Index$u as IndexAnchor, Index$t as IndexBar, Index$17 as Info, Index$15 as Loading, Index$13 as MiniLoginButton, Index$Z as MiniNavBar, Index$12 as MiniPhoneButton, Index$11 as MiniUserButton, Index$_ as NavBar, Index$N as NoticeBar, Index$n as Notify, Index$X as Overlay, VanPicker as Picker, Index$W as Popup, Index$10 as Progress, Index$F as Radio, Index$E as RadioGroup, Index$B as Rate, Index$R as Row, Index$z as Search, Index$a as ShareSheet, Index$e as Sidebar, Index$d as SidebarItem, Index$y as Skeleton, Index$f as Slider, Index$r as Stepper, Index$q as Steps, Index$$ as Sticky, Index$1 as SubmitBar, index$1 as SwipeCell, Index$D as Switch, Index$U as Tab, Index$p as Tabbar, Index$o as TabbarItem, Index$V as Tabs, Index$x as Tag, Index$Q as Toast, Index$Y as Transition, Index$9 as TreeSelect, Index$C as Uploader, dialog, Notify as notify, Toast as toast };
+export { Index$v as ActionSheet, index$2 as Area, Index$14 as Button, index as Calendar, Index as Card, Index$L as Cell, Index$A as CellGroup, Index$I as Checkbox, Index$H as CheckboxGroup, Index$J as Circle, Index$S as Col, Index$M as Collapse, Index$K as CollapseItem, Index$2 as ConfigProvider, index$4 as CountDown, Index$c as DatetimePicker, Index$7 as Dialog, Index$O as Divider, index$3 as DropdownItem, Index$k as DropdownMenu, Index$P as Empty, Index$G as Field, Index$i as GoodsAction, Index$h as GoodsActionButton, Index$g as GoodsActionIcon, Index$m as Grid, Index$l as GridItem, Index$16 as Icon, Index$T as Image, Index$u as IndexAnchor, Index$t as IndexBar, Index$17 as Info, Index$15 as Loading, Index$13 as MiniLoginButton, Index$Z as MiniNavBar, Index$12 as MiniPhoneButton, Index$11 as MiniUserButton, Index$_ as NavBar, Index$N as NoticeBar, Index$n as Notify, Index$X as Overlay, VanPicker as Picker, Index$W as Popup, Index$10 as Progress, Index$F as Radio, Index$E as RadioGroup, Index$B as Rate, Index$R as Row, Index$z as Search, Index$a as ShareSheet, Index$e as Sidebar, Index$d as SidebarItem, Index$y as Skeleton, Index$f as Slider, Index$r as Stepper, Index$q as Steps, Index$$ as Sticky, Index$1 as SubmitBar, index$1 as SwipeCell, Index$D as Switch, Index$U as Tab, Index$p as Tabbar, Index$o as TabbarItem, Index$V as Tabs, Index$x as Tag, Index$Q as Toast, Index$Y as Transition, Index$9 as TreeSelect, Index$C as Uploader, dialog, Notify as notify, Toast as toast };
 //# sourceMappingURL=index.esm.js.map

@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Card } from "taro-vantui"; 
 ```
 
@@ -17,13 +17,16 @@ import { Card } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<Card
-  num="2"
-  price="2.00"
-  desc="描述信息"
-  title="商品标题"
-  thumb={ imageURL }
-/> 
+<View>
+  <Card
+    num="2"
+    price="2.00"
+    desc="描述信息"
+    title="商品标题"
+    thumb={ `${ imageURL }` }
+  />
+</View>
+ 
 ```
 
 ### 高级用法
@@ -31,19 +34,26 @@ import { Card } from "taro-vantui";
 可以通过插槽添加定制内容。
 
 ```jsx
-<Card
-  num="2"
-  tag="标签"
-  price="10.00"
-  desc="描述信息"
-  title="商品标题"
-  thumb={ imageURL }
->
-  <view slot="footer">
-    <Button size="mini">按钮</Button>
-    <Button size="mini">按钮</Button>
-  </view>
-</Card> 
+<View>
+  <Card
+    num="2"
+    tag="标签"
+    price="10.00"
+    desc="描述信息"
+    title="商品标题"
+    thumb={ `${ imageURL }` }
+  >
+    <view slot="footer">
+      <Button size="mini">
+        按钮
+      </Button>
+      <Button size="mini">
+        按钮
+      </Button>
+    </view>
+  </Card>
+</View>
+ 
 ```
 
 ## API
@@ -86,7 +96,7 @@ import { Card } from "taro-vantui";
 
 | 类名               | 说明           |
 | ------------------ | -------------- |
-| customClass       | 根节点样式类   |
+| className       | 根节点样式类   |
 | thumbClass        | 左侧图片样式类 |
 | titleClass        | 标题样式类     |
 | priceClass        | 价格样式类     |

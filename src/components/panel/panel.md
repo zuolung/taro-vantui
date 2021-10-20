@@ -4,7 +4,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Panel } from "taro-vantui"; 
 ```
 
@@ -15,9 +15,18 @@ import { Panel } from "taro-vantui";
 面板只是一个容器，里面可以放入自定义的内容。
 
 ```jsx
-<Panel title="标题" desc="描述信息" status="状态">
-  <view>内容</view>
-</Panel> 
+<View>
+  <Panel
+    title="标题"
+    desc="描述信息"
+    status="状态"
+  >
+    <view>
+      内容
+    </view>
+  </Panel>
+</View>
+ 
 ```
 
 ### 高级用法
@@ -25,13 +34,29 @@ import { Panel } from "taro-vantui";
 使用`slot`自定义内容。
 
 ```jsx
-<Panel title="标题" desc="描述信息" status="状态">
-  <view>内容</view>
-  <view slot="footer">
-    <Button size="small">按钮</Button>
-    <Button size="small" type="danger">按钮</Button>
-  </view>
-</Panel> 
+<View>
+  <Panel
+    title="标题"
+    desc="描述信息"
+    status="状态"
+  >
+    <view>
+      内容
+    </view>
+    <view slot="footer">
+      <Button size="small">
+        按钮
+      </Button>
+      <Button
+        size="small"
+        type="danger"
+      >
+        按钮
+      </Button>
+    </view>
+  </Panel>
+</View>
+ 
 ```
 
 ## API
@@ -56,6 +81,6 @@ import { Panel } from "taro-vantui";
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |
 | headerClass | 头部样式类   |
 | footerClass | 底部样式类   |

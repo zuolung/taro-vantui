@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Progress } from "taro-vantui"; 
 ```
 
@@ -19,7 +19,10 @@ import { Progress } from "taro-vantui";
 进度条默认为蓝色，使用`percentage`属性来设置当前进度。
 
 ```jsx
-<Progress percentage="50" /> 
+<View>
+  <Progress percentage="50" />
+</View>
+ 
 ```
 
 ### 线条粗细
@@ -27,7 +30,13 @@ import { Progress } from "taro-vantui";
 通过`strokeWidth`可以设置进度条的粗细。
 
 ```jsx
-<Progress :percentage="50" strokeWidth="8" /> 
+<View>
+  <Progress
+    percentage="50"
+    strokeWidth="8"
+  />
+</View>
+ 
 ```
 
 ### 置灰
@@ -35,7 +44,13 @@ import { Progress } from "taro-vantui";
 设置`inactive`属性后进度条将置灰。
 
 ```jsx
-<Progress inactive percentage="50" /> 
+<View>
+  <Progress
+    inactive={ true }
+    percentage="50"
+  />
+</View>
+ 
 ```
 
 ### 样式定制
@@ -43,16 +58,25 @@ import { Progress } from "taro-vantui";
 可以使用`pivotText`属性自定义文字，`color`属性自定义进度条颜色。
 
 ```jsx
-<Progress pivotText="橙色" color="#f2826a" percentage="25" />
-
-<Progress pivotText="红色" color="#ee0a24" percentage="50" />
-
-<Progress
-  percentage="75"
-  pivotText="紫色"
-  pivotColor="#7232dd"
-  color="linearGradient(to right, #be99ff, #7232dd)"
-/> 
+<View>
+  <Progress
+    pivotText="橙色"
+    color="#f2826a"
+    percentage="25"
+  />
+  <Progress
+    pivotText="红色"
+    color="#ee0a24"
+    percentage="50"
+  />
+  <Progress
+    percentage="75"
+    pivotText="紫色"
+    pivotColor="#7232dd"
+    color="linearGradient(to right, #be99ff, #7232dd)"
+  />
+</View>
+ 
 ```
 
 ## API
@@ -75,4 +99,4 @@ import { Progress } from "taro-vantui";
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |

@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { SwipeCell } from "taro-vantui"; 
 ```
 
@@ -17,13 +17,26 @@ import { SwipeCell } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<SwipeCell rightWidth={ 65 } leftWidth={ 65 }>
-  <view slot="left">选择</view>
-  <CellGroup>
-    <Cell title="单元格" value="内容" />
-  </CellGroup>
-  <view slot="right">删除</view>
-</SwipeCell> 
+<View>
+  <SwipeCell
+    rightWidth={ `${ 65 }` }
+    leftWidth={ `${ 65 }` }
+  >
+    <view slot="left">
+      选择
+    </view>
+    <CellGroup>
+      <Cell
+        title="单元格"
+        value="内容"
+      />
+    </CellGroup>
+    <view slot="right">
+      删除
+    </view>
+  </SwipeCell>
+</View>
+ 
 ```
 
 ### 异步关闭
@@ -31,90 +44,71 @@ import { SwipeCell } from "taro-vantui";
 当开启`asyncClose`时， 通过绑定`close`事件，可以自定义两侧滑动内容点击时的关闭行为。
 
 ```jsx
-<SwipeCell
-  id={swipeCell}
-  rightWidth={ 65 }
-  leftWidth={ 65 }
-  asyncClose
-  onClose={onClose}
->
-  <view slot="left">选择</view>
-  <CellGroup>
-    <Cell title="单元格" value="内容" />
-  </CellGroup>
-  <view slot="right">删除</view>
-</SwipeCell> 
+<View>
+  <SwipeCell
+    id="swipeCell"
+    rightWidth={ `${ 65 }` }
+    leftWidth={ `${ 65 }` }
+    asyncClose={ true }
+    onClose={ onClose }
+  >
+    <view slot="left">
+      选择
+    </view>
+    <CellGroup>
+      <Cell
+        title="单元格"
+        value="内容"
+      />
+    </CellGroup>
+    <view slot="right">
+      删除
+    </view>
+  </SwipeCell>
+</View>
+ 
 ```
 
-```javascript
-this.state = {};
-
-function onClose(event) {
-  const {
-    position,
-    instance
-  } = event.detail;
-
-  switch (position) {
-    case 'left':
-    case 'cell':
-      instance.close();
-      break;
-
-    case 'right':
-      Dialog.confirm({
-        message: '确定删除吗？'
-      }).then(() => {
-        instance.close();
-      });
-      break;
-  }
-} 
+```js
+ 
 ```
 
 ### 主动打开
 
 ```jsx
-<SwipeCell
-  id="swipeCell2"
-  rightWidth={ 65 }
-  leftWidth={ 65 }
-  name="示例"
-  onOpen={onOpen}
->
-  <view slot="left" class="vanSwipeCell__left">选择</view>
-  <CellGroup>
-    <Cell title="单元格" value="内容" />
-  </CellGroup>
-  <view slot="right" class="vanSwipeCell__right">删除</view>
-</SwipeCell> 
+<View>
+  <SwipeCell
+    id="swipeCell2"
+    rightWidth={ `${ 65 }` }
+    leftWidth={ `${ 65 }` }
+    name="示例"
+    onOpen={ onOpen }
+  >
+    <view
+      slot="left"
+      class="vanSwipeCell__left"
+    >
+      选择
+    </view>
+    <CellGroup>
+      <Cell
+        title="单元格"
+        value="内容"
+      />
+    </CellGroup>
+    <view
+      slot="right"
+      class="vanSwipeCell__right"
+    >
+      删除
+    </view>
+  </SwipeCell>
+</View>
+ 
 ```
 
-```javascript
-this.state = {};
-
-function onOpen(event) {
-  const {
-    position,
-    name
-  } = event.detail;
-
-  switch (position) {
-    case 'left':
-      Notify({
-        type: 'primary',
-        message: `${name}${position}部分展示open事件被触发`
-      });
-      break;
-
-    case 'right':
-      Notify({
-        type: 'primary',
-        message: `${name}${position}部分展示open事件被触发`
-      });
-      break;
-  }
-} 
+```js
+ 
 ```
 
 ## API

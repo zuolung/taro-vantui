@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Notify } from "taro-vantui"; 
 ```
 
@@ -23,8 +23,11 @@ Notify('通知内容');
 ```
 
 ```jsx
-<! 在页面内添加对应的节点 >
-<Notify id={vanNotify} /> 
+<View>
+  在页面内添加对应的节点
+  <Notify id="vanNotify" />
+</View>
+ 
 ```
 
 ### 通知类型
@@ -73,8 +76,11 @@ Notify({
 ```
 
 ```jsx
-<! 在页面内添加自定义节点 >
-<Notify id={customSelector} /> 
+<View>
+  在页面内添加自定义节点
+  <Notify id="customSelector" />
+</View>
+ 
 ```
 
 ## API

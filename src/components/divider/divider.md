@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Divider } from "taro-vantui"; 
 ```
 
@@ -19,48 +19,85 @@ import { Divider } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<Divider /> 
+<View>
+  <Divider />
+</View>
+ 
 ```
 
 ### 使用 hairline
 
 ```jsx
-<Divider hairline /> 
+<View>
+  <Divider hairline={ true } />
+</View>
+ 
 ```
 
 ### 虚线
 
 ```jsx
-<Divider dashed /> 
+<View>
+  <Divider dashed={ true } />
+</View>
+ 
 ```
 
 ### 文本位置
 
 ```jsx
-<Divider contentPosition="center">文本</Divider>
-<Divider contentPosition="left">文本</Divider>
-<Divider contentPosition="right">文本</Divider> 
+<View>
+  <Divider contentPosition="center">
+    文本
+  </Divider>
+  <Divider contentPosition="left">
+    文本
+  </Divider>
+  <Divider contentPosition="right">
+    文本
+  </Divider>
+</View>
+ 
 ```
 
 ### 自定义属性
 
 ```jsx
-<Divider contentPosition="center" textColor="#1989fa">文本颜色</Divider>
-<Divider contentPosition="center" borderColor="#1989fa">
-  border 颜色
-</Divider>
-<Divider contentPosition="center" fontSize="18">字体大小</Divider> 
+<View>
+  <Divider
+    contentPosition="center"
+    textColor="#1989fa"
+  >
+    文本颜色
+  </Divider>
+  <Divider
+    contentPosition="center"
+    borderColor="#1989fa"
+  >
+    border 颜色
+  </Divider>
+  <Divider
+    contentPosition="center"
+    fontSize="18"
+  >
+    字体大小
+  </Divider>
+</View>
+ 
 ```
 
 ### 自定义样式
 
 ```jsx
-<Divider
-  contentPosition="center"
-  customStyle="color: #1989fa; borderColor: #1989fa; fontSize: 18px;"
->
-  文本
-</Divider> 
+<View>
+  <Divider
+    contentPosition="center"
+    customStyle="color: #1989fa; borderColor: #1989fa; fontSize: 18px;"
+  >
+    文本
+  </Divider>
+</View>
+ 
 ```
 
 ## API

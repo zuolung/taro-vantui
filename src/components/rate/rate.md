@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Rate } from "taro-vantui"; 
 ```
 
@@ -17,10 +17,16 @@ import { Rate } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<Rate value={ value } onChange={onChange} /> 
+<View>
+  <Rate
+    value={ `${ value }` }
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   value: 3
 };
@@ -35,40 +41,49 @@ function onChange(event) {
 ### 自定义图标
 
 ```jsx
-<Rate
-  value={ value }
-  icon="like"
-  voidIcon={likeO}
-  onChange={onChange}
-/> 
+<View>
+  <Rate
+    value={ `${ value }` }
+    icon="like"
+    voidIcon="likeO"
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
 ### 自定义样式
 
 ```jsx
-<Rate
-  value={ value }
-  size={ 25 }
-  color="#ffd21e"
-  voidIcon="star"
-  voidColor="#eee"
-  onChange={onChange}
-/> 
+<View>
+  <Rate
+    value={ `${ value }` }
+    size={ `${ 25 }` }
+    color="#ffd21e"
+    voidIcon="star"
+    voidColor="#eee"
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
 ### 半星
 
 ```jsx
-<Rate
-  value={ value }
-  allowHalf
-  voidIcon="star"
-  voidColor="#eee"
-  onChange={onChange}
-/> 
+<View>
+  <Rate
+    value={ `${ value }` }
+    allowHalf={ true }
+    voidIcon="star"
+    voidColor="#eee"
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   value: 2.5
 };
@@ -83,19 +98,40 @@ function onChange(event) {
 ### 自定义数量
 
 ```jsx
-<Rate value={ value } count={ 6 } onChange={onChange} /> 
+<View>
+  <Rate
+    value={ `${ value }` }
+    count={ `${ 6 }` }
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
 ### 禁用状态
 
 ```jsx
-<Rate disabled value={ value } onChange={onChange} /> 
+<View>
+  <Rate
+    disabled={ true }
+    value={ `${ value }` }
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
 ### 只读状态
 
 ```jsx
-<Rate readonly value={ value } onChange={onChange} /> 
+<View>
+  <Rate
+    readonly={ true }
+    value={ `${ value }` }
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
 ### 监听 change 事件
@@ -103,10 +139,16 @@ function onChange(event) {
 评分变化时，会触发 `change` 事件。
 
 ```jsx
-<Rate value={ value } onChange={onChange} /> 
+<View>
+  <Rate
+    value={ `${ value }` }
+    onChange={ onChange }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   value: 2
 };
@@ -147,5 +189,5 @@ function onChange(event) {
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |
 | iconClass   | 图标样式类   |

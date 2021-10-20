@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Toast } from "taro-vantui"; 
 ```
 
@@ -23,7 +23,10 @@ Toast('我是提示文案，建议不超过十五字~');
 ```
 
 ```jsx
-<Toast id={vanToast} /> 
+<View>
+  <Toast id="vanToast" />
+</View>
+ 
 ```
 
 ### 加载提示
@@ -76,7 +79,10 @@ const timer = setInterval(() => {
 ```
 
 ```jsx
-<Toast id={customSelector} /> 
+<View>
+  <Toast id="customSelector" />
+</View>
+ 
 ```
 
 ### OnClose 回调函数

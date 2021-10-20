@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Sidebar } from "taro-vantui";
 import { SidebarItem } from "taro-vantui"; 
 ```
@@ -22,14 +22,17 @@ import { SidebarItem } from "taro-vantui";
 通过在`vanSidebar`上设置`activeKey`属性来控制选中项。
 
 ```jsx
-<Sidebar activeKey={ activeKey }>
-  <SidebarItem title="标签名" />
-  <SidebarItem title="标签名" />
-  <SidebarItem title="标签名" />
-</Sidebar> 
+<View>
+  <Sidebar activeKey={ `${ activeKey }` }>
+    <SidebarItem title="标签名" />
+    <SidebarItem title="标签名" />
+    <SidebarItem title="标签名" />
+  </Sidebar>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   activeKey: 0
 }; 
@@ -40,11 +43,23 @@ this.state = {
 设置`dot`属性后，会在右上角展示一个小红点。设置`badge`属性后，会在右上角展示相应的徽标。
 
 ```jsx
-<Sidebar activeKey={ activeKey }>
-  <SidebarItem title="标签名" dot />
-  <SidebarItem title="标签名" badge="5" />
-  <SidebarItem title="标签名" badge="99+" />
-</Sidebar> 
+<View>
+  <Sidebar activeKey={ `${ activeKey }` }>
+    <SidebarItem
+      title="标签名"
+      dot={ true }
+    />
+    <SidebarItem
+      title="标签名"
+      badge="5"
+    />
+    <SidebarItem
+      title="标签名"
+      badge="99+"
+    />
+  </Sidebar>
+</View>
+ 
 ```
 
 ### 禁用选项
@@ -52,11 +67,17 @@ this.state = {
 通过`disabled`属性禁用选项。
 
 ```jsx
-<Sidebar activeKey={ activeKey }>
-  <SidebarItem title="标签名" />
-  <SidebarItem title="标签名" disabled />
-  <SidebarItem title="标签名" />
-</Sidebar> 
+<View>
+  <Sidebar activeKey={ `${ activeKey }` }>
+    <SidebarItem title="标签名" />
+    <SidebarItem
+      title="标签名"
+      disabled={ true }
+    />
+    <SidebarItem title="标签名" />
+  </Sidebar>
+</View>
+ 
 ```
 
 ### 监听切换事件
@@ -64,16 +85,22 @@ this.state = {
 设置`change`方法来监听切换导航项时的事件。
 
 ```jsx
-<Sidebar activeKey={ activeKey } onChange={onChange}>
-  <SidebarItem title="标签名 1" />
-  <SidebarItem title="标签名 2" />
-  <SidebarItem title="标签名 3" />
-</Sidebar>
-
-<Notify id={vanNotify} /> 
+<View>
+  <Sidebar
+    activeKey={ `${ activeKey }` }
+    onChange={ onChange }
+  >
+    <SidebarItem title="标签名 1" />
+    <SidebarItem title="标签名 2" />
+    <SidebarItem title="标签名 3" />
+  </Sidebar>
+  <Notify id="vanNotify" />
+</View>
+ 
 ```
 
-```javascript
+```js
+import Notify from '@vant/weapp/dist/notify/notify';
 this.state = {
   activeKey: 0
 };
@@ -104,7 +131,7 @@ function onChange(event) {
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |
 
 ### SidebarItem Props
 

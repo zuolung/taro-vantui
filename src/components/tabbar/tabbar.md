@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Tabbar } from "taro-vantui";
 import { TabbarItem } from "taro-vantui"; 
 ```
@@ -18,15 +18,29 @@ import { TabbarItem } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<Tabbar active={ active } onChange={onChange}>
-  <TabbarItem icon={homeO}>标签</TabbarItem>
-  <TabbarItem icon="search">标签</TabbarItem>
-  <TabbarItem icon={friendsO}>标签</TabbarItem>
-  <TabbarItem icon={settingO}>标签</TabbarItem>
-</Tabbar> 
+<View>
+  <Tabbar
+    active={ `${ active }` }
+    onChange={ onChange }
+  >
+    <TabbarItem icon="homeO">
+      标签
+    </TabbarItem>
+    <TabbarItem icon="search">
+      标签
+    </TabbarItem>
+    <TabbarItem icon="friendsO">
+      标签
+    </TabbarItem>
+    <TabbarItem icon="settingO">
+      标签
+    </TabbarItem>
+  </Tabbar>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   active: 0
 };
@@ -44,17 +58,43 @@ function onChange(event) {
 在标签指定`name`属性的情况下，`vModel`的值为当前标签的`name`。
 
 ```jsx
-<Tabbar active={ active } onChange={onChange}>
-  <TabbarItem name="home" icon={homeO}>标签</TabbarItem>
-  <TabbarItem name="search" icon="search">标签</TabbarItem>
-  <TabbarItem name="friends" icon={friendsO}>标签</TabbarItem>
-  <TabbarItem name="setting" icon={settingO}>标签</TabbarItem>
-</Tabbar> 
+<View>
+  <Tabbar
+    active={ `${ active }` }
+    onChange={ onChange }
+  >
+    <TabbarItem
+      name="home"
+      icon="homeO"
+    >
+      标签
+    </TabbarItem>
+    <TabbarItem
+      name="search"
+      icon="search"
+    >
+      标签
+    </TabbarItem>
+    <TabbarItem
+      name="friends"
+      icon="friendsO"
+    >
+      标签
+    </TabbarItem>
+    <TabbarItem
+      name="setting"
+      icon="settingO"
+    >
+      标签
+    </TabbarItem>
+  </Tabbar>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
-  active: "home"
+  active: 'home'
 };
 
 function onChange(event) {
@@ -67,12 +107,35 @@ function onChange(event) {
 ### 显示徽标
 
 ```jsx
-<Tabbar active={ active } onChange={onChange}>
-  <TabbarItem icon={homeO}>标签</TabbarItem>
-  <TabbarItem icon="search" dot>标签</TabbarItem>
-  <TabbarItem icon={friendsO} info="5">标签</TabbarItem>
-  <TabbarItem icon={settingO} info="20">标签</TabbarItem>
-</Tabbar> 
+<View>
+  <Tabbar
+    active={ `${ active }` }
+    onChange={ onChange }
+  >
+    <TabbarItem icon="homeO">
+      标签
+    </TabbarItem>
+    <TabbarItem
+      icon="search"
+      dot={ true }
+    >
+      标签
+    </TabbarItem>
+    <TabbarItem
+      icon="friendsO"
+      info="5"
+    >
+      标签
+    </TabbarItem>
+    <TabbarItem
+      icon="settingO"
+      info="20"
+    >
+      标签
+    </TabbarItem>
+  </Tabbar>
+</View>
+ 
 ```
 
 ### 自定义图标
@@ -80,33 +143,42 @@ function onChange(event) {
 可以通过 slot 自定义图标，其中 icon slot 代表未选中状态下的图标，iconActive slot 代表选中状态下的图标。
 
 ```jsx
-<Tabbar active={ active } onChange={onChange}>
-  <TabbarItem info="3">
-    <image
-      slot="icon"
-      src={ icon.normal }
-      mode={aspectFit}
-      style="width: 30px; height: 18px;"
-    />
-    <image
-      slot={iconActive}
-      src={ icon.active }
-      mode={aspectFit}
-      style="width: 30px; height: 18px;"
-    />
-    自定义
-  </TabbarItem>
-  <TabbarItem icon="search">标签</TabbarItem>
-  <TabbarItem icon={settingO}>标签</TabbarItem>
-</Tabbar> 
+<View>
+  <Tabbar
+    active={ `${ active }` }
+    onChange={ onChange }
+  >
+    <TabbarItem info="3">
+      <image
+        slot="icon"
+        src={ `${ icon.normal }` }
+        mode="aspectFit"
+        style="width: 30px; height: 18px;"
+      />
+      <image
+        slot="iconActive"
+        src={ `${ icon.active }` }
+        mode="aspectFit"
+        style="width: 30px; height: 18px;"
+      /> 自定义
+    </TabbarItem>
+    <TabbarItem icon="search">
+      标签
+    </TabbarItem>
+    <TabbarItem icon="settingO">
+      标签
+    </TabbarItem>
+  </Tabbar>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   active: 0,
   icon: {
-    "normal": "https://img.yzcdn.cn/vant/userInactive.png",
-    "active": "https://img.yzcdn.cn/vant/userActive.png"
+    normal: 'https://img.yzcdn.cn/vant/userInactive.png',
+    active: 'https://img.yzcdn.cn/vant/userActive.png'
   }
 };
 
@@ -120,20 +192,31 @@ function onChange(event) {
 ### 自定义颜色
 
 ```jsx
-<Tabbar
-  active={ active }
-  activeColor="#07c160"
-  inactiveColor="#000"
-  onChange={onChange}
->
-  <TabbarItem icon={homeO}>标签</TabbarItem>
-  <TabbarItem icon="search">标签</TabbarItem>
-  <TabbarItem icon={friendsO}>标签</TabbarItem>
-  <TabbarItem icon={settingO}>标签</TabbarItem>
-</Tabbar> 
+<View>
+  <Tabbar
+    active={ `${ active }` }
+    activeColor="#07c160"
+    inactiveColor="#000"
+    onChange={ onChange }
+  >
+    <TabbarItem icon="homeO">
+      标签
+    </TabbarItem>
+    <TabbarItem icon="search">
+      标签
+    </TabbarItem>
+    <TabbarItem icon="friendsO">
+      标签
+    </TabbarItem>
+    <TabbarItem icon="settingO">
+      标签
+    </TabbarItem>
+  </Tabbar>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   active: 0
 };
@@ -148,15 +231,29 @@ function onChange(event) {
 ### 切换标签事件
 
 ```jsx
-<Tabbar active={ active } onChange={onChange}>
-  <TabbarItem icon={homeO}>标签1</TabbarItem>
-  <TabbarItem icon="search">标签2</TabbarItem>
-  <TabbarItem icon={friendsO}>标签3</TabbarItem>
-  <TabbarItem icon={settingO}>标签4</TabbarItem>
-</Tabbar> 
+<View>
+  <Tabbar
+    active={ `${ active }` }
+    onChange={ onChange }
+  >
+    <TabbarItem icon="homeO">
+      标签1
+    </TabbarItem>
+    <TabbarItem icon="search">
+      标签2
+    </TabbarItem>
+    <TabbarItem icon="friendsO">
+      标签3
+    </TabbarItem>
+    <TabbarItem icon="settingO">
+      标签4
+    </TabbarItem>
+  </Tabbar>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   active: 0
 };

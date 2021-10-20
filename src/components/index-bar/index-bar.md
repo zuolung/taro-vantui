@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { IndexBar } from "taro-vantui";
 import { IndexAnchor } from "taro-vantui"; 
 ```
@@ -22,23 +22,24 @@ import { IndexAnchor } from "taro-vantui";
 点击索引栏时，会自动跳转到对应的`IndexAnchor`锚点位置。
 
 ```jsx
-<IndexBar>
-  <view>
-    <IndexAnchor index={A} />
-    <Cell title="文本" />
-    <Cell title="文本" />
-    <Cell title="文本" />
-  </view>
-
-  <view>
-    <IndexAnchor index={B} />
-    <Cell title="文本" />
-    <Cell title="文本" />
-    <Cell title="文本" />
-  </view>
-
-  ...
-</IndexBar> 
+<View>
+  <IndexBar>
+    <view>
+      <IndexAnchor index="A" />
+      <Cell title="文本" />
+      <Cell title="文本" />
+      <Cell title="文本" />
+    </view>
+    <view>
+      <IndexAnchor index="B" />
+      <Cell title="文本" />
+      <Cell title="文本" />
+      <Cell title="文本" />
+    </view>
+    ...
+  </IndexBar>
+</View>
+ 
 ```
 
 ### 自定义索引列表
@@ -46,26 +47,31 @@ import { IndexAnchor } from "taro-vantui";
 可以通过`indexList`属性自定义展示的索引字符列表。
 
 ```jsx
-<IndexBar indexList={ indexList }>
-  <view>
-    <IndexAnchor index="1">标题1</IndexAnchor>
-    <Cell title="文本" />
-    <Cell title="文本" />
-    <Cell title="文本" />
-  </view>
-
-  <view>
-    <IndexAnchor index="2">标题2</IndexAnchor>
-    <Cell title="文本" />
-    <Cell title="文本" />
-    <Cell title="文本" />
-  </view>
-
-  ...
-</IndexBar> 
+<View>
+  <IndexBar indexList={ `${ indexList }` }>
+    <view>
+      <IndexAnchor index="1">
+        标题1
+      </IndexAnchor>
+      <Cell title="文本" />
+      <Cell title="文本" />
+      <Cell title="文本" />
+    </view>
+    <view>
+      <IndexAnchor index="2">
+        标题2
+      </IndexAnchor>
+      <Cell title="文本" />
+      <Cell title="文本" />
+      <Cell title="文本" />
+    </view>
+    ...
+  </IndexBar>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   indexList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }; 

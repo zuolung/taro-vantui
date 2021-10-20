@@ -13,7 +13,7 @@ function rootStyle(data: any) {
 }
 
 const FIT_MODE_MAP = {
-  none: 'scaleToFill',
+  none: 'center',
   fill: 'scaleToFill',
   cover: 'aspectFill',
   contain: 'aspectFit',

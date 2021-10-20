@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { ShareSheet } from "taro-vantui"; 
 ```
 
@@ -19,35 +19,41 @@ import { ShareSheet } from "taro-vantui";
 分享面板通过 `options` 属性来定义分享选项，数组的每一项是一个对象，对象格式见文档下方表格。
 
 ```jsx
-<Cell title="显示分享面板" onClick={onClick} />
-<ShareSheet
-  show={ showShare }
-  title="立即分享给好友"
-  options={ options }
-  onSelect={onSelect}
-  onClose={onClose}
-/> 
+<View>
+  <Cell
+    title="显示分享面板"
+    onClick={ onClick }
+  />
+  <ShareSheet
+    show={ `${ showShare }` }
+    title="立即分享给好友"
+    options={ `${ options }` }
+    onSelect={ onSelect }
+    onClose={ onClose }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   showShare: false,
   options: [{
-    "name": "微信",
-    "icon": "wechat",
-    "openType": "share"
+    name: '微信',
+    icon: 'wechat',
+    openType: 'share'
   }, {
-    "name": "微博",
-    "icon": "weibo"
+    name: '微博',
+    icon: 'weibo'
   }, {
-    "name": "复制链接",
-    "icon": "link"
+    name: '复制链接',
+    icon: 'link'
   }, {
-    "name": "分享海报",
-    "icon": "poster"
+    name: '分享海报',
+    icon: 'poster'
   }, {
-    "name": "二维码",
-    "icon": "qrcode"
+    name: '二维码',
+    icon: 'qrcode'
   }]
 };
 
@@ -74,34 +80,37 @@ function onSelect(event) {
 当分享选项的数量较多时，可以将 `options` 定义为数组嵌套的格式，每个子数组会作为一行选项展示。
 
 ```jsx
-<ShareSheet
-  show={ showShare }
-  title="立即分享给好友"
-  options={ options }
-/> 
+<View>
+  <ShareSheet
+    show={ `${ showShare }` }
+    title="立即分享给好友"
+    options={ `${ options }` }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   showShare: false,
   options: [[{
-    "name": "微信",
-    "icon": "wechat"
+    name: '微信',
+    icon: 'wechat'
   }, {
-    "name": "微博",
-    "icon": "weibo"
+    name: '微博',
+    icon: 'weibo'
   }, {
-    "name": "QQ",
-    "icon": "qq"
+    name: 'QQ',
+    icon: 'qq'
   }], [{
-    "name": "复制链接",
-    "icon": "link"
+    name: '复制链接',
+    icon: 'link'
   }, {
-    "name": "分享海报",
-    "icon": "poster"
+    name: '分享海报',
+    icon: 'poster'
   }, {
-    "name": "二维码",
-    "icon": "qrcode"
+    name: '二维码',
+    icon: 'qrcode'
   }]]
 }; 
 ```
@@ -111,21 +120,27 @@ this.state = {
 除了使用内置的几种图标外，可以直接在 `icon` 中传入图片 URL 来使用自定义的图标。
 
 ```jsx
-<ShareSheet show={ showShare } options={ options } /> 
+<View>
+  <ShareSheet
+    show={ `${ showShare }` }
+    options={ `${ options }` }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   showShare: false,
   options: [{
-    "name": "名称",
-    "icon": "https://img.yzcdn.cn/vant/customIconFire.png"
+    name: '名称',
+    icon: 'https://img.yzcdn.cn/vant/customIconFire.png'
   }, {
-    "name": "名称",
-    "icon": "https://img.yzcdn.cn/vant/customIconLight.png"
+    name: '名称',
+    icon: 'https://img.yzcdn.cn/vant/customIconLight.png'
   }, {
-    "name": "名称",
-    "icon": "https://img.yzcdn.cn/vant/customIconWater.png"
+    name: '名称',
+    icon: 'https://img.yzcdn.cn/vant/customIconWater.png'
   }]
 }; 
 ```
@@ -135,33 +150,36 @@ this.state = {
 通过 `description` 属性可以设置标题下方的描述文字, 在 `options` 内设置 `description` 属性可以添加分享选项描述。
 
 ```jsx
-<ShareSheet
-  show={ showShare }
-  options={ options }
-  title="立即分享给好友"
-  description="描述信息"
-/> 
+<View>
+  <ShareSheet
+    show={ `${ showShare }` }
+    options={ `${ options }` }
+    title="立即分享给好友"
+    description="描述信息"
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   showShare: false,
   options: [{
-    "name": "微信",
-    "icon": "wechat"
+    name: '微信',
+    icon: 'wechat'
   }, {
-    "name": "微博",
-    "icon": "weibo"
+    name: '微博',
+    icon: 'weibo'
   }, {
-    "name": "复制链接",
-    "icon": "link",
-    "description": "描述信息"
+    name: '复制链接',
+    icon: 'link',
+    description: '描述信息'
   }, {
-    "name": "分享海报",
-    "icon": "poster"
+    name: '分享海报',
+    icon: 'poster'
   }, {
-    "name": "二维码",
-    "icon": "qrcode"
+    name: '二维码',
+    icon: 'qrcode'
   }]
 }; 
 ```

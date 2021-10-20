@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { Overlay } from "taro-vantui"; 
 ```
 
@@ -17,11 +17,22 @@ import { Overlay } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<Button type="primary" onClick={onClickShow}>显示遮罩层</Button>
-<Overlay show={ show } onClick={onClickHide} /> 
+<View>
+  <Button
+    type="primary"
+    onClick={ onClickShow }
+  >
+    显示遮罩层
+  </Button>
+  <Overlay
+    show={ `${ show }` }
+    onClick={ onClickHide }
+  />
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   show: false
 };
@@ -44,15 +55,26 @@ function onClickHide() {
 通过默认插槽可以在遮罩层上嵌入任意内容。
 
 ```jsx
-<Button type="primary" onClick={onClickShow}>嵌入内容</Button>
-<Overlay show={ show } onClick={onClickHide}>
-  <view class="wrapper">
-    <view class="block" catch:tap="noop" />
-  </view>
-</Overlay> 
+<View>
+  <Button
+    type="primary"
+    onClick={ onClickShow }
+  >
+    嵌入内容
+  </Button>
+  <Overlay
+    show={ `${ show }` }
+    onClick={ onClickHide }
+  >
+    <view class="wrapper">
+      <view class="block" />
+    </view>
+  </Overlay>
+</View>
+ 
 ```
 
-```javascript
+```js
 this.state = {
   show: false
 };

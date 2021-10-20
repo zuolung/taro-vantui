@@ -8,7 +8,7 @@
 
 在 Taro 文件中引入组件
 
-```javascript
+```js
 import { NavBar } from "taro-vantui"; 
 ```
 
@@ -17,26 +17,20 @@ import { NavBar } from "taro-vantui";
 ### 基础用法
 
 ```jsx
-<NavBar
-  title="标题"
-  leftText="返回"
-  rightText="按钮"
-  leftArrow
-  onClickLeft={onClickLeft}
-  onClickRight={onClickRight}
-/> 
+<View>
+  <NavBar
+    title="标题"
+    leftText="返回"
+    rightText="按钮"
+    leftArrow={ true }
+    onClickLeft={ onClickLeft }
+    onClickRight={ onClickRight }
+  />
+</View>
+ 
 ```
 
-```javascript
-this.state = {};
-
-function onClickLeft() {
-  wx.showToast({
-    title: '点击返回',
-    icon: 'none'
-  });
-}
-
+```js
 function onClickRight() {
   wx.showToast({
     title: '点击按钮',
@@ -50,9 +44,19 @@ function onClickRight() {
 通过 slot 定制内容。
 
 ```jsx
-<NavBar title="标题" leftText="返回" leftArrow>
-  <Icon name="search" slot="right" />
-</NavBar> 
+<View>
+  <NavBar
+    title="标题"
+    leftText="返回"
+    leftArrow={ true }
+  >
+    <Icon
+      name="search"
+      slot="right"
+    />
+  </NavBar>
+</View>
+ 
 ```
 
 ## API
@@ -91,5 +95,5 @@ function onClickRight() {
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |
 | titleClass  | 标题样式类   |
