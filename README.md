@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  🔥 <a href="https://zuolung.github.io/taro-vantui/docs-dist/index.html#/">文档网站（国内）</a>
+  🔥 <a href="https://zuolung.github.io/taro-vantui/docs-dist/index.html#/">文档网站</a>
 </p>
 
 > 一套适用于Taro3, 基于react开发的vantui组件库

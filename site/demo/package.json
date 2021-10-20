@@ -96,11 +96,11 @@
     "dev:weapp": "cross-env NODE_ENV=production API_ENV=dev npx taro build --type weapp",
     "dev:alipay": "cross-env NODE_ENV=production API_ENV=dev npx taro build --type alipay",
     "dev:tt": "cross-env NODE_ENV=production API_ENV=dev npx taro build --type tt",
-    "dev:h5": "cross-env NODE_ENV=production API_ENV=dev PUBLIC_PATH=/ npx taro build --type h5",
+    "dev:h5": "cross-env NODE_ENV=production API_ENV=dev PUBLIC_PATH=./ npx taro build --type h5",
     "real:weapp": "cross-env NODE_ENV=production API_ENV=real npx taro build --type weapp",
     "real:alipay": "cross-env NODE_ENV=production API_ENV=real npx taro build --type alipay",
     "real:tt": "cross-env NODE_ENV=production API_ENV=real npx taro build --type tt",
-    "real:h5": "cross-env NODE_ENV=production API_ENV=real PUBLIC_PATH=/ npx taro build --type h5",
+    "real:h5": "cross-env NODE_ENV=production API_ENV=real PUBLIC_PATH=./ npx taro build --type h5",
     "build": "cross-env NODE_ENV=production npx taro build"
   },
   "dependencies": {
