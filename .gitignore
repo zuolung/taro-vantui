@@ -1,4 +1,3 @@
 *.log
 
-node_modules/
-disk-site/
+node_modules

@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/pages/stepper/index.scss"],"names":[],"mappings":"AACA,I,CACA,qB","file":"assets/css/chunk/55.css","sourcesContent":["/* pages/stepper/index.wxss */\npage {\n  background-color: #fff;\n}"],"sourceRoot":""}
