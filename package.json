@@ -1,6 +1,6 @@
 {
   "name": "taro-vantui",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "typings": "types/index.d.ts",
@@ -17,8 +17,8 @@
     "_install": "node ./scripts/install.js",
     "docs": "cross-env NODE_ENV=development webpack --config ./site/docs/config/dev-run.js",
     "docs:build": "cross-env NODE_ENV=production webpack --config ./site/docs/config/webpack.pro.config.js",
-    "site": "node ./scripts/site-run.js",
-    "site:build": "node ./scripts/site-build.js"
+    "demo": "node ./scripts/demo-run.js",
+    "demo:build": "node ./scripts/demo-build.js"
   },
   "publishConfig": {
     "access": "public",
@@ -73,6 +73,7 @@
   "devDependencies": {
     "@antmjs/babel-preset": "^1.14.0",
     "@antmjs/iconfont": "1.9.4",
+    "@antmjs/stylelint": "^1.14.0",
     "@babel/core": "^7.15.8",
     "@babel/plugin-transform-runtime": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
@@ -104,6 +105,7 @@
     "husky": "^7.0.2",
     "less": "^4.1.2",
     "less-loader": "^10.0.1",
+    "lint-staged": "^11.2.3",
     "markdown-to-ast": "^6.0.3",
     "mini-css-extract-plugin": "^2.4.2",
     "postcss": "^7.0.0",
