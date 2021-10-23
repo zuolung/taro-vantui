@@ -23,9 +23,11 @@ export interface TabsProps extends Omit<StandardProps, 'onClick'> {
   offsetTop?: number
   lazyRender?: boolean
   children: ReactNode
-  renderNavleft?: ReactNode
-  renderNavright?: ReactNode
-  onScroll?: (data: { scrollTop?: number | null; isFixed?: boolean }) => void
+  renderNavLeft?: ReactNode
+  renderNavRight?: ReactNode
+  onScroll?: (data: {
+    detail: { scrollTop?: number | null; isFixed?: boolean }
+  }) => void
   onClick?: (event: eventDetail) => void
   onChange?: (event: eventDetail) => void
   onDisabled?: (event: eventDetail) => void

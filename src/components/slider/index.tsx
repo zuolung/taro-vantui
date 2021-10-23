@@ -22,7 +22,6 @@ export default function Index(props: SliderProps) {
   const {
     range,
     disabled,
-    useButtonSlot,
     activeColor,
     inactiveColor,
     max = 100,
@@ -37,8 +36,8 @@ export default function Index(props: SliderProps) {
     onDragEnd,
     className = '',
     renderButton,
-    renderLeftbutton,
-    renderRightbutton,
+    renderLeftButton,
+    renderRightButton,
     ...others
   } = props
 
@@ -285,7 +284,7 @@ export default function Index(props: SliderProps) {
       if (disabled) return
       getRect(null, `.van-slider${currentIndex_} `).then((rect: any) => {
         const value =
-          ((event.clientX - rect.left) / rect.width) * getRange() + min
+          ((event.target.x - rect.left) / rect.width) * getRange() + min
 
         if (isRange(value_)) {
           const [left, right] = value_
@@ -333,9 +332,9 @@ export default function Index(props: SliderProps) {
             onTouchEnd={onTouchEnd}
             onTouchCancel={onTouchEnd}
           >
-            {useButtonSlot ? (
-              renderLeftbutton ? (
-                renderLeftbutton(value_ as number)
+            {renderButton ? (
+              renderLeftButton ? (
+                renderLeftButton(value_ as number)
               ) : (
                 ''
               )
@@ -352,9 +351,9 @@ export default function Index(props: SliderProps) {
             onTouchEnd={onTouchEnd}
             onTouchCancel={onTouchEnd}
           >
-            {useButtonSlot ? (
-              renderRightbutton ? (
-                renderRightbutton(value_ as number)
+            {renderButton ? (
+              renderRightButton ? (
+                renderRightButton(value_ as number)
               ) : (
                 ''
               )
@@ -371,8 +370,8 @@ export default function Index(props: SliderProps) {
             onTouchEnd={onTouchEnd}
             onTouchCancel={onTouchEnd}
           >
-            {useButtonSlot && renderButton ? (
-              renderButton
+            {renderButton ? (
+              renderButton(value_ as number)
             ) : (
               <View className={utils.bem('slider__button')}></View>
             )}

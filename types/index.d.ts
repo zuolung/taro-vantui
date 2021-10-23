@@ -1,3 +1,5 @@
+declare function pxTransform(size: number, designWidth?: number): string
+export { pxTransform }
 export {
   Button,
   MiniLoginButton,
@@ -47,7 +49,7 @@ export { Stepper } from './stepper.d'
 export { Steps } from './steps.d'
 export { Tabbar } from './tabbar.d'
 export { TabbarItem } from './tabbar-item.d'
-export { Notify } from './notify'
+export { Notify, notify } from './notify'
 export { Grid } from './grid'
 export { GridItem } from './grid-item'
 export { DropdownMenu } from './dropdown-menu'

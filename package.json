@@ -1,7 +1,6 @@
 {
   "name": "taro-vantui",
   "version": "0.0.5",
-  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "typings": "types/index.d.ts",

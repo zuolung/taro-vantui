@@ -1,4 +1,5 @@
-import shelljs from 'shelljs'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const shelljs = require('shelljs')
 
 shelljs.exec('yarn')
 shelljs.exec('npm link')

@@ -1,11 +1,5 @@
 import { View, Block } from '@tarojs/components'
-import {
-  useState,
-  useEffect,
-  useCallback,
-  useImperativeHandle,
-  forwardRef,
-} from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Taro from '@tarojs/taro'
 import { DropdownItemProps } from '../../../types/dropdown-item'
 import * as utils from '../wxs/utils'
@@ -13,13 +7,12 @@ import VanIcon from '../icon/index'
 import VanCell from '../cell'
 import VanPopup from '../popup'
 
-function Index(
+export default function Index(
   props: DropdownItemProps & {
     setChildrenInstance: any
     index: number
     parentInstance: any
   },
-  ref: React.ForwardedRef<any>,
 ) {
   const {
     value,
@@ -173,69 +166,63 @@ function Index(
     }
   }
 
-  useImperativeHandle(ref, () => {
-    return {
-      toggle,
-    }
-  })
-
-  return showWrapper ? (
-    <View
-      className={utils.bem('dropdown-item', direction) + ' ' + className}
-      style={utils.style([parentState.wrapperStyle, style])}
-    >
-      <VanPopup
-        show={showPopup}
-        style={utils.style([{ position: 'absolute' }, popupStyle])}
-        overlayStyle="position: absolute;"
-        overlay={!!parentInstance.overlay}
-        position={direction !== 'down' ? 'top' : 'bottom'}
-        duration={transition ? duration : 0}
-        closeOnClickOverlay={closeOnClickOverlay}
-        onEnter={onOpen}
-        onLeave={onClose}
-        onClose={toggle}
-        onAfterEnter={onOpened}
-        onAfterLeave={onClosed_}
+  return (
+    showWrapper && (
+      <View
+        className={utils.bem('dropdown-item', direction) + ' ' + className}
+        style={utils.style([parentState.wrapperStyle, style])}
       >
-        <>
-          {options.map((item: any, index: number) => (
-            <VanCell
-              key={`${index}VanCell`}
-              data-option={item}
-              className={utils.bem('dropdown-item__option', {
-                active: item.value === value_,
-              })}
-              clickable
-              icon={item.icon}
-              onClick={(e) => onOptionTap(e, item)}
-              renderTitle={
-                <Block>
-                  <View
-                    className="van-dropdown-item__title"
-                    style={item.value === value_ ? 'color:' + activeColor : ''}
-                  >
-                    {item.text}
-                  </View>
-                </Block>
-              }
-            >
-              {item.value === value_ && (
-                <VanIcon
-                  name="success"
-                  className="van-dropdown-item__icon"
-                  color={activeColor}
-                ></VanIcon>
-              )}
-            </VanCell>
-          ))}
-          {others.children}
-        </>
-      </VanPopup>
-    </View>
-  ) : (
-    <View></View>
+        <VanPopup
+          show={showPopup}
+          style={utils.style([{ position: 'absolute' }, popupStyle])}
+          overlayStyle="position: absolute;"
+          overlay={!!parentInstance.overlay}
+          position={direction !== 'down' ? 'top' : 'bottom'}
+          duration={transition ? duration : 0}
+          closeOnClickOverlay={closeOnClickOverlay}
+          onEnter={onOpen}
+          onLeave={onClose}
+          onClose={toggle}
+          onAfterEnter={onOpened}
+          onAfterLeave={onClosed_}
+        >
+          <>
+            {options.map((item: any, index: number) => (
+              <VanCell
+                key={`${index}VanCell`}
+                data-option={item}
+                className={utils.bem('dropdown-item__option', {
+                  active: item.value === value_,
+                })}
+                clickable
+                icon={item.icon}
+                onClick={(e) => onOptionTap(e, item)}
+                renderTitle={
+                  <Block>
+                    <View
+                      className="van-dropdown-item__title"
+                      style={
+                        item.value === value_ ? 'color:' + activeColor : ''
+                      }
+                    >
+                      {item.text}
+                    </View>
+                  </Block>
+                }
+              >
+                {item.value === value_ && (
+                  <VanIcon
+                    name="success"
+                    className="van-dropdown-item__icon"
+                    color={activeColor}
+                  ></VanIcon>
+                )}
+              </VanCell>
+            ))}
+            {others.children}
+          </>
+        </VanPopup>
+      </View>
+    )
   )
 }
-
-export default forwardRef(Index)

@@ -30,7 +30,7 @@ export default forwardRef(function Index(
     title,
     cancelButtonText,
     confirmButtonText,
-    itemHeight = 88,
+    itemHeight = 48, // 只支持px为单位的数字
     visibleItemCount = 5,
     loading,
     onChange,

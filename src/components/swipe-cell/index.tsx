@@ -178,9 +178,6 @@ function Index(
         detail: {
           value: {
             position,
-            instance: {
-              close,
-            },
           },
         },
       })
@@ -192,7 +189,7 @@ function Index(
         swipeMove(0)
       }
     },
-    [asyncClose, close, offset, onClick, onClose, swipeMove],
+    [asyncClose, offset, onClick, onClose, swipeMove],
   )
 
   const startDrag = useCallback(

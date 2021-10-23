@@ -21,7 +21,7 @@ function Index(
 ): JSX.Element {
   const {
     valueKey,
-    itemHeight = 88,
+    itemHeight = 48,
     visibleItemCount = 5,
     initialOptions,
     defaultIndex,
@@ -31,11 +31,6 @@ function Index(
     index: curColIndex,
     ...others
   } = props
-
-  console.info(
-    valueKey,
-    'valueKeyvalueKeyvalueKeyvalueKeyvalueKeyvalueKeyvalueKey',
-  )
 
   const [options, setOptions] = useState<Array<any>>([])
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -134,7 +129,7 @@ function Index(
         )
         setTimeout(() => {
           setIndex(index, true)
-        })
+        }, 16)
       }
     },
     [startOffset, offset, itemHeight, options.length, setIndex],
@@ -200,6 +195,7 @@ function Index(
         }),
     }
   })
+
   return (
     <View
       className={`van-picker-column custom-class ${className}`}
@@ -226,12 +222,11 @@ function Index(
         catchMove
       >
         {options.map((option: any, index: number) => {
-          console.info(option, valueKey)
           return (
             <View
               key={`picker-column__item${index}`}
               data-index={index}
-              style={computed.styleTran({ height: itemHeight })}
+              style={{ height: itemHeight + 'px' }}
               className={
                 'van-ellipsis ' +
                 utils.bem('picker-column__item', {

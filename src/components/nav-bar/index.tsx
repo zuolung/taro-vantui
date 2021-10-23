@@ -1,71 +1,98 @@
+import Taro from '@tarojs/taro'
 import { useState, useEffect, useCallback } from 'react'
 import { View, Block } from '@tarojs/components'
 import * as utils from '../wxs/utils'
+import Icon from '../icon'
 import { Navbar } from '../common/zIndex'
-import { getRect, getSystemInfoSync } from '../common/utils'
-import { NavBarProps } from '../../../types/nav-bar'
-import Icon from '../icon/index'
+import {
+  getSystemInfoSync,
+  getMenuButtonBoundingClientRect,
+} from '../common/utils'
+import { MiniNavBarProps } from '../../../types/nav-bar'
 import * as computed from './wxs'
 
-export default function Index(props: NavBarProps) {
-  const [height, setHeight] = useState(46)
-  const [statusBarHeight, setStatusBarHeight] = useState(44)
+export default function Index(props: MiniNavBarProps) {
+  const [state, setState] = useState({
+    height: 40,
+    fromTop: 44,
+    fromLeft: 7,
+    menuHeight: 32,
+    menuWidth: 87,
+    screenWidth: 375,
+  })
   const {
-    fixed,
-    placeholder,
+    fixed = true,
+    placeholder = true,
     border = true,
     zIndex = Navbar,
-    safeAreaInsetTop = true,
-    customStyle,
-    leftArrow,
-    leftText,
-    title,
-    rightText,
     renderTitle,
-    renderLeft,
-    renderRight,
-    onClickLeft,
-    onClickRight,
+    customStyle,
+    homeUrl,
+    buttonColor = 'white',
+    title,
     style,
     className,
     ...others
   } = props
 
-  const setNextHeight = useCallback(
-    function () {
-      if (!fixed || !placeholder) {
-        return
-      }
-      getRect(null, '.van-nav-bar').then((res: any) => {
-        if (res && 'height' in res) {
-          setHeight(res.height)
-        }
-      })
-    },
-    [fixed, placeholder],
-  )
+  const { height, fromTop, fromLeft, menuHeight, menuWidth, screenWidth } =
+    state
 
-  useEffect(function () {
-    const { statusBarHeight } = getSystemInfoSync()
-    setHeight(46 + statusBarHeight)
-    setStatusBarHeight(statusBarHeight)
+  const handleGoBack = useCallback(() => {
+    Taro.navigateBack({
+      delta: 1,
+    })
   }, [])
+
+  const handleGoHome = useCallback(() => {
+    Taro.reLaunch({
+      url: homeUrl,
+    })
+  }, [homeUrl])
+
+  const [backButton, setBackButton] = useState(false)
+  const [homeButton, setHomeButton] = useState(false)
 
   useEffect(
     function () {
-      setNextHeight()
+      const pages = Taro.getCurrentPages()
+      if (pages.length >= 1) {
+        const ins: any = pages[pages.length - 1]
+        const url = ins.route || ins.__route__ || ins['$taroPath']
+        if (url !== homeUrl) {
+          setHomeButton(true)
+        }
+        if (pages.length > 1) {
+          setBackButton(true)
+        }
+      }
     },
-    [setNextHeight],
+    [homeUrl],
   )
+
+  useEffect(function () {
+    const sysInfo = getSystemInfoSync()
+    const menuInfo = getMenuButtonBoundingClientRect()
+    if (sysInfo && menuInfo) {
+      setState({
+        height: (menuInfo.top - sysInfo.statusBarHeight) * 2 + menuInfo.height,
+        fromTop: sysInfo.statusBarHeight,
+        fromLeft: sysInfo.screenWidth - menuInfo.right,
+        menuHeight: menuInfo.height,
+        menuWidth: menuInfo.width,
+        screenWidth: sysInfo.screenWidth,
+      })
+    }
+  }, [])
 
   return (
     <Block>
       {fixed && placeholder && (
-        <View style={'height: ' + height + 'px;'}></View>
+        <View style={{ height: `${height + fromTop}px` }}></View>
       )}
       <View
         className={
-          utils.bem('nav-bar', {
+          utils.bem('mini-nav-bar', {
             fixed,
           }) +
           ' custom-class ' +
@@ -75,8 +102,9 @@ export default function Index(props: NavBarProps) {
         style={utils.style([
           computed.barStyle({
             zIndex,
-            statusBarHeight,
-            safeAreaInsetTop,
+            fromTop,
+            height,
+            fromLeft,
           }) +
             '; ' +
             customStyle,
@@ -84,47 +112,43 @@ export default function Index(props: NavBarProps) {
         ])}
         {...others}
       >
-        <View className="van-nav-bar__content">
-          <View className="van-nav-bar__left" onClick={onClickLeft}>
-            {leftArrow || leftText ? (
-              <Block>
-                {leftArrow && (
-                  <Icon
-                    size={64}
-                    name="arrow-left"
-                    className="van-nav-bar__arrow"
-                  ></Icon>
-                )}
-                {leftText && (
-                  <View
-                    className="van-nav-bar__text"
-                    hoverClass="van-nav-bar__text--hover"
-                    hoverStayTime={70}
-                  >
-                    {leftText}
-                  </View>
-                )}
-              </Block>
-            ) : (
-              renderLeft
+        <View className="van-mini-nav-bar__content">
+          <View
+            className="van-mini-nav-bar__left"
+            style={{ left: `${fromLeft}px` }}
+          >
+            {backButton && (
+              <View
+                className={`van-mini-nav-bar__left-menu van-mini-nav-bar__left-menu-${buttonColor}`}
+                onClick={handleGoBack}
+                style={{
+                  width: `${menuHeight}px`,
+                  height: `${menuHeight}px`,
+                }}
+              >
+                <Icon name="arrow-left" size={40} />
+              </View>
+            )}
+            {homeButton && (
+              <View
+                className={`van-mini-nav-bar__left-menu van-mini-nav-bar__left-menu-${buttonColor}`}
+                onClick={handleGoHome}
+                style={{
+                  width: `${menuHeight}px`,
+                  height: `${menuHeight}px`,
+                }}
+              >
+                <Icon name="wap-home" size={40} />
+              </View>
             )}
           </View>
-          <View className="van-nav-bar__title title-class van-ellipsis">
+          <View
+            className="van-mini-nav-bar__title title-class van-ellipsis"
+            style={{ width: `${screenWidth - menuWidth * 2 - fromLeft * 4}px` }}
+          >
             {title ? <Block>{title}</Block> : renderTitle}
           </View>
-          <View className="van-nav-bar__right" onClick={onClickRight}>
-            {rightText ? (
-              <View
-                className="van-nav-bar__text"
-                hoverClass="van-nav-bar__text--hover"
-                hoverStayTime={70}
-              >
-                {rightText}
-              </View>
-            ) : (
-              renderRight
-            )}
-          </View>
+          <View className="van-mini-nav-bar__right"></View>
         </View>
       </View>
     </Block>

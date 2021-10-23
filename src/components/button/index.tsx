@@ -1,100 +1,108 @@
-import type { ButtonProps } from '../../../types/button.d'
+import type { MiniUserButtonProps } from '../../../types/button.d'
+import { useEffect, useState } from 'react'
 import Taro from '@tarojs/taro'
-import { Button, Block, View } from '@tarojs/components'
-import * as utils from '../wxs/utils'
-import Icon from '../icon/index'
-import Loading from '../loading/index'
-import * as computed from './wxs'
+import { ButtonProps, CommonEventFunction } from '@tarojs/components'
+import Button from './index'
 
-export default function Index(props: ButtonProps) {
-  const {
-    type = 'default',
-    size = 'normal',
-    block,
-    round,
-    plain,
-    square,
-    loading,
-    disabled,
-    hairline,
-    color,
-    customStyle,
-    loadingSize = Taro.pxTransform(40),
-    loadingType = 'circular',
-    loadingText,
-    icon,
-    classPrefix = 'van-icon',
-    onClick,
-    children,
-    style,
-    className,
-    ...others
-  } = props
+declare const my: any
+
+export default function Index(props: MiniUserButtonProps): JSX.Element {
+  const { onGetUserInfo, onFail, desc, children, ...others } = props
+  const [userProfile, setUserProfile] = useState(true)
+
+  useEffect(function () {
+    let canIUse = false
+    if (process.env.TARO_ENV !== 'h5') {
+      try {
+        canIUse = Taro.canIUse('getUserProfile')
+      } catch {}
+    }
+    setUserProfile(canIUse)
+  }, [])
+
+  const getUserProfile = function () {
+    Taro.getUserProfile({
+      desc: desc || '用于快速登录', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success(res) {
+        onGetUserInfo(res)
+      },
+      fail(error) {
+        onFail(error)
+      },
+    })
+  }
+
+  const getTTUserInfo = function () {
+    Taro.getUserInfo({
+      success(res) {
+        onGetUserInfo(res)
+      },
+      fail(error) {
+        onFail(error)
+      },
+    })
+  }
+
+  const getUserInfo: CommonEventFunction<ButtonProps.onGetUserInfoEventDetail> =
+    function (e) {
+      if (process.env.TARO_ENV === 'alipay') {
+        my.getOpenUserInfo({
+          fail: (e: any) => {
+            onFail({
+              errMsg: e.errorMessage || JSON.stringify(e),
+            })
+          },
+          success: (res: any) => {
+            const userInfo = JSON.parse(res.response).response // 以下方的报文格式解析两层 response
+            onGetUserInfo(userInfo)
+          },
+        })
+      } else {
+        if (e.detail) {
+          onGetUserInfo(e.detail)
+        } else {
+          onFail(e)
+        }
+      }
+    }
+
+  const getError = function (e: any) {
+    onFail({
+      errMsg: /取消/.test(e.detail?.errorMessage ?? '')
+        ? 'getUserInfo:fail auth deny'
+        : e.detail?.errorMessage,
+    })
+  }
+
+  if (process.env.TARO_ENV === 'alipay') {
+    return (
+      <Button
+        {...others}
+        openType="getAuthorize"
+        scope="userInfo"
+        onError={getError}
+        onGetAuthorize={getUserInfo}
+      >
+        {children}
+      </Button>
+    )
+  }
 
   return (
-    <Button
-      className={
-        'custom-class ' +
-        utils.bem('button', [
-          type,
-          size,
-          {
-            block,
-            round,
-            plain,
-            square,
-            loading,
-            disabled,
-            hairline,
-            unclickable: disabled || loading,
-          },
-        ]) +
-        ' ' +
-        (hairline ? 'van-hairline--surround' : '') +
-        ` ${className || ''}`
-      }
-      hoverClass="van-button--active hover-class"
-      style={utils.style([
-        computed.rootStyle({
-          plain,
-          color,
-          customStyle,
-        }),
-        style,
-      ])}
-      onClick={disabled || loading ? undefined : onClick}
-      {...others}
-    >
-      {loading ? (
-        <View style="display: flex">
-          <Loading
-            className="loading-class"
-            size={loadingSize}
-            type={loadingType}
-            color={computed.loadingColor({
-              type,
-              color,
-              plain,
-            })}
-          ></Loading>
-          {loadingText && (
-            <View className="van-button__loading-text">{loadingText}</View>
-          )}
-        </View>
+    <>
+      {userProfile ? (
+        <Button {...others} onClick={getUserProfile}>
+          {children}
+        </Button>
+      ) : process.env.TARO_ENV === 'tt' ? (
+        <Button {...others} onClick={getTTUserInfo}>
+          {children}
+        </Button>
       ) : (
-        <Block>
-          {icon && (
-            <Icon
-              size="1.2em"
-              name={icon}
-              classPrefix={classPrefix}
-              className="van-button__icon"
-              customStyle="line-height: inherit;"
-            ></Icon>
-          )}
-          <View className="van-button__text">{children}</View>
-        </Block>
+        <Button {...others} openType="getUserInfo" onGetUserInfo={getUserInfo}>
+          {children}
+        </Button>
       )}
-    </Button>
+    </>
   )
 }

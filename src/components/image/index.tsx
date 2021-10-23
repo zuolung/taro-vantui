@@ -22,8 +22,6 @@ export default function Index(props: ImageProps) {
     height,
     radius,
     lazyLoad,
-    useErrorSlot,
-    useLoadingSlot,
     showMenuByLongpress,
     fit,
     showError = true,
@@ -95,9 +93,7 @@ export default function Index(props: ImageProps) {
       {!error && (
         <Image
           src={src}
-          mode={
-            (computed.mode(fit as FitType) as TaroImageMode) || 'scaleToFill'
-          }
+          mode={computed.mode(fit || ('none' as FitType)) as TaroImageMode}
           lazyLoad={lazyLoad}
           className="image-class van-image__img"
           showMenuByLongpress={showMenuByLongpress}
@@ -108,18 +104,14 @@ export default function Index(props: ImageProps) {
       )}
       {loading && showLoading && (
         <View className="loading-class van-image__loading">
-          {useLoadingSlot ? (
-            renderLoading
-          ) : (
+          {renderLoading || (
             <VanIcon name="photo" className="van-image__loading-icon"></VanIcon>
           )}
         </View>
       )}
       {error && showError && (
         <View className="error-class van-image__error">
-          {useErrorSlot ? (
-            renderError
-          ) : (
+          {renderError || (
             <VanIcon
               name="photo-fail"
               className="van-image__error-icon"
