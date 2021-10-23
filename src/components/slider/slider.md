@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Slider } from "taro-vantui"; 
+import { Slider } from "vantui"; 
 ```
 
 ## 代码演示
@@ -21,6 +21,25 @@ import { Slider } from "taro-vantui";
   <Slider
     value="50"
     onChange={ onChange }
+  />
+</View>
+ 
+```
+
+```js
+ 
+```
+
+### 双滑块
+
+添加 `range` 属性就可以开启双滑块模式，确保 `value` 的值是一个数组。
+
+```jsx
+<View>
+  <Slider
+    value={ `${ 10, 50 }` }
+    range={ true }
+    change="onChange"
   />
 </View>
  
@@ -87,14 +106,16 @@ import { Slider } from "taro-vantui";
     value={ `${ currentValue }` }
     useButtonSlot={ true }
     onDrag={ onDrag }
-  >
-    <view
-      class="customButton"
-      slot="button"
-    >
-      { currentValue }/100
-    </view>
-  </Slider>
+    renderButton={ (
+          <view
+            class="customButton"
+            slot="button"
+          >
+            { currentValue }/100
+          </view>
+
+        ) }
+  />
 </View>
  
 ```
@@ -109,6 +130,34 @@ function onDrag(event) {
     currentValue: event.detail.value
   });
 } 
+```
+
+### 垂直方向
+
+设置 `vertical` 属性后，滑块会垂直展示，且高度为 100% 父元素高度。
+
+```jsx
+<View>
+  <view style="height: 150px;">
+    <Slider
+      value="50"
+      vertical={ true }
+      onChange={ onChange }
+    />
+    <Slider
+      value={ `${ [10, 50] }` }
+      range={ true }
+      vertical={ true }
+      style="marginLeft: 100px;"
+      onChange={ onChange }
+    />
+  </view>
+</View>
+ 
+```
+
+```js
+ 
 ```
 
 ## API
@@ -127,6 +176,7 @@ function onDrag(event) {
 | inactiveColor | 进度条默认颜色 | _string_ | `#e5e5e5` |
 | useSlotButton | 是否使用按钮插槽 | _boolean_ | `false` |
 | range `v1.8.4` | 是否开启双滑块模式 | _boolean_ | `false` |
+| vertical `v1.8.5` | 是否垂直展示 | _boolean_ | `false` |
 
 ### Events
 

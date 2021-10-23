@@ -5,7 +5,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Panel } from "taro-vantui"; 
+import { Panel } from "vantui"; 
 ```
 
 ## 代码演示

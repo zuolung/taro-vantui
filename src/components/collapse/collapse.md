@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Collapse } from "taro-vantui";
-import { CollapseItem } from "taro-vantui"; 
+import { Collapse } from "vantui";
+import { CollapseItem } from "vantui"; 
 ```
 
 ## 代码演示
@@ -253,5 +253,5 @@ function onChange(event) {
 
 | 类名          | 说明         |
 | ------------- | ------------ |
-| customClass  | 根节点样式类 |
+| className  | 根节点样式类 |
 | contentClass | 内容样式类   |

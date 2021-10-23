@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Notify } from "taro-vantui"; 
+import { Notify } from "vantui"; 
 ```
 
 ## 代码演示
@@ -24,7 +24,7 @@ Notify('通知内容');
 
 ```jsx
 <View>
-  在页面内添加对应的节点
+  @! 在页面内添加对应的节点 @!
   <Notify id="vanNotify" />
 </View>
  
@@ -77,7 +77,7 @@ Notify({
 
 ```jsx
 <View>
-  在页面内添加自定义节点
+  @! 在页面内添加自定义节点 @!
   <Notify id="customSelector" />
 </View>
  

@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Radio } from "taro-vantui";
-import { RadioGroup } from "taro-vantui"; 
+import { Radio } from "vantui";
+import { RadioGroup } from "vantui"; 
 ```
 
 ## 代码演示
@@ -187,23 +187,29 @@ function onChange(event) {
       useIconSlot={ true }
       value={ `${ radio }` }
       name="1"
+      renderIcon={ (
+          <image
+            slot="icon"
+            src={ `${ radio === '1' ? icon.active : icon.normal }` }
+          />
+
+        ) }
     >
       自定义图标
-      <image
-        slot="icon"
-        src={ `${ radio === '1' ? icon.active : icon.normal }` }
-      />
     </Radio>
     <Radio
       useIconSlot={ true }
       value={ `${ radio }` }
       name="2"
+      renderIcon={ (
+          <image
+            slot="icon"
+            src={ `${ radio === '2' ? icon.active : icon.normal }` }
+          />
+
+        ) }
     >
       自定义图标
-      <image
-        slot="icon"
-        src={ `${ radio === '2' ? icon.active : icon.normal }` }
-      />
     </Radio>
   </RadioGroup>
 </View>

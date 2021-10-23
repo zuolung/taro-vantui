@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Sidebar } from "taro-vantui";
-import { SidebarItem } from "taro-vantui"; 
+import { Sidebar } from "vantui";
+import { SidebarItem } from "vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -159,4 +159,4 @@ function onChange(event) {
 
 | 类名         | 说明         |
 | ------------ | ------------ |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |

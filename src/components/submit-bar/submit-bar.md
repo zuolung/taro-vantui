@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { SubmitBar } from "taro-vantui"; 
+import { SubmitBar } from "vantui"; 
 ```
 
 ## 代码演示
@@ -38,7 +38,7 @@ import { SubmitBar } from "taro-vantui";
     price={ `${ 3050 }` }
     buttonText="提交订单"
     tip="您的收货地址不支持同城送, 我们已为您推荐快递"
-    tipIcon="https://img.yzcdn.cn/1.png"
+    tipIcon="infoO"
     onSubmit={ onSubmit }
   />
 </View>
@@ -78,9 +78,9 @@ import { SubmitBar } from "taro-vantui";
     </Tag>
     <view slot="tip">
       您的收货地址不支持同城送,
-      <text>
+      <Text>
         修改地址
-      </text>
+      </Text>
     </view>
   </SubmitBar>
 </View>

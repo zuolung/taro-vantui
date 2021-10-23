@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { ActionSheet } from "taro-vantui"; 
+import { ActionSheet } from "vantui"; 
 ```
 
 ## 代码演示
@@ -176,6 +176,7 @@ function onGetUserInfo(e) {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| show | 是否显示动作面板 | _boolean_ | - |
 | actions | 菜单选项 | _Array_ | `[]` |
 | title | 标题 | _string_ | - |
 | description `v1.0.0` | 选项上方的描述信息 | _string_ | - |

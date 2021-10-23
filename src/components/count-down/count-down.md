@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { CountDown } from "taro-vantui"; 
+import { CountDown } from "vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)。
@@ -69,19 +69,18 @@ this.state = {
 ```jsx
 <View>
   <CountDown
-    useSlot={ true }
     time={ `${ time }` }
     onChange={ onChange }
   >
     <text class="item">
       { timeData.hours }
-    </text>
+    </Text>
     <text class="item">
       { timeData.minutes }
-    </text>
+    </Text>
     <text class="item">
       { timeData.seconds }
-    </text>
+    </Text>
   </CountDown>
 </View>
  

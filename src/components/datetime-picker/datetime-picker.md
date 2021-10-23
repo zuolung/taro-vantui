@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { DatetimePicker } from "taro-vantui"; 
+import { DatetimePicker } from "vantui"; 
 ```
 
 ## 代码演示

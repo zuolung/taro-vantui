@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { ConfigProvider } from "taro-vantui"; 
+import { ConfigProvider } from "vantui"; 
 ```
 
 ## 定制主题

@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Calendar } from "taro-vantui"; 
+import { Calendar } from "vantui"; 
 ```
 
 ## 代码演示
@@ -361,6 +361,7 @@ this.state = {
 | confirmText | 确认按钮的文字 | _string_ | `确定` |
 | confirmDisabledText | 确认按钮处于禁用状态时的文字 | _string_ | `确定` |
 | firstDayOfWeek | 设置周起始日 | _0~6_ | `0` |
+| readonly `v1.9.1` | 是否为只读状态，只读状态下不能选择日期 | _boolean_ | `false` |
 
 ### Poppable Props
 
@@ -396,6 +397,7 @@ this.state = {
 | text | 中间显示的文字 | _string_ |
 | topInfo | 上方的提示信息 | _string_ |
 | bottomInfo | 下方的提示信息 | _string_ |
+| className | 自定义 className | _string_ |
 
 ### Events
 

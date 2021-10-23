@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Image } from "taro-vantui"; 
+import { Image } from "vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)。
@@ -85,14 +85,18 @@ import { Image } from "taro-vantui";
 
 ```jsx
 <View>
-  <Image useLoadingSlot={ true }>
-    <Loading
-      slot="loading"
-      type="spinner"
-      size="20"
-      vertical={ true }
-    />
-  </Image>
+  <Image
+    useLoadingSlot={ true }
+    renderLoading={ (
+          <Loading
+            slot="loading"
+            type="spinner"
+            size="20"
+            vertical={ true }
+          />
+
+        ) }
+  />
 </View>
  
 ```
@@ -103,11 +107,15 @@ import { Image } from "taro-vantui";
 
 ```jsx
 <View>
-  <Image useErrorSlot={ true }>
-    <text slot="error">
-      加载失败
-    </text>
-  </Image>
+  <Image
+    useErrorSlot={ true }
+    renderError={ (
+          <text slot="error">
+            加载失败
+          </Text>
+
+        ) }
+  />
 </View>
  
 ```

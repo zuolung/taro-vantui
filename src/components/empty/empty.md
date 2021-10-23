@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Empty } from "taro-vantui"; 
+import { Empty } from "vantui"; 
 ```
 
 ## 代码演示
@@ -29,15 +29,15 @@ Empty 组件内置了多种占位图片类型，可以在不同业务场景下�
 
 ```jsx
 <View>
-  通用错误
+  @! 通用错误 @!
   <Empty
     image="error"
     description="描述文字"
-  /> 网络错误
+  /> @! 网络错误 @!
   <Empty
     image="network"
     description="描述文字"
-  /> 搜索提示
+  /> @! 搜索提示 @!
   <Empty
     image="search"
     description="描述文字"

@@ -9,9 +9,9 @@
 在 Taro 文件中引入组件
 
 ```js
-import { GoodsAction } from "taro-vantui";
-import { GoodsActionIcon } from "taro-vantui";
-import { GoodsActionButton } from "taro-vantui"; 
+import { GoodsAction } from "vantui";
+import { GoodsActionIcon } from "vantui";
+import { GoodsActionButton } from "vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)。

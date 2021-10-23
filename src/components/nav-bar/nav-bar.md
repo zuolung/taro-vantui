@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { NavBar } from "taro-vantui"; 
+import { NavBar } from "vantui"; 
 ```
 
 ## 代码演示

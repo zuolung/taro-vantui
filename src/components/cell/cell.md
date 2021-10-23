@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Cell } from "taro-vantui";
-import { CellGroup } from "taro-vantui"; 
+import { Cell } from "vantui";
+import { CellGroup } from "vantui"; 
 ```
 
 ## 代码演示
@@ -260,7 +260,7 @@ import { CellGroup } from "taro-vantui";
 
 | 类名         | 说明           |
 | ------------ | -------------- |
-| customClass | 根节点样式类   |
+| className | 根节点样式类   |
 | titleClass  | 标题样式类     |
 | labelClass  | 描述信息样式类 |
 | valueClass  | 右侧内容样式类 |

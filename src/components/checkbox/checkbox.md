@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Checkbox } from "taro-vantui";
-import { CheckboxGroup } from "taro-vantui"; 
+import { Checkbox } from "vantui";
+import { CheckboxGroup } from "vantui"; 
 ```
 
 ## 代码演示
@@ -120,12 +120,15 @@ function onChange(event) {
     useIconSlot={ true }
     value={ `${ checked }` }
     onChange={ onChange }
+    renderIcon={ (
+          <image
+            slot="icon"
+            src={ `${ checked ? activeIcon : inactiveIcon }` }
+          />
+
+        ) }
   >
     自定义图标
-    <image
-      slot="icon"
-      src={ `${ checked ? activeIcon : inactiveIcon }` }
-    />
   </Checkbox>
 </View>
  

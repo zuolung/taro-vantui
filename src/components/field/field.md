@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Field } from "taro-vantui"; 
+import { Field } from "vantui"; 
 ```
 
 ## 代码演示
@@ -189,15 +189,17 @@ this.state = {
       placeholder="请输入短信验证码"
       border={ `${ false }` }
       useButtonSlot={ true }
-    >
-      <Button
-        slot="button"
-        size="small"
-        type="primary"
-      >
-        发送验证码
-      </Button>
-    </Field>
+      renderButton={ (
+          <Button 
+            slot="button" 
+            size="small" 
+            type="primary"
+          >
+            发送验证码
+          </Button>
+
+        ) }
+    />
   </CellGroup>
 </View>
  

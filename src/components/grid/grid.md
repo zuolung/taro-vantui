@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Grid } from "taro-vantui";
-import { GridItem } from "taro-vantui"; 
+import { Grid } from "vantui";
+import { GridItem } from "vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -72,10 +72,7 @@ import { GridItem } from "taro-vantui";
     border={ `${ false }` }
   >
     { (new Array(3)).map((item, index) => (
-        <GridItem
-          useSlot={ true }
-          forItem="index"
-        >
+        <GridItem forItem="index">
           <image
             style="width: 100%; height: 90px;"
             src={ `https://img.yzcdn.cn/vant/apple-${ index + 1 }.jpg` }
@@ -250,7 +247,7 @@ import { GridItem } from "taro-vantui";
 
 | 类名          | 说明         |
 | ------------- | ------------ |
-| customClass  | 根节点样式类 |
+| className  | 根节点样式类 |
 | contentClass | 内容样式类   |
 | iconClass    | 图标样式类   |
 | textClass    | 文本样式类   |

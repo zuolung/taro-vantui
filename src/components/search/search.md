@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Search } from "taro-vantui"; 
+import { Search } from "vantui"; 
 ```
 
 ## 代码演示
@@ -104,14 +104,16 @@ import { Search } from "taro-vantui";
     useActionSlot={ true }
     onChange={ onChange }
     onSearch={ onSearch }
-  >
-    <view
-      slot="action"
-      onTap={ onClick }
-    >
-      搜索
-    </view>
-  </Search>
+    renderAction={ (
+          <view
+            slot="action"
+            onTap={ onClick }
+          >
+            搜索
+          </view>
+
+        ) }
+  />
 </View>
  
 ```

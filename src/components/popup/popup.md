@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Popup } from "taro-vantui"; 
+import { Popup } from "vantui"; 
 ```
 
 ## 代码演示
@@ -81,7 +81,7 @@ function onClose() {
     position="bottom"
     customStyle="height: 20%"
     onClose={ onClose }
-  /> 自定义图标
+  /> @! 自定义图标 @!
   <Popup
     show={ `${ show }` }
     closeable={ true }
@@ -89,7 +89,7 @@ function onClose() {
     position="bottom"
     customStyle="height: 20%"
     onClose={ onClose }
-  /> 图标位置
+  /> @! 图标位置 @!
   <Popup
     show={ `${ show }` }
     closeable={ true }
@@ -131,7 +131,7 @@ function onClose() {
 
 ```jsx
 <View>
-  pageMeta 只能是页面内的第一个节点
+  @! pageMeta 只能是页面内的第一个节点 @!
   <pageMeta pageStyle={ `${ show ? 'overflow: hidden;' : '' }` } />
   <Popup show={ `${ show }` } />
 </View>

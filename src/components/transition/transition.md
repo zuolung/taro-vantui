@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Transition } from "taro-vantui"; 
+import { Transition } from "vantui"; 
 ```
 
 ## 代码演示
@@ -99,7 +99,7 @@ transition 组件内置了多种动画，可以通过`name`字段指定动画类
 
 | 类名 | 说明 |
 | --- | --- |
-| customClass | 根节点样式类 |
+| className | 根节点样式类 |
 | enterClass | 定义进入过渡的开始状态。在元素被插入之前生效，在元素被插入之后的下一帧移除。 |
 | enterActiveClass | 定义进入过渡生效时的状态。在整个进入过渡的阶段中应用，在元素被插入之前生效，在过渡/动画完成之后移除。这个类可以被用来定义进入过渡的过程时间，延迟和曲线函数。 |
 | enterToClass | 定义进入过渡的结束状态。在元素被插入之后下一帧生效 (与此同时 enterClass 被移除)，在过渡/动画完成之后移除。 |
