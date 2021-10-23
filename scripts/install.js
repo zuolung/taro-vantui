@@ -1,4 +1,4 @@
-const shelljs = require('shelljs')
+import shelljs from 'shelljs'
 
 shelljs.exec('yarn')
 shelljs.exec('npm link')
