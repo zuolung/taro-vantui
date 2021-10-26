@@ -6,7 +6,7 @@
 <h3 align="center">轻量、可靠的taro-vantui 组件库</h3>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.0.3-blue" alt="npm version" />
+  <img src="https://img.shields.io/badge/version-0.0.6-blue" alt="npm version" />
   <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&color=#4fc08d" />
 </p>
 
