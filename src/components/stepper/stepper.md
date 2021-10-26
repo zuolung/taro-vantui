@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Stepper } from "vantui"; 
+import { Stepper } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,7 +22,7 @@ import { Stepper } from "vantui";
 <View>
   <Stepper
     value={ `${ 1 }` }
-    onChange={ onChange }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -125,9 +125,9 @@ import { Stepper } from "vantui";
 ```jsx
 <View>
   <Stepper
-    value={ `${ value }` }
+    value={ `${ this.value }` }
     asyncChange={ true }
-    onChange={ onChange }
+    onChange={ this.onChange }
   />
 </View>
  

@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Transition } from "vantui"; 
+import { Transition } from "taro-vantui"; 
 ```
 
 ## 代码演示

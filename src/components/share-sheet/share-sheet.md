@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { ShareSheet } from "vantui"; 
+import { ShareSheet } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,14 +22,14 @@ import { ShareSheet } from "vantui";
 <View>
   <Cell
     title="显示分享面板"
-    onClick={ onClick }
+    onClick={ this.onClick }
   />
   <ShareSheet
-    show={ `${ showShare }` }
+    show={ `${ this.showShare }` }
     title="立即分享给好友"
-    options={ `${ options }` }
-    onSelect={ onSelect }
-    onClose={ onClose }
+    options={ `${ this.options }` }
+    onSelect={ this.onSelect }
+    onClose={ this.onClose }
   />
 </View>
  
@@ -82,9 +82,9 @@ function onSelect(event) {
 ```jsx
 <View>
   <ShareSheet
-    show={ `${ showShare }` }
+    show={ `${ this.showShare }` }
     title="立即分享给好友"
-    options={ `${ options }` }
+    options={ `${ this.options }` }
   />
 </View>
  
@@ -122,8 +122,8 @@ this.state = {
 ```jsx
 <View>
   <ShareSheet
-    show={ `${ showShare }` }
-    options={ `${ options }` }
+    show={ `${ this.showShare }` }
+    options={ `${ this.options }` }
   />
 </View>
  
@@ -152,8 +152,8 @@ this.state = {
 ```jsx
 <View>
   <ShareSheet
-    show={ `${ showShare }` }
-    options={ `${ options }` }
+    show={ `${ this.showShare }` }
+    options={ `${ this.options }` }
     title="立即分享给好友"
     description="描述信息"
   />

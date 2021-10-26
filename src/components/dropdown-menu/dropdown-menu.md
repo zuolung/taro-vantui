@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { DropdownMenu } from "vantui";
-import { DropdownItem } from "vantui"; 
+import { DropdownMenu } from "taro-vantui";
+import { DropdownItem } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -21,12 +21,12 @@ import { DropdownItem } from "vantui";
 <View>
   <DropdownMenu>
     <DropdownItem
-      value={ `${ value1 }` }
-      options={ `${ option1 }` }
+      value={ `${ this.value1 }` }
+      options={ `${ this.option1 }` }
     />
     <DropdownItem
-      value={ `${ value2 }` }
-      options={ `${ option2 }` }
+      value={ `${ this.value2 }` }
+      options={ `${ this.option2 }` }
     />
   </DropdownMenu>
 </View>
@@ -66,43 +66,43 @@ this.state = {
 <View>
   <DropdownMenu>
     <DropdownItem
-      value={ `${ value1 }` }
-      options={ `${ option1 }` }
+      value={ `${ this.value1 }` }
+      options={ `${ this.option1 }` }
     />
     <DropdownItem
       id="item"
-      title={ `${ itemTitle }` }
+      title={ `${ this.itemTitle }` }
     >
-      <Cell title={ `${ switchTitle1 }` }>
+      <Cell title={ `${ this.switchTitle1 }` }>
         <Switch
           slot="rightIcon"
           size="24px"
           style="height: 26px"
           checked={ `${ switch1 }` }
           activeColor="#ee0a24"
-          onChange={ onSwitch1Change }
+          onChange={ this.onSwitch1Change }
         />
       </Cell>
-      <Cell title={ `${ switchTitle2 }` }>
+      <Cell title={ `${ this.switchTitle2 }` }>
         <Switch
           slot="rightIcon"
           size="24px"
           style="height: 26px"
           checked={ `${ switch2 }` }
           activeColor="#ee0a24"
-          onChange={ onSwitch2Change }
+          onChange={ this.onSwitch2Change }
         />
       </Cell>
-      <view style="padding: 5px 16px;">
+      <View style="padding: 5px 16px;">
         <Button
           type="danger"
           block={ true }
           round={ true }
-          onClick={ onConfirm }
+          onClick={ this.onConfirm }
         >
           确认
         </Button>
-      </view>
+      </View>
     </DropdownItem>
   </DropdownMenu>
 </View>
@@ -154,12 +154,12 @@ function onSwitch2Change({
 <View>
   <DropdownMenu activeColor="#1989fa">
     <DropdownItem
-      value={ `${ value1 }` }
-      options={ `${ option1 }` }
+      value={ `${ this.value1 }` }
+      options={ `${ this.option1 }` }
     />
     <DropdownItem
-      value={ `${ value2 }` }
-      options={ `${ option2 }` }
+      value={ `${ this.value2 }` }
+      options={ `${ this.option2 }` }
     />
   </DropdownMenu>
 </View>
@@ -172,12 +172,12 @@ function onSwitch2Change({
 <View>
   <DropdownMenu direction="up">
     <DropdownItem
-      value={ `${ value1 }` }
-      options={ `${ option1 }` }
+      value={ `${ this.value1 }` }
+      options={ `${ this.option1 }` }
     />
     <DropdownItem
-      value={ `${ value2 }` }
-      options={ `${ option2 }` }
+      value={ `${ this.value2 }` }
+      options={ `${ this.option2 }` }
     />
   </DropdownMenu>
 </View>
@@ -190,14 +190,14 @@ function onSwitch2Change({
 <View>
   <DropdownMenu>
     <DropdownItem
-      value={ `${ value1 }` }
+      value={ `${ this.value1 }` }
       disabled={ true }
-      options={ `${ option1 }` }
+      options={ `${ this.option1 }` }
     />
     <DropdownItem
-      value={ `${ value2 }` }
+      value={ `${ this.value2 }` }
       disabled={ true }
-      options={ `${ option2 }` }
+      options={ `${ this.option2 }` }
     />
   </DropdownMenu>
 </View>

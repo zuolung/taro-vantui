@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Overlay } from "vantui"; 
+import { Overlay } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -20,13 +20,13 @@ import { Overlay } from "vantui";
 <View>
   <Button
     type="primary"
-    onClick={ onClickShow }
+    onClick={ this.onClickShow }
   >
     显示遮罩层
   </Button>
   <Overlay
-    show={ `${ show }` }
-    onClick={ onClickHide }
+    show={ `${ this.show }` }
+    onClick={ this.onClickHide }
   />
 </View>
  
@@ -58,17 +58,17 @@ function onClickHide() {
 <View>
   <Button
     type="primary"
-    onClick={ onClickShow }
+    onClick={ this.onClickShow }
   >
     嵌入内容
   </Button>
   <Overlay
-    show={ `${ show }` }
-    onClick={ onClickHide }
+    show={ `${ this.show }` }
+    onClick={ this.onClickHide }
   >
-    <view class="wrapper">
-      <view class="block" />
-    </view>
+    <View class="wrapper">
+      <View class="block" />
+    </View>
   </Overlay>
 </View>
  

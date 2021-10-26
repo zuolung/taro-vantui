@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Field } from "vantui"; 
+import { Field } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -20,10 +20,10 @@ import { Field } from "vantui";
 <View>
   <CellGroup>
     <Field
-      value={ `${ value }` }
+      value={ `${ this.value }` }
       placeholder="请输入用户名"
       border={ `${ false }` }
-      onChange={ onChange }
+      onChange={ this.onChange }
     />
   </CellGroup>
 </View>
@@ -50,7 +50,7 @@ function onChange(event) {
   <CellGroup>
     <Field
       model={ true }
-      value={ `${ value }` }
+      value={ `${ this.value }` }
       placeholder="请输入用户名"
       border={ `${ false }` }
     />
@@ -281,6 +281,7 @@ this.state = {
 | disableDefaultPadding | 是否去掉 iOS 下的默认内边距，只对 textarea 有效 | _boolean_ | `true` |
 | cursor | 指定 focus 时的光标位置 | _number_ | `-1` |
 | clearTrigger `v1.8.4` | 显示清除图标的时机，`always` 表示输入框不为空时展示，<br>`focus` 表示输入框聚焦且不为空时展示 | _string_ | `focus` |
+| alwaysEmbed `v1.9.2` | 强制 input 处于同层状态，默认 focus 时 input 会切到非同层状态 (仅在 iOS 下生效) |  _boolean_ | `false` |
 
 ### Events
 

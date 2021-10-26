@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Calendar } from "vantui"; 
+import { Calendar } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,13 +22,13 @@ import { Calendar } from "vantui";
 <View>
   <Cell
     title="选择单个日期"
-    value={ `${ date }` }
-    onClick={ onDisplay }
+    value={ `${ this.date }` }
+    onClick={ this.onDisplay }
   />
   <Calendar
-    show={ `${ show }` }
-    onClose={ onClose }
-    onConfirm={ onConfirm }
+    show={ `${ this.show }` }
+    onClose={ this.onClose }
+    onConfirm={ this.onConfirm }
   />
 </View>
  
@@ -73,14 +73,14 @@ function onConfirm(event) {
 <View>
   <Cell
     title="选择多个日期"
-    value={ `${ text }` }
-    onClick={ onDisplay }
+    value={ `${ this.text }` }
+    onClick={ this.onDisplay }
   />
   <Calendar
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     type="multiple"
-    onClose={ onClose }
-    onConfirm={ onConfirm }
+    onClose={ this.onClose }
+    onConfirm={ this.onConfirm }
   />
 </View>
  
@@ -120,14 +120,14 @@ function onConfirm(event) {
 <View>
   <Cell
     title="选择日期区间"
-    value={ `${ date }` }
-    onClick={ onDisplay }
+    value={ `${ this.date }` }
+    onClick={ this.onDisplay }
   />
   <Calendar
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     type="range"
-    onClose={ onClose }
-    onConfirm={ onConfirm }
+    onClose={ this.onClose }
+    onConfirm={ this.onConfirm }
   />
 </View>
  
@@ -174,7 +174,7 @@ function onConfirm(event) {
 ```jsx
 <View>
   <Calendar
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     showConfirm={ `${ false }` }
   />
 </View>
@@ -188,7 +188,7 @@ function onConfirm(event) {
 ```jsx
 <View>
   <Calendar
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     color="#07c160"
   />
 </View>
@@ -202,9 +202,9 @@ function onConfirm(event) {
 ```jsx
 <View>
   <Calendar
-    show={ `${ show }` }
-    minDate={ `${ minDate }` }
-    maxDate={ `${ maxDate }` }
+    show={ `${ this.show }` }
+    minDate={ `${ this.minDate }` }
+    maxDate={ `${ this.maxDate }` }
   />
 </View>
  
@@ -225,7 +225,7 @@ this.state = {
 ```jsx
 <View>
   <Calendar
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     type="range"
     confirmText="完成"
     confirmDisabledText="请选择结束时间"
@@ -241,9 +241,9 @@ this.state = {
 ```jsx
 <View>
   <Calendar
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     type="range"
-    formatter={ `${ formatter }` }
+    formatter={ `${ this.formatter }` }
   />
 </View>
  
@@ -284,7 +284,7 @@ this.state = {
 ```jsx
 <View>
   <Calendar
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     round="false"
     position="right"
   />

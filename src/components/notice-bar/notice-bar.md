@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { NoticeBar } from "vantui"; 
+import { NoticeBar } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -32,11 +32,11 @@ import { NoticeBar } from "vantui";
 
 ```jsx
 <View>
-  @! 文字较短时，通过设置 scrollable 属性开启滚动播放 @!
+  {/*  文字较短时，通过设置 scrollable 属性开启滚动播放  */}
   <NoticeBar
     scrollable={ true }
     text="技术是开发它的人的共同灵魂。"
-  /> @! 文字较长时，通过禁用 scrollable 属性关闭滚动播放 @!
+  /> {/*  文字较长时，通过禁用 scrollable 属性关闭滚动播放  */}
   <NoticeBar
     scrollable={ `${ false }` }
     text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
@@ -66,11 +66,11 @@ import { NoticeBar } from "vantui";
 
 ```jsx
 <View>
-  @! closeable 模式，在右侧显示关闭按钮 @!
+  {/*  closeable 模式，在右侧显示关闭按钮  */}
   <NoticeBar
     mode="closeable"
     text="技术是开发它的人的共同灵魂。"
-  /> @! link 模式，在右侧显示链接箭头 @!
+  /> {/*  link 模式，在右侧显示链接箭头  */}
   <NoticeBar
     mode="link"
     text="技术是开发它的人的共同灵魂。"

@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { SubmitBar } from "vantui"; 
+import { SubmitBar } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -76,12 +76,12 @@ import { SubmitBar } from "vantui";
     <Tag type="primary">
       标签
     </Tag>
-    <view slot="tip">
+    <View slot="tip">
       您的收货地址不支持同城送,
       <Text>
         修改地址
       </Text>
-    </view>
+    </View>
   </SubmitBar>
 </View>
  

@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Popup } from "vantui"; 
+import { Popup } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -26,8 +26,8 @@ import { Popup } from "vantui";
     onClick={ showPopup }
   />
   <Popup
-    show={ `${ show }` }
-    onClose={ onClose }
+    show={ `${ this.show }` }
+    onClose={ this.onClose }
   >
     内容
   </Popup>
@@ -60,10 +60,10 @@ function onClose() {
 ```jsx
 <View>
   <Popup
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     position="top"
     customStyle="height: 20%;"
-    onClose={ onClose }
+    onClose={ this.onClose }
   />
 </View>
  
@@ -76,27 +76,27 @@ function onClose() {
 ```jsx
 <View>
   <Popup
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     closeable={ true }
     position="bottom"
     customStyle="height: 20%"
-    onClose={ onClose }
-  /> @! 自定义图标 @!
+    onClose={ this.onClose }
+  /> {/*  自定义图标  */}
   <Popup
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     closeable={ true }
     closeIcon="close"
     position="bottom"
     customStyle="height: 20%"
-    onClose={ onClose }
-  /> @! 图标位置 @!
+    onClose={ this.onClose }
+  /> {/*  图标位置  */}
   <Popup
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     closeable={ true }
     closeIconPosition="topLeft"
     position="bottom"
     customStyle="height: 20%"
-    onClose={ onClose }
+    onClose={ this.onClose }
   />
 </View>
  
@@ -109,11 +109,11 @@ function onClose() {
 ```jsx
 <View>
   <Popup
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     round={ true }
     position="bottom"
     customStyle="height: 20%"
-    onClose={ onClose }
+    onClose={ this.onClose }
   />
 </View>
  
@@ -131,9 +131,9 @@ function onClose() {
 
 ```jsx
 <View>
-  @! pageMeta 只能是页面内的第一个节点 @!
+  {/*  pageMeta 只能是页面内的第一个节点  */}
   <pageMeta pageStyle={ `${ show ? 'overflow: hidden;' : '' }` } />
-  <Popup show={ `${ show }` } />
+  <Popup show={ `${ this.show }` } />
 </View>
  
 ```

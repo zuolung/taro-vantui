@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { NavBar } from "vantui"; 
+import { NavBar } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -24,7 +24,7 @@ import { NavBar } from "vantui";
     rightText="按钮"
     leftArrow={ true }
     onClickLeft={ onClickLeft }
-    onClickRight={ onClickRight }
+    onClickRight={ this.onClickRight }
   />
 </View>
  

@@ -5,7 +5,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Panel } from "vantui"; 
+import { Panel } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -21,9 +21,9 @@ import { Panel } from "vantui";
     desc="描述信息"
     status="状态"
   >
-    <view>
+    <View>
       内容
-    </view>
+    </View>
   </Panel>
 </View>
  
@@ -40,10 +40,10 @@ import { Panel } from "vantui";
     desc="描述信息"
     status="状态"
   >
-    <view>
+    <View>
       内容
-    </view>
-    <view slot="footer">
+    </View>
+    <View slot="footer">
       <Button size="small">
         按钮
       </Button>
@@ -53,7 +53,7 @@ import { Panel } from "vantui";
       >
         按钮
       </Button>
-    </view>
+    </View>
   </Panel>
 </View>
  

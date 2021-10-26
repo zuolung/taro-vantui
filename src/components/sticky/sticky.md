@@ -9,7 +9,7 @@ Sticky 组件与 CSS 中`position: sticky`属性实现的效果一致，当组�
 在 Taro 文件中引入组件
 
 ```js
-import { Sticky } from "vantui"; 
+import { Sticky } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -52,16 +52,16 @@ import { Sticky } from "vantui";
 
 ```jsx
 <View>
-  <view
+  <View
     id="container"
     style="height: 150px;"
   >
-    <Sticky container={ `${ container }` }>
+    <Sticky container={ `${ this.container }` }>
       <Button type="warning">
         指定容器
       </Button>
     </Sticky>
-  </view>
+  </View>
 </View>
  
 ```
@@ -85,21 +85,21 @@ function onReady() {
 ```jsx
 <View>
   <scrollView
-    onScroll={ onScroll }
+    onScroll={ this.onScroll }
     scrollY={ true }
     id="scroller"
     style="height: 200px;"
   >
-    <view style="height: 400px; paddingTop: 50px;">
+    <View style="height: 400px; paddingTop: 50px;">
       <Sticky
-        scrollTop={ `${ scrollTop }` }
-        offsetTop={ `${ offsetTop }` }
+        scrollTop={ `${ this.scrollTop }` }
+        offsetTop={ `${ this.offsetTop }` }
       >
         <Button type="warning">
           嵌套在 scrollView 内
         </Button>
       </Sticky>
-    </view>
+    </View>
   </scrollView>
 </View>
  

@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Checkbox } from "vantui";
-import { CheckboxGroup } from "vantui"; 
+import { Checkbox } from "taro-vantui";
+import { CheckboxGroup } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,8 +22,8 @@ import { CheckboxGroup } from "vantui";
 ```jsx
 <View>
   <Checkbox
-    value={ `${ checked }` }
-    onChange={ onChange }
+    value={ `${ this.checked }` }
+    onChange={ this.onChange }
   >
     复选框
   </Checkbox>
@@ -51,8 +51,8 @@ function onChange(event) {
 <View>
   <Checkbox
     disabled={ true }
-    value={ `${ checked }` }
-    onChange={ onChange }
+    value={ `${ this.checked }` }
+    onChange={ this.onChange }
   >
     复选框
   </Checkbox>
@@ -67,9 +67,9 @@ function onChange(event) {
 ```jsx
 <View>
   <Checkbox
-    value={ `${ checked }` }
+    value={ `${ this.checked }` }
     shape="square"
-    onChange={ onChange }
+    onChange={ this.onChange }
   >
     复选框
   </Checkbox>
@@ -84,9 +84,9 @@ function onChange(event) {
 ```jsx
 <View>
   <Checkbox
-    value={ `${ checked }` }
+    value={ `${ this.checked }` }
     checkedColor="#07c160"
-    onChange={ onChange }
+    onChange={ this.onChange }
   >
     复选框
   </Checkbox>
@@ -101,7 +101,7 @@ function onChange(event) {
 ```jsx
 <View>
   <Checkbox
-    value={ `${ checked }` }
+    value={ `${ this.checked }` }
     iconSize="25px"
   >
     复选框
@@ -118,10 +118,10 @@ function onChange(event) {
 <View>
   <Checkbox
     useIconSlot={ true }
-    value={ `${ checked }` }
-    onChange={ onChange }
+    value={ `${ this.checked }` }
+    onChange={ this.onChange }
     renderIcon={ (
-          <image
+          <Image
             slot="icon"
             src={ `${ checked ? activeIcon : inactiveIcon }` }
           />
@@ -155,7 +155,7 @@ function onChange(event) {
 ```jsx
 <View>
   <Checkbox
-    value={ `${ checked }` }
+    value={ `${ this.checked }` }
     labelDisabled={ true }
   >
     复选框
@@ -171,8 +171,8 @@ function onChange(event) {
 ```jsx
 <View>
   <CheckboxGroup
-    value={ `${ result }` }
-    onChange={ onChange }
+    value={ `${ this.result }` }
+    onChange={ this.onChange }
   >
     <Checkbox name="a">
       复选框 a
@@ -205,8 +205,8 @@ function onChange(event) {
 ```jsx
 <View>
   <CheckboxGroup
-    value={ `${ result }` }
-    onChange={ onChange }
+    value={ `${ this.result }` }
+    onChange={ this.onChange }
     max={ `${ 2 }` }
   >
     <Checkbox name="a">
@@ -230,8 +230,8 @@ function onChange(event) {
 ```jsx
 <View>
   <CheckboxGroup
-    value={ `${ result }` }
-    onChange={ onChange }
+    value={ `${ this.result }` }
+    onChange={ this.onChange }
   >
     <CellGroup>
       { list.map((item, index) => (

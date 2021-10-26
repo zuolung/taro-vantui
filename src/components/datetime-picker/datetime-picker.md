@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { DatetimePicker } from "vantui"; 
+import { DatetimePicker } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,10 +22,10 @@ import { DatetimePicker } from "vantui";
 <View>
   <DatetimePicker
     type="datetime"
-    value={ `${ currentDate }` }
-    minDate={ `${ minDate }` }
-    maxDate={ `${ maxDate }` }
-    onInput={ onInput }
+    value={ `${ this.currentDate }` }
+    minDate={ `${ this.minDate }` }
+    maxDate={ `${ this.maxDate }` }
+    onInput={ this.onInput }
   />
 </View>
  
@@ -55,10 +55,10 @@ function onInput(event) {
 <View>
   <DatetimePicker
     type="date"
-    value={ `${ currentDate }` }
-    onInput={ onInput }
-    minDate={ `${ minDate }` }
-    formatter={ `${ formatter }` }
+    value={ `${ this.currentDate }` }
+    onInput={ this.onInput }
+    minDate={ `${ this.minDate }` }
+    formatter={ `${ this.formatter }` }
   />
 </View>
  
@@ -98,9 +98,9 @@ function onInput(event) {
 <View>
   <DatetimePicker
     type="yearMonth"
-    value={ `${ currentDate }` }
-    minDate={ `${ minDate }` }
-    onInput={ onInput }
+    value={ `${ this.currentDate }` }
+    minDate={ `${ this.minDate }` }
+    onInput={ this.onInput }
   />
 </View>
  
@@ -127,10 +127,10 @@ function onInput(event) {
 <View>
   <DatetimePicker
     type="time"
-    value={ `${ currentDate }` }
-    minHour={ `${ minHour }` }
-    maxHour={ `${ maxHour }` }
-    onInput={ onInput }
+    value={ `${ this.currentDate }` }
+    minHour={ `${ this.minHour }` }
+    maxHour={ `${ this.maxHour }` }
+    onInput={ this.onInput }
   />
 </View>
  
@@ -158,8 +158,8 @@ function onInput(event) {
 <View>
   <DatetimePicker
     type="time"
-    value={ `${ currentDate }` }
-    filter={ `${ filter }` }
+    value={ `${ this.currentDate }` }
+    filter={ `${ this.filter }` }
   />
 </View>
  

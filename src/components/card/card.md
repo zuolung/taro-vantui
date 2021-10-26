@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Card } from "vantui"; 
+import { Card } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -43,14 +43,14 @@ import { Card } from "vantui";
     title="商品标题"
     thumb={ `${ imageURL }` }
   >
-    <view slot="footer">
+    <View slot="footer">
       <Button size="mini">
         按钮
       </Button>
       <Button size="mini">
         按钮
       </Button>
-    </view>
+    </View>
   </Card>
 </View>
  

@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Skeleton } from "vantui"; 
+import { Skeleton } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -55,11 +55,11 @@ import { Skeleton } from "vantui";
     title={ true }
     avatar={ true }
     row="3"
-    loading={ `${ loading }` }
+    loading={ `${ this.loading }` }
   >
-    <view>
+    <View>
       实际内容
-    </view>
+    </View>
   </Skeleton>
 </View>
  

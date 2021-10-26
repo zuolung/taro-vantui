@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Tab } from "vantui";
-import { Tabs } from "vantui"; 
+import { Tab } from "taro-vantui";
+import { Tabs } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,8 +22,8 @@ import { Tabs } from "vantui";
 ```jsx
 <View>
   <Tabs
-    active={ `${ active }` }
-    onChange={ onChange }
+    active={ `${ this.active }` }
+    onChange={ this.onChange }
   >
     <Tab title="标签 1">
       内容 1
@@ -91,7 +91,7 @@ function onChange(event) {
 
 ```jsx
 <View>
-  <Tabs active={ `${ active }` }>
+  <Tabs active={ `${ this.active }` }>
     <Tab title="标签 1">
       内容 1
     </Tab>

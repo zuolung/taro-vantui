@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Cell } from "vantui";
-import { CellGroup } from "vantui"; 
+import { Cell } from "taro-vantui";
+import { CellGroup } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -167,14 +167,14 @@ import { CellGroup } from "vantui";
     icon="shopO"
     isLink={ true }
   >
-    <view slot="title">
-      <view class="vanCellText">
+    <View slot="title">
+      <View class="vanCellText">
         单元格
-      </view>
+      </View>
       <Tag type="danger">
         标签
       </Tag>
-    </view>
+    </View>
   </Cell>
   <Cell title="单元格">
     <Icon

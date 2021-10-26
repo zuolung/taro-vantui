@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Steps } from "vantui"; 
+import { Steps } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,7 +19,7 @@ import { Steps } from "vantui";
 ```jsx
 <View>
   <Steps
-    steps={ `${ steps }` }
+    steps={ `${ this.steps }` }
     active={ `${ active }` }
   />
 </View>
@@ -51,7 +51,7 @@ this.state = {
 ```jsx
 <View>
   <Steps
-    steps={ `${ steps }` }
+    steps={ `${ this.steps }` }
     active={ `${ active }` }
     activeIcon="success"
     activeColor="#38f"
@@ -67,7 +67,7 @@ this.state = {
 ```jsx
 <View>
   <Steps
-    steps={ `${ steps }` }
+    steps={ `${ this.steps }` }
     active={ `${ active }` }
   />
 </View>
@@ -107,7 +107,7 @@ this.state = {
 ```jsx
 <View>
   <Steps
-    steps={ `${ steps }` }
+    steps={ `${ this.steps }` }
     active={ `${ active }` }
     direction="vertical"
     activeColor="#ee0a24"

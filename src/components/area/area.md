@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Area } from "vantui"; 
+import { Area } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -20,7 +20,7 @@ import { Area } from "vantui";
 
 ```jsx
 <View>
-  <Area areaList={ `${ areaList }` } />
+  <Area areaList={ `${ this.areaList }` } />
 </View>
  
 ```
@@ -73,7 +73,7 @@ this.state = {
 ```jsx
 <View>
   <Area
-    areaList={ `${ areaList }` }
+    areaList={ `${ this.areaList }` }
     value="110101"
   />
 </View>
@@ -87,7 +87,7 @@ this.state = {
 ```jsx
 <View>
   <Area
-    areaList={ `${ areaList }` }
+    areaList={ `${ this.areaList }` }
     columnsNum={ `${ 2 }` }
     title="标题"
   />
@@ -102,7 +102,7 @@ this.state = {
 ```jsx
 <View>
   <Area
-    areaList={ `${ areaList }` }
+    areaList={ `${ this.areaList }` }
     columnsPlaceholder={ `${ ['请选择', '请选择', '请选择'] }` }
     title="标题"
   />

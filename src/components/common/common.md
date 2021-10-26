@@ -19,19 +19,19 @@ Vant 中默认包含了一些常用样式，可以直接通过 className 的方�
 当文本内容长度超过容器最大宽度时，自动省略多余的文本。
 
 ```xml
-<view class="vanEllipsis">
+<View class="vanEllipsis">
   这是一段宽度限制 250px 的文字，后面的内容会省略。
-</view>
+</View>
 
 <!-- 最多显示两行 -->
-<view class="vanMultiEllipsis--l2">
+<View class="vanMultiEllipsis--l2">
   这是一段最多显示两行的文字，后面的内容会省略。
-</view>
+</View>
 
 <!-- 最多显示三行 -->
-<view class="vanMultiEllipsis--l3">
+<View class="vanMultiEllipsis--l3">
   这是一段最多显示三行的文字，后面的内容会省略。
-</view>
+</View>
 ```
 
 ### 1px 边框
@@ -40,22 +40,22 @@ Vant 中默认包含了一些常用样式，可以直接通过 className 的方�
 
 ```xml
 <!-- 上边框 -->
-<view class="vanHairline--top"></view>
+<View class="vanHairline--top"></View>
 
 <!-- 下边框 -->
-<view class="vanHairline--bottom"></view>
+<View class="vanHairline--bottom"></View>
 
 <!-- 左边框 -->
-<view class="vanHairline--left"></view>
+<View class="vanHairline--left"></View>
 
 <!-- 右边框 -->
-<view class="vanHairline--right"></view>
+<View class="vanHairline--right"></View>
 
 <!-- 上下边框 -->
-<view class="vanHairline--topBottom"></view>
+<View class="vanHairline--topBottom"></View>
 
 <!-- 全边框 -->
-<view class="vanHairline--surround"></view>
+<View class="vanHairline--surround"></View>
 ```
 
 ### 全局字体

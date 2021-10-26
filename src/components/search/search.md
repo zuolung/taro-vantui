@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Search } from "vantui"; 
+import { Search } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -21,7 +21,7 @@ import { Search } from "vantui";
 ```jsx
 <View>
   <Search
-    value={ `${ value }` }
+    value={ `${ this.value }` }
     placeholder="请输入搜索关键词"
   />
 </View>
@@ -35,10 +35,10 @@ import { Search } from "vantui";
 ```jsx
 <View>
   <Search
-    value={ `${ value }` }
+    value={ `${ this.value }` }
     placeholder="请输入搜索关键词"
     showAction={ true }
-    onSearch={ onSearch }
+    onSearch={ this.onSearch }
     onCancel={ onCancel }
   />
 </View>
@@ -52,7 +52,7 @@ import { Search } from "vantui";
 ```jsx
 <View>
   <Search
-    value={ `${ value }` }
+    value={ `${ this.value }` }
     inputAlign="center"
     placeholder="请输入搜索关键词"
   />
@@ -68,7 +68,7 @@ import { Search } from "vantui";
 <View>
   <Search
     disabled={ true }
-    value={ `${ value }` }
+    value={ `${ this.value }` }
     placeholder="请输入搜索关键词"
   />
 </View>
@@ -82,7 +82,7 @@ import { Search } from "vantui";
 ```jsx
 <View>
   <Search
-    value={ `${ value }` }
+    value={ `${ this.value }` }
     shape="round"
     background="#4fc08d"
     placeholder="请输入搜索关键词"
@@ -98,19 +98,19 @@ import { Search } from "vantui";
 ```jsx
 <View>
   <Search
-    value={ `${ value }` }
+    value={ `${ this.value }` }
     label="地址"
     placeholder="请输入搜索关键词"
     useActionSlot={ true }
-    onChange={ onChange }
-    onSearch={ onSearch }
+    onChange={ this.onChange }
+    onSearch={ this.onSearch }
     renderAction={ (
-          <view
+          <View
             slot="action"
-            onTap={ onClick }
+            onTap={ this.onClick }
           >
             搜索
-          </view>
+          </View>
 
         ) }
   />

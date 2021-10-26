@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Grid } from "vantui";
-import { GridItem } from "vantui"; 
+import { Grid } from "taro-vantui";
+import { GridItem } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -73,7 +73,7 @@ import { GridItem } from "vantui";
   >
     { (new Array(3)).map((item, index) => (
         <GridItem forItem="index">
-          <image
+          <Image
             style="width: 100%; height: 90px;"
             src={ `https://img.yzcdn.cn/vant/apple-${ index + 1 }.jpg` }
           />

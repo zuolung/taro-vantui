@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Dialog } from "vantui"; 
+import { Dialog } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -138,13 +138,13 @@ Dialog.confirm({
 <View>
   <Dialog
     title="标题"
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     showCancelButton={ true }
     confirmButtonOpenType="getUserInfo"
-    onClose={ onClose }
+    onClose={ this.onClose }
     onGetuserinfo={ getUserInfo }
   >
-    <image src="https://img.yzcdn.cn/1.jpg" />
+    <Image src="https://img.yzcdn.cn/1.jpg" />
   </Dialog>
 </View>
  

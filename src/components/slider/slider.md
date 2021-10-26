@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Slider } from "vantui"; 
+import { Slider } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -103,16 +103,16 @@ import { Slider } from "vantui";
 ```jsx
 <View>
   <Slider
-    value={ `${ currentValue }` }
+    value={ `${ this.currentValue }` }
     useButtonSlot={ true }
-    onDrag={ onDrag }
+    onDrag={ this.onDrag }
     renderButton={ (
-          <view
+          <View
             class="customButton"
             slot="button"
           >
             { currentValue }/100
-          </view>
+          </View>
 
         ) }
   />
@@ -138,7 +138,7 @@ function onDrag(event) {
 
 ```jsx
 <View>
-  <view style="height: 150px;">
+  <View style="height: 150px;">
     <Slider
       value="50"
       vertical={ true }
@@ -151,7 +151,7 @@ function onDrag(event) {
       style="marginLeft: 100px;"
       onChange={ onChange }
     />
-  </view>
+  </View>
 </View>
  
 ```

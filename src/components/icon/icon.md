@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Icon } from "vantui"; 
+import { Icon } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -98,7 +98,7 @@ import { Icon } from "vantui";
 
 ```jsx
 <View>
-  @! 通过 classPrefix 指定类名为 myIcon @!
+  {/*  通过 classPrefix 指定类名为 myIcon  */}
   <Icon
     classPrefix="myIcon"
     name="extra"

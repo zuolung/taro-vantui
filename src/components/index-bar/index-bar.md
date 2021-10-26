@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { IndexBar } from "vantui";
-import { IndexAnchor } from "vantui"; 
+import { IndexBar } from "taro-vantui";
+import { IndexAnchor } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -24,18 +24,18 @@ import { IndexAnchor } from "vantui";
 ```jsx
 <View>
   <IndexBar>
-    <view>
+    <View>
       <IndexAnchor index="A" />
       <Cell title="文本" />
       <Cell title="文本" />
       <Cell title="文本" />
-    </view>
-    <view>
+    </View>
+    <View>
       <IndexAnchor index="B" />
       <Cell title="文本" />
       <Cell title="文本" />
       <Cell title="文本" />
-    </view>
+    </View>
     ...
   </IndexBar>
 </View>
@@ -48,23 +48,23 @@ import { IndexAnchor } from "vantui";
 
 ```jsx
 <View>
-  <IndexBar indexList={ `${ indexList }` }>
-    <view>
+  <IndexBar indexList={ `${ this.indexList }` }>
+    <View>
       <IndexAnchor index="1">
         标题1
       </IndexAnchor>
       <Cell title="文本" />
       <Cell title="文本" />
       <Cell title="文本" />
-    </view>
-    <view>
+    </View>
+    <View>
       <IndexAnchor index="2">
         标题2
       </IndexAnchor>
       <Cell title="文本" />
       <Cell title="文本" />
       <Cell title="文本" />
-    </view>
+    </View>
     ...
   </IndexBar>
 </View>

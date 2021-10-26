@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Collapse } from "vantui";
-import { CollapseItem } from "vantui"; 
+import { Collapse } from "taro-vantui";
+import { CollapseItem } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,8 +22,8 @@ import { CollapseItem } from "vantui";
 ```jsx
 <View>
   <Collapse
-    value={ `${ activeNames }` }
-    onChange={ onChange }
+    value={ `${ this.activeNames }` }
+    onChange={ this.onChange }
   >
     <CollapseItem
       title="有赞微商城"
@@ -69,8 +69,8 @@ function onChange(event) {
 <View>
   <Collapse
     accordion={ true }
-    value={ `${ activeName }` }
-    onChange={ onChange }
+    value={ `${ this.activeName }` }
+    onChange={ this.onChange }
   >
     <CollapseItem
       title="有赞微商城"
@@ -114,10 +114,10 @@ function onChange(event) {
 ```jsx
 <View>
   <Collapse
-    value={ `${ activeNames }` }
-    onChange={ onChange }
-    onOpen={ onOpen }
-    onClose={ onClose }
+    value={ `${ this.activeNames }` }
+    onChange={ this.onChange }
+    onOpen={ this.onOpen }
+    onClose={ this.onClose }
   >
     <CollapseItem
       title="有赞微商城"
@@ -167,14 +167,14 @@ function onClose(event) {
 ```jsx
 <View>
   <Collapse
-    value={ `${ activeNames }` }
-    onChange={ onChange }
+    value={ `${ this.activeNames }` }
+    onChange={ this.onChange }
   >
     <CollapseItem name="1">
-      <view slot="title">
+      <View slot="title">
         有赞微商城
         <Icon name="questionO" />
-      </view>
+      </View>
       提供多样店铺模板，快速搭建网上商城
     </CollapseItem>
     <CollapseItem

@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Rate } from "vantui"; 
+import { Rate } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,8 +19,8 @@ import { Rate } from "vantui";
 ```jsx
 <View>
   <Rate
-    value={ `${ value }` }
-    onChange={ onChange }
+    value={ `${ this.value }` }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -43,10 +43,10 @@ function onChange(event) {
 ```jsx
 <View>
   <Rate
-    value={ `${ value }` }
+    value={ `${ this.value }` }
     icon="like"
     voidIcon="likeO"
-    onChange={ onChange }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -57,12 +57,12 @@ function onChange(event) {
 ```jsx
 <View>
   <Rate
-    value={ `${ value }` }
+    value={ `${ this.value }` }
     size={ `${ 25 }` }
     color="#ffd21e"
     voidIcon="star"
     voidColor="#eee"
-    onChange={ onChange }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -73,11 +73,11 @@ function onChange(event) {
 ```jsx
 <View>
   <Rate
-    value={ `${ value }` }
+    value={ `${ this.value }` }
     allowHalf={ true }
     voidIcon="star"
     voidColor="#eee"
-    onChange={ onChange }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -100,9 +100,9 @@ function onChange(event) {
 ```jsx
 <View>
   <Rate
-    value={ `${ value }` }
+    value={ `${ this.value }` }
     count={ `${ 6 }` }
-    onChange={ onChange }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -114,8 +114,8 @@ function onChange(event) {
 <View>
   <Rate
     disabled={ true }
-    value={ `${ value }` }
-    onChange={ onChange }
+    value={ `${ this.value }` }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -127,8 +127,8 @@ function onChange(event) {
 <View>
   <Rate
     readonly={ true }
-    value={ `${ value }` }
-    onChange={ onChange }
+    value={ `${ this.value }` }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -141,8 +141,8 @@ function onChange(event) {
 ```jsx
 <View>
   <Rate
-    value={ `${ value }` }
-    onChange={ onChange }
+    value={ `${ this.value }` }
+    onChange={ this.onChange }
   />
 </View>
  

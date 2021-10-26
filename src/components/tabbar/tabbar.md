@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Tabbar } from "vantui";
-import { TabbarItem } from "vantui"; 
+import { Tabbar } from "taro-vantui";
+import { TabbarItem } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -20,8 +20,8 @@ import { TabbarItem } from "vantui";
 ```jsx
 <View>
   <Tabbar
-    active={ `${ active }` }
-    onChange={ onChange }
+    active={ `${ this.active }` }
+    onChange={ this.onChange }
   >
     <TabbarItem icon="homeO">
       标签
@@ -60,8 +60,8 @@ function onChange(event) {
 ```jsx
 <View>
   <Tabbar
-    active={ `${ active }` }
-    onChange={ onChange }
+    active={ `${ this.active }` }
+    onChange={ this.onChange }
   >
     <TabbarItem
       name="home"
@@ -109,8 +109,8 @@ function onChange(event) {
 ```jsx
 <View>
   <Tabbar
-    active={ `${ active }` }
-    onChange={ onChange }
+    active={ `${ this.active }` }
+    onChange={ this.onChange }
   >
     <TabbarItem icon="homeO">
       标签
@@ -145,17 +145,17 @@ function onChange(event) {
 ```jsx
 <View>
   <Tabbar
-    active={ `${ active }` }
-    onChange={ onChange }
+    active={ `${ this.active }` }
+    onChange={ this.onChange }
   >
     <TabbarItem info="3">
-      <image
+      <Image
         slot="icon"
         src={ `${ icon.normal }` }
         mode="aspectFit"
         style="width: 30px; height: 18px;"
       />
-      <image
+      <Image
         slot="iconActive"
         src={ `${ icon.active }` }
         mode="aspectFit"
@@ -194,10 +194,10 @@ function onChange(event) {
 ```jsx
 <View>
   <Tabbar
-    active={ `${ active }` }
+    active={ `${ this.active }` }
     activeColor="#07c160"
     inactiveColor="#000"
-    onChange={ onChange }
+    onChange={ this.onChange }
   >
     <TabbarItem icon="homeO">
       标签
@@ -233,8 +233,8 @@ function onChange(event) {
 ```jsx
 <View>
   <Tabbar
-    active={ `${ active }` }
-    onChange={ onChange }
+    active={ `${ this.active }` }
+    onChange={ this.onChange }
   >
     <TabbarItem icon="homeO">
       标签1

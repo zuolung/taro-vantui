@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Tag } from "vantui"; 
+import { Tag } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -199,7 +199,7 @@ import { Tag } from "vantui";
         size="medium"
         type="primary"
         id="primary"
-        onClose={ onClose }
+        onClose={ this.onClose }
       >
         标签
       </Tag>
@@ -211,7 +211,7 @@ import { Tag } from "vantui";
         size="medium"
         type="success"
         id="success"
-        onClose={ onClose }
+        onClose={ this.onClose }
       >
         标签
       </Tag>

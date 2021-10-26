@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { ActionSheet } from "vantui"; 
+import { ActionSheet } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -21,10 +21,10 @@ import { ActionSheet } from "vantui";
 ```jsx
 <View>
   <ActionSheet
-    show={ `${ show }` }
-    actions={ `${ actions }` }
-    onClose={ onClose }
-    onSelect={ onSelect }
+    show={ `${ this.show }` }
+    actions={ `${ this.actions }` }
+    onClose={ this.onClose }
+    onSelect={ this.onSelect }
   />
 </View>
  
@@ -62,8 +62,8 @@ function onSelect(event) {
 ```jsx
 <View>
   <ActionSheet
-    show={ `${ show }` }
-    actions={ `${ actions }` }
+    show={ `${ this.show }` }
+    actions={ `${ this.actions }` }
     cancelText="取消"
   />
 </View>
@@ -92,8 +92,8 @@ this.state = {
 ```jsx
 <View>
   <ActionSheet
-    show={ `${ show }` }
-    actions={ `${ actions }` }
+    show={ `${ this.show }` }
+    actions={ `${ this.actions }` }
     cancelText="取消"
   />
 </View>
@@ -107,8 +107,8 @@ this.state = {
 ```jsx
 <View>
   <ActionSheet
-    show={ `${ show }` }
-    actions={ `${ actions }` }
+    show={ `${ this.show }` }
+    actions={ `${ this.actions }` }
     description="这是一段描述信息"
   />
 </View>
@@ -122,12 +122,12 @@ this.state = {
 ```jsx
 <View>
   <ActionSheet
-    show={ `${ show }` }
+    show={ `${ this.show }` }
     title="标题"
   >
-    <view>
+    <View>
       内容
-    </view>
+    </View>
   </ActionSheet>
 </View>
  
@@ -140,10 +140,10 @@ this.state = {
 ```jsx
 <View>
   <ActionSheet
-    show={ `${ show }` }
-    actions={ `${ actions }` }
-    onClose={ onClose }
-    onGetuserinfo={ onGetUserInfo }
+    show={ `${ this.show }` }
+    actions={ `${ this.actions }` }
+    onClose={ this.onClose }
+    onGetuserinfo={ this.onGetUserInfo }
   />
 </View>
  

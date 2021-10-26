@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { SwipeCell } from "vantui"; 
+import { SwipeCell } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,18 +22,18 @@ import { SwipeCell } from "vantui";
     rightWidth={ `${ 65 }` }
     leftWidth={ `${ 65 }` }
   >
-    <view slot="left">
+    <View slot="left">
       选择
-    </view>
+    </View>
     <CellGroup>
       <Cell
         title="单元格"
         value="内容"
       />
     </CellGroup>
-    <view slot="right">
+    <View slot="right">
       删除
-    </view>
+    </View>
   </SwipeCell>
 </View>
  
@@ -52,18 +52,18 @@ import { SwipeCell } from "vantui";
     asyncClose={ true }
     onClose={ onClose }
   >
-    <view slot="left">
+    <View slot="left">
       选择
-    </view>
+    </View>
     <CellGroup>
       <Cell
         title="单元格"
         value="内容"
       />
     </CellGroup>
-    <view slot="right">
+    <View slot="right">
       删除
-    </view>
+    </View>
   </SwipeCell>
 </View>
  
@@ -84,24 +84,24 @@ import { SwipeCell } from "vantui";
     name="示例"
     onOpen={ onOpen }
   >
-    <view
+    <View
       slot="left"
       class="vanSwipeCell__left"
     >
       选择
-    </view>
+    </View>
     <CellGroup>
       <Cell
         title="单元格"
         value="内容"
       />
     </CellGroup>
-    <view
+    <View
       slot="right"
       class="vanSwipeCell__right"
     >
       删除
-    </view>
+    </View>
   </SwipeCell>
 </View>
  

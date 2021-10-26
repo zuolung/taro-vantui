@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { ConfigProvider } from "vantui"; 
+import { ConfigProvider } from "taro-vantui"; 
 ```
 
 ## 定制主题
@@ -52,38 +52,38 @@ page {
 
 ```jsx
 <View>
-  <ConfigProvider themeVars={ `${ themeVars }` }>
+  <ConfigProvider themeVars={ `${ this.themeVars }` }>
     <CellGroup>
       <Field label="评分">
-        <view
+        <View
           slot="input"
           style="width: 100%"
         >
           <Rate
             model={ true }
-            value={ `${ rate }` }
+            value={ `${ this.rate }` }
             dataKey="rate"
-            onChange={ onChange }
+            onChange={ this.onChange }
           />
-        </view>
+        </View>
       </Field>
       <Field
         label="滑块"
         border={ `${ false }` }
       >
-        <view
+        <View
           slot="input"
           style="width: 100%"
         >
           <Slider
-            value={ `${ slider }` }
+            value={ `${ this.slider }` }
             dataKey="slider"
-            onChange={ onChange }
+            onChange={ this.onChange }
           />
-        </view>
+        </View>
       </Field>
     </CellGroup>
-    <view style="margin: 16px">
+    <View style="margin: 16px">
       <Button
         round={ true }
         block={ true }
@@ -91,7 +91,7 @@ page {
       >
         提交
       </Button>
-    </view>
+    </View>
   </ConfigProvider>
 </View>
  

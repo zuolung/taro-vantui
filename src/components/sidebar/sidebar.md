@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Sidebar } from "vantui";
-import { SidebarItem } from "vantui"; 
+import { Sidebar } from "taro-vantui";
+import { SidebarItem } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -23,7 +23,7 @@ import { SidebarItem } from "vantui";
 
 ```jsx
 <View>
-  <Sidebar activeKey={ `${ activeKey }` }>
+  <Sidebar activeKey={ `${ this.activeKey }` }>
     <SidebarItem title="标签名" />
     <SidebarItem title="标签名" />
     <SidebarItem title="标签名" />
@@ -44,7 +44,7 @@ this.state = {
 
 ```jsx
 <View>
-  <Sidebar activeKey={ `${ activeKey }` }>
+  <Sidebar activeKey={ `${ this.activeKey }` }>
     <SidebarItem
       title="标签名"
       dot={ true }
@@ -68,7 +68,7 @@ this.state = {
 
 ```jsx
 <View>
-  <Sidebar activeKey={ `${ activeKey }` }>
+  <Sidebar activeKey={ `${ this.activeKey }` }>
     <SidebarItem title="标签名" />
     <SidebarItem
       title="标签名"
@@ -87,8 +87,8 @@ this.state = {
 ```jsx
 <View>
   <Sidebar
-    activeKey={ `${ activeKey }` }
-    onChange={ onChange }
+    activeKey={ `${ this.activeKey }` }
+    onChange={ this.onChange }
   >
     <SidebarItem title="标签名 1" />
     <SidebarItem title="标签名 2" />

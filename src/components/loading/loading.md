@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Loading } from "vantui"; 
+import { Loading } from "taro-vantui"; 
 ```
 
 ## 代码演示

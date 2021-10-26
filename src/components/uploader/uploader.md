@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Uploader } from "vantui"; 
+import { Uploader } from "taro-vantui"; 
 ```
 
 > Vant Weapp 1.0 版本开始支持此组件，升级方式参见[快速上手](#/quickstart)
@@ -23,7 +23,7 @@ import { Uploader } from "vantui";
 ```jsx
 <View>
   <Uploader
-    fileList={ `${ fileList }` }
+    fileList={ `${ this.fileList }` }
     onAfterRead={ afterRead }
   />
 </View>
@@ -72,7 +72,7 @@ function afterRead(event) {
 
 ```jsx
 <View>
-  <Uploader fileList={ `${ fileList }` } />
+  <Uploader fileList={ `${ this.fileList }` } />
 </View>
  
 ```
@@ -102,7 +102,7 @@ this.state = {
 ```jsx
 <View>
   <Uploader
-    fileList={ `${ fileList }` }
+    fileList={ `${ this.fileList }` }
     deletable={ `${ true }` }
   />
 </View>
@@ -126,7 +126,7 @@ this.state = {
 
 ```jsx
 <View>
-  <Uploader fileList={ `${ fileList }` } />
+  <Uploader fileList={ `${ this.fileList }` } />
 </View>
  
 ```
@@ -152,7 +152,7 @@ this.state = {
 ```jsx
 <View>
   <Uploader
-    fileList={ `${ fileList }` }
+    fileList={ `${ this.fileList }` }
     maxCount="2"
     onAfterRead={ afterRead }
   />
@@ -185,7 +185,7 @@ this.state = {
 ```jsx
 <View>
   <Uploader
-    fileList={ `${ fileList }` }
+    fileList={ `${ this.fileList }` }
     accept="media"
     useBeforeRead={ true }
     onBeforeRead={ beforeRead }

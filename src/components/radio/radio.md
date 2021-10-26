@@ -9,8 +9,8 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Radio } from "vantui";
-import { RadioGroup } from "vantui"; 
+import { Radio } from "taro-vantui";
+import { RadioGroup } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,8 +22,8 @@ import { RadioGroup } from "vantui";
 ```jsx
 <View>
   <RadioGroup
-    value={ `${ radio }` }
-    onChange={ onChange }
+    value={ `${ this.radio }` }
+    onChange={ this.onChange }
   >
     <Radio name="1">
       单选框 1
@@ -55,8 +55,8 @@ function onChange(event) {
 ```jsx
 <View>
   <RadioGroup
-    value={ `${ radio }` }
-    onChange={ onChange }
+    value={ `${ this.radio }` }
+    onChange={ this.onChange }
     direction="horizontal"
   >
     <Radio name="1">
@@ -77,9 +77,9 @@ function onChange(event) {
 ```jsx
 <View>
   <RadioGroup
-    value={ `${ radio }` }
+    value={ `${ this.radio }` }
     disabled={ true }
-    onChange={ onChange }
+    onChange={ this.onChange }
   >
     <Radio name="1">
       单选框 1
@@ -99,8 +99,8 @@ function onChange(event) {
 ```jsx
 <View>
   <RadioGroup
-    value={ `${ radio }` }
-    onChange={ onChange }
+    value={ `${ this.radio }` }
+    onChange={ this.onChange }
   >
     <Radio
       name="1"
@@ -126,8 +126,8 @@ function onChange(event) {
 ```jsx
 <View>
   <RadioGroup
-    value={ `${ radio }` }
-    onChange={ onChange }
+    value={ `${ this.radio }` }
+    onChange={ this.onChange }
   >
     <Radio
       name="1"
@@ -153,8 +153,8 @@ function onChange(event) {
 ```jsx
 <View>
   <RadioGroup
-    value={ `${ radio }` }
-    onChange={ onChange }
+    value={ `${ this.radio }` }
+    onChange={ this.onChange }
   >
     <Radio
       name="1"
@@ -180,15 +180,15 @@ function onChange(event) {
 ```jsx
 <View>
   <RadioGroup
-    value={ `${ radio }` }
-    onChange={ onChange }
+    value={ `${ this.radio }` }
+    onChange={ this.onChange }
   >
     <Radio
       useIconSlot={ true }
-      value={ `${ radio }` }
+      value={ `${ this.radio }` }
       name="1"
       renderIcon={ (
-          <image
+          <Image
             slot="icon"
             src={ `${ radio === '1' ? icon.active : icon.normal }` }
           />
@@ -199,10 +199,10 @@ function onChange(event) {
     </Radio>
     <Radio
       useIconSlot={ true }
-      value={ `${ radio }` }
+      value={ `${ this.radio }` }
       name="2"
       renderIcon={ (
-          <image
+          <Image
             slot="icon"
             src={ `${ radio === '2' ? icon.active : icon.normal }` }
           />
@@ -239,8 +239,8 @@ function onChange(event) {
 ```jsx
 <View>
   <RadioGroup
-    value={ `${ radio }` }
-    onChange={ onChange }
+    value={ `${ this.radio }` }
+    onChange={ this.onChange }
   >
     <Radio
       name="1"
@@ -266,15 +266,15 @@ function onChange(event) {
 ```jsx
 <View>
   <RadioGroup
-    value={ `${ radio }` }
-    onChange={ onChange }
+    value={ `${ this.radio }` }
+    onChange={ this.onChange }
   >
     <CellGroup>
       <Cell
         title="单选框 1"
         clickable={ true }
         dataName="1"
-        onClick={ onClick }
+        onClick={ this.onClick }
       >
         <Radio
           slot="rightIcon"
@@ -285,7 +285,7 @@ function onChange(event) {
         title="单选框 2"
         clickable={ true }
         dataName="2"
-        onClick={ onClick }
+        onClick={ this.onClick }
       >
         <Radio
           slot="rightIcon"

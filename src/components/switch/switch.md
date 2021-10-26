@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Switch } from "vantui"; 
+import { Switch } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,8 +19,8 @@ import { Switch } from "vantui";
 ```jsx
 <View>
   <Switch
-    checked={ `${ checked }` }
-    onChange={ onChange }
+    checked={ `${ this.checked }` }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -46,7 +46,7 @@ function onChange({
 ```jsx
 <View>
   <Switch
-    checked={ `${ checked }` }
+    checked={ `${ this.checked }` }
     disabled={ true }
   />
 </View>
@@ -58,7 +58,7 @@ function onChange({
 ```jsx
 <View>
   <Switch
-    checked={ `${ checked }` }
+    checked={ `${ this.checked }` }
     loading={ true }
   />
 </View>
@@ -70,7 +70,7 @@ function onChange({
 ```jsx
 <View>
   <Switch
-    checked={ `${ checked }` }
+    checked={ `${ this.checked }` }
     size="24px"
   />
 </View>
@@ -82,7 +82,7 @@ function onChange({
 ```jsx
 <View>
   <Switch
-    checked={ `${ checked }` }
+    checked={ `${ this.checked }` }
     activeColor="#07c160"
     inactiveColor="#ee0a24"
   />
@@ -95,8 +95,8 @@ function onChange({
 ```jsx
 <View>
   <Switch
-    checked={ `${ checked }` }
-    onChange={ onChange }
+    checked={ `${ this.checked }` }
+    onChange={ this.onChange }
   />
 </View>
  

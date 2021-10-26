@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { TreeSelect } from "vantui"; 
+import { TreeSelect } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -22,10 +22,10 @@ import { TreeSelect } from "vantui";
 <View>
   <TreeSelect
     items={ `${ items }` }
-    mainActiveIndex={ `${ mainActiveIndex }` }
-    activeId={ `${ activeId }` }
-    onClickNav={ onClickNav }
-    onClickItem={ onClickItem }
+    mainActiveIndex={ `${ this.mainActiveIndex }` }
+    activeId={ `${ this.activeId }` }
+    onClickNav={ this.onClickNav }
+    onClickItem={ this.onClickItem }
   />
 </View>
  
@@ -61,11 +61,11 @@ function onClickItem({
 <View>
   <TreeSelect
     items={ `${ items }` }
-    mainActiveIndex={ `${ mainActiveIndex }` }
-    activeId={ `${ activeId }` }
-    max={ `${ max }` }
-    onClickNav={ onClickNav }
-    onClickItem={ onClickItem }
+    mainActiveIndex={ `${ this.mainActiveIndex }` }
+    activeId={ `${ this.activeId }` }
+    max={ `${ this.max }` }
+    onClickNav={ this.onClickNav }
+    onClickItem={ this.onClickItem }
   />
 </View>
  
@@ -113,12 +113,12 @@ function onClickItem({
   <TreeSelect
     items={ `${ items }` }
     height="55vw"
-    mainActiveIndex={ `${ mainActiveIndex }` }
-    activeId={ `${ activeId }` }
-    onClickNav={ onClickNav }
-    onClickItem={ onClickItem }
+    mainActiveIndex={ `${ this.mainActiveIndex }` }
+    activeId={ `${ this.activeId }` }
+    onClickNav={ this.onClickNav }
+    onClickItem={ this.onClickItem }
   >
-    <image
+    <Image
       src="https://img.yzcdn.cn/vant/apple-1.jpg"
       slot="content"
     />

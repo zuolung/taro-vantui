@@ -9,7 +9,7 @@
 在 Taro 文件中引入组件
 
 ```js
-import { Picker } from "vantui"; 
+import { Picker } from "taro-vantui"; 
 ```
 
 ## 代码演示
@@ -19,8 +19,8 @@ import { Picker } from "vantui";
 ```jsx
 <View>
   <Picker
-    columns={ `${ columns }` }
-    onChange={ onChange }
+    columns={ `${ this.columns }` }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -49,9 +49,9 @@ function onChange(event) {
 ```jsx
 <View>
   <Picker
-    columns={ `${ columns }` }
+    columns={ `${ this.columns }` }
     defaultIndex={ `${ 2 }` }
-    onChange={ onChange }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -64,9 +64,9 @@ function onChange(event) {
   <Picker
     showToolbar={ true }
     title="标题"
-    columns={ `${ columns }` }
-    onCancel={ onCancel }
-    onConfirm={ onConfirm }
+    columns={ `${ this.columns }` }
+    onCancel={ this.onCancel }
+    onConfirm={ this.onConfirm }
   />
 </View>
  
@@ -97,8 +97,8 @@ function onCancel() {
 ```jsx
 <View>
   <Picker
-    columns={ `${ columns }` }
-    onChange={ onChange }
+    columns={ `${ this.columns }` }
+    onChange={ this.onChange }
   />
 </View>
  
@@ -136,7 +136,7 @@ function onChange(event) {
 
 ```jsx
 <View>
-  <Picker columns={ `${ columns }` } />
+  <Picker columns={ `${ this.columns }` } />
 </View>
  
 ```
@@ -161,7 +161,7 @@ this.state = {
 ```jsx
 <View>
   <Picker
-    columns={ `${ columns }` }
+    columns={ `${ this.columns }` }
     loading={ true }
   />
 </View>
